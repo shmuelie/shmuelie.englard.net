@@ -12,6 +12,7 @@
 	"author": "Shmueli Englard",
 	"description": "Personal Website",
 	"scripts": {
-		"start": "http-server ./dist/ -p 8000"
+		"start": "http-server ./dist/ -p 8000",
+		"build": "gulp build"
 	}
 }

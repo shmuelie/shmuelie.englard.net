@@ -14,4 +14,4 @@ gulp.task("copy-static", function () {
     return gulp.src(paths.pages).pipe(gulp.dest("dist"));
 });
 
-gulp.task("build-Debug", gulp.series(["ts-build", "copy-static"]));
+gulp.task("build", gulp.series(["ts-build", "copy-static"]));
