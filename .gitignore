@@ -1,21 +1,6 @@
 
-# Created by https://www.toptal.com/developers/gitignore/api/windows,web,visualstudio
-# Edit at https://www.toptal.com/developers/gitignore?templates=windows,web,visualstudio
-
-### Web ###
-*.asp
-*.cer
-*.csr
-*.css
-*.htm
-*.html
-*.js
-*.jsp
-*.php
-*.rss
-*.wasm
-*.wat
-*.xhtml
+# Created by https://www.toptal.com/developers/gitignore/api/windows,visualstudio
+# Edit at https://www.toptal.com/developers/gitignore?templates=windows,visualstudio
 
 ### Windows ###
 # Windows thumbnail cache files
