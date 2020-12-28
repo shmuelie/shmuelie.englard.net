@@ -4,7 +4,7 @@ import { dataBind } from './micro-data.js'
 const experience = [
     {
         name: "Lufthansa Systems",
-        duration: {
+        member: {
             startDate: {
                 dateTime: "2014-08",
                 content: "August 2014"
@@ -14,39 +14,39 @@ const experience = [
                 content: "December 2020"
             }
         },
-        subEvents: [
+        owns: [
             {
                 name: "MAPS Project (data)",
-                about: "Led the data integration part of this dynamic maps navigation project. Designed and implemented data integration systems to consolidate and move substantial amounts of aeronautical data (JSON, GeoJSON, XML, Google Protocol Buffers) between expert backend systems (SQL Server, PostgreSQL, other in-house tools) and in-cockpit navigation devices. Designed and implemented complex geometrical algorithms to manipulate this data to reduce their size and conform to the domain logic. Developed the entire system to be cross-playform, with most of it in .NET Core.",
-                associatedMedia: {
+                description: "Led the data integration part of this dynamic maps navigation project. Designed and implemented data integration systems to consolidate and move substantial amounts of aeronautical data (JSON, GeoJSON, XML, Google Protocol Buffers) between expert backend systems (SQL Server, PostgreSQL, other in-house tools) and in-cockpit navigation devices. Designed and implemented complex geometrical algorithms to manipulate this data to reduce their size and conform to the domain logic. Developed the entire system to be cross-playform, with most of it in .NET Core.",
+                url: {
                     href: "https://www.lhsystems.com/article/lidompilot-30-first-step-towards-fully-dynamic-navigation-maps",
                     content: "Link"
                 }
             },
             {
                 name: "MAPS Project (web integration)",
-                about: "Proposed and implemented a prototype for the Maps project (C++/OpenGL) as a Web Map Service (WMS). Developed using ASP.NET Core."
+                description: "Proposed and implemented a prototype for the Maps project (C++/OpenGL) as a Web Map Service (WMS). Developed using ASP.NET Core."
             },
             {
                 name: "MAPS Project (system integration)",
-                about: "Participated in design and development of the cross-platform interface to allow the external system to interface with the C++ MAPS library. Build bindings to JAVA and C# using SWIG technology. Built test applications to showcase the interface and cooperated with external teams to integrate the solution.",
-                associatedMedia: {
+                description: "Participated in design and development of the cross-platform interface to allow the external system to interface with the C++ MAPS library. Build bindings to JAVA and C# using SWIG technology. Built test applications to showcase the interface and cooperated with external teams to integrate the solution.",
+                url: {
                     href: "https://www.lhsystems.com/solutions-services/flight-deck-solutions/lidonavigation/lidoeroutemanual",
                     content: "Link"
                 }
             },
             {
                 name: "Lido Tools (in-house GIS)",
-                about: "Developed and maintained the aeronautical data production tools for a large globally distributed team of aeronautical specialists. The tools are an in-house GIS system, very specialized for the aeronautical domain, an involving big data. Technologies involved, .NET, .NET Core, C#, SQL Server, XAML and DevExpress.",
-                associatedMedia: {
+                description: "Developed and maintained the aeronautical data production tools for a large globally distributed team of aeronautical specialists. The tools are an in-house GIS system, very specialized for the aeronautical domain, an involving big data. Technologies involved, .NET, .NET Core, C#, SQL Server, XAML and DevExpress.",
+                url: {
                     href: "https://www.lhsystems.com/solutions-services/flight-deck-solutions/lidonavigation/lidoamdb",
                     content: "Link"
                 }
             },
             {
                 name: "BoardConnect MovingMap (flight tracking)",
-                about: "Designed the architecture and implemented a web application for use by commercial airlines in their entertainment system. This jQuery/JavaScript map application interfaced with the aircraft navigation system to present to the user all the flight data.",
-                associatedMedia: {
+                description: "Designed the architecture and implemented a web application for use by commercial airlines in their entertainment system. This jQuery/JavaScript map application interfaced with the aircraft navigation system to present to the user all the flight data.",
+                url: {
                     href: "https://apex.aero/articles/lufthansa-systems-boardconnect-portable-and-mcabin-put-flight-management-first/",
                     content: "Link"
                 }
@@ -55,7 +55,7 @@ const experience = [
     },
     {
         name: "UPS",
-        duration: {
+        member: {
             startDate: {
                 dateTime: "2014-04",
                 content: "April 2014"
@@ -69,7 +69,7 @@ const experience = [
     },
     {
         name: "Control Writer Software",
-        duration: {
+        member: {
             startDate: {
                 dateTime: "2012-08",
                 content: "August 2012"
@@ -83,7 +83,7 @@ const experience = [
     },
     {
         name: "CheckM8",
-        duration: {
+        member: {
             startDate: {
                 dateTime: "2011-05",
                 content: "May 2011"

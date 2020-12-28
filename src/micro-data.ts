@@ -17,18 +17,19 @@
 
 export function dataBind(element: HTMLElement, data: any): void {
     if (element.lastElementChild instanceof HTMLTemplateElement) {
-        const template = (element.lastElementChild as HTMLTemplateElement).content
+        const template = element.lastElementChild as HTMLTemplateElement;
         if (Array.isArray(data)) {
             for (const item of data) {
-                const bindingElement = template.cloneNode(true) as HTMLElement;
+                const bindingElement = template.content.cloneNode(true) as HTMLElement;
                 dataBind(bindingElement, item);
                 element.appendChild(bindingElement);
             }
         } else {
-            const bindingElement = template.cloneNode(true) as HTMLElement;
+            const bindingElement = template.content.cloneNode(true) as HTMLElement;
             dataBind(bindingElement, data);
             element.appendChild(bindingElement);
         }
+        template.remove();
     } else {
         for (const propertyName in data) {
             if (propertyName === "content") {

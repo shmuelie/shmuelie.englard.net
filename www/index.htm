@@ -11,7 +11,7 @@
             <h1 itemprop="name">Shmueli Yosef Englard</h1>
             <img itemprop="image" src="https://avatars0.githubusercontent.com/u/1119883?s=460&u=ff3333cb5414fe0726c7b91226ccda3cd65d4a4a&v=4" alt="Shmueli Englard" />
             <h2 itemprop="jobTitle">Software Engineer</h2>
-            <div class="win-type-subtitle" itemprop="email"><a href="mailto:shmuelli.yosef@englard.net" rel="me" translate="no">shmueli.yosef@englard.net</a></div>
+            <div class="win-type-subtitle" itemprop="email"><a href="mailto:shmuelli.yosef@englard.net" rel="me">shmueli.yosef@englard.net</a></div>
             <div class="win-type-subtitle" itemprop="telephone"><a rel="me" href="tel:17177468354">+1 (717) 746-8354</a></div>
             <div class="win-type-subtitle" itemprop="address">East Brunswick, New Jersey, United States</div>
             <div itemprop="contactPoint">
@@ -32,7 +32,7 @@
             </div>
         </header>
         <main>
-            <section itemprop="about">
+            <section itemprop="description">
                 <h1>About</h1>
                 <p>Cutting my programming chops on the .NET 2.0 Betas in 2005, I grew to love developing software. I started out using VB.NET but moved on to C# quickly and never looked back. While most of my work is in C#, I have professional experience with cross platform development in Java, C++ (SWIG); web development in JavaScript, node.js and, database development with MS SQL Server, PostgreSQL and MySQL, and data integration services using different transport protocols using JSON, GeoJSON, XML and Google Protocol Buffers.</p>
             </section>
@@ -41,17 +41,17 @@
                 <template>
                     <section itemprop="worksfor" itemscope itemtype="http://schema.org/Organization">
                         <h2 itemprop="name"></h2>
-                        <div itemprop="duration">
+                        <div itemprop="member" itemscope itemtype="http://schema.org/Role">
                             <time itemprop="startDate"></time> through <time itemprop="endDate"></time>
                         </div>
                         <div itemprop="description">
                         </div>
-                        <ul itemprop="subEvents">
+                        <ul itemprop="owns" itemscope itemtype="http://schema.org/ItemList">
                             <template>
-                                <li itemprop="subEvent" itemscope itemtype="http://schema.org/Event">
+                                <li itemprop="itemListElement" itemscope itemtype="http://schema.org/Thing">
                                     <h3 itemprop="name"></h3>
-                                    <p itemprop="about"></p>
-                                    <a href="" target="_blank" itemprop="associatedMedia"></a>
+                                    <p itemprop="description"></p>
+                                    <a href="" target="_blank" itemprop="url"></a>
                                 </li>
                             </template>
                         </ul>
