@@ -1,25 +1,6 @@
-import parsePhoneNumberFromString from 'https://unpkg.com/libphonenumber-js@1.9.8/min/index.js'
-import { Month, LocalDate, DateTimeFormatter } from 'https://unpkg.com/@js-joda/core@3.2.0/dist/js-joda.esm.js'
-
-/**
- * Results from @see formatPhone.
- */
-interface PhoneResults {
-    /**
-     * A phone number formatted according to E.123.
-     */
-    display: string;
-    /**
-     * A phone number made as a 'tel' link.
-     */
-    link: string;
-}
-
-/**
- * Format a phone number.
- * @param tel The phone number to format.
- */
-export function formatPhone(tel: string): PhoneResults | null {
+import parsePhoneNumberFromString from 'https://unpkg.com/libphonenumber-js@1.9.8/min/index.js';
+import { Month, LocalDate, DateTimeFormatter } from 'https://unpkg.com/@js-joda/core@3.2.0/dist/js-joda.esm.js';
+export function formatPhone(tel) {
     const phoneNumber = parsePhoneNumberFromString(tel, "US");
     if (phoneNumber && phoneNumber.isPossible()) {
         return {
@@ -29,13 +10,7 @@ export function formatPhone(tel: string): PhoneResults | null {
     }
     return null;
 }
-
-/**
- * Formats a ISO-8601 date.
- *
- * @param dt ISO-8601 date
- */
-export function formatDateTime(dt: string): string {
+export function formatDateTime(dt) {
     if (/^\d{4}$/.test(dt)) {
         return dt;
     }

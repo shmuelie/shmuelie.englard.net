@@ -1,13 +1,4 @@
-import { CreativeWork, Person, SchemaValue, WithContext } from './schema'
-
-export interface EmployeeRole {
-    description: SchemaValue<CreativeWork | string>;
-}
-
-/**
- * Object representing Shmueli Englard.
- */
-export const Me: Person = {
+export const Me = {
     "@type": "Person",
     name: "Shmueli Yosef Englard",
     jobTitle: "Software Engineer",
@@ -94,7 +85,7 @@ export const Me: Person = {
                 name: "UPS",
                 address: "Edison, New Jersey, United States"
             },
-            roleDescription: [ "Developing a website to allow auditing of servers, network equipment, and Windows services used in warehouses. The website is a modern web app, using progressive enhancement for those on new browsers. The site uses Signalr to allow for real time updates of the audits." ]
+            roleDescription: ["Developing a website to allow auditing of servers, network equipment, and Windows services used in warehouses. The website is a modern web app, using progressive enhancement for those on new browsers. The site uses Signalr to allow for real time updates of the audits."]
         },
         {
             "@type": "EmployeeRole",
@@ -105,9 +96,8 @@ export const Me: Person = {
             worksFor: {
                 "@type": "Corporation",
                 name: "Control Writer Software",
-
             },
-            roleDescription: [ "Reengineered an application from the ground up. The original application was developed in Silverlight to allow for shared code between Windows and Mac. To allow for the same rapid development cycles a radical development technique using a cross-platform game development platform called MonoGame on top of the Common Language Infrastructure was used. Approximately 90% code sharing was achieved in the end with most features being developed for both platforms simultaneously." ]
+            roleDescription: ["Reengineered an application from the ground up. The original application was developed in Silverlight to allow for shared code between Windows and Mac. To allow for the same rapid development cycles a radical development technique using a cross-platform game development platform called MonoGame on top of the Common Language Infrastructure was used. Approximately 90% code sharing was achieved in the end with most features being developed for both platforms simultaneously."]
         },
         {
             "@type": "EmployeeRole",
@@ -126,11 +116,6 @@ export const Me: Person = {
         }
     ]
 };
-
-interface WithContextBase {
-    "@context": "https://schema.org";
-}
-
-export const ld: WithContext<Person> = Object.assign<WithContextBase, Person>({
+export const ld = Object.assign({
     "@context": "https://schema.org"
 }, Me);
