@@ -27,8 +27,13 @@ main {
     padding-top: 5px;
 }
 
-header *[itemprop=contactPoint] {
-    display: inline-block;
+header section[itemprop=contactPoint] {
+    float: right;
+}
+
+header section[itemprop=contactPoint] github-widget {
+    --width: 200px;
+    --height: 30px;
 }
 
 main > section {
@@ -36,20 +41,20 @@ main > section {
     padding: 0px 5px;
 }
 
-.experience section {
+section[itemprop=worksFor] section {
     padding: 5px 10px;
     margin: 5px 0px;
 }
 
-    .experience section:nth-of-type(even) {
+    section[itemprop=worksFor] section:nth-of-type(even) {
         background-color: #444;
     }
 
-    .experience section:nth-of-type(odd) {
+    section[itemprop=worksFor] section:nth-of-type(odd) {
         background-color: #777;
     }
 
-    .experience section *[itemprop=member] {
+    section[itemprop=worksFor] section div:nth-child(2) {
         font-style: italic;
     }
 
@@ -77,33 +82,4 @@ html {
 
 a:not(a[href]) {
     display: none;
-}
-
-meta[itemprop=contactType] ~ svg {
-    width: 26px;
-    border-radius: 3px 0 0 3px;
-    background: #006097;
-}
-
-    meta[itemprop=contactType] ~ svg rect {
-        fill: #FFFFFF;
-        stroke-width: 0;
-    }
-
-    meta[itemprop=contactType] ~ svg g {
-        fill: #006097;
-    }
-
-
-meta[itemprop=contactType] ~ a {
-    font-size: 14px;
-    border-radius: 0 3px 3px 0;
-    border-left: 1px solid #FFFFFF;
-    background: #006097;
-    color: #FFFFFF;
-    padding: 4px 8px;
-    margin-left: -3px;
-    position: relative;
-    top: -8px;
-    display: inline-block;
 }
