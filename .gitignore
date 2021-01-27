@@ -386,3 +386,6 @@ MigrationBackup/
 # End of https://www.toptal.com/developers/gitignore/api/windows,web,visualstudio
 
 dist/
+.vs/
+.github/
+.vscode/
