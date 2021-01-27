@@ -1,6 +1,6 @@
 # Personal Site
 
-Source code for shmuelie.englard.net.
+Source code for [shmuelie.englard.net](https://shmuelie.englard.net/).
 
 ## Dependencies
 
