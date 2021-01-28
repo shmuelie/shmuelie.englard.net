@@ -83,3 +83,8 @@ html {
 a:not(a[href]) {
     display: none;
 }
+
+footer {
+    padding-bottom: 10px;
+    text-align: center;
+}
