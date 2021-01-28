@@ -28,5 +28,5 @@ jobs:
         git checkout --progress gh-pages
         cp ./dist/* ./
         git add .
-        git commit -m "Updating GH Pages"
+        git commit --allow-empty -m "Updating GH Pages"
         git push
