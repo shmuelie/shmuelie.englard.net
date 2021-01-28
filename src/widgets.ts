@@ -197,7 +197,7 @@ export class TwitterWidget extends HTMLElement implements LifecycleCallbacks {
     }
 
     connectedCallback() {
-        //this.createWidget();
+        this.createWidget();
     }
 }
 
