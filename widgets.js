@@ -151,6 +151,7 @@ export class TwitterWidget extends HTMLElement {
         this.createWidget();
     }
     connectedCallback() {
+        this.createWidget();
     }
 }
 customElements.define("twitter-widget", TwitterWidget);
