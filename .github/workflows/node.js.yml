@@ -26,5 +26,5 @@ jobs:
         email: shmueli.yosef@englard.net
         name: Shmueli Englard (Bot)
         branch: gh-pages
-        file: dist/*
+        files: dist/*
         token: ${{ secrets.GITHUBACCESSTOKEN }}
