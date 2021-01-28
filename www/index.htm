@@ -11,7 +11,7 @@
             <h1 itemprop="name"></h1>
             <img itemprop="image" alt="Shmueli Englard" />
             <section itemprop="contactPoint">
-                <template itemtype=ContactPoint>
+                <template data-type=ContactPoint>
                     <div itemscope itemtype="https://schema.org/ContactPoint">
                         <meta itemprop="contactType" />
                         <meta itemprop="name" />
@@ -27,28 +27,28 @@
         </header>
         <main>
             <section>
-                <h1>About</h1>
+                <h2>About</h1>
                 <p itemprop="description"></p>
             </section>
             <section itemprop="worksFor">
-                <h1>Experience</h1>
-                <template itemtype="EmployeeRole">
+                <h2>Experience</h1>
+                <template data-type="EmployeeRole">
                     <section itemscope itemtype="https://schema.org/EmployeeRole">
                         <div itemprop="worksFor" itemscope itemtype="https://schema.org/Corporation">
-                            <h2 itemprop="name"></h2>
+                            <h3 itemprop="name"></h2>
                         </div>
                         <div>
                             <time itemprop="startDate"></time> through <time itemprop="endDate"></time>
                         </div>
                         <ul itemprop="roleDescription">
-                            <template itemtype="CreativeWork">
+                            <template data-type="CreativeWork">
                                 <li itemscope itemtype="https://schema.org/CreativeWork">
                                     <h3 itemprop="name"></h3>
                                     <p itemprop="description"></p>
-                                    <a target="_blank" itemprop="url"></a>
+                                    <a href="" target="_blank" itemprop="url">Link</a>
                                 </li>
                             </template>
-                            <template itemtype="Text">
+                            <template data-type="Text">
                                 <li></li>
                             </template>
                         </ul>

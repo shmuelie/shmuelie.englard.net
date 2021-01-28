@@ -80,7 +80,7 @@ html {
     overflow-y: auto;
 }
 
-a:not(a[href]) {
+a[href=''] {
     display: none;
 }
 

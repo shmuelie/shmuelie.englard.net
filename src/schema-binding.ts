@@ -74,7 +74,7 @@ export function dataBind(element: HTMLElement, data: Thing): void {
  */
 function dataBindAsArray(element: HTMLElement, data: Thing[]): void {
     for (const item of data) {
-        const tmpl = (typeof item === "string") ? element.querySelector<HTMLTemplateElement>("template[itemtype=Text]") : element.querySelector<HTMLTemplateElement>("template[itemtype=" + item["@type"] + "]");
+        const tmpl = (typeof item === "string") ? element.querySelector<HTMLTemplateElement>("template[data-type=Text]") : element.querySelector<HTMLTemplateElement>("template[data-type=" + item["@type"] + "]");
         if (tmpl && tmpl.content.firstElementChild) {
             const clone = tmpl.content.firstElementChild.cloneNode(true) as HTMLElement;
             dataBind(clone, item);
