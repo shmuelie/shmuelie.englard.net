@@ -14,6 +14,8 @@ jobs:
         node-version: [15.x]
     steps:
     - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
       with:
@@ -21,9 +23,9 @@ jobs:
     - run: npm install
     - run: npm run build
     - run: |
-        git config user.name github-actions
-        git config user.email github-actions@github.com
-        git checkout --progress  gh-pages refs/remotes/origin/gh-pages
+        git config user.name Shmueli Englard
+        git config user.email shmueli.yosef@englard.net
+        git checkout --progress gh-pages
         cp ./dist/* ./
         git add .
         git commit -m "Updating GH Pages"
