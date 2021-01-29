@@ -1,4 +1,4 @@
-import { dataBindWidget } from './widgets.js';
+import { dataBindWidget } from './contact-widgets.js';
 import { isArray, isElement, isSchemaType } from './type-guards.js';
 import { formatDateTime, formatPhone } from './formatters.js';
 function getElementType(element) {
