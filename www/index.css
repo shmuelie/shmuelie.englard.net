@@ -68,3 +68,7 @@ footer {
   padding-bottom: 10px;
   text-align: center;
 }
+header section[itemprop=contactPoint] github-widget {
+  --width: 200px;
+  --height: 30px;
+}
