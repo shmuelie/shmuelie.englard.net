@@ -7,7 +7,8 @@ export interface EmployeeRole {
 /**
  * Object representing Shmueli Englard.
  */
-export const Me: Person = {
+export const Me: WithContext<Person> = {
+    "@context": "https://schema.org",
     "@type": "Person",
     name: "Shmueli Yosef Englard",
     jobTitle: "Software Engineer",
@@ -126,11 +127,3 @@ export const Me: Person = {
         }
     ]
 };
-
-interface WithContextBase {
-    "@context": "https://schema.org";
-}
-
-export const ld: WithContext<Person> = Object.assign<WithContextBase, Person>({
-    "@context": "https://schema.org"
-}, Me);
