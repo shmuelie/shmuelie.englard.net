@@ -1,0 +1,444 @@
+.win-link {
+  touch-action: manipulation;
+}
+@font-face {
+  font-family: "Segoe UI Command";
+  src: local("Segoe MDL2 Assets");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: Symbols;
+  src: url(https://cdnjs.cloudflare.com/ajax/libs/winjs/4.4.3/fonts/Symbols.ttf);
+}
+.win-h1,
+.win-type-header {
+  font-size: 46px;
+  font-weight: 200;
+  line-height: 1.216;
+  letter-spacing: 0;
+}
+.win-h2 {
+  font-size: 34px;
+  font-weight: 200;
+  line-height: 1.176;
+}
+.win-h3,
+.win-type-title {
+  font-size: 24px;
+  font-weight: 300;
+  line-height: 1.167;
+}
+.win-h4,
+.win-type-subtitle {
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.2;
+}
+.win-h6,
+.win-type-body {
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.333;
+}
+.win-h5 {
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.333;
+}
+@font-face {
+  font-family: "Segoe UI";
+  font-weight: 200;
+  src: local("Segoe UI Light");
+}
+@font-face {
+  font-family: "Segoe UI";
+  font-weight: 300;
+  src: local("Segoe UI Semilight");
+}
+@font-face {
+  font-family: "Segoe UI";
+  font-weight: 400;
+  src: local("Segoe UI");
+}
+@font-face {
+  font-family: "Segoe UI";
+  font-weight: 500;
+  src: local("Segoe UI Semibold");
+}
+@font-face {
+  font-family: "Segoe UI";
+  font-weight: 600;
+  src: local("Segoe UI Bold");
+}
+@font-face {
+  font-family: "Segoe UI";
+  font-style: italic;
+  font-weight: 400;
+  src: local("Segoe UI Italic");
+}
+@font-face {
+  font-family: "Segoe UI";
+  font-style: italic;
+  font-weight: 700;
+  src: local("Segoe UI Bold Italic");
+}
+@font-face {
+  font-family: "Microsoft Yahei UI";
+  font-weight: 200;
+  src: local("Microsoft Yahei UI Light");
+}
+@font-face {
+  font-family: "Microsoft Yahei UI";
+  font-weight: 300;
+  src: local("Microsoft Yahei UI");
+}
+@font-face {
+  font-family: "Microsoft Yahei UI";
+  font-weight: 500;
+  src: local("Microsoft Yahei UI");
+}
+@font-face {
+  font-family: "Microsoft Yahei UI";
+  font-weight: 600;
+  src: local("Microsoft Yahei UI Bold");
+}
+@font-face {
+  font-family: "Microsoft JhengHei UI";
+  font-weight: 200;
+  src: local("Microsoft JhengHei UI Light");
+}
+@font-face {
+  font-family: "Microsoft JhengHei UI";
+  font-weight: 300;
+  src: local("Microsoft JhengHei UI");
+}
+@font-face {
+  font-family: "Microsoft JhengHei UI";
+  font-weight: 500;
+  src: local("Microsoft JhengHei UI");
+}
+@font-face {
+  font-family: "Microsoft JhengHei UI";
+  font-weight: 600;
+  src: local("Microsoft JhengHei UI Bold");
+}
+.win-h1:-ms-lang(am, ti),
+.win-h2:-ms-lang(am, ti),
+.win-h3:-ms-lang(am, ti),
+.win-h4:-ms-lang(am, ti),
+.win-h5:-ms-lang(am, ti),
+.win-h6:-ms-lang(am, ti),
+.win-link:-ms-lang(am, ti),
+.win-type-body:-ms-lang(am, ti),
+.win-type-header:-ms-lang(am, ti),
+.win-type-subtitle:-ms-lang(am, ti),
+.win-type-title:-ms-lang(am, ti) {
+  font-family: Ebrima, Ebrima, "Nirmala UI", Gadugi, "Segoe UI Emoji",
+    "Segoe MDL2 Assets", Symbols, "Yu Gothic UI", "Yu Gothic", "Meiryo UI",
+    "Leelawadee UI", "Microsoft YaHei UI", "Microsoft JhengHei UI",
+    "Malgun Gothic", "Segoe UI Historic", "Estrangelo Edessa",
+    "Microsoft Himalaya", "Microsoft New Tai Lue", "Microsoft PhagsPa",
+    "Microsoft Tai Le", "Microsoft Yi Baiti", "Mongolian Baiti", "MV Boli",
+    "Myanmar Text", "Javanese Text", "Cambria Math";
+}
+.win-h1:-ms-lang(as, bn, gu, hi, kn, kok, ml, mr, ne, or, pa, sat-Olck, si, srb-Sora, ta, te),
+.win-h2:-ms-lang(as, bn, gu, hi, kn, kok, ml, mr, ne, or, pa, sat-Olck, si, srb-Sora, ta, te),
+.win-h3:-ms-lang(as, bn, gu, hi, kn, kok, ml, mr, ne, or, pa, sat-Olck, si, srb-Sora, ta, te),
+.win-h4:-ms-lang(as, bn, gu, hi, kn, kok, ml, mr, ne, or, pa, sat-Olck, si, srb-Sora, ta, te),
+.win-h5:-ms-lang(as, bn, gu, hi, kn, kok, ml, mr, ne, or, pa, sat-Olck, si, srb-Sora, ta, te),
+.win-h6:-ms-lang(as, bn, gu, hi, kn, kok, ml, mr, ne, or, pa, sat-Olck, si, srb-Sora, ta, te),
+.win-link:-ms-lang(as, bn, gu, hi, kn, kok, ml, mr, ne, or, pa, sat-Olck, si, srb-Sora, ta, te),
+.win-type-body:-ms-lang(as, bn, gu, hi, kn, kok, ml, mr, ne, or, pa, sat-Olck, si, srb-Sora, ta, te),
+.win-type-header:-ms-lang(as, bn, gu, hi, kn, kok, ml, mr, ne, or, pa, sat-Olck, si, srb-Sora, ta, te),
+.win-type-subtitle:-ms-lang(as, bn, gu, hi, kn, kok, ml, mr, ne, or, pa, sat-Olck, si, srb-Sora, ta, te),
+.win-type-title:-ms-lang(as, bn, gu, hi, kn, kok, ml, mr, ne, or, pa, sat-Olck, si, srb-Sora, ta, te) {
+  font-family: "Nirmala UI", Ebrima, "Nirmala UI", Gadugi, "Segoe UI Emoji",
+    "Segoe MDL2 Assets", Symbols, "Yu Gothic UI", "Yu Gothic", "Meiryo UI",
+    "Leelawadee UI", "Microsoft YaHei UI", "Microsoft JhengHei UI",
+    "Malgun Gothic", "Segoe UI Historic", "Estrangelo Edessa",
+    "Microsoft Himalaya", "Microsoft New Tai Lue", "Microsoft PhagsPa",
+    "Microsoft Tai Le", "Microsoft Yi Baiti", "Mongolian Baiti", "MV Boli",
+    "Myanmar Text", "Javanese Text", "Cambria Math";
+}
+.win-h1:-ms-lang(chr-CHER-US),
+.win-h2:-ms-lang(chr-CHER-US),
+.win-h3:-ms-lang(chr-CHER-US),
+.win-h4:-ms-lang(chr-CHER-US),
+.win-h5:-ms-lang(chr-CHER-US),
+.win-h6:-ms-lang(chr-CHER-US),
+.win-link:-ms-lang(chr-CHER-US),
+.win-type-body:-ms-lang(chr-CHER-US),
+.win-type-header:-ms-lang(chr-CHER-US),
+.win-type-subtitle:-ms-lang(chr-CHER-US),
+.win-type-title:-ms-lang(chr-CHER-US) {
+  font-family: Gadugi, Ebrima, "Nirmala UI", Gadugi, "Segoe UI Emoji",
+    "Segoe MDL2 Assets", Symbols, "Yu Gothic UI", "Yu Gothic", "Meiryo UI",
+    "Leelawadee UI", "Microsoft YaHei UI", "Microsoft JhengHei UI",
+    "Malgun Gothic", "Segoe UI Historic", "Estrangelo Edessa",
+    "Microsoft Himalaya", "Microsoft New Tai Lue", "Microsoft PhagsPa",
+    "Microsoft Tai Le", "Microsoft Yi Baiti", "Mongolian Baiti", "MV Boli",
+    "Myanmar Text", "Javanese Text", "Cambria Math";
+}
+.win-h1:-ms-lang(ja),
+.win-h2:-ms-lang(ja),
+.win-h3:-ms-lang(ja),
+.win-h4:-ms-lang(ja),
+.win-h5:-ms-lang(ja),
+.win-h6:-ms-lang(ja),
+.win-link:-ms-lang(ja),
+.win-type-body:-ms-lang(ja),
+.win-type-header:-ms-lang(ja),
+.win-type-subtitle:-ms-lang(ja),
+.win-type-title:-ms-lang(ja) {
+  font-family: "Yu Gothic UI", Ebrima, "Nirmala UI", Gadugi, "Segoe UI Emoji",
+    "Segoe MDL2 Assets", Symbols, "Yu Gothic UI", "Yu Gothic", "Meiryo UI",
+    "Leelawadee UI", "Microsoft YaHei UI", "Microsoft JhengHei UI",
+    "Malgun Gothic", "Segoe UI Historic", "Estrangelo Edessa",
+    "Microsoft Himalaya", "Microsoft New Tai Lue", "Microsoft PhagsPa",
+    "Microsoft Tai Le", "Microsoft Yi Baiti", "Mongolian Baiti", "MV Boli",
+    "Myanmar Text", "Javanese Text", "Cambria Math";
+}
+.win-h1:-ms-lang(km, lo, th, bug-Bugi),
+.win-h2:-ms-lang(km, lo, th, bug-Bugi),
+.win-h3:-ms-lang(km, lo, th, bug-Bugi),
+.win-h4:-ms-lang(km, lo, th, bug-Bugi),
+.win-h5:-ms-lang(km, lo, th, bug-Bugi),
+.win-h6:-ms-lang(km, lo, th, bug-Bugi),
+.win-link:-ms-lang(km, lo, th, bug-Bugi),
+.win-type-body:-ms-lang(km, lo, th, bug-Bugi),
+.win-type-header:-ms-lang(km, lo, th, bug-Bugi),
+.win-type-subtitle:-ms-lang(km, lo, th, bug-Bugi),
+.win-type-title:-ms-lang(km, lo, th, bug-Bugi) {
+  font-family: "Leelawadee UI", Ebrima, "Nirmala UI", Gadugi, "Segoe UI Emoji",
+    "Segoe MDL2 Assets", Symbols, "Yu Gothic UI", "Yu Gothic", "Meiryo UI",
+    "Leelawadee UI", "Microsoft YaHei UI", "Microsoft JhengHei UI",
+    "Malgun Gothic", "Segoe UI Historic", "Estrangelo Edessa",
+    "Microsoft Himalaya", "Microsoft New Tai Lue", "Microsoft PhagsPa",
+    "Microsoft Tai Le", "Microsoft Yi Baiti", "Mongolian Baiti", "MV Boli",
+    "Myanmar Text", "Javanese Text", "Cambria Math";
+}
+.win-h1:-ms-lang(ko),
+.win-h2:-ms-lang(ko),
+.win-h3:-ms-lang(ko),
+.win-h4:-ms-lang(ko),
+.win-h5:-ms-lang(ko),
+.win-h6:-ms-lang(ko),
+.win-link:-ms-lang(ko),
+.win-type-body:-ms-lang(ko),
+.win-type-header:-ms-lang(ko),
+.win-type-subtitle:-ms-lang(ko),
+.win-type-title:-ms-lang(ko) {
+  font-family: "Malgun Gothic", Ebrima, "Nirmala UI", Gadugi, "Segoe UI Emoji",
+    "Segoe MDL2 Assets", Symbols, "Yu Gothic UI", "Yu Gothic", "Meiryo UI",
+    "Leelawadee UI", "Microsoft YaHei UI", "Microsoft JhengHei UI",
+    "Malgun Gothic", "Segoe UI Historic", "Estrangelo Edessa",
+    "Microsoft Himalaya", "Microsoft New Tai Lue", "Microsoft PhagsPa",
+    "Microsoft Tai Le", "Microsoft Yi Baiti", "Mongolian Baiti", "MV Boli",
+    "Myanmar Text", "Javanese Text", "Cambria Math";
+}
+.win-h1:-ms-lang(jv-Java),
+.win-h2:-ms-lang(jv-Java),
+.win-h3:-ms-lang(jv-Java),
+.win-h4:-ms-lang(jv-Java),
+.win-h5:-ms-lang(jv-Java),
+.win-h6:-ms-lang(jv-Java),
+.win-link:-ms-lang(jv-Java),
+.win-type-body:-ms-lang(jv-Java),
+.win-type-header:-ms-lang(jv-Java),
+.win-type-subtitle:-ms-lang(jv-Java),
+.win-type-title:-ms-lang(jv-Java) {
+  font-family: "Javanese Text", Ebrima, "Nirmala UI", Gadugi, "Segoe UI Emoji",
+    "Segoe MDL2 Assets", Symbols, "Yu Gothic UI", "Yu Gothic", "Meiryo UI",
+    "Leelawadee UI", "Microsoft YaHei UI", "Microsoft JhengHei UI",
+    "Malgun Gothic", "Segoe UI Historic", "Estrangelo Edessa",
+    "Microsoft Himalaya", "Microsoft New Tai Lue", "Microsoft PhagsPa",
+    "Microsoft Tai Le", "Microsoft Yi Baiti", "Mongolian Baiti", "MV Boli",
+    "Myanmar Text", "Javanese Text", "Cambria Math";
+}
+.win-h1:-ms-lang(cop-Copt),
+.win-h2:-ms-lang(cop-Copt),
+.win-h3:-ms-lang(cop-Copt),
+.win-h4:-ms-lang(cop-Copt),
+.win-h5:-ms-lang(cop-Copt),
+.win-h6:-ms-lang(cop-Copt),
+.win-link:-ms-lang(cop-Copt),
+.win-type-body:-ms-lang(cop-Copt),
+.win-type-header:-ms-lang(cop-Copt),
+.win-type-subtitle:-ms-lang(cop-Copt),
+.win-type-title:-ms-lang(cop-Copt) {
+  font-family: "Segoe MDL2 Assets", Ebrima, "Nirmala UI", Gadugi,
+    "Segoe UI Emoji", "Segoe MDL2 Assets", Symbols, "Yu Gothic UI", "Yu Gothic",
+    "Meiryo UI", "Leelawadee UI", "Microsoft YaHei UI", "Microsoft JhengHei UI",
+    "Malgun Gothic", "Segoe UI Historic", "Estrangelo Edessa",
+    "Microsoft Himalaya", "Microsoft New Tai Lue", "Microsoft PhagsPa",
+    "Microsoft Tai Le", "Microsoft Yi Baiti", "Mongolian Baiti", "MV Boli",
+    "Myanmar Text", "Javanese Text", "Cambria Math";
+}
+.win-h1:-ms-lang(zh-CN, zh-Hans, zh-SG),
+.win-h2:-ms-lang(zh-CN, zh-Hans, zh-SG),
+.win-h3:-ms-lang(zh-CN, zh-Hans, zh-SG),
+.win-h4:-ms-lang(zh-CN, zh-Hans, zh-SG),
+.win-h5:-ms-lang(zh-CN, zh-Hans, zh-SG),
+.win-h6:-ms-lang(zh-CN, zh-Hans, zh-SG),
+.win-link:-ms-lang(zh-CN, zh-Hans, zh-SG),
+.win-type-body:-ms-lang(zh-CN, zh-Hans, zh-SG),
+.win-type-header:-ms-lang(zh-CN, zh-Hans, zh-SG),
+.win-type-subtitle:-ms-lang(zh-CN, zh-Hans, zh-SG),
+.win-type-title:-ms-lang(zh-CN, zh-Hans, zh-SG) {
+  font-family: "Microsoft YaHei UI", Ebrima, "Nirmala UI", Gadugi,
+    "Segoe UI Emoji", "Segoe MDL2 Assets", Symbols, "Yu Gothic UI", "Yu Gothic",
+    "Meiryo UI", "Leelawadee UI", "Microsoft YaHei UI", "Microsoft JhengHei UI",
+    "Malgun Gothic", "Segoe UI Historic", "Estrangelo Edessa",
+    "Microsoft Himalaya", "Microsoft New Tai Lue", "Microsoft PhagsPa",
+    "Microsoft Tai Le", "Microsoft Yi Baiti", "Mongolian Baiti", "MV Boli",
+    "Myanmar Text", "Javanese Text", "Cambria Math";
+}
+.win-h1:-ms-lang(zh-HK, zh-TW, zh-Hant, zh-MO),
+.win-h2:-ms-lang(zh-HK, zh-TW, zh-Hant, zh-MO),
+.win-h3:-ms-lang(zh-HK, zh-TW, zh-Hant, zh-MO),
+.win-h4:-ms-lang(zh-HK, zh-TW, zh-Hant, zh-MO),
+.win-h5:-ms-lang(zh-HK, zh-TW, zh-Hant, zh-MO),
+.win-h6:-ms-lang(zh-HK, zh-TW, zh-Hant, zh-MO),
+.win-link:-ms-lang(zh-HK, zh-TW, zh-Hant, zh-MO),
+.win-type-body:-ms-lang(zh-HK, zh-TW, zh-Hant, zh-MO),
+.win-type-header:-ms-lang(zh-HK, zh-TW, zh-Hant, zh-MO),
+.win-type-subtitle:-ms-lang(zh-HK, zh-TW, zh-Hant, zh-MO),
+.win-type-title:-ms-lang(zh-HK, zh-TW, zh-Hant, zh-MO) {
+  font-family: "Microsoft JhengHei UI", Ebrima, "Nirmala UI", Gadugi,
+    "Segoe UI Emoji", "Segoe MDL2 Assets", Symbols, "Yu Gothic UI", "Yu Gothic",
+    "Meiryo UI", "Leelawadee UI", "Microsoft YaHei UI", "Microsoft JhengHei UI",
+    "Malgun Gothic", "Segoe UI Historic", "Estrangelo Edessa",
+    "Microsoft Himalaya", "Microsoft New Tai Lue", "Microsoft PhagsPa",
+    "Microsoft Tai Le", "Microsoft Yi Baiti", "Mongolian Baiti", "MV Boli",
+    "Myanmar Text", "Javanese Text", "Cambria Math";
+}
+body,
+html {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  cursor: default;
+  -webkit-touch-callout: none;
+  -ms-scroll-translation: vertical-to-horizontal;
+  -webkit-tap-highlight-color: transparent;
+}
+html {
+  overflow: hidden;
+  direction: ltr;
+}
+html:lang(ar),
+html:lang(dv),
+html:lang(fa),
+html:lang(he),
+html:lang(ku-Arab),
+html:lang(pa-Arab),
+html:lang(prs),
+html:lang(ps),
+html:lang(qps-plocm),
+html:lang(sd-Arab),
+html:lang(syr),
+html:lang(ug),
+html:lang(ur) {
+  direction: rtl;
+}
+body {
+  -ms-content-zooming: none;
+}
+.win-h1,
+.win-h2,
+.win-h3,
+.win-h4,
+.win-h5,
+.win-h6,
+.win-link,
+.win-type-body,
+.win-type-header,
+.win-type-subtitle,
+.win-type-title {
+  font-family: "Segoe UI", sans-serif, "Segoe MDL2 Assets", Symbols,
+    "Segoe UI Emoji";
+}
+@-webkit-keyframes win-progress-indeterminate {
+  0% {
+    left: 0;
+    width: 25%;
+  }
+  50% {
+    left: calc(75%);
+    width: 25%;
+  }
+  75% {
+    left: calc(100%);
+    width: 0;
+  }
+  75.1% {
+    left: 0;
+    width: 0;
+  }
+  100% {
+    left: 0;
+    width: 25%;
+  }
+}
+@keyframes win-progress-fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0.5;
+  }
+}
+.win-link {
+  text-decoration: underline;
+  cursor: pointer;
+}
+h1.win-h1,
+h1.win-type-header,
+h2.win-h2,
+h3.win-h3,
+h3.win-type-title,
+h4.win-h4,
+h4.win-type-subtitle,
+h5.win-h5,
+h6.win-h6,
+h6.win-type-body {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.win-type-body p,
+p.win-type-body {
+  font-weight: 300;
+}
+.win-ui-dark,
+body {
+  background-color: #000;
+  color: #fff;
+}
+::selection {
+  color: #fff;
+}
+.win-link:hover {
+  color: rgba(255, 255, 255, 0.6);
+}
+.win-link:active {
+  color: rgba(255, 255, 255, 0.4);
+}
+.win-link[disabled] {
+  color: rgba(255, 255, 255, 0.2);
+}
+@media (-ms-high-contrast) {
+  ::selection {
+    background-color: Highlight;
+    color: HighlightText;
+  }
+  .win-link {
+    color: -ms-hotlight;
+  }
+  .win-link:active {
+    color: Highlight;
+  }
+  .win-link[disabled] {
+    color: GrayText;
+  }
+}
