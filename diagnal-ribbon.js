@@ -73,5 +73,8 @@ export class DiagnalRibbon extends HTMLElement {
     attributeChangedCallback(_, __, ___) {
         this.update();
     }
+    static get observedAttributes() {
+        return ["href", "text", "corner"];
+    }
 }
 customElements.define("diagnal-ribbon", DiagnalRibbon);
