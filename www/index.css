@@ -43,18 +43,8 @@ section[itemprop="worksFor"] section:nth-of-type(odd) {
 section[itemprop="worksFor"] section div:nth-child(2) {
   font-style: italic;
 }
-[itemprop="email"]::before {
-  content: "\1F4E7";
-  padding-right: 0.5em;
-  font-style: normal;
-}
-[itemprop="telephone"]::before {
-  content: "\1F4F1";
-  padding-right: 0.5em;
-  font-style: normal;
-}
-[itemprop="address"]::before {
-  content: "\1F5FA";
+[data-icon]::before {
+  content: attr(data-icon);
   padding-right: 0.5em;
   font-style: normal;
 }

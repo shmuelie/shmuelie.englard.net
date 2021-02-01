@@ -54,8 +54,8 @@ export function dataBind(element: HTMLElement, data: Thing): void {
         if (currentType !== data['@type']) {
             throw new Error("Data type does not match element type");
         }
-        if (isSchemaType<ContactPoint>(data, "ContactPoint")) {
-            element.appendChild(dataBindWidget(data));
+        if (element.dataset.formatter && (element.dataset.formatter in thingFormatters) && thingFormatters[element.dataset.formatter](data, element)) {
+            return;
         }
         for (const propertyName of Object.keys(data).filter(pn => !pn.startsWith("@"))) {
             const propertyValue = getProperty<Thing>(data, propertyName);
@@ -89,41 +89,87 @@ function dataBindAsArray(element: HTMLElement, data: Thing[]): void {
  * @param data The string to bind from.
  */
 function dataBindAsString(element: HTMLElement, data: string): void {
-    // if simply a string, do special handling based on the type of element to bind to.
+    if (element.dataset.formatter && (element.dataset.formatter in stringFormatters) && stringFormatters[element.dataset.formatter](data, element)) {
+        return;
+    }
+    element.innerText = data;
+}
+
+function dateFormatter(data: string, element: HTMLElement): boolean {
     if (isElement<HTMLTimeElement>(element, "time")) {
         element.innerText = formatDateTime(data);
         element.dateTime = data;
-    } else if (isElement<HTMLAnchorElement>(element, "a")) {
-        dataBindAsLink(data, element);
-    } else if (isElement<HTMLMetaElement>(element, "meta")) {
-        element.content = data;
-    } else if (isElement<HTMLImageElement>(element, "img")) {
-        element.src = data;
-    } else {
-        element.innerText = data;
+        return true;
     }
+    return false;
 }
 
-/**
- * Bind a string to a @see HTMLAnchorElement.
- * @param data The string to bind from.
- * @param element The HTMLAnchorElement to bind to.
- */
-function dataBindAsLink(data: string, element: HTMLAnchorElement) {
+function emailFormatter(data: string, element: HTMLElement): boolean {
     /** From https://emailregex.com/ */
     const emailRegex = /(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/;
-    const tel = formatPhone(data);
-    if (tel) {
-        element.href = tel.link;
-        element.innerText = tel.display;
-    } else if (emailRegex.test(data)) {
+    if (isElement<HTMLAnchorElement>(element, "a") && emailRegex.test(data)) {
         element.href = "mailto:" + data;
         element.innerText = data;
-    } else {
-        // Just assume that the data is the URL and that the link text isn't data bound.
-        element.href = data;
+        return true;
     }
+    return false;
 }
+
+function telephoneFormatter(data: string, element: HTMLElement): boolean {
+    if (isElement<HTMLAnchorElement>(element, "a")) {
+        const tel = formatPhone(data);
+        if (tel) {
+            element.href = tel.link;
+            element.innerText = tel.display;
+            return true;
+        }
+    }
+    return false;
+}
+
+function anchorFormatter(data: string, element: HTMLElement): boolean {
+    if (isElement<HTMLAnchorElement>(element, "a")) {
+        element.href = data;
+        return true;
+    }
+    return false;
+}
+
+function metaFormatter(data: string, element: HTMLElement): boolean {
+    if (isElement<HTMLMetaElement>(element, "meta")) {
+        element.content = data;
+        return true;
+    }
+    return false;
+}
+
+function imageFormatter(data: string, element: HTMLElement): boolean {
+    if (isElement<HTMLImageElement>(element, "img")) {
+        element.src = data;
+        return true;
+    }
+    return false;
+}
+
+function contactPointFormatter(data: Thing, element: HTMLElement): boolean {
+    if (isSchemaType<ContactPoint>(data, "ContactPoint")) {
+        element.appendChild(dataBindWidget(data));
+    }
+    return false; // Always allow for more processing after this.
+}
+
+export const stringFormatters: {[name: string]: (data: string, element: HTMLElement) => boolean} = {
+    "date": dateFormatter,
+    "meta": metaFormatter,
+    "image": imageFormatter,
+    "email": emailFormatter,
+    "telephone": telephoneFormatter,
+    "anchor": anchorFormatter
+};
+
+export const thingFormatters: {[name: string]: (data: Thing, element: HTMLElement) => boolean} ={
+    "contactPoint": contactPointFormatter
+};
 
 export function jsonLdBind<T extends Thing>(data: WithContext<T>, root: Document): void {
     const script = root.querySelector<HTMLScriptElement>("script[type='application/ld+json']");
