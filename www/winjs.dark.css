@@ -9,7 +9,7 @@
 }
 @font-face {
   font-family: Symbols;
-  src: url(https://cdnjs.cloudflare.com/ajax/libs/winjs/4.4.3/fonts/Symbols.ttf);
+  src: url(Symbols.ttf);
 }
 .win-h1,
 .win-type-header {
