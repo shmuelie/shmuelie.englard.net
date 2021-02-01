@@ -1,6 +1,9 @@
 import { ContactPoint } from './schema'
 import 'https://platform.twitter.com/widgets.js'
 
+/**
+ * Custom Element Lifecycle Callbacks.
+ */
 export interface LifecycleCallbacks {
     /**
      * Invoked each time the custom element is appended into a document-connected element. This will happen each time the node is moved, and may happen before the element's contents have been fully parsed.
@@ -25,9 +28,15 @@ export interface LifecycleCallbacks {
     attributeChangedCallback?(name: string, oldValue: string, newValue: string): void;
 }
 
+/**
+ * Presents a follow button for LinkedIn
+ */
 export class LinkedInWidget extends HTMLElement implements LifecycleCallbacks {
     private readonly link: HTMLAnchorElement;
 
+    /**
+     * Create a new instance of the LinkedInWidget class.
+     */
     constructor() {
         super();
 
