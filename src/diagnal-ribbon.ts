@@ -105,6 +105,10 @@ export class DiagnalRibbon extends HTMLElement {
     attributeChangedCallback?(_: string, __: string, ___: string): void {
         this.update();
     }
+
+    static get observedAttributes(): string[] {
+        return ["href", "text", "corner"];
+    }
 }
 
 customElements.define("diagnal-ribbon", DiagnalRibbon);
