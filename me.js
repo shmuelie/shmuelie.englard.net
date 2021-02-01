@@ -1,4 +1,5 @@
 export const Me = {
+    "@context": "https://schema.org",
     "@type": "Person",
     name: "Shmueli Yosef Englard",
     jobTitle: "Software Engineer",
@@ -116,6 +117,3 @@ export const Me = {
         }
     ]
 };
-export const ld = Object.assign({
-    "@context": "https://schema.org"
-}, Me);
