@@ -43,9 +43,19 @@ function getProperty<T>(obj: any, propertyName: string): T | null {
  */
 export function dataBind(element: HTMLElement, data: Thing): void {
     if (typeof data === "string") {
-        dataBindAsString(element, data);
+        if (element.dataset.formatter && (element.dataset.formatter in stringFormatters) && stringFormatters[element.dataset.formatter](data, element)) {
+            return;
+        }
+        element.innerText = data;
     } else if (isArray<Thing>(data)) {
-        dataBindAsArray(element, data);
+        for (const item of data) {
+            const tmpl = (typeof item === "string") ? element.querySelector<HTMLTemplateElement>("template[data-type=Text]") : element.querySelector<HTMLTemplateElement>("template[data-type=" + item["@type"] + "]");
+            if (tmpl && tmpl.content.firstElementChild) {
+                const clone = tmpl.content.firstElementChild.cloneNode(true) as HTMLElement;
+                dataBind(clone, item);
+                element.appendChild(clone);
+            }
+        }
     } else {
         const currentType = getElementType(element);
         if (currentType === null) {
@@ -65,34 +75,6 @@ export function dataBind(element: HTMLElement, data: Thing): void {
             }
         }
     }
-}
-
-/**
- * Bind an array of @see Thing to a HTML element tree.
- * @param element The root HTMLElement to bind to.
- * @param data The array of Thing to bind from.
- */
-function dataBindAsArray(element: HTMLElement, data: Thing[]): void {
-    for (const item of data) {
-        const tmpl = (typeof item === "string") ? element.querySelector<HTMLTemplateElement>("template[data-type=Text]") : element.querySelector<HTMLTemplateElement>("template[data-type=" + item["@type"] + "]");
-        if (tmpl && tmpl.content.firstElementChild) {
-            const clone = tmpl.content.firstElementChild.cloneNode(true) as HTMLElement;
-            dataBind(clone, item);
-            element.appendChild(clone);
-        }
-    }
-}
-
-/**
- * Bind a string to a HTML element tree.
- * @param element The root HTMLElement to bind to.
- * @param data The string to bind from.
- */
-function dataBindAsString(element: HTMLElement, data: string): void {
-    if (element.dataset.formatter && (element.dataset.formatter in stringFormatters) && stringFormatters[element.dataset.formatter](data, element)) {
-        return;
-    }
-    element.innerText = data;
 }
 
 function dateFormatter(data: string, element: HTMLElement): boolean {
