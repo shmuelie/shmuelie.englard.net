@@ -3,6 +3,8 @@ import ts from 'gulp-typescript'
 import sourcemaps from 'gulp-sourcemaps'
 import terser from 'gulp-terser'
 import del from 'del'
+import cleanCSS from 'gulp-clean-css'
+import htmlmin from 'gulp-htmlmin'
 
 const tsProject = ts.createProject("tsconfig.json");
 
@@ -24,11 +26,23 @@ gulp.task("ts-build", function () {
 
 gulp.task("css-build", function () {
     return gulp.src("src/*.css").
+           pipe(sourcemaps.init()).
+           pipe(cleanCSS()).
+           pipe(sourcemaps.write(".", {
+               includeContent: false,
+               sourceRoot: "../src"
+           })).
            pipe(gulp.dest("dist"));
 });
 
 gulp.task("html-build", function () {
     return gulp.src("src/*.htm").
+           pipe(sourcemaps.init()).
+           //pipe(htmlmin()).
+           pipe(sourcemaps.write(".", {
+               includeContent: false,
+               sourceRoot: "../src"
+           })).
            pipe(gulp.dest("dist"));
 });
 
