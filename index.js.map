@@ -1,0 +1,1 @@
+{"version":3,"sources":["index.ts"],"names":["dataBind","jsonLdBind","Me","document","querySelector"],"mappings":"OAASA,SAAUC,eAAkB,6BAC5BC,OAAU,gBACZ,sBAGPF,SAASG,SAASC,cAAc,QAAwBF,IACxDD,WAAWC,GAAIC","file":"index.js","sourceRoot":"../src"}

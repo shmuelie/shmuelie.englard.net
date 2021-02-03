@@ -1,9 +1,2 @@
-export function isSchemaType(obj, type) {
-    return typeof obj === "object" && "@type" in obj && obj["@type"] === type;
-}
-export function isArray(obj) {
-    return typeof obj === "object" && Array.isArray(obj);
-}
-export function isElement(element, tag) {
-    return element.tagName === tag.toUpperCase();
-}
+export function isSchemaType(e,t){return"object"==typeof e&&"@type"in e&&e["@type"]===t}export function isArray(e){return"object"==typeof e&&Array.isArray(e)}export function isElement(e,t){return e.tagName===t.toUpperCase()}
+//# sourceMappingURL=type-guards.js.map

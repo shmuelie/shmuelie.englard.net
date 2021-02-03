@@ -1,27 +1,2 @@
-import parsePhoneNumberFromString from 'https://unpkg.com/libphonenumber-js@1.9.8/min/index.js';
-import { Month, LocalDate, DateTimeFormatter } from 'https://unpkg.com/@js-joda/core@3.2.0/dist/js-joda.esm.js';
-export function formatPhone(tel) {
-    const phoneNumber = parsePhoneNumberFromString(tel, "US");
-    if (phoneNumber && phoneNumber.isPossible()) {
-        return {
-            display: phoneNumber.formatInternational(),
-            link: phoneNumber.getURI()
-        };
-    }
-    return null;
-}
-export function formatDateTime(dt) {
-    if (/^\d{4}$/.test(dt)) {
-        return dt;
-    }
-    const monthYearMatch = /^(\d{4})\-(\d{2})$/.exec(dt);
-    if (monthYearMatch !== null) {
-        const monthName = Month.of(parseInt(monthYearMatch[2], 10)).name();
-        return monthName.substr(0, 1).toUpperCase() + monthName.substr(1).toLowerCase() + ", " + monthYearMatch[1];
-    }
-    const localDateFormat = "eeee, MMMM dd, yyyy";
-    if (/^\d{4}\-\d{2}-\d{2}$/.test(dt)) {
-        return LocalDate.parse(dt).format(DateTimeFormatter.ofPattern(localDateFormat));
-    }
-    throw new Error("Unsupported DateTime string");
-}
+import parsePhoneNumberFromString from"https://unpkg.com/libphonenumber-js@1.9.8/min/index.js";import{Month,LocalDate,DateTimeFormatter}from"https://unpkg.com/@js-joda/core@3.2.0/dist/js-joda.esm.js";export function formatPhone(t){const e=parsePhoneNumberFromString(t,"US");return e&&e.isPossible()?{display:e.formatInternational(),link:e.getURI()}:null}export function formatDateTime(t){if(/^\d{4}$/.test(t))return t;const e=/^(\d{4})\-(\d{2})$/.exec(t);if(null!==e){const t=Month.of(parseInt(e[2],10)).name();return t.substr(0,1).toUpperCase()+t.substr(1).toLowerCase()+", "+e[1]}if(/^\d{4}\-\d{2}-\d{2}$/.test(t))return LocalDate.parse(t).format(DateTimeFormatter.ofPattern("eeee, MMMM dd, yyyy"));throw new Error("Unsupported DateTime string")}
+//# sourceMappingURL=formatters.js.map
