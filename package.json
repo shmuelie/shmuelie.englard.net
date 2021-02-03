@@ -21,8 +21,9 @@
 	"author": "Shmueli Englard",
 	"description": "Personal Website",
 	"scripts": {
-		"start": "http-server ./dist/ -p 8000",
-		"build": "gulp build"
+		"test-server": "http-server ./dist/ -p 8000",
+		"build": "gulp build",
+		"clean": "gulp clean"
 	},
 	"categories": [
 		"Other"
