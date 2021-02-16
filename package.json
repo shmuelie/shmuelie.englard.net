@@ -3,20 +3,19 @@
 	"name": "static.shmuelie.englard.net",
 	"private": true,
 	"devDependencies": {
-		"@js-joda/core": "3.2.0",
 		"del": "6.0.0",
 		"esm": "3.2.25",
 		"gulp": "4.0.2",
 		"gulp-clean-css": "4.3.0",
 		"gulp-cli": "2.3.0",
-		"gulp-htmlmin": "5.0.1",
 		"gulp-sourcemaps": "3.0.0",
 		"gulp-terser": "2.0.1",
 		"gulp-typescript": "5.0.1",
 		"http-server": "0.12.3",
 		"libphonenumber-js": "1.9.9",
 		"terser": "5.5.1",
-		"typescript": "4.1.3"
+		"typescript": "4.1.3",
+		"microdata-tooling": "1.0.2"
 	},
 	"author": "Shmueli Englard",
 	"description": "Personal Website",

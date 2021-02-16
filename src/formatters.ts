@@ -1,5 +1,4 @@
 import parsePhoneNumberFromString from 'https://unpkg.com/libphonenumber-js@1.9.8/min/index.js'
-import { Month, LocalDate, DateTimeFormatter } from 'https://unpkg.com/@js-joda/core@3.2.0/dist/js-joda.esm.js'
 
 /**
  * Results from @see formatPhone.
@@ -30,6 +29,52 @@ export function formatPhone(tel: string): PhoneResults | null {
     return null;
 }
 
+type MonthNumber = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
+const monthName = {
+    1: "January",
+    2: "Febuary",
+    3: "March",
+    4: "April",
+    5: "May",
+    6: "June",
+    7: "July",
+    8: "August",
+    9: "September",
+    10: "October",
+    11: "Novembeer",
+    12: "December"
+};
+
+const dayName = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday"
+];
+
+function convert(nb: number): string {
+    const nbString = nb.toString();
+    const nMod100 = nb % 100;
+
+    if (nMod100 >= 11 && nMod100 <= 13) {
+        return nbString + "th";
+    }
+
+    switch (nb % 10) {
+        case 1:
+            return nbString + "st";
+        case 2:
+            return nbString + "nd";
+        case 3:
+            return nbString + "rd";
+        default:
+            return nbString + "th";
+    }
+}
+
 /**
  * Formats a ISO-8601 date.
  *
@@ -41,12 +86,12 @@ export function formatDateTime(dt: string): string {
     }
     const monthYearMatch = /^(\d{4})\-(\d{2})$/.exec(dt);
     if (monthYearMatch !== null) {
-        const monthName = Month.of(parseInt(monthYearMatch[2], 10)).name();
-        return monthName.substr(0, 1).toUpperCase() + monthName.substr(1).toLowerCase() + ", " + monthYearMatch[1];
+        return monthName[parseInt(monthYearMatch[2], 10) as MonthNumber] + ", " + monthYearMatch[1];
     }
-    const localDateFormat = "eeee, MMMM dd, yyyy";
-    if (/^\d{4}\-\d{2}-\d{2}$/.test(dt)) {
-        return LocalDate.parse(dt).format(DateTimeFormatter.ofPattern(localDateFormat));
+    const fullDate = /^(\d{4})\-(\d{2})-(\d{2})$/.exec(dt);
+    if (fullDate) {
+        const fd = new Date(parseInt(fullDate[3], 10), parseInt(fullDate[2], 10), parseInt(fullDate[1], 10));
+        return dayName[fd.getDay()] + ", " + monthName[fd.getMonth() + 1 as MonthNumber] + convert(fd.getDate()) + ", " + fd.getFullYear();
     }
     throw new Error("Unsupported DateTime string");
 }

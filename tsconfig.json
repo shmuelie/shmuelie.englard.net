@@ -24,6 +24,9 @@
 			],
 			"https://unpkg.com/libphonenumber-js@1.9.8/min/index.js": [
 				"./node_modules/libphonenumber-js/min"
+			],
+			"https://unpkg.com/microdata-tooling@1.0.3/dist/index.min.js": [
+				"./node_modules/microdata-tooling"
 			]
 		}
 	}

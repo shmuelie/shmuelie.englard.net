@@ -4,7 +4,6 @@ import sourcemaps from 'gulp-sourcemaps'
 import terser from 'gulp-terser'
 import del from 'del'
 import cleanCSS from 'gulp-clean-css'
-import htmlmin from 'gulp-htmlmin'
 
 const tsProject = ts.createProject("tsconfig.json");
 

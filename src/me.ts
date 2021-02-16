@@ -13,8 +13,8 @@ export const Me: WithContext<Person> = {
     name: "Shmueli Yosef Englard",
     jobTitle: "Software Engineer",
     image: "https://avatars0.githubusercontent.com/u/1119883?s=460&u=ff3333cb5414fe0726c7b91226ccda3cd65d4a4a&v=4",
-    email: "shmuelli.yosef@englard.net",
-    telephone: "17177468354",
+    email: "email:shmuelli.yosef@englard.net",
+    telephone: "tel:17177468354",
     address: "East Brunswick, New Jersey, United States",
     contactPoint: [
         {
@@ -43,14 +43,15 @@ export const Me: WithContext<Person> = {
     worksFor: [
         {
             "@type": "EmployeeRole",
-            startDate: "2014-08",
-            endDate: "2020-12",
+            startDate: "2014-08-04",
+            endDate: "2020-12-31",
             roleName: "Software Engineer",
             salaryCurrency: "USD",
             worksFor: {
                 "@type": "Corporation",
                 name: "Lufthansa Systems",
-                address: "Princeton, New Jersey, United States"
+                address: "Princeton, New Jersey, United States",
+                url: "https://www.lhsystems.com/"
             },
             roleDescription: [
                 {
@@ -86,44 +87,54 @@ export const Me: WithContext<Person> = {
         },
         {
             "@type": "EmployeeRole",
-            startDate: "2014-04",
-            endDate: "2014-09",
+            startDate: "2014-04-14",
+            endDate: "2014-09-18",
             roleName: "Software Engineer",
             salaryCurrency: "USD",
             worksFor: {
                 "@type": "Corporation",
                 name: "UPS",
-                address: "Edison, New Jersey, United States"
+                address: "Edison, New Jersey, United States",
+                url: "https://www.ups.com/"
             },
             roleDescription: [ "Developing a website to allow auditing of servers, network equipment, and Windows services used in warehouses. The website is a modern web app, using progressive enhancement for those on new browsers. The site uses Signalr to allow for real time updates of the audits." ]
         },
         {
             "@type": "EmployeeRole",
-            startDate: "2012-08",
-            endDate: "2013-09",
+            startDate: "2012-08-20",
+            endDate: "2013-09-23",
             roleName: "Software Engineer",
             salaryCurrency: "USD",
             worksFor: {
                 "@type": "Corporation",
                 name: "Control Writer Software",
-
+                url: "https://www.controlwriter.com/"
             },
             roleDescription: [ "Reengineered an application from the ground up. The original application was developed in Silverlight to allow for shared code between Windows and Mac. To allow for the same rapid development cycles a radical development technique using a cross-platform game development platform called MonoGame on top of the Common Language Infrastructure was used. Approximately 90% code sharing was achieved in the end with most features being developed for both platforms simultaneously." ]
         },
         {
             "@type": "EmployeeRole",
-            startDate: "2011-05",
-            endDate: "2012-08",
+            startDate: "2011-05-01",
+            endDate: "2012-08-17",
             roleName: "Software Engineer",
             salaryCurrency: "USD",
             worksFor: {
                 "@type": "Corporation",
-                name: "CheckM8"
+                name: "CheckM8",
+                url: "https://www.linkedin.com/company/checkm8/"
             },
             roleDescription: [
                 "My primary responsibilities were to maintain and enhance Linux/C++ based ad-severs, maintain ad-serving JavaScript, and to maintain system monitoring software. I would also research innovative technologies to help with ad serving and to break into new markets.",
                 "As part of my responsibilities, I developed HTML5 and JavaScript versions of Flash based ads for consumption on devices that do not support flash like tablets and phones."
             ]
         }
-    ]
+    ],
+    gender: "male",
+    familyName: "Englard",
+    givenName: "Samuel",
+    nationality: {
+        "@type": 'Country',
+        name: "United States"
+    },
+    url: "https://shmuelie.englard.net/"
 };
