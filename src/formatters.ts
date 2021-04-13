@@ -90,7 +90,7 @@ export function formatDateTime(dt: string): string {
     }
     const fullDate = /^(\d{4})\-(\d{2})-(\d{2})$/.exec(dt);
     if (fullDate) {
-        const fd = new Date(parseInt(fullDate[1], 10), parseInt(fullDate[2], 10), parseInt(fullDate[3], 10));
+        const fd = new Date(parseInt(fullDate[1], 10), parseInt(fullDate[2], 10) - 1, parseInt(fullDate[3], 10));
         return dayName[fd.getDay()] + ", " + monthName[fd.getMonth() + 1 as MonthNumber] + " " + convert(fd.getDate()) + ", " + fd.getFullYear();
     }
     throw new Error("Unsupported DateTime string");
