@@ -13,7 +13,7 @@ export const Me: WithContext<Person> = {
     name: "Shmueli Yosef Englard",
     jobTitle: "Software Engineer",
     image: "https://avatars0.githubusercontent.com/u/1119883?s=460&u=ff3333cb5414fe0726c7b91226ccda3cd65d4a4a&v=4",
-    email: "email:shmuelli.yosef@englard.net",
+    email: "mailto:shmuelli.yosef@englard.net",
     telephone: "tel:17177468354",
     address: "East Brunswick, New Jersey, United States",
     contactPoint: [
