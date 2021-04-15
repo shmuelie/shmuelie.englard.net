@@ -1,5 +1,3 @@
-import parsePhoneNumberFromString from 'https://unpkg.com/libphonenumber-js@1.9.8/min/index.js'
-
 /**
  * Results from @see formatPhone.
  */
@@ -19,11 +17,11 @@ interface PhoneResults {
  * @param tel The phone number to format.
  */
 export function formatPhone(tel: string): PhoneResults | null {
-    const phoneNumber = parsePhoneNumberFromString(tel, "US");
-    if (phoneNumber && phoneNumber.isPossible()) {
+    const parts = /^tel\:(\d{1})(\d{3})(\d{3})(\d{4})$/.exec(tel);
+    if (parts) {
         return {
-            display: phoneNumber.formatInternational(),
-            link: phoneNumber.getURI()
+            display: `+${parts[1]} ${parts[2]} ${parts[3]} ${parts[4]}`,
+            link: tel
         };
     }
     return null;
