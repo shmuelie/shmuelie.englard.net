@@ -16,6 +16,9 @@ gulp.task("ts-build", function () {
            pipe(sourcemaps.init()).
            pipe(tsProject()).js.
            pipe(terser()).
+           pipe(sourcemaps.mapSources(function (sourcePath, file) {
+               return "https://github.com/SamuelEnglard/shmuelie.englard.net/tree/master/src/" + sourcePath;
+           })).
            pipe(sourcemaps.write(".", {
                includeContent: false,
                sourceRoot: "../src"
