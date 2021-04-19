@@ -145,7 +145,8 @@ export const Me: WithContext<Person> = {
     ],
     gender: "male",
     familyName: "Englard",
-    givenName: "Samuel",
+    givenName: "Shmueli",
+    additionalName: "Yosef",
     nationality: {
         "@type": 'Country',
         name: "United States"
