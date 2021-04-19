@@ -26,7 +26,7 @@ apply(Me as Thing, document.querySelector("html") as HTMLElement, {
     typeHelpers: {
         "ContactPoint": (data: Thing, element: HTMLElement): boolean => {
             element.appendChild(dataBindWidget(data as ContactPoint));
-            return true;
+            return false;
         }
     }
 });
