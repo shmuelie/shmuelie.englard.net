@@ -10,7 +10,7 @@ specifiers:
   gulp-terser: 2.0.1
   gulp-typescript: 5.0.1
   http-server: 0.12.3
-  microdata-tooling: 1.0.2
+  microdata-tooling: 1.0.3
   terser: 5.5.1
   typescript: 4.1.3
 
@@ -24,7 +24,7 @@ devDependencies:
   gulp-terser: 2.0.1
   gulp-typescript: 5.0.1_typescript@4.1.3
   http-server: 0.12.3
-  microdata-tooling: 1.0.2
+  microdata-tooling: 1.0.3
   terser: 5.5.1
   typescript: 4.1.3
 
@@ -1648,8 +1648,8 @@ packages:
     engines: {node: '>= 8'}
     dev: true
 
-  /microdata-tooling/1.0.2:
-    resolution: {integrity: sha512-DDmtHTgGo5HUaXHIuLGY6Mz62d4UphOXfqnXoHNfEkjq16XKY9/5R3I6n95/wmjKEhFDXhUOW1sCppCqaajarg==}
+  /microdata-tooling/1.0.3:
+    resolution: {integrity: sha512-Pyd63wB55ctGZA+HRhlBoAMsd4CPuZtSTyoQL30KLNLBho1kSbZbutBgFiZKrilzTMy1h+XqPmnJQeWYEiHxqQ==}
     requiresBuild: true
     dev: true
 
