@@ -18,6 +18,9 @@ apply(Me as Thing, document.querySelector("html") as HTMLElement, {
         return null;
     },
     timeFormatter: (data: string, _: DOMStringMap): string => {
+        if (data === "") {
+            return "Present";
+        }
         return formatDateTime(data);
     },
     typeHelpers: {

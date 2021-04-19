@@ -11,7 +11,7 @@ export const Me: WithContext<Person> = {
     "@context": "https://schema.org",
     "@type": "Person",
     name: "Shmueli Yosef Englard",
-    jobTitle: "Software Engineer",
+    jobTitle: "Senior Software Engineer",
     image: "https://avatars0.githubusercontent.com/u/1119883?s=460&u=ff3333cb5414fe0726c7b91226ccda3cd65d4a4a&v=4",
     email: "mailto:shmuelli.yosef@englard.net",
     telephone: "tel:17177468354",
@@ -41,6 +41,20 @@ export const Me: WithContext<Person> = {
     ],
     description: "Cutting my programming chops on the .NET 2.0 Betas in 2005, I grew to love developing software. I started out using VB.NET but moved on to C# quickly and never looked back. While most of my work is in C#, I have professional experience with cross platform development in Java, C++ (SWIG); web development in JavaScript, node.js and, database development with MS SQL Server, PostgreSQL and MySQL, and data integration services using different transport protocols using JSON, GeoJSON, XML and Google Protocol Buffers.",
     worksFor: [
+        {
+            "@type": "EmployeeRole",
+            startDate: "2021-04-19",
+            endDate: "",
+            roleName: "Senior Software Engineer",
+            salaryCurrency: "USD",
+            worksFor: {
+                "@type": "Corporation",
+                name: "Microsoft",
+                address: "Redmon, Washington, United States",
+                url: "https://www.microsoft.com"
+            },
+            roleDescription: [ "Windows Inbox App Development" ]
+        },
         {
             "@type": "EmployeeRole",
             startDate: "2014-08-04",
