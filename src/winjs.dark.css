@@ -15,36 +15,36 @@
 .win-type-header {
   font-size: 46px;
   font-weight: 200;
-  line-height: 1.216;
+  /* line-height: 1.216; */
   letter-spacing: 0;
 }
 .win-h2 {
   font-size: 34px;
   font-weight: 200;
-  line-height: 1.176;
+  /* line-height: 1.176; */
 }
 .win-h3,
 .win-type-title {
   font-size: 24px;
   font-weight: 300;
-  line-height: 1.167;
+  /* line-height: 1.167; */
 }
 .win-h4,
 .win-type-subtitle {
   font-size: 20px;
   font-weight: 400;
-  line-height: 1.2;
+  /* line-height: 1.2; */
 }
 .win-h6,
 .win-type-body {
   font-size: 15px;
   font-weight: 400;
-  line-height: 1.333;
+  /* line-height: 1.333; */
 }
 .win-h5 {
   font-size: 15px;
   font-weight: 500;
-  line-height: 1.333;
+  /* line-height: 1.333; */
 }
 @font-face {
   font-family: "Segoe UI";
