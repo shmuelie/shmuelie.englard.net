@@ -38,7 +38,7 @@ apply(Me as Thing, document.querySelector("html") as HTMLElement, {
                         widget.color = "0077B5";
                         widget.badgeStyle = ShieldIOStyle.Flat;
                         widget.logoColor = "white";
-                        widget.message = "Follow";
+                        widget.message = "LinkedIn";
                         link.href = contact.url as string|| "https://www.linkedin.com/";
                         break;
                     case "Twitter":
@@ -46,7 +46,7 @@ apply(Me as Thing, document.querySelector("html") as HTMLElement, {
                         widget.color = "1DA1F2";
                         widget.badgeStyle = ShieldIOStyle.Flat;
                         widget.logoColor = "white";
-                        widget.message = "Follow";
+                        widget.message = "Twitter";
                         link.href = "https://twitter.com/" + (contact.identifier as string | null);
                         break;
                     case "GitHub":
@@ -54,7 +54,7 @@ apply(Me as Thing, document.querySelector("html") as HTMLElement, {
                         widget.logoColor = "black";
                         widget.badgeStyle = ShieldIOStyle.Social;
                         widget.message = " ";
-                        widget.label = "Follow" + (contact.name ? " " + contact.name : "");
+                        widget.label = "GitHub";
                         link.href = "https://github.com/" + (contact.identifier as string | null);
                         break;
                 }
