@@ -22,7 +22,10 @@ export interface LifecycleCallbacks {
     attributeChangedCallback?(name: string, oldValue: string, newValue: string): void;
 }
 
-export enum ShieldIOStyle {
+/**
+ * Style of {@link ShieldIOBadge}.
+ */
+export enum BadgeStyle {
     Plastic = "plastic",
     Flat = "flat",
     FlatSquare = "flat-square",
@@ -30,13 +33,18 @@ export enum ShieldIOStyle {
     Social = "social"
 }
 
-export class ShieldIOStaticWidget extends HTMLElement implements LifecycleCallbacks {
+/**
+ * Shield IO Badge
+ *
+ * @see {@link https://shields.io/}
+ */
+export class ShieldIOBadge extends HTMLElement implements LifecycleCallbacks {
     private readonly img: HTMLImageElement;
 
     constructor() {
         super();
 
-        this.attachShadow({mode: 'open'}); // sets and returns 'this.shadowRoot'
+        this.attachShadow({mode: 'open'});
         this.img = document.createElement("img");
         this.shadowRoot?.appendChild(this.img);
 
@@ -83,9 +91,15 @@ export class ShieldIOStaticWidget extends HTMLElement implements LifecycleCallba
         this.setSrc();
     }
 
+    /**
+     * Gets the left-hand-side text if overwriten; otherwise null.
+     */
     public get label() : string | null {
         return this.getAttribute("label");
     }
+    /**
+     * Sets the left-hand-side text. To use default set to null.
+     */
     public set label(v : string | null) {
         if (v) {
             this.setAttribute("label", v);
@@ -94,9 +108,15 @@ export class ShieldIOStaticWidget extends HTMLElement implements LifecycleCallba
         }
     }
 
+    /**
+     * Gets the right-hand-side text.
+     */
     public get message() : string | null {
         return this.getAttribute("message");
     }
+    /**
+     * Sets the right-hand-side text.
+     */
     public set message(v : string | null) {
         if (v) {
             this.setAttribute("message", v);
@@ -164,10 +184,10 @@ export class ShieldIOStaticWidget extends HTMLElement implements LifecycleCallba
         }
     }
 
-    public get badgeStyle() : ShieldIOStyle | null {
-        return this.getAttribute("badgestyle") as ShieldIOStyle;
+    public get badgeStyle() : BadgeStyle | null {
+        return this.getAttribute("badgestyle") as BadgeStyle;
     }
-    public set badgeStyle(v : ShieldIOStyle | null) {
+    public set badgeStyle(v : BadgeStyle | null) {
         if (v) {
             this.setAttribute("badgestyle", v);
         } else {
@@ -175,12 +195,19 @@ export class ShieldIOStaticWidget extends HTMLElement implements LifecycleCallba
         }
     }
 
+    public get tagName() : string {
+        return ShieldIOBadge.tagName;
+    }
+
+    public static get tagName(): string {
+        return "shieldio-badge";
+    }
 }
 
-customElements.define("shieldio-static-widget", ShieldIOStaticWidget);
+customElements.define(ShieldIOBadge.tagName, ShieldIOBadge);
 
 declare global {
     interface HTMLElementTagNameMap {
-        "shieldio-static-widget": ShieldIOStaticWidget;
+        "shieldio-badge": ShieldIOBadge;
     }
 }
