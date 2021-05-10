@@ -37,6 +37,34 @@ export const Me: WithContext<Person> = {
             name: "Samuel Englard",
             url: "https://github.com/SamuelEnglard",
             identifier: "SamuelEnglard"
+        },
+        {
+            "@type": "ContactPoint",
+            contactType: "StackOverflow",
+            name: "shmuelie",
+            url: "https://stackoverflow.com/users/1082492/shmuelie",
+            identifier: "shmuelie"
+        },
+        {
+            "@type": "ContactPoint",
+            contactType: "Facebook",
+            name: "Shmueli Englard",
+            url: "https://www.facebook.com/Shmuelie/",
+            identifier: "shmuelie"
+        },
+        {
+            "@type": "ContactPoint",
+            contactType: "NuGet",
+            name: "Shmuelie",
+            url: "https://www.nuget.org/profiles/shmuelie",
+            identifier: "shmuelie"
+        },
+        {
+            "@type": "ContactPoint",
+            contactType: "NPM",
+            name: "Shmueli Englard",
+            url: "https://www.npmjs.com/~shmuelie",
+            identifier: "shmuelie"
         }
     ],
     description: "Cutting my programming chops on the .NET 2.0 Betas in 2005, I grew to love developing software. I started out using VB.NET but moved on to C# quickly and never looked back. While most of my work is in C#, I have professional experience with cross platform development in Java, C++ (SWIG); web development in JavaScript, node.js and, database development with MS SQL Server, PostgreSQL and MySQL, and data integration services using different transport protocols using JSON, GeoJSON, XML and Google Protocol Buffers.",
@@ -51,7 +79,8 @@ export const Me: WithContext<Person> = {
                 "@type": "Corporation",
                 name: "Microsoft",
                 address: "Redmon, Washington, United States",
-                url: "https://www.microsoft.com"
+                url: "https://www.microsoft.com",
+                logo: "https://simple-icons.github.io/simple-icons-website/icons/microsoft.svg"
             },
             roleDescription: [ "Windows Inbox App Development" ]
         },
@@ -65,7 +94,8 @@ export const Me: WithContext<Person> = {
                 "@type": "Corporation",
                 name: "Lufthansa Systems",
                 address: "Princeton, New Jersey, United States",
-                url: "https://www.lhsystems.com/"
+                url: "https://www.lhsystems.com/",
+                logo: "https://simple-icons.github.io/simple-icons-website/icons/lufthansa.svg"
             },
             roleDescription: [
                 {
@@ -109,7 +139,8 @@ export const Me: WithContext<Person> = {
                 "@type": "Corporation",
                 name: "UPS",
                 address: "Edison, New Jersey, United States",
-                url: "https://www.ups.com/"
+                url: "https://www.ups.com/",
+                logo: "https://simple-icons.github.io/simple-icons-website/icons/ups.svg"
             },
             roleDescription: [ "Developing a website to allow auditing of servers, network equipment, and Windows services used in warehouses. The website is a modern web app, using progressive enhancement for those on new browsers. The site uses Signalr to allow for real time updates of the audits." ]
         },
@@ -151,5 +182,8 @@ export const Me: WithContext<Person> = {
         "@type": 'Country',
         name: "United States"
     },
-    url: "https://shmuelie.englard.net/"
+    url: "https://shmuelie.englard.net/",
+    knowsLanguage: [
+        "en-US"
+    ]
 };
