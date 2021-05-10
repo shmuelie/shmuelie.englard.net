@@ -89,7 +89,7 @@ export class ShieldIOBadge extends HTMLElement implements LifecycleCallbacks {
     }
 
     static get observedAttributes(): string[] {
-        return ["label", "message", "logo", "color", "logoColor", "labelColor", "logoWidth", "badgeStyle"];
+        return ["label", "message", "logo", "color", "logocolor", "labelcolor", "logowidth", "badgestyle"];
     }
 
     public attributeChangedCallback(_: string, __: string, ___: string) {
@@ -251,7 +251,7 @@ export class ShieldIOBadge extends HTMLElement implements LifecycleCallbacks {
     }
 }
 
-customElements.define(ShieldIOBadge.tagName, ShieldIOBadge);
+customElements.define(ShieldIOBadge.tagName.toLowerCase(), ShieldIOBadge);
 
 declare global {
     interface HTMLElementTagNameMap {
