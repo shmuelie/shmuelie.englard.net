@@ -246,7 +246,7 @@ export class ShieldIOBadge extends HTMLElement implements LifecycleCallbacks {
     }
 
     public static get tagName(): string {
-        return "shieldio-badge";
+        return "SHIELDIO-BADGE";
     }
 }
 
