@@ -41,6 +41,9 @@ export enum BadgeStyle {
 export class ShieldIOBadge extends HTMLElement implements LifecycleCallbacks {
     private readonly img: HTMLImageElement;
 
+    /**
+     * Create a new instance of the {@linkcode ShieldIOBadge} class.
+     */
     constructor() {
         super();
 
@@ -125,9 +128,18 @@ export class ShieldIOBadge extends HTMLElement implements LifecycleCallbacks {
         }
     }
 
+    /**
+     * Gets the logo to use.
+     *
+     */
+
     public get logo() : string | null {
         return this.getAttribute("logo");
     }
+    /**
+     * Sets the logo to use.
+     *
+     */
     public set logo(v : string | null) {
         if (v) {
             this.setAttribute("logo", v);
@@ -136,9 +148,15 @@ export class ShieldIOBadge extends HTMLElement implements LifecycleCallbacks {
         }
     }
 
+    /**
+     * Gets the color of the right-hand-side background.
+     */
     public get color() : string | null {
         return this.getAttribute("color");
     }
+    /**
+     * Sets the color of the right-hand-side background.
+     */
     public set color(v : string | null) {
         if (v) {
             this.setAttribute("color", v);
@@ -147,9 +165,15 @@ export class ShieldIOBadge extends HTMLElement implements LifecycleCallbacks {
         }
     }
 
+    /**
+     * Gets the color of the logo.
+     */
     public get logoColor() : string | null {
         return this.getAttribute("logocolor");
     }
+    /**
+     * Sets the color of the logo.
+     */
     public set logoColor(v : string | null) {
         if (v) {
             this.setAttribute("logocolor", v);
@@ -158,9 +182,15 @@ export class ShieldIOBadge extends HTMLElement implements LifecycleCallbacks {
         }
     }
 
+    /**
+     * Gets the color of the left-hand-side background.
+     */
     public get labelColor() : string | null {
         return this.getAttribute("labelcolor");
     }
+    /**
+     * Sets the color of the left-hand-side background.
+     */
     public set labelColor(v : string | null) {
         if (v) {
             this.setAttribute("labelcolor", v);
@@ -168,7 +198,10 @@ export class ShieldIOBadge extends HTMLElement implements LifecycleCallbacks {
             this.removeAttribute("labelcolor");
         }
     }
-;
+
+    /**
+     * Gets the horizontal space for the logo.
+     */
     public get logoWidth() : number | null {
         var lw = this.getAttribute("logowidth");
         if (lw) {
@@ -176,6 +209,9 @@ export class ShieldIOBadge extends HTMLElement implements LifecycleCallbacks {
         }
         return null;
     }
+    /**
+     * Sets the horizontal space for the logo.
+     */
     public set logoWidth(v : number | null) {
         if (v) {
             this.setAttribute("logowidth", v.toString());
@@ -184,9 +220,19 @@ export class ShieldIOBadge extends HTMLElement implements LifecycleCallbacks {
         }
     }
 
+    /**
+     * Gets the style of the badge.
+     *
+     * @default {@linkcode BadgeStyle.Flat}
+     */
     public get badgeStyle() : BadgeStyle | null {
         return this.getAttribute("badgestyle") as BadgeStyle;
     }
+    /**
+     * Sets the style of the badge.
+     *
+     * @default {@linkcode BadgeStyle.Flat}
+     */
     public set badgeStyle(v : BadgeStyle | null) {
         if (v) {
             this.setAttribute("badgestyle", v);
