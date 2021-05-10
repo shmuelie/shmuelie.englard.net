@@ -21,7 +21,7 @@ export const Me: WithContext<Person> = {
             "@type": "ContactPoint",
             contactType: "Twitter",
             name: "@Shmuelie",
-            url: "https://twitter.com/Schmuelie",
+            url: "https://twitter.com/Shmuelie",
             identifier: "Shmuelie"
         },
         {
@@ -65,6 +65,13 @@ export const Me: WithContext<Person> = {
             name: "Shmueli Englard",
             url: "https://www.npmjs.com/~shmuelie",
             identifier: "shmuelie"
+        },
+        {
+            "@type": "ContactPoint",
+            contactType: "Instagram",
+            name: "Shmueli Englard",
+            url: "https://www.instagram.com/shmuelienglard",
+            identifier: "shmuelienglard"
         }
     ],
     description: "Cutting my programming chops on the .NET 2.0 Betas in 2005, I grew to love developing software. I started out using VB.NET but moved on to C# quickly and never looked back. While most of my work is in C#, I have professional experience with cross platform development in Java, C++ (SWIG); web development in JavaScript, node.js and, database development with MS SQL Server, PostgreSQL and MySQL, and data integration services using different transport protocols using JSON, GeoJSON, XML and Google Protocol Buffers.",

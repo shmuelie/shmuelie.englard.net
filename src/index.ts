@@ -72,6 +72,11 @@ apply(Me as Thing, document.querySelector("html") as HTMLElement, {
                         widget.color = "CB3837";
                         widget.logoColor = "white";
                         break;
+                    case "Instagram":
+                        widget.logo = SimpleIcon.Instagram;
+                        widget.color = "E4405F";
+                        widget.logoColor = "white";
+                        break;
                 }
                 link.appendChild(widget);
                 element.appendChild(link);
