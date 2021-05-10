@@ -5,6 +5,7 @@ import { formatDateTime, formatPhone } from './formatters.js'
 import { ContactPoint } from './schema.js'
 import './shieldio-widgets.js'
 import { BadgeStyle } from './shieldio-widgets.js'
+import { SimpleIcon } from './simple-icons.js'
 
 apply(Me as Thing, document.querySelector("html") as HTMLElement, {
     linkFormatter: (data: string, elementData: DOMStringMap): string | null => {
@@ -29,41 +30,48 @@ apply(Me as Thing, document.querySelector("html") as HTMLElement, {
             const contact = data as ContactPoint;
             if (contact) {
                 const widget = document.createElement("shieldio-badge");
+                widget.badgeStyle = BadgeStyle.ForTheBadge;
+                widget.message = contact.contactType as string || "";
                 const link = document.createElement("a");
                 link.target = "_blank";
                 link.style.textDecoration = "none";
+                link.href = contact.url as string || "";
                 switch (contact.contactType) {
                     case "LinkedIn":
-                        widget.logo = "linkedin";
+                        widget.logo = SimpleIcon.LinkedIn;
                         widget.color = "0077B5";
-                        widget.badgeStyle = BadgeStyle.Flat;
                         widget.logoColor = "white";
-                        widget.message = "LinkedIn";
-                        link.href = contact.url as string|| "https://www.linkedin.com/";
                         break;
                     case "Twitter":
-                        widget.logo = "twitter";
+                        widget.logo = SimpleIcon.Twitter;
                         widget.color = "1DA1F2";
-                        widget.badgeStyle = BadgeStyle.Flat;
                         widget.logoColor = "white";
-                        widget.message = "Twitter";
-                        link.href = "https://twitter.com/" + (contact.identifier as string | null);
                         break;
                     case "GitHub":
-                        widget.logo = "github";
+                        widget.logo = SimpleIcon.GitHub;
                         widget.logoColor = "black";
-                        widget.badgeStyle = BadgeStyle.Social;
-                        widget.message = " ";
-                        widget.label = "GitHub";
-                        link.href = "https://github.com/" + (contact.identifier as string | null);
+                        widget.color = "555555";
                         break;
                     case "StackOverflow":
-                        widget.logo = "stackoverflow";
+                        widget.logo = SimpleIcon.StackOverflow;
                         widget.color = "ff901e";
-                        widget.badgeStyle = BadgeStyle.Flat;
                         widget.logoColor = "white";
-                        widget.message = "StackOverflow";
-                        link.href = "";
+                        break;
+                    case "Facebook":
+                        widget.logo = SimpleIcon.Facebook;
+                        widget.color = "1877F2";
+                        widget.logoColor = "white";
+                        break;
+                    case "NuGet":
+                        widget.logo = SimpleIcon.NuGet;
+                        widget.color = "004880";
+                        widget.logoColor = "white";
+                        break;
+                    case "NPM":
+                        widget.logo = SimpleIcon.Npm;
+                        widget.color = "CB3837";
+                        widget.logoColor = "white";
+                        break;
                 }
                 link.appendChild(widget);
                 element.appendChild(link);
