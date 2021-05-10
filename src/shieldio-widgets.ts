@@ -225,16 +225,16 @@ export class ShieldIOBadge extends HTMLElement implements LifecycleCallbacks {
      *
      * @default {@linkcode BadgeStyle.Flat}
      */
-    public get badgeStyle() : BadgeStyle | null {
-        return this.getAttribute("badgestyle") as BadgeStyle;
+    public get badgeStyle() : BadgeStyle {
+        return this.getAttribute("badgestyle") as BadgeStyle || BadgeStyle.Flat;
     }
     /**
      * Sets the style of the badge.
      *
      * @default {@linkcode BadgeStyle.Flat}
      */
-    public set badgeStyle(v : BadgeStyle | null) {
-        if (v) {
+    public set badgeStyle(v : BadgeStyle) {
+        if (v !== BadgeStyle.Flat) {
             this.setAttribute("badgestyle", v);
         } else {
             this.removeAttribute("badgestyle");
