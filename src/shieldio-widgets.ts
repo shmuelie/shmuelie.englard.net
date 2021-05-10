@@ -1,3 +1,5 @@
+import {SimpleIcon} from './simple-icons.js'
+
 export interface LifecycleCallbacks {
     /**
      * Invoked each time the custom element is appended into a document-connected element. This will happen each time the node is moved, and may happen before the element's contents have been fully parsed.
@@ -132,15 +134,14 @@ export class ShieldIOBadge extends HTMLElement implements LifecycleCallbacks {
      * Gets the logo to use.
      *
      */
-
-    public get logo() : string | null {
-        return this.getAttribute("logo");
+    public get logo() : SimpleIcon | null {
+        return this.getAttribute("logo") as SimpleIcon;
     }
     /**
      * Sets the logo to use.
      *
      */
-    public set logo(v : string | null) {
+    public set logo(v : SimpleIcon | null) {
         if (v) {
             this.setAttribute("logo", v);
         } else {
