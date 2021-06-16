@@ -9,14 +9,6 @@ body > div {
   display: grid;
   grid-template-rows: min-content 1fr min-content;
 }
-header img {
-  float: left;
-  height: 100px;
-  margin: 5px;
-}
-header section[itemprop="contactPoint"] {
-  float: right;
-}
 main {
   overflow-y: clip;
   display: grid;
@@ -54,7 +46,26 @@ footer {
   padding-bottom: 10px;
   text-align: center;
 }
-header section[itemprop=contactPoint] github-widget {
-  --width: 200px;
-  --height: 30px;
+div[itemtype="https://schema.org/ContactPoint"] {
+  display: inline-block;
+}
+header {
+  display: grid;
+  grid-template-columns: min-content 1fr;
+  grid-template-rows: min-content min-content min-content;
+  gap: 0px 0px;
+  grid-template-areas:
+    "name name"
+    ". ."
+    "contactPoint contactPoint";
+}
+section[itemprop=contactPoint] {
+  grid-area: contactPoint;
+}
+header img {
+  height: 100px;
+  margin: 5px;
+}
+header h1[itemprop=name] {
+  grid-area: name;
 }
