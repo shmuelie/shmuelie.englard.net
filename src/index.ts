@@ -3,9 +3,7 @@ import './diagnal-ribbon.js'
 import { apply, Thing } from 'https://unpkg.com/microdata-tooling@1.0.3/dist/index.min.js'
 import { formatDateTime, formatPhone } from './formatters.js'
 import { ContactPoint } from './schema.js'
-import './shieldio-widgets.js'
-import { BadgeStyle } from './shieldio-widgets.js'
-import { SimpleIcon } from './simple-icons.js'
+import { BadgeStyle, SimpleIcons, icons } from 'https://unpkg.com/shieldsio-elements@1.0.0/dist/index.min.js'
 
 apply(Me as Thing, document.querySelector("html") as HTMLElement, {
     linkFormatter: (data: string, elementData: DOMStringMap): string | null => {
@@ -28,56 +26,14 @@ apply(Me as Thing, document.querySelector("html") as HTMLElement, {
     typeHelpers: {
         "ContactPoint": (data: Thing, element: HTMLElement): boolean => {
             const contact = data as ContactPoint;
-            if (contact) {
-                const widget = document.createElement("shieldio-badge");
+            if (contact && contact.contactType && icons[contact.contactType as string]) {
+                const widget = document.createElement("simpleicon-badge");
                 widget.badgeStyle = BadgeStyle.ForTheBadge;
-                widget.message = contact.contactType as string || "";
+                widget.logo = contact.contactType as SimpleIcons;
                 const link = document.createElement("a");
                 link.target = "_blank";
                 link.style.textDecoration = "none";
                 link.href = contact.url as string || "";
-                switch (contact.contactType) {
-                    case "LinkedIn":
-                        widget.logo = SimpleIcon.LinkedIn;
-                        widget.color = "0077B5";
-                        widget.logoColor = "white";
-                        break;
-                    case "Twitter":
-                        widget.logo = SimpleIcon.Twitter;
-                        widget.color = "1DA1F2";
-                        widget.logoColor = "white";
-                        break;
-                    case "GitHub":
-                        widget.logo = SimpleIcon.GitHub;
-                        widget.logoColor = "black";
-                        widget.color = "555555";
-                        break;
-                    case "StackOverflow":
-                        widget.logo = SimpleIcon.StackOverflow;
-                        widget.color = "ff901e";
-                        widget.logoColor = "white";
-                        break;
-                    case "Facebook":
-                        widget.logo = SimpleIcon.Facebook;
-                        widget.color = "1877F2";
-                        widget.logoColor = "white";
-                        break;
-                    case "NuGet":
-                        widget.logo = SimpleIcon.NuGet;
-                        widget.color = "004880";
-                        widget.logoColor = "white";
-                        break;
-                    case "NPM":
-                        widget.logo = SimpleIcon.Npm;
-                        widget.color = "CB3837";
-                        widget.logoColor = "white";
-                        break;
-                    case "Instagram":
-                        widget.logo = SimpleIcon.Instagram;
-                        widget.color = "E4405F";
-                        widget.logoColor = "white";
-                        break;
-                }
                 link.appendChild(widget);
                 element.appendChild(link);
             }

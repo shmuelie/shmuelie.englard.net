@@ -21,6 +21,9 @@
 		"paths": {
 			"https://unpkg.com/microdata-tooling@1.0.3/dist/index.min.js": [
 				"./node_modules/microdata-tooling"
+			],
+			"https://unpkg.com/shieldsio-elements@1.0.0/dist/index.min.js": [
+				"./node_modules/shieldsio-elements"
 			]
 		}
 	}
