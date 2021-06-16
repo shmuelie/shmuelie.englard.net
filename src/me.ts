@@ -37,7 +37,7 @@ export const Me: WithContext<Person> = {
         },
         {
             "@type": "ContactPoint",
-            contactType: "StackOverflow",
+            contactType: "Stack-Overflow",
             url: "https://stackoverflow.com/users/1082492/shmuelie",
             identifier: "shmuelie"
         },
@@ -55,7 +55,7 @@ export const Me: WithContext<Person> = {
         },
         {
             "@type": "ContactPoint",
-            contactType: "NPM",
+            contactType: "npm",
             url: "https://www.npmjs.com/~shmuelie",
             identifier: "shmuelie"
         },
