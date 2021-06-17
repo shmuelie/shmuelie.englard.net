@@ -1,8 +1,66 @@
-import { CreativeWork, Person, SchemaValue, WithContext } from './schema'
+import { CreativeWork, Person, SchemaValue, WithContext, ContactPoint } from './schema'
 
 export interface EmployeeRole {
     description: SchemaValue<CreativeWork | string>;
 }
+
+const contantPoints: ContactPoint[] = [
+    {
+        "@type": "ContactPoint",
+        contactType: "Twitter",
+        url: "https://twitter.com/Shmuelie",
+        identifier: "Shmuelie"
+    },
+    {
+        "@type": "ContactPoint",
+        contactType: "LinkedIn",
+        url: "https://www.linkedin.com/in/shmuelienglard",
+        identifier: "shmuelienglard"
+    },
+    {
+        "@type": "ContactPoint",
+        contactType: "GitHub",
+        url: "https://github.com/shmuelie",
+        identifier: "SamuelEnglard"
+    },
+    {
+        "@type": "ContactPoint",
+        contactType: "Stack-Overflow",
+        url: "https://stackoverflow.com/users/1082492/shmuelie",
+        identifier: "shmuelie"
+    },
+    {
+        "@type": "ContactPoint",
+        contactType: "Facebook",
+        url: "https://www.facebook.com/Shmuelie/",
+        identifier: "shmuelie"
+    },
+    {
+        "@type": "ContactPoint",
+        contactType: "NuGet",
+        url: "https://www.nuget.org/profiles/shmuelie",
+        identifier: "shmuelie"
+    },
+    {
+        "@type": "ContactPoint",
+        contactType: "npm",
+        url: "https://www.npmjs.com/~shmuelie",
+        identifier: "shmuelie"
+    },
+    {
+        "@type": "ContactPoint",
+        contactType: "Instagram",
+        url: "https://www.instagram.com/shmuelienglard",
+        identifier: "shmuelienglard"
+    },
+    {
+        "@type": "ContactPoint",
+        contactType: "Twitch",
+        url: "https://twitch.com/shmuelie",
+        identifier: "shmuelie"
+    }
+];
+contantPoints.sort((a, b) => (a.contactType as string).localeCompare(b.contactType as string));
 
 /**
  * Object representing Shmueli Englard.
@@ -16,62 +74,7 @@ export const Me: WithContext<Person> = {
     email: "mailto:shmuelli.yosef@englard.net",
     telephone: "tel:17177468354",
     address: "East Brunswick, New Jersey, United States",
-    contactPoint: [
-        {
-            "@type": "ContactPoint",
-            contactType: "Twitter",
-            url: "https://twitter.com/Shmuelie",
-            identifier: "Shmuelie"
-        },
-        {
-            "@type": "ContactPoint",
-            contactType: "LinkedIn",
-            url: "https://www.linkedin.com/in/shmuelienglard",
-            identifier: "shmuelienglard"
-        },
-        {
-            "@type": "ContactPoint",
-            contactType: "GitHub",
-            url: "https://github.com/shmuelie",
-            identifier: "SamuelEnglard"
-        },
-        {
-            "@type": "ContactPoint",
-            contactType: "Stack-Overflow",
-            url: "https://stackoverflow.com/users/1082492/shmuelie",
-            identifier: "shmuelie"
-        },
-        {
-            "@type": "ContactPoint",
-            contactType: "Facebook",
-            url: "https://www.facebook.com/Shmuelie/",
-            identifier: "shmuelie"
-        },
-        {
-            "@type": "ContactPoint",
-            contactType: "NuGet",
-            url: "https://www.nuget.org/profiles/shmuelie",
-            identifier: "shmuelie"
-        },
-        {
-            "@type": "ContactPoint",
-            contactType: "npm",
-            url: "https://www.npmjs.com/~shmuelie",
-            identifier: "shmuelie"
-        },
-        {
-            "@type": "ContactPoint",
-            contactType: "Instagram",
-            url: "https://www.instagram.com/shmuelienglard",
-            identifier: "shmuelienglard"
-        },
-        {
-            "@type": "ContactPoint",
-            contactType: "Twitch",
-            url: "https://twitch.com/shmuelie",
-            identifier: "shmuelie"
-        }
-    ],
+    contactPoint: contantPoints,
     description: "Cutting my programming chops on the .NET 2.0 Betas in 2005, I grew to love developing software. I started out using VB.NET but moved on to C# quickly and never looked back. While most of my work is in C#, I have professional experience with cross platform development in Java, C++ (SWIG); web development in JavaScript, node.js and, database development with MS SQL Server, PostgreSQL and MySQL, and data integration services using different transport protocols using JSON, GeoJSON, XML and Google Protocol Buffers.",
     worksFor: [
         {
