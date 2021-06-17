@@ -32,7 +32,7 @@ export const Me: WithContext<Person> = {
         {
             "@type": "ContactPoint",
             contactType: "GitHub",
-            url: "https://github.com/SamuelEnglard",
+            url: "https://github.com/shmuelie",
             identifier: "SamuelEnglard"
         },
         {
