@@ -12,7 +12,15 @@
     <div>
         <header>
             <h1 itemprop="name" class="win-h1"></h1>
-            <img itemprop="image" alt="Shmueli Englard" />
+            <section>
+                <img itemprop="image" alt="Shmueli Englard" />
+            </section>
+            <section>
+                <h2 itemprop="jobTitle" class="win-h2"></h2>
+                <div class="win-type-subtitle" data-icon="&#128231;"><a itemprop="email" rel="me" class="win-link" data-formatter="email"></a></div>
+                <div class="win-type-subtitle" data-icon="&#128241;"><a itemprop="telephone" rel="me" class="win-link" data-formatter="telephone"></a></div>
+                <div class="win-type-subtitle" data-icon="&#128506;" itemprop="address"></div>
+            </section>
             <section itemprop="contactPoint">
                 <template data-type=ContactPoint>
                     <div itemscope itemtype="https://schema.org/ContactPoint">
@@ -23,10 +31,6 @@
                     </div>
                 </template>
             </section>
-            <h2 itemprop="jobTitle" class="win-h2"></h2>
-            <div class="win-type-subtitle" data-icon="&#128231;"><a itemprop="email" rel="me" class="win-link" data-formatter="email"></a></div>
-            <div class="win-type-subtitle" data-icon="&#128241;"><a itemprop="telephone" rel="me" class="win-link" data-formatter="telephone"></a></div>
-            <div class="win-type-subtitle" data-icon="&#128506;" itemprop="address"></div>
         </header>
         <main>
             <section>
