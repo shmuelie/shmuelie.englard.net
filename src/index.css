@@ -48,6 +48,7 @@ footer {
 }
 div[itemtype="https://schema.org/ContactPoint"] {
   display: inline-block;
+  margin: 5px;
 }
 header {
   display: grid;
