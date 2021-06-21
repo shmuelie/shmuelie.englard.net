@@ -58,6 +58,30 @@ const contantPoints: ContactPoint[] = [
         contactType: "Twitch",
         url: "https://twitch.com/shmuelie",
         identifier: "shmuelie"
+    },
+    {
+        "@type": "ContactPoint",
+        contactType: "Tumblr",
+        url: "https://www.tumblr.com/blog/shmuelie",
+        identifier: "shmuelie"
+    },
+    {
+        "@type": "ContactPoint",
+        contactType: "Keybase",
+        url: "https://keybase.io/shmuelie",
+        identifier: "shmuelie"
+    },
+    {
+        "@type": "ContactPoint",
+        contactType: "Steam",
+        url: "https://steamcommunity.com/id/shmueli_e/",
+        identifier: "shmueli_e"
+    },
+    {
+        "@type": "ContactPoint",
+        contactType: "YouTube",
+        url: "http://www.youtube.com/channel/UCeWZRExZngloGBB9ZPXAkJg",
+        identifier: "UCeWZRExZngloGBB9ZPXAkJg"
     }
 ];
 contantPoints.sort((a, b) => (a.contactType as string).localeCompare(b.contactType as string));
