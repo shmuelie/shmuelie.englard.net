@@ -3,7 +3,7 @@ import './diagnal-ribbon.js'
 import { apply, Thing } from 'https://unpkg.com/microdata-tooling@1.0.3/dist/index.min.js'
 import { formatDateTime, formatPhone } from './formatters.js'
 import { ContactPoint } from './schema.js'
-import { BadgeStyle, SimpleIcons, icons } from 'https://unpkg.com/shieldsio-elements@1.0.0/dist/index.min.js'
+import { BadgeStyle, SimpleIcons, icons, SimpleIconBadge, ShieldIOStaticBadge } from 'https://unpkg.com/shieldsio-elements@1.0.0/dist/index.min.js'
 
 apply(Me as Thing, document.querySelector("html") as HTMLElement, {
     linkFormatter: (data: string, elementData: DOMStringMap): string | null => {
@@ -26,10 +26,17 @@ apply(Me as Thing, document.querySelector("html") as HTMLElement, {
     typeHelpers: {
         "ContactPoint": (data: Thing, element: HTMLElement): boolean => {
             const contact = data as ContactPoint;
-            if (contact && contact.contactType && icons[contact.contactType as string]) {
-                const widget = document.createElement("simpleicon-badge");
+            if (contact && contact.contactType) {
+                let widget: SimpleIconBadge | ShieldIOStaticBadge;
+                if (icons[contact.contactType as string]) {
+                    widget = document.createElement("simpleicon-badge");
+                    widget.logo = contact.contactType as SimpleIcons;
+                } else {
+                    widget = document.createElement("shieldio-badge");
+                    widget.message = contact.contactType as string;
+                    widget.color = "blue";
+                }
                 widget.badgeStyle = BadgeStyle.ForTheBadge;
-                widget.logo = contact.contactType as SimpleIcons;
                 const link = document.createElement("a");
                 link.target = "_blank";
                 link.style.textDecoration = "none";
