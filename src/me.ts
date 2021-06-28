@@ -126,7 +126,7 @@ export const Me: WithContext<Person> = {
                 url: "https://www.microsoft.com",
                 logo: "https://simple-icons.github.io/simple-icons-website/icons/microsoft.svg"
             },
-            roleDescription: [ "Developing the Windows Store. Work on redesign for Windows 11 and adding new features." ]
+            roleDescription: [ "Developing the Microsoft Store App. Work on redesign for Windows 11 and adding new features." ]
         },
         {
             "@type": "EmployeeRole",
