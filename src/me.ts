@@ -88,6 +88,12 @@ const contantPoints: ContactPoint[] = [
         contactType: "GreasyFork",
         url: "https://greasyfork.org/en/users/787382-shmuelie",
         identifier: "shmuelie"
+    },
+    {
+        "@type": "ContactPoint",
+        contactType: "Anime-Planet",
+        url: "https://www.anime-planet.com/users/shmuelie",
+        identifier: "shmuelie"
     }
 ];
 contantPoints.sort((a, b) => (a.contactType as string).localeCompare(b.contactType as string));
