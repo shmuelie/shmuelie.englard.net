@@ -94,6 +94,12 @@ const contantPoints: ContactPoint[] = [
         contactType: "Anime-Planet",
         url: "https://www.anime-planet.com/users/shmuelie",
         identifier: "shmuelie"
+    },
+    {
+        "@type": "ContactPoint",
+        contactType: "Disqus",
+        url: "http://disqus.com/by/shmuelie",
+        identifier: "shmuelie"
     }
 ];
 contantPoints.sort((a, b) => (a.contactType as string).localeCompare(b.contactType as string));
