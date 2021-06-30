@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
+    <head>
+        <title></title>
+        <link rel="stylesheet" href="https://static2.sharepointonline.com/files/fabric/office-ui-fabric-core/11.0.0/css/fabric.min.css" />
+        <style>
+            header {
+                padding: 12pt;
+                display: grid;
+            }
+
+            @media (min-width: 1280px) {
+                /* landscape layout */
+                header {
+                    width: min-content;
+                    text-align: center;
+                    grid-template-rows: min-content min-content min-content min-content min-content min-content min-content;
+                    gap: 0px 0px;
+                }
+            }
+            @media (max-width: 1280px) {
+                /* portrait layout */
+                header {
+                    grid-template-columns: min-content 1fr;
+                    grid-template-rows: min-content min-content min-content min-content 1fr;
+                    grid-template-areas:
+                        "headerImg ."
+                        "headerImg ."
+                        "headerImg ."
+                        "headerImg ."
+                        "headerImg .";
+                    gap: 0px 12pt;
+                }
+
+                header > span,header > a {
+                    display: block;
+                }
+
+                header > img {
+                    grid-area: headerImg;
+                }
+            }
+        </style>
+    </head>
+    <body class="ms-Fabric" dir="ltr">
+        <header class="ms-depth-4">
+            <img itemprop="image" alt="Shmueli Englard" src="https://avatars0.githubusercontent.com/u/1119883?s=460&u=ff3333cb5414fe0726c7b91226ccda3cd65d4a4a&v=4" />
+            <h1 itemprop="name" class="ms-fontSize-28">Shmueli Englard</h1>
+            <span itemprop="jobTitle" class="ms-fontSize-20">Senior Software Engineer</span>
+            <a itemprop="email" rel="me" href="mailto:shmuelli.yosef@englard.net">shmuelli.yosef@englard.net</a>
+            <a itemprop="telephone" rel="me" href="tel:17177468354">+1 717 746 8354</a>
+            <span itemprop="address">East Brunswick, New Jersey, United States</span>
+            <section itemprop="contactPoint">
+                <template data-type="ContactPoint">
+                    <div itemscope itemtype="https://schema.org/ContactPoint">
+                        <meta itemprop="contactType" />
+                        <meta itemprop="url" />
+                        <meta itemprop="identifier" />
+                    </div>
+                </template>
+            </section>
+        </header>
+    </body>
+</html>
