@@ -24,6 +24,9 @@
 			],
 			"https://unpkg.com/shieldsio-elements@1.0.0/dist/index.min.js": [
 				"./node_modules/shieldsio-elements"
+			],
+			"https://unpkg.com/@fluentui/web-components@1.1.1": [
+				"./node_modules/@fluentui/web-components"
 			]
 		}
 	}

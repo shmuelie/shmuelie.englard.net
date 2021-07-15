@@ -1,6 +1,10 @@
 lockfileVersion: 5.3
 
 specifiers:
+  '@fluentui/web-components': 1.1.1
+  '@microsoft/fast-element': 1.4.0
+  '@microsoft/fast-foundation': 2.5.0
+  '@microsoft/fast-web-utilities': 4.8.0
   del: 6.0.0
   esm: 3.2.25
   gulp: 4.0.2
@@ -16,6 +20,10 @@ specifiers:
   typescript: 4.1.3
 
 devDependencies:
+  '@fluentui/web-components': 1.1.1
+  '@microsoft/fast-element': 1.4.0
+  '@microsoft/fast-foundation': 2.5.0
+  '@microsoft/fast-web-utilities': 4.8.0
   del: 6.0.0
   esm: 3.2.25
   gulp: 4.0.2
@@ -31,6 +39,16 @@ devDependencies:
   typescript: 4.1.3
 
 packages:
+
+  /@fluentui/web-components/1.1.1:
+    resolution: {integrity: sha512-NNyfCmxwJegSWVJIPbJxvS2Qbwr9cd8M1Pgoc5BBeou5E/KxiunMFNX7t52a/nJLRODUF7cwn0XHkg356YEuQQ==}
+    dependencies:
+      '@microsoft/fast-colors': 5.1.3
+      '@microsoft/fast-element': 1.4.0
+      '@microsoft/fast-foundation': 2.5.0_lodash-es@4.17.21
+      lodash-es: 4.17.21
+      tslib: 1.14.1
+    dev: true
 
   /@gulp-sourcemaps/identity-map/2.0.1:
     resolution: {integrity: sha512-Tb+nSISZku+eQ4X1lAkevcQa+jknn/OVUgZ3XCxEKIsLsqYuPoJwJOPQeaOk75X3WPftb29GWY1eqE7GLsXb1Q==}
@@ -49,6 +67,68 @@ packages:
     dependencies:
       normalize-path: 2.1.1
       through2: 2.0.5
+    dev: true
+
+  /@microsoft/fast-colors/5.1.3:
+    resolution: {integrity: sha512-XDEnRYxPO5P3Jsizm4TCxLu1osS/uV3Lym6SfRhq2PxfXPTgEcdvOYDUXyV2drqebs3U5VQnOcYcJiSp73xhng==}
+    dev: true
+
+  /@microsoft/fast-element/1.4.0:
+    resolution: {integrity: sha512-7BC/juFc7S4HMGt/tNCP9bjwtUslheGiPM2jtIibe1bj+PO34woUfH5TxaklOT6sRStig/0fODX4R5oqY4DYLA==}
+    dev: true
+
+  /@microsoft/fast-foundation/2.5.0:
+    resolution: {integrity: sha512-+WUuXrNa1k6SffAuDEAXrDhQb9PVMY7oEAoOjDHqgZkM5F3aYB/uTJ1vPe3tqf3OX54LdHQtT1HGtfVM3RrAGw==}
+    dependencies:
+      '@microsoft/fast-element': 1.4.0
+      '@microsoft/fast-web-utilities': 4.8.0
+      '@microsoft/tsdoc-config': 0.13.9
+      tabbable: 5.2.0
+      tslib: 1.14.1
+    transitivePeerDependencies:
+      - lodash-es
+    dev: true
+
+  /@microsoft/fast-foundation/2.5.0_lodash-es@4.17.21:
+    resolution: {integrity: sha512-+WUuXrNa1k6SffAuDEAXrDhQb9PVMY7oEAoOjDHqgZkM5F3aYB/uTJ1vPe3tqf3OX54LdHQtT1HGtfVM3RrAGw==}
+    dependencies:
+      '@microsoft/fast-element': 1.4.0
+      '@microsoft/fast-web-utilities': 4.8.0_lodash-es@4.17.21
+      '@microsoft/tsdoc-config': 0.13.9
+      tabbable: 5.2.0
+      tslib: 1.14.1
+    transitivePeerDependencies:
+      - lodash-es
+    dev: true
+
+  /@microsoft/fast-web-utilities/4.8.0:
+    resolution: {integrity: sha512-+MroMIP5yGD8mqbegqSZoIbQVjvmsQRQtn87Gc8TJk00KIfRu2x9sFAq8q5m8H61sjCRHreJ0Bq5telz09h55g==}
+    peerDependencies:
+      lodash-es: ^4.17.10
+    dependencies:
+      exenv-es6: 1.0.0
+    dev: true
+
+  /@microsoft/fast-web-utilities/4.8.0_lodash-es@4.17.21:
+    resolution: {integrity: sha512-+MroMIP5yGD8mqbegqSZoIbQVjvmsQRQtn87Gc8TJk00KIfRu2x9sFAq8q5m8H61sjCRHreJ0Bq5telz09h55g==}
+    peerDependencies:
+      lodash-es: ^4.17.10
+    dependencies:
+      exenv-es6: 1.0.0
+      lodash-es: 4.17.21
+    dev: true
+
+  /@microsoft/tsdoc-config/0.13.9:
+    resolution: {integrity: sha512-VqqZn+rT9f6XujFPFR2aN9XKF/fuir/IzKVzoxI0vXIzxysp4ee6S2jCakmlGFHEasibifFTsJr7IYmRPxfzYw==}
+    dependencies:
+      '@microsoft/tsdoc': 0.12.24
+      ajv: 6.12.6
+      jju: 1.4.0
+      resolve: 1.19.0
+    dev: true
+
+  /@microsoft/tsdoc/0.12.24:
+    resolution: {integrity: sha512-Mfmij13RUTmHEMi9vRUhMXD7rnGR2VvxeNYtaGtaJ4redwwjT4UXYJ+nzmVJF7hhd4pn/Fx5sncDKxMVFJSWPg==}
     dev: true
 
   /@nodelib/fs.scandir/2.1.4:
@@ -84,6 +164,15 @@ packages:
     dependencies:
       clean-stack: 2.2.0
       indent-string: 4.0.0
+    dev: true
+
+  /ajv/6.12.6:
+    resolution: {integrity: sha512-j3fVLgvTo527anyYyJOGTYJbG+vnnQYvE0m5mmkc1TK+nxAppkCLMIL0aZ4dblVCNoGShhm+kzE4ZUykBoMg4g==}
+    dependencies:
+      fast-deep-equal: 3.1.3
+      fast-json-stable-stringify: 2.1.0
+      json-schema-traverse: 0.4.1
+      uri-js: 4.4.1
     dev: true
 
   /ansi-colors/1.1.0:
@@ -745,6 +834,10 @@ packages:
     resolution: {integrity: sha512-8guHBZCwKnFhYdHr2ysuRWErTwhoN2X8XELRlrRwpmfeY2jjuUN4taQMsULKUVo1K4DvZl+0pgfyoysHxvmvEw==}
     dev: true
 
+  /exenv-es6/1.0.0:
+    resolution: {integrity: sha512-fcG/TX8Ruv9Ma6PBaiNsUrHRJzVzuFMP6LtPn/9iqR+nr9mcLeEOGzXQGLC5CVQSXGE98HtzW2mTZkrCA3XrDg==}
+    dev: true
+
   /expand-brackets/2.1.4:
     resolution: {integrity: sha1-t3c14xXOMPa27/D4OwQVGiJEliI=}
     engines: {node: '>=0.10.0'}
@@ -814,6 +907,10 @@ packages:
       time-stamp: 1.1.0
     dev: true
 
+  /fast-deep-equal/3.1.3:
+    resolution: {integrity: sha512-f3qQ9oQy9j2AhBe/H9VC91wLmKBCCU/gDOnKNAYG5hswO7BLKj09Hc5HYNz9cGI++xlpDCIgDaitVs03ATR84Q==}
+    dev: true
+
   /fast-glob/3.2.5:
     resolution: {integrity: sha512-2DtFcgT68wiTTiwZ2hNdJfcHNke9XOfnwmBRWXhmeKM8rF0TGwmC/Qto3S7RoZKp5cilZbxzO5iTNTQsJ+EeDg==}
     engines: {node: '>=8'}
@@ -824,6 +921,10 @@ packages:
       merge2: 1.4.1
       micromatch: 4.0.4
       picomatch: 2.2.3
+    dev: true
+
+  /fast-json-stable-stringify/2.1.0:
+    resolution: {integrity: sha512-lhd/wF+Lk98HZoTCtlVraHtfh5XYijIjalXck7saUtuanSDyLMxnHhSXEDJqHxD7msR8D0uCmqlkwjCV8xvwHw==}
     dev: true
 
   /fast-levenshtein/1.1.4:
@@ -1512,6 +1613,14 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: true
 
+  /jju/1.4.0:
+    resolution: {integrity: sha1-o6vicYryQaKykE+EpiWXDzia4yo=}
+    dev: true
+
+  /json-schema-traverse/0.4.1:
+    resolution: {integrity: sha512-xbbCH5dCYU5T8LcEhhuh7HJ88HXuW3qsI3Y0zOZFKfZEHcpWiHU/Jxzk629Brsab/mMiHQti9wMP+845RPe3Vg==}
+    dev: true
+
   /json-stable-stringify-without-jsonify/1.0.1:
     resolution: {integrity: sha1-nbe1lJatPzz+8wp1FC0tkwrXJlE=}
     dev: true
@@ -1596,6 +1705,10 @@ packages:
       pify: 2.3.0
       pinkie-promise: 2.0.1
       strip-bom: 2.0.0
+    dev: true
+
+  /lodash-es/4.17.21:
+    resolution: {integrity: sha512-mKnC+QJ9pWVzv+C4/U3rRsHapFfHvQFoFB92e52xeyGMcX6/OlIl78je1u8vePzYZSkkogMPJ2yjxxsb89cxyw==}
     dev: true
 
   /lodash/4.17.21:
@@ -2054,6 +2167,11 @@ packages:
       pump: 2.0.1
     dev: true
 
+  /punycode/2.1.1:
+    resolution: {integrity: sha512-XRsRjdf+j5ml+y/6GKHPZbrF/8p2Yga0JPtdqTIY2Xe5ohJPD9saDJJLPvp9+NSBprVvevdXZybnj2cv8OEd0A==}
+    engines: {node: '>=6'}
+    dev: true
+
   /qs/6.10.1:
     resolution: {integrity: sha512-M528Hph6wsSVOBiYUnGf+K/7w0hNshs/duGsNXPUCLH5XAqjEtiPGwNONLV0tBH8NoGb0mvD5JubnUTrujKDTg==}
     engines: {node: '>=0.6'}
@@ -2203,6 +2321,13 @@ packages:
   /resolve-url/0.2.1:
     resolution: {integrity: sha1-LGN/53yJOv0qZj/iGqkIAGjiBSo=}
     deprecated: https://github.com/lydell/resolve-url#deprecated
+    dev: true
+
+  /resolve/1.19.0:
+    resolution: {integrity: sha512-rArEXAgsBG4UgRGcynxWIWKFvh/XZCcS8UJdHhwy91zwAvCZIbcs+vAbflgBnNjYMs/i/i+/Ux6IZhML1yPvxg==}
+    dependencies:
+      is-core-module: 2.2.0
+      path-parse: 1.0.6
     dev: true
 
   /resolve/1.20.0:
@@ -2485,6 +2610,10 @@ packages:
       es6-symbol: 3.1.3
     dev: true
 
+  /tabbable/5.2.0:
+    resolution: {integrity: sha512-0uyt8wbP0P3T4rrsfYg/5Rg3cIJ8Shl1RJ54QMqYxm1TLdWqJD1u6+RQjr2Lor3wmfT7JRHkirIwy99ydBsyPg==}
+    dev: true
+
   /terser/5.4.0:
     resolution: {integrity: sha512-3dZunFLbCJis9TAF2VnX+VrQLctRUmt1p3W2kCsJuZE4ZgWqh//+1MZ62EanewrqKoUf4zIaDGZAvml4UDc0OQ==}
     engines: {node: '>=10'}
@@ -2597,6 +2726,10 @@ packages:
       through2: 2.0.5
     dev: true
 
+  /tslib/1.14.1:
+    resolution: {integrity: sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==}
+    dev: true
+
   /type/1.2.0:
     resolution: {integrity: sha512-+5nt5AAniqsCnu2cEQQdpzCAh33kVx8n0VoFidKpB1dVVLAN/F+bgVOqOJqOnEnrhp222clB5p3vUlD+1QAnfg==}
     dev: true
@@ -2676,6 +2809,12 @@ packages:
   /upath/1.2.0:
     resolution: {integrity: sha512-aZwGpamFO61g3OlfT7OQCHqhGnW43ieH9WZeP7QxN/G/jS4jfqUkZxoryvJgVPEcrl5NL/ggHsSmLMHuH64Lhg==}
     engines: {node: '>=4'}
+    dev: true
+
+  /uri-js/4.4.1:
+    resolution: {integrity: sha512-7rKUyy33Q1yc98pQ1DAmLtwX109F7TIfWlW1Ydo8Wl1ii1SeHieeh0HHfPeL2fMXK6z0s8ecKs9frCuLJvndBg==}
+    dependencies:
+      punycode: 2.1.1
     dev: true
 
   /urix/0.1.0:
