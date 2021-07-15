@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr" itemscope itemtype="https://schema.org/Person">
+    <head>
+        <meta charset="utf-8" />
+        <title>Shmueli Yosef Englard</title>
+        <link rel="stylesheet" href="fluentui.css" />
+        <link rel="stylesheet" href="https://static2.sharepointonline.com/files/fabric/office-ui-fabric-core/11.0.0/css/fabric.min.css" />
+    </head>
+    <body class="ms-Fabric" dir="ltr">
+        <header class="ms-depth-4">
+            <img itemprop="image" alt="Shmueli Englard" />
+            <h1 itemprop="name" class="ms-fontSize-28"></h1>
+            <span itemprop="jobTitle" class="ms-fontSize-20"></span>
+            <a itemprop="email" rel="me" data-formatter="email"></a>
+            <a itemprop="telephone" rel="me" data-formatter="telephone"></a>
+            <span itemprop="address"></span>
+            <section itemprop="contactPoint">
+                <template data-type="ContactPoint">
+                    <div itemscope itemtype="https://schema.org/ContactPoint">
+                        <meta itemprop="contactType" />
+                        <meta itemprop="url" />
+                        <meta itemprop="identifier" />
+                    </div>
+                </template>
+            </section>
+        </header>
+        <main>
+            <fluent-accordion class="ms-depth-4">
+                <fluent-accordion-item>
+                    <span slot="heading" class="ms-fontWeight-bold">About</span>
+                    <p itemprop="description"></p>
+                </fluent-accordion-item>
+            </fluent-accordion>
+        </main>
+        <script type="module" src="fluentui.js"></script>
+    </body>
+</html>
