@@ -3002,6 +3002,8 @@ export interface EmployeeRoleBase extends OrganizationRoleBase {
     "baseSalary"?: SchemaValue<MonetaryAmount | Number | PriceSpecification | IdReference>;
     /** The currency (coded using {@link http://en.wikipedia.org/wiki/ISO_4217 ISO 4217} ) used for the main salary information in this job posting or for this employee. */
     "salaryCurrency"?: SchemaValue<Text>;
+    /** The employer for this role. */
+    "employer"?: SchemaValue<Organization | IdReference>;
 }
 export interface EmployeeRoleLeaf extends EmployeeRoleBase {
     "@type": "EmployeeRole";

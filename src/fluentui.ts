@@ -1,12 +1,11 @@
-import { Me } from './me.js'
-import './diagnal-ribbon.js'
-import { apply, Thing } from 'https://unpkg.com/microdata-tooling@1.0.3/dist/index.min.js'
+import { contantPoints } from './me.js'
+import { apply, ApplyOptions, Thing } from 'https://unpkg.com/microdata-tooling@1.0.3/dist/index.min.js'
 import { formatDateTime, formatPhone } from './formatters.js'
 import { ContactPoint } from './schema.js'
 import { BadgeStyle, SimpleIcons, icons } from 'https://unpkg.com/shieldsio-elements@1.0.0/dist/index.min.js'
 import 'https://unpkg.com/@fluentui/web-components@1.1.1'
 
-apply(Me as Thing, document.querySelector("html") as HTMLElement, {
+const applyOptions: ApplyOptions = {
     linkFormatter: (data: string, elementData: DOMStringMap): string | null => {
         if ("formatter" in elementData) {
             if (elementData["formatter"] === "telephone") {
@@ -41,8 +40,6 @@ apply(Me as Thing, document.querySelector("html") as HTMLElement, {
             return false;
         }
     }
-});
-const ldScript = document.querySelector("script[type='application/ld+json'");
-if (ldScript) {
-    ldScript.textContent = JSON.stringify(Me);
-}
+};
+
+apply((contantPoints as any) as Thing, document.querySelector("html") as HTMLElement, applyOptions);
