@@ -106,6 +106,13 @@ const contantPoints: ContactPoint[] = [
         contactType: "Pinterest",
         url: "https://www.pinterest.com/shmuelie",
         identifier: "shmuelie"
+    },
+    {
+        "@type": "ContactPoint",
+        contactType: "Microsoft",
+        url: "https://docs.microsoft.com/en-us/users/shmuelie/",
+        identifier: "shmuelie"
+
     }
 ];
 contantPoints.sort((a, b) => (a.contactType as string).localeCompare(b.contactType as string));
