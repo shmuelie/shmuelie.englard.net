@@ -1,0 +1,3190 @@
+/*ls -Filter *.vscode.definition.json -Recurse -Path .\src\ | foreach { $_ | Get-Content -Raw | ConvertFrom-Json -Depth 20 | select -expandproperty tags } | ConvertTo-Json -depth 20 | Set-Content .\web-components.vscode.definition.json; Get-Content .\web-components.vscode.definition.json -Raw | foreach { "{`"version`":1.1,`"tags`":$_}" } | Set-Content .\web-components.html-data.json*/
+{
+  "version": 1.1,
+  "tags": [
+    {
+      "name": "fluent-accordion",
+      "title": "Accordion",
+      "description": "The Fluent UI accordion element",
+      "attributes": [
+        {
+          "name": "expand-mode",
+          "title": "Expand mode",
+          "description": "The way items are allowed to expand",
+          "type": "string",
+          "values": [
+            {
+              "name": "single"
+            },
+            {
+              "name": "multi"
+            }
+          ],
+          "default": "multi",
+          "required": false
+        }
+      ],
+      "slots": [
+        {
+          "name": "item",
+          "title": "Item slot",
+          "description": "The default slot for accordion items"
+        }
+      ]
+    },
+    {
+      "name": "fluent-accordion-item",
+      "title": "Accordion item",
+      "description": "The Fluent UI accordion item element",
+      "attributes": [
+        {
+          "name": "heading-level",
+          "title": "Level",
+          "description": "The aria-level value (1-6) for the item heading, representing its semantic hierarchy",
+          "type": "number",
+          "default": 2,
+          "required": false
+        },
+        {
+          "name": "expanded",
+          "title": "Expanded",
+          "description": "The expanded state of the item",
+          "type": "boolean",
+          "default": false,
+          "required": false
+        },
+        {
+          "name": "id",
+          "title": "ID",
+          "description": "The HTML ID attribute for the invoking element",
+          "type": "string",
+          "required": false
+        }
+      ],
+      "slots": [
+        {
+          "name": "",
+          "title": "Default slot",
+          "description": "The contents of the item"
+        },
+        {
+          "name": "heading",
+          "title": "Heading slot",
+          "description": "The heading of the accordion item"
+        },
+        {
+          "name": "start",
+          "title": "Start slot",
+          "description": "Contents of the start slot are positioned before the heading"
+        },
+        {
+          "name": "end",
+          "title": "End slot",
+          "description": "Contents of the end slot are positioned after the heading and before the expand/collapse icons"
+        },
+        {
+          "name": "expanded-icon",
+          "title": "Expanded icon slot",
+          "description": "Slot to provide a custom icon representing the expanded state"
+        },
+        {
+          "name": "collapsed-icon",
+          "title": "Collapsed icon slot",
+          "description": "Slot to provide a custom icon representing the collapsed state"
+        }
+      ]
+    },
+    {
+      "name": "fluent-anchor",
+      "title": "Anchor",
+      "description": "The Fluent UI anchor element",
+      "attributes": [
+        {
+          "name": "appearance",
+          "title": "Appearance",
+          "description": "The anchor's visual treatment",
+          "type": "string",
+          "values": [
+            {
+              "name": "accent"
+            },
+            {
+              "name": "lightweight"
+            },
+            {
+              "name": "neutral"
+            },
+            {
+              "name": "outline"
+            },
+            {
+              "name": "stealth"
+            },
+            {
+              "name": "hypertext"
+            }
+          ],
+          "default": "neutral",
+          "required": false
+        },
+        {
+          "name": "download",
+          "title": "Download",
+          "description": "The HTML download attribute of the anchor",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "href",
+          "title": "URL",
+          "description": "The URL the anchor points to",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "hreflang",
+          "title": "Linked page language",
+          "description": "The language of the URL the anchor points to",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "ping",
+          "title": "Ping URLs",
+          "description": "A space-separated list of URLs typically for tracking",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "referrerpolicy",
+          "title": "Referrer policy",
+          "description": "The amount of referrer information that should be included with requests",
+          "type": "string",
+          "required": false,
+          "values": [
+            {
+              "name": "no-referrer"
+            },
+            {
+              "name": "no-referrer-when-downgrade"
+            },
+            {
+              "name": "origin"
+            },
+            {
+              "name": "origin-when-cross-origin"
+            },
+            {
+              "name": "same-origin"
+            },
+            {
+              "name": "strict-origin"
+            },
+            {
+              "name": "strict-origin-when-cross-origin"
+            },
+            {
+              "name": "unsafe-url"
+            }
+          ]
+        },
+        {
+          "name": "rel",
+          "title": "Relationship",
+          "description": "Space-separated link types indicating the relationship of the linked URL",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "target",
+          "title": "Target",
+          "description": "The display target of the URL",
+          "type": "string",
+          "default": "_self",
+          "values": [
+            {
+              "name": "_self"
+            },
+            {
+              "name": "_blank"
+            },
+            {
+              "name": "_parent"
+            },
+            {
+              "name": "_top"
+            }
+          ],
+          "required": false
+        },
+        {
+          "name": "type",
+          "title": "Type",
+          "description": "The linked URL's format using a MIME type",
+          "type": "string",
+          "required": false
+        }
+      ],
+      "slots": [
+        {
+          "name": "",
+          "title": "Default slot",
+          "description": "The content of the anchor"
+        },
+        {
+          "name": "start",
+          "title": "Start slot",
+          "description": "Contents of the start slot are positioned before the anchor content"
+        },
+        {
+          "name": "end",
+          "title": "End slot",
+          "description": "Contents of the end slot are positioned after the anchor content"
+        }
+      ]
+    },
+    {
+      "name": "fluent-anchored-region",
+      "title": "Anchored region",
+      "description": "The Fluent UI anchored region element",
+      "attributes": [
+        {
+          "name": "anchor",
+          "title": "Anchor ID",
+          "type": "string",
+          "description": "The HTML ID of the element the region is positioned relative to",
+          "required": true
+        },
+        {
+          "name": "viewport",
+          "title": "Viewport ID",
+          "description": "The HTML ID of the viewport the region is positioned relative to",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "horizontal-positioning-mode",
+          "title": "Horizontal positioning mode",
+          "description": "How the horizontal placement is determined",
+          "type": "string",
+          "values": [
+            {
+              "name": "uncontrolled"
+            },
+            {
+              "name": "locktodefault"
+            },
+            {
+              "name": "dynamic"
+            }
+          ],
+          "default": "uncontrolled",
+          "required": false
+        },
+        {
+          "name": "horizontal-default-position",
+          "title": "Horizontal default position",
+          "description": "The default horizontal position of the region relative to the configured 'Anchor ID'",
+          "type": "string",
+          "values": [
+            {
+              "name": "start"
+            },
+            {
+              "name": "end"
+            },
+            {
+              "name": "left"
+            },
+            {
+              "name": "right"
+            },
+            {
+              "name": "unset"
+            }
+          ],
+          "default": "unset",
+          "required": false
+        },
+        {
+          "name": "horizontal-inset",
+          "title": "Horizontal inset",
+          "description": "Determines whether the region should overlap the anchor on the horizontal axis",
+          "type": "boolean",
+          "default": false,
+          "required": false
+        },
+        {
+          "name": "horizontal-threshold",
+          "title": "Horizontal threshold",
+          "description": "The space allocated to the default position before the widest area is selected for layout",
+          "type": "number",
+          "required": false
+        },
+        {
+          "name": "horizontal-scaling",
+          "title": "Horizontal scaling",
+          "description": "Defines how the width of the region is calculated",
+          "type": "string",
+          "values": [
+            {
+              "name": "anchor"
+            },
+            {
+              "name": "fill"
+            },
+            {
+              "name": "content"
+            }
+          ],
+          "default": "content",
+          "required": false
+        },
+        {
+          "name": "vertical-positioning-mode",
+          "title": "Vertical positioning mode",
+          "description": "How the vertical placement is determined",
+          "type": "string",
+          "values": [
+            {
+              "name": "uncontrolled"
+            },
+            {
+              "name": "locktodefault"
+            },
+            {
+              "name": "dynamic"
+            }
+          ],
+          "default": "uncontrolled",
+          "required": false
+        },
+        {
+          "name": "vertical-default-position",
+          "title": "Vertical default position",
+          "description": "The default vertical position of the region relative to the configured 'Anchor ID'",
+          "type": "string",
+          "values": [
+            {
+              "name": "top"
+            },
+            {
+              "name": "bottom"
+            },
+            {
+              "name": "unset"
+            }
+          ],
+          "default": "unset",
+          "required": false
+        },
+        {
+          "name": "vertical-inset",
+          "title": "Vertical inset",
+          "description": "Determines whether the region should overlap the anchor on the vertical axis",
+          "type": "boolean",
+          "default": false,
+          "required": false
+        },
+        {
+          "name": "vertical-threshold",
+          "title": "Vertical threshold",
+          "description": "The space allocated to the default position before the widest area is selected for layout",
+          "type": "number",
+          "required": false
+        },
+        {
+          "name": "vertical-scaling",
+          "title": "Vertical scaling",
+          "description": "Defines how the width of the region is calculated",
+          "type": "string",
+          "values": [
+            {
+              "name": "anchor"
+            },
+            {
+              "name": "fill"
+            },
+            {
+              "name": "content"
+            }
+          ],
+          "default": "content",
+          "required": false
+        },
+        {
+          "name": "fixed-placement",
+          "title": "Fixed placement",
+          "description": "Fixed placement allows the region to break out of parent containers",
+          "type": "boolean",
+          "default": false,
+          "required": false
+        },
+        {
+          "name": "auto-update-mode",
+          "title": "Auto update mode",
+          "description": "Defines whether the component automatically updates its position",
+          "type": "string",
+          "values": [
+            {
+              "name": "anchor"
+            },
+            {
+              "name": "auto"
+            }
+          ],
+          "default": "anchor",
+          "required": false
+        }
+      ],
+      "slots": [
+        {
+          "name": "",
+          "title": "Default slot",
+          "description": "The content of the anchored region"
+        }
+      ]
+    },
+    {
+      "name": "fluent-badge",
+      "title": "Badge",
+      "description": "The Fluent UI badge element",
+      "attributes": [
+        {
+          "name": "circular",
+          "title": "Circular",
+          "description": "Sets the visual appearance of the badge to circular",
+          "type": "boolean",
+          "default": false,
+          "required": false
+        },
+        {
+          "name": "fill",
+          "title": "Fill",
+          "description": "Sets the background color to a CSS custom property of the attribute value - var(--badge-fill-[value])",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "color",
+          "title": "Color",
+          "description": "Sets the color to a CSS custom property of the attribute value - var(--badge-color-[value])",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "appearance",
+          "title": "Appearance",
+          "description": "The badge's visual treatment",
+          "type": "string",
+          "values": [
+            {
+              "name": "accent"
+            },
+            {
+              "name": "lightweight"
+            },
+            {
+              "name": "neutral"
+            }
+          ],
+          "default": "lightweight",
+          "required": false
+        }
+      ],
+      "slots": [
+        {
+          "name": "",
+          "title": "Default slot",
+          "description": "The content of the badge"
+        }
+      ]
+    },
+    {
+      "name": "fluent-breadcrumb",
+      "title": "Breadcrumb",
+      "description": "The Fluent UI breadcrumb element",
+      "attributes": [],
+      "slots": [
+        {
+          "name": "",
+          "title": "Default slot",
+          "description": "The content of the breadcrumb, typically composed of fluent-breadcrumb-items or anchors"
+        }
+      ]
+    },
+    {
+      "name": "fluent-breadcrumb-item",
+      "title": "Breadcrumb item",
+      "description": "The Fluent UI breadcrumb item element",
+      "attributes": [
+        {
+          "name": "href",
+          "title": "URL",
+          "description": "The URL the item points to",
+          "type": "string",
+          "default": "",
+          "required": false
+        },
+        {
+          "name": "separator",
+          "title": "Separator",
+          "description": "Determines whether the visual separator should be rendered",
+          "type": "boolean",
+          "default": true,
+          "required": false
+        }
+      ],
+      "slots": [
+        {
+          "name": "",
+          "title": "Default slot",
+          "description": "The content of the item"
+        },
+        {
+          "name": "separator",
+          "title": "Separator slot",
+          "description": "Slot to provide a custom icon to represent the visual separator"
+        },
+        {
+          "name": "start",
+          "title": "Start slot",
+          "description": "Contents of the start slot are positioned before the default content"
+        },
+        {
+          "name": "end",
+          "title": "End slot",
+          "description": "Contents of the end slot are positioned after the default content"
+        }
+      ]
+    },
+    {
+      "name": "fluent-button",
+      "title": "Button",
+      "description": "The Fluent UI button element",
+      "attributes": [
+        {
+          "name": "appearance",
+          "title": "Appearance",
+          "description": "The button's visual treatment",
+          "type": "string",
+          "values": [
+            {
+              "name": "accent"
+            },
+            {
+              "name": "lightweight"
+            },
+            {
+              "name": "neutral"
+            },
+            {
+              "name": "outline"
+            },
+            {
+              "name": "stealth"
+            }
+          ],
+          "default": "neutral",
+          "required": false
+        },
+        {
+          "name": "autofocus",
+          "title": "Autofocus",
+          "description": "Determines if the element should receive document focus on page load",
+          "type": "boolean",
+          "default": false,
+          "required": false
+        },
+        {
+          "name": "disabled",
+          "title": "Disabled",
+          "description": "Sets the disabled state of the button",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "form",
+          "title": "Form ID",
+          "description": "The ID of a form to associate the element to",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "formaction",
+          "title": "Form processing url",
+          "description": "The HTML formaction attribute of the button",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "formenctype",
+          "title": "Form encoding",
+          "description": "The HTML formenctype attribute of the button",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "formmethod",
+          "title": "Form submit method",
+          "description": "The HTML formmethod attribute of the button",
+          "type": "string",
+          "required": false,
+          "values": [
+            {
+              "name": "post"
+            },
+            {
+              "name": "get"
+            }
+          ]
+        },
+        {
+          "name": "formnovalidate",
+          "title": "No form validation",
+          "description": "The HTML formnovalidate attribute of the button",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "formtarget",
+          "title": "Form Target",
+          "description": "The HTML formtarget attribute of the button",
+          "type": "string",
+          "values": [
+            {
+              "name": "_self"
+            },
+            {
+              "name": "_blank"
+            },
+            {
+              "name": "_parent"
+            },
+            {
+              "name": "_top"
+            }
+          ],
+          "required": false
+        },
+        {
+          "name": "name",
+          "title": "Name",
+          "description": "The HTML name attribute of the button",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "type",
+          "title": "Type",
+          "description": "The HTML type attribute of the button",
+          "type": "string",
+          "required": false,
+          "values": [
+            {
+              "name": "submit"
+            },
+            {
+              "name": "reset"
+            },
+            {
+              "name": "button"
+            }
+          ]
+        },
+        {
+          "name": "value",
+          "title": "Value",
+          "description": "The HTML value attribute of the button",
+          "type": "string",
+          "required": false
+        }
+      ],
+      "slots": [
+        {
+          "name": "",
+          "title": "Default slot",
+          "description": "The content of the anchor"
+        },
+        {
+          "name": "start",
+          "title": "Start slot",
+          "description": "Contents of the start slot are positioned before the button content"
+        },
+        {
+          "name": "end",
+          "title": "End slot",
+          "description": "Contents of the end slot are positioned after the button content"
+        }
+      ]
+    },
+    {
+      "name": "fluent-card",
+      "title": "Card",
+      "description": "The Fluent UI card element",
+      "attributes": [
+        {
+          "name": "card-fill-color",
+          "title": "Card fill color",
+          "description": "The fill color for the card, which also sets context for the design system.",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "neutral-palette-source",
+          "title": "Neutral Palette Source",
+          "description": "The neutral palette source color for the card component to allow tinting, which also sets context for the design system",
+          "type": "string",
+          "required": false
+        }
+      ],
+      "slots": [
+        {
+          "name": "",
+          "title": "Default slot",
+          "description": "The content of the card"
+        }
+      ]
+    },
+    {
+      "name": "fluent-checkbox",
+      "title": "Checkbox",
+      "description": "The Fluent UI checkbox element",
+      "attributes": [
+        {
+          "name": "checked",
+          "title": "Checked",
+          "description": "Whether or not this checkbox is checked by default",
+          "type": "boolean",
+          "default": false,
+          "required": false
+        },
+        {
+          "name": "name",
+          "title": "Name",
+          "description": "This element's value will be surfaced during form submission under the provided name",
+          "type": "string",
+          "default": "",
+          "required": false
+        },
+        {
+          "name": "required",
+          "title": "Required",
+          "description": "Require the field to be completed prior to form submission",
+          "type": "boolean",
+          "default": false,
+          "required": false
+        },
+        {
+          "name": "disabled",
+          "title": "Disabled",
+          "description": "Sets the disabled state of the checkbox",
+          "type": "boolean",
+          "default": false,
+          "required": false
+        },
+        {
+          "name": "readonly",
+          "title": "Readonly",
+          "description": "When true, the control will be immutable by user interaction",
+          "type": "boolean",
+          "default": false,
+          "required": false
+        }
+      ],
+      "slots": [
+        {
+          "name": "",
+          "title": "Default slot",
+          "description": "The content of the checkbox represents its visual label"
+        },
+        {
+          "name": "indeterminate-indicator",
+          "title": "Indeterminate indicator slot",
+          "description": "Slot to provide a custom icon to represent the inditerminate state"
+        },
+        {
+          "name": "checked-indicator",
+          "title": "Checked indicator slot",
+          "description": "Slot to provide a custom icon to represent the checked state"
+        }
+      ]
+    },
+    {
+      "name": "fluent-combobox",
+      "title": "Combobox",
+      "description": "The Fluent UI combobox element",
+      "attributes": [
+        {
+          "name": "appearance",
+          "title": "Appearance",
+          "description": "The combobox's visual treatment",
+          "type": "string",
+          "values": [
+            {
+              "name": "filled"
+            },
+            {
+              "name": "outline"
+            }
+          ],
+          "default": "outline",
+          "required": false
+        },
+        {
+          "name": "autocomplete",
+          "title": "Autocomplete",
+          "description": "Sets the autocomplete method to use when the combobox receives user input",
+          "default": "",
+          "type": "string",
+          "values": [
+            {
+              "name": "inline"
+            },
+            {
+              "name": "list"
+            },
+            {
+              "name": "both"
+            },
+            {
+              "name": "none"
+            }
+          ]
+        },
+        {
+          "name": "disabled",
+          "title": "Disabled",
+          "description": "Sets the disabled state of the combobox",
+          "type": "boolean",
+          "default": false,
+          "required": false
+        },
+        {
+          "name": "name",
+          "title": "Name",
+          "description": "This element's value will be surfaced during form submission under the provided name",
+          "type": "string",
+          "default": "",
+          "required": false
+        },
+        {
+          "name": "position",
+          "title": "Position",
+          "description": "Controls the placement of the combobox dropdown",
+          "required": false,
+          "type": "string",
+          "values": [
+            {
+              "name": "above"
+            },
+            {
+              "name": "below"
+            }
+          ]
+        },
+        {
+          "name": "placeholder",
+          "title": "Placeholder",
+          "description": "Sets the placeholder value of the combobox to provide a hint to the user",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "value",
+          "title": "Value",
+          "description": "The initial value of the combobox",
+          "required": false,
+          "type": "string"
+        }
+      ],
+      "slots": [
+        {
+          "name": "",
+          "title": "Default slot",
+          "description": "Supports fluent-option, option elements, or elements with a role of option"
+        },
+        {
+          "name": "control",
+          "title": "Input Control slot",
+          "description": "Slot to replace the contents of the control container"
+        },
+        {
+          "name": "indicator",
+          "title": "Indicator slot",
+          "description": "Slot to provide a custom icon to represent the visual indicator"
+        },
+        {
+          "name": "start",
+          "title": "Start slot",
+          "description": "Contents of the start slot are positioned before the contents of the control container"
+        },
+        {
+          "name": "end",
+          "title": "End slot",
+          "description": "Contents of the end slot are positioned after the contents of the control container"
+        }
+      ]
+    },
+    {
+      "name": "fluent-data-grid-cell",
+      "title": "Data grid cell",
+      "description": "The Fluent UI data grid cell element",
+      "attributes": [
+        {
+          "name": "cell-type",
+          "title": "Cell type",
+          "description": "The type of cell",
+          "type": "string",
+          "values": [
+            {
+              "name": "default"
+            },
+            {
+              "name": "columnheader"
+            }
+          ],
+          "required": false
+        },
+        {
+          "name": "grid-column",
+          "title": "Grid column",
+          "description": "Positions the cell in the column layout.",
+          "type": "string",
+          "required": false
+        }
+      ],
+      "slots": [
+        {
+          "name": "",
+          "title": "Default slot",
+          "description": "The cell content"
+        }
+      ]
+    },
+    {
+      "name": "fluent-data-grid-row",
+      "title": "Data grid row",
+      "description": "The Fluent UI data grid row element",
+      "attributes": [
+        {
+          "name": "grid-template-columns",
+          "title": "Grid template columns",
+          "description": "Value that gets applied to the the css gridTemplateColumns attribute of child rows",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "row-type",
+          "title": "Row type",
+          "description": "The type of row",
+          "type": "string",
+          "values": [
+            {
+              "name": "default"
+            },
+            {
+              "name": "header"
+            },
+            {
+              "name": "sticky-header"
+            }
+          ],
+          "required": false
+        }
+      ],
+      "slots": [
+        {
+          "name": "",
+          "title": "Default slot",
+          "description": "The row content as data grid cells"
+        }
+      ]
+    },
+    {
+      "name": "fluent-data-grid",
+      "title": "Data grid",
+      "description": "The Fluent UI data grid element",
+      "attributes": [
+        {
+          "name": "generate-header",
+          "title": "Generate header",
+          "description": "Whether the grid should auto generate a header row",
+          "type": "string",
+          "values": [
+            {
+              "name": "none"
+            },
+            {
+              "name": "default"
+            },
+            {
+              "name": "sticky"
+            }
+          ],
+          "required": false
+        },
+        {
+          "name": "grid-template-columns",
+          "title": "Grid template columns",
+          "description": "Value that gets applied to the the css gridTemplateColumns attribute of child rows",
+          "type": "string",
+          "required": false
+        }
+      ],
+      "slots": [
+        {
+          "name": "",
+          "title": "Default slot",
+          "description": "The content as data grid rows"
+        }
+      ]
+    },
+    {
+      "name": "fluent-design-system-provider",
+      "title": "Design System",
+      "description": "The Fluent UI design system provider element",
+      "attributes": [
+        {
+          "name": "no-paint",
+          "title": "No paint",
+          "description": "Do not paint the background",
+          "type": "boolean",
+          "default": false,
+          "required": false
+        },
+        {
+          "name": "fill-color",
+          "title": "Fill color",
+          "description": "The fill color used for backgrounds",
+          "type": "string",
+          "default": "#FFFFFF",
+          "required": false
+        },
+        {
+          "name": "accent-base-color",
+          "title": "Accent base color",
+          "description": "The accent palette base color",
+          "type": "string",
+          "default": "#0078D4",
+          "required": false
+        },
+        {
+          "name": "density",
+          "title": "Density",
+          "description": "The density offset",
+          "type": "number",
+          "default": 0,
+          "required": false
+        },
+        {
+          "name": "design-unit",
+          "title": "Design unit",
+          "description": "UI dimension base unit",
+          "type": "number",
+          "default": 4,
+          "required": false
+        },
+        {
+          "name": "direction",
+          "title": "Direction",
+          "description": "Support localized styles",
+          "type": "string",
+          "values": [
+            {
+              "name": "ltr"
+            },
+            {
+              "name": "rtl"
+            }
+          ],
+          "default": "ltr",
+          "required": false
+        },
+        {
+          "name": "base-height-multiplier",
+          "title": "Base height multiplier",
+          "description": "Height multiplier at base density",
+          "type": "number",
+          "default": 8,
+          "required": false
+        },
+        {
+          "name": "base-horizontal-spacing-multiplier",
+          "title": "Base horizontal spacing multiplier",
+          "description": "Horizontal spacing multiplier at the base density",
+          "type": "number",
+          "default": 3,
+          "required": false
+        },
+        {
+          "name": "control-corner-radius",
+          "title": "Control Corner radius",
+          "description": "The corner radius value for control components",
+          "type": "number",
+          "default": 4,
+          "required": false
+        },
+        {
+          "name": "stroke-width",
+          "title": "Stroke width",
+          "description": "The width of outline strokes",
+          "type": "number",
+          "default": 1,
+          "required": false
+        },
+        {
+          "name": "focus-stroke-width",
+          "title": "Focus stroke width",
+          "description": "The width of focus outline strokes",
+          "type": "number",
+          "default": 2,
+          "required": false
+        },
+        {
+          "name": "disabled-opacity",
+          "title": "Disabled opacity",
+          "description": "The disabled opacity for elements",
+          "type": "number",
+          "default": 0.3,
+          "required": false
+        },
+        {
+          "name": "neutral-base-color",
+          "title": "Neutral base color",
+          "description": "The neutral palette base color",
+          "type": "string",
+          "default": "#808080",
+          "required": false
+        },
+        {
+          "name": "type-ramp-minus-2-font-size",
+          "title": "Font size (-2)",
+          "type": "string",
+          "default": "10px",
+          "required": false
+        },
+        {
+          "name": "type-ramp-minus-2-line-height",
+          "title": "Line height (-2)",
+          "type": "string",
+          "default": "14px",
+          "required": false
+        },
+        {
+          "name": "type-ramp-minus-1-font-size",
+          "title": "Font size (-1)",
+          "type": "string",
+          "default": "12px",
+          "required": false
+        },
+        {
+          "name": "type-ramp-minus-1-line-height",
+          "title": "Line height (-1)",
+          "type": "string",
+          "default": "16px",
+          "required": false
+        },
+        {
+          "name": "type-ramp-base-font-size",
+          "title": "Font size (base)",
+          "type": "string",
+          "default": "14px",
+          "required": false
+        },
+        {
+          "name": "type-ramp-base-line-height",
+          "title": "Line height (base)",
+          "type": "string",
+          "default": "20px",
+          "required": false
+        },
+        {
+          "name": "type-ramp-plus-1-font-size",
+          "title": "Font size (+1)",
+          "type": "string",
+          "default": "16px",
+          "required": false
+        },
+        {
+          "name": "type-ramp-plus-1-line-height",
+          "title": "Line height (+1)",
+          "type": "string",
+          "default": "22px",
+          "required": false
+        },
+        {
+          "name": "type-ramp-plus-2-font-size",
+          "title": "Font size (+2)",
+          "type": "string",
+          "default": "20px",
+          "required": false
+        },
+        {
+          "name": "type-ramp-plus-2-line-height",
+          "title": "Line height (+2)",
+          "type": "string",
+          "default": "28px",
+          "required": false
+        },
+        {
+          "name": "type-ramp-plus-3-font-size",
+          "title": "Font size (+3)",
+          "type": "string",
+          "default": "24px",
+          "required": false
+        },
+        {
+          "name": "type-ramp-plus-3-line-height",
+          "title": "Line height (+3)",
+          "type": "string",
+          "default": "32px",
+          "required": false
+        },
+        {
+          "name": "type-ramp-plus-4-font-size",
+          "title": "Font size (+4)",
+          "type": "string",
+          "default": "28px",
+          "required": false
+        },
+        {
+          "name": "type-ramp-plus-4-line-height",
+          "title": "Line height (+4)",
+          "type": "string",
+          "default": "36px",
+          "required": false
+        },
+        {
+          "name": "type-ramp-plus-5-font-size",
+          "title": "Font size (+5)",
+          "type": "string",
+          "default": "32px",
+          "required": false
+        },
+        {
+          "name": "type-ramp-plus-5-line-height",
+          "title": "Line height (+5)",
+          "type": "string",
+          "default": "40px",
+          "required": false
+        },
+        {
+          "name": "type-ramp-plus-6-font-size",
+          "title": "Font size (+6)",
+          "type": "string",
+          "default": "40px",
+          "required": false
+        },
+        {
+          "name": "type-ramp-plus-6-line-height",
+          "title": "Line height (+6)",
+          "type": "string",
+          "default": "52px",
+          "required": false
+        },
+        {
+          "name": "accent-fill-rest-delta",
+          "title": "Accent fill delta (rest)",
+          "type": "number",
+          "default": 0,
+          "required": false
+        },
+        {
+          "name": "accent-fill-hover-delta",
+          "title": "Accent fill delta (hover)",
+          "type": "number",
+          "default": 4,
+          "required": false
+        },
+        {
+          "name": "accent-fill-active-delta",
+          "title": "Accent fill delta (active)",
+          "type": "number",
+          "default": -5,
+          "required": false
+        },
+        {
+          "name": "accent-fill-focus-delta",
+          "title": "Accent fill delta (focus)",
+          "type": "number",
+          "default": 0,
+          "required": false
+        },
+        {
+          "name": "accent-foreground-rest-delta",
+          "title": "Accent foreground delta (rest)",
+          "type": "number",
+          "default": 0,
+          "required": false
+        },
+        {
+          "name": "accent-foreground-hover-delta",
+          "title": "Accent foreground delta (hover)",
+          "type": "number",
+          "default": 6,
+          "required": false
+        },
+        {
+          "name": "accent-foreground-active-delta",
+          "title": "Accent foreground delta (active)",
+          "type": "number",
+          "default": -4,
+          "required": false
+        },
+        {
+          "name": "accent-foreground-focus-delta",
+          "title": "Accent foreground delta (focus)",
+          "type": "number",
+          "default": 0,
+          "required": false
+        },
+        {
+          "name": "neutral-fill-rest-delta",
+          "title": "Neutral fill delta (rest)",
+          "type": "number",
+          "default": 7,
+          "required": false
+        },
+        {
+          "name": "neutral-fill-hover-delta",
+          "title": "Neutral fill delta (hover)",
+          "type": "number",
+          "default": 10,
+          "required": false
+        },
+        {
+          "name": "neutral-fill-active-delta",
+          "title": "Neutral fill delta (active)",
+          "type": "number",
+          "default": 5,
+          "required": false
+        },
+        {
+          "name": "neutral-fill-focus-delta",
+          "title": "Neutral fill delta (focus)",
+          "type": "number",
+          "default": 0,
+          "required": false
+        },
+        {
+          "name": "neutral-fill-input-rest-delta",
+          "title": "Neutral fill input delta (rest)",
+          "type": "number",
+          "default": 0,
+          "required": false
+        },
+        {
+          "name": "neutral-fill-input-hover-delta",
+          "title": "Neutral fill input delta (hover)",
+          "type": "number",
+          "default": 0,
+          "required": false
+        },
+        {
+          "name": "neutral-fill-input-active-delta",
+          "title": "Neutral fill input delta (active)",
+          "type": "number",
+          "default": 0,
+          "required": false
+        },
+        {
+          "name": "neutral-fill-input-focus-delta",
+          "title": "Neutral fill input delta (focus)",
+          "type": "number",
+          "default": 0,
+          "required": false
+        },
+        {
+          "name": "neutral-fill-stealth-rest-delta",
+          "title": "Neutral fill stealth delta (rest)",
+          "type": "number",
+          "default": 0,
+          "required": false
+        },
+        {
+          "name": "neutral-fill-stealth-hover-delta",
+          "title": "Neutral fill stealth delta (hover)",
+          "type": "number",
+          "default": 5,
+          "required": false
+        },
+        {
+          "name": "neutral-fill-stealth-active-delta",
+          "title": "Neutral fill stealth delta (active)",
+          "type": "number",
+          "default": 3,
+          "required": false
+        },
+        {
+          "name": "neutral-fill-stealth-focus-delta",
+          "title": "Neutral fill stealth delta (focus)",
+          "type": "number",
+          "default": 0,
+          "required": false
+        },
+        {
+          "name": "neutral-fill-strong-hover-delta",
+          "title": "Neutral fill strong delta (hover)",
+          "type": "number",
+          "default": 8,
+          "required": false
+        },
+        {
+          "name": "neutral-fill-strong-active-delta",
+          "title": "Neutral fill strong delta (active)",
+          "type": "number",
+          "default": -5,
+          "required": false
+        },
+        {
+          "name": "neutral-fill-strong-focus-delta",
+          "title": "Neutral fill strong delta (focus)",
+          "type": "number",
+          "default": 0,
+          "required": false
+        },
+        {
+          "name": "neutral-fill-strong-rest-delta",
+          "title": "Neutral fill strong delta (rest)",
+          "type": "number",
+          "default": 0,
+          "required": false
+        },
+        {
+          "name": "base-layer-luminance",
+          "title": "Base layer luminance",
+          "description": "When set to a number between 0 and 1, this values controls the output of layer and card recipes",
+          "type": "number",
+          "default": 1,
+          "required": false
+        },
+        {
+          "name": "neutral-fill-layer-rest-delta",
+          "title": "Layer background delta",
+          "type": "number",
+          "default": 3,
+          "required": false
+        },
+        {
+          "name": "neutral-stroke-divider-rest-delta",
+          "title": "Neutral divider stroke delta",
+          "type": "number",
+          "default": 8,
+          "required": false
+        },
+        {
+          "name": "neutral-stroke-rest-delta",
+          "title": "Neutral stroke delta (rest)",
+          "type": "number",
+          "default": 25,
+          "required": false
+        },
+        {
+          "name": "neutral-stroke-hover-delta",
+          "title": "Neutral stroke delta (hover)",
+          "type": "number",
+          "default": 40,
+          "required": false
+        },
+        {
+          "name": "neutral-stroke-active-delta",
+          "title": "Neutral stroke delta (active)",
+          "type": "number",
+          "default": 16,
+          "required": false
+        },
+        {
+          "name": "neutral-stroke-focus-delta",
+          "title": "Neutral stroke delta (focus)",
+          "type": "number",
+          "default": 25,
+          "required": false
+        },
+        {
+          "name": "neutral-contrast-fill-rest-delta",
+          "title": "Neutral contrast fill delta (rest)",
+          "type": "number",
+          "default": 0,
+          "required": false
+        },
+        {
+          "name": "neutral-contrast-fill-hover-delta",
+          "title": "Neutral contrast fill delta (hover)",
+          "type": "number",
+          "default": -3,
+          "required": false
+        },
+        {
+          "name": "neutral-contrast-fill-active-delta",
+          "title": "Neutral contrast fill delta (active)",
+          "type": "number",
+          "default": 7,
+          "required": false
+        },
+        {
+          "name": "neutral-contrast-fill-focus-delta",
+          "title": "Neutral contrast fill delta (focus)",
+          "type": "number",
+          "default": 0,
+          "required": false
+        }
+      ],
+      "slots": [
+        {
+          "name": "",
+          "title": "Default slot"
+        }
+      ]
+    },
+    {
+      "name": "fluent-dialog",
+      "title": "Dialog",
+      "description": "The Fluent UI dialog element",
+      "attributes": [
+        {
+          "name": "modal",
+          "title": "Modal",
+          "type": "boolean",
+          "description": "When modal, user interaction will be limited to the contents of the element",
+          "default": true,
+          "required": false
+        },
+        {
+          "name": "hidden",
+          "title": "Hidden",
+          "description": "The hidden state of the element",
+          "type": "boolean",
+          "default": false,
+          "required": false
+        },
+        {
+          "name": "trap-focus",
+          "title": "Trap focus",
+          "description": "Indicates that the dialog should trap focus",
+          "type": "boolean",
+          "default": true,
+          "required": false
+        },
+        {
+          "name": "aria-describedby",
+          "title": "Accessibility description ID",
+          "description": "The HTML aria-describedby attribute",
+          "type": "string",
+          "default": false,
+          "required": false
+        },
+        {
+          "name": "aria-labelledby",
+          "title": "Accessibility label ID",
+          "description": "The HTML aria-labelledby attribute",
+          "type": "string",
+          "default": false,
+          "required": false
+        },
+        {
+          "name": "aria-label",
+          "title": "Accessibility label",
+          "description": "The HTML aria-label attribute",
+          "type": "string",
+          "default": false,
+          "required": false
+        }
+      ],
+      "slots": [
+        {
+          "name": "",
+          "title": "Default slot",
+          "description": "The dialog content"
+        }
+      ]
+    },
+    {
+      "name": "fluent-divider",
+      "title": "Divider",
+      "description": "The Fluent UI divider element",
+      "attributes": [
+        {
+          "name": "role",
+          "title": "Role",
+          "type": "string",
+          "description": "The ARIA role for the divider",
+          "values": [
+            {
+              "name": "separator"
+            },
+            {
+              "name": "presentation"
+            }
+          ],
+          "default": "separator",
+          "required": false
+        }
+      ],
+      "slots": []
+    },
+    {
+      "name": "fluent-flipper",
+      "title": "Flipper",
+      "description": "The Fluent UI flipper element",
+      "attributes": [
+        {
+          "name": "disabled",
+          "title": "Disabled",
+          "type": "boolean",
+          "description": "Sets the disabled state of the flipper",
+          "default": true,
+          "required": false
+        },
+        {
+          "name": "aria-hidden",
+          "title": "ARIA hidden",
+          "type": "boolean",
+          "description": "Flippers are often a duplicate method of navigation, so by default they are hidden from assistive technology (AT). When set to true, the element is exposed to AT",
+          "default": true,
+          "required": false
+        },
+        {
+          "name": "direction",
+          "type": "string",
+          "title": "Direction",
+          "description": "The navigation direction of the flipper",
+          "values": [
+            {
+              "name": "previous"
+            },
+            {
+              "name": "next"
+            }
+          ],
+          "default": "next",
+          "required": false
+        }
+      ],
+      "slots": [
+        {
+          "name": "previous",
+          "title": "Previous slot",
+          "description": "Slot to provide a custom icon to represent the 'previous' flipper state"
+        },
+        {
+          "name": "next",
+          "title": "Next slot",
+          "description": "Slot to provide a custom icon to represent the 'next' flipper state"
+        }
+      ]
+    },
+    {
+      "name": "fluent-horizontal-scroll",
+      "title": "Horizontal Scroll",
+      "description": "The Fluent UI HorizontalScroll element",
+      "attributes": [
+        {
+          "name": "view",
+          "title": "View",
+          "description": "Default or mobile view",
+          "type": "string",
+          "values": [
+            {
+              "name": "mobile"
+            },
+            {
+              "name": "default"
+            }
+          ],
+          "default": false,
+          "required": false
+        },
+        {
+          "name": "speed",
+          "title": "Speed",
+          "description": "Scroll speed in pixels per second",
+          "type": "number",
+          "default": false,
+          "required": false
+        },
+        {
+          "name": "easing",
+          "title": "Easing",
+          "description": "Scroll easing",
+          "type": "string",
+          "values": [
+            {
+              "name": "linear"
+            },
+            {
+              "name": "ease-in"
+            },
+            {
+              "name": "ease-out"
+            },
+            {
+              "name": "ease-in-out"
+            }
+          ],
+          "default": false,
+          "required": false
+        }
+      ],
+      "slots": [
+        {
+          "name": "previousFlipper",
+          "title": "Prevous flipper slot",
+          "description": "Flipper used to scroll to previous content"
+        },
+        {
+          "name": "nextFlipper",
+          "title": "Next flipper slot",
+          "description": "Flipper used to scroll to next content"
+        },
+        {
+          "name": "",
+          "title": "Default slot",
+          "description": "The child nodes to scroll through"
+        },
+        {
+          "name": "start",
+          "title": "Start slot",
+          "description": "Contents of the start slot are positioned above the horizontal-scroll"
+        },
+        {
+          "name": "end",
+          "title": "End slot",
+          "description": "Contents of the end slot are positioned below the horizontal-scroll"
+        }
+      ]
+    },
+    {
+      "name": "fluent-listbox",
+      "title": "Listbox",
+      "description": "The Fluent UI listbox element",
+      "attributes": [
+        {
+          "name": "role",
+          "title": "Role",
+          "description": "The ARIA role for the listbox",
+          "type": "string",
+          "default": "listbox",
+          "required": true,
+          "values": [
+            {
+              "name": "listbox"
+            }
+          ]
+        },
+        {
+          "name": "disabled",
+          "title": "Disabled",
+          "description": "Sets the disabled state of the listbox",
+          "type": "boolean",
+          "default": false,
+          "required": false
+        }
+      ],
+      "slots": [
+        {
+          "name": "",
+          "title": "Default slot",
+          "description": "Supports fluent-option or option elements"
+        }
+      ]
+    },
+    {
+      "name": "fluent-option",
+      "title": "Option",
+      "description": "The Fluent UI option element",
+      "attributes": [
+        {
+          "name": "disabled",
+          "title": "Disabled",
+          "type": "boolean",
+          "description": "Sets the disabled state of the option",
+          "default": false,
+          "required": false
+        },
+        {
+          "name": "selected",
+          "title": "Selected",
+          "type": "boolean",
+          "description": "The selected state of the option",
+          "default": false,
+          "required": false
+        }
+      ],
+      "slots": [
+        {
+          "name": "",
+          "title": "Default slot",
+          "description": "The content of the option"
+        },
+        {
+          "name": "start",
+          "title": "Start slot",
+          "description": "Contents of the start slot are positioned before the option content"
+        },
+        {
+          "name": "end",
+          "title": "End slot",
+          "description": "Contents of the end slot are positioned after the option content"
+        }
+      ]
+    },
+    {
+      "name": "fluent-menu",
+      "title": "Menu",
+      "description": "The Fluent UI menu element",
+      "attributes": [],
+      "slots": [
+        {
+          "name": "",
+          "title": "Default slot",
+          "description": "Supports fluent-menu-item elements or elements with a role of 'menuitem', 'menuitemcheckbox', and 'menuitemradio'"
+        }
+      ]
+    },
+    {
+      "name": "fluent-menu-item",
+      "title": "Menu item",
+      "description": "The Fluent UI menu item element",
+      "attributes": [
+        {
+          "name": "disabled",
+          "title": "Disabled",
+          "type": "boolean",
+          "description": "Sets the disabled state of the item",
+          "default": true,
+          "required": false
+        },
+        {
+          "name": "expanded",
+          "title": "Expanded",
+          "type": "boolean",
+          "description": "The expanded state of the item",
+          "default": true,
+          "required": false
+        },
+        {
+          "name": "role",
+          "title": "Role",
+          "type": "string",
+          "description": "The ARIA role of the menu item",
+          "default": "menuitem",
+          "values": [
+            {
+              "name": "menuitem"
+            },
+            {
+              "name": "menuitemcheckbox"
+            },
+            {
+              "name": "menuitemradio"
+            }
+          ],
+          "required": false
+        },
+        {
+          "name": "checked",
+          "title": "Checked",
+          "type": "boolean",
+          "description": "The checked state for elements with a role of menuitemradio or menuitemcheckbox",
+          "default": true,
+          "required": false
+        }
+      ],
+      "slots": [
+        {
+          "name": "",
+          "title": "Default slot",
+          "description": "The content of the menu item"
+        },
+        {
+          "name": "start",
+          "title": "Start slot",
+          "description": "Contents of the start slot are positioned before the item content"
+        },
+        {
+          "name": "end",
+          "title": "End slot",
+          "description": "Contents of the end slot are positioned after the item content"
+        },
+        {
+          "name": "submenu",
+          "title": "Sub menu slot",
+          "description": "The submenu slot"
+        },
+        {
+          "name": "checkbox-indicator",
+          "title": "Checkbox indicator",
+          "description": "The checkbox indicator slot"
+        },
+        {
+          "name": "radio-indicator",
+          "title": "Radio indicator",
+          "description": "The radio indicator slot"
+        },
+        {
+          "name": "expand-collapse-indicator",
+          "title": "Expand/collapse indicator",
+          "description": "The expand/collapse indicator slot"
+        }
+      ]
+    },
+    {
+      "name": "fluent-number-field",
+      "title": "Number field",
+      "description": "The Fluent UI number-field element",
+      "attributes": [
+        {
+          "name": "appearance",
+          "title": "Appearance",
+          "description": "The number field's visual treatment",
+          "type": "string",
+          "values": [
+            {
+              "name": "filled"
+            },
+            {
+              "name": "outline"
+            }
+          ],
+          "default": "outline",
+          "required": false
+        },
+        {
+          "name": "value",
+          "title": "Value",
+          "description": "The HTML value attribute of the number field",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "appearance",
+          "title": "Appearance",
+          "description": "The number field's visual treatment",
+          "default": "outline",
+          "values": [
+            {
+              "name": "outline"
+            },
+            {
+              "name": "filled"
+            }
+          ],
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "autofocus",
+          "title": "Autofocus",
+          "description": "Determines if the element should receive document focus on page load",
+          "required": false,
+          "type": "boolean",
+          "default": false
+        },
+        {
+          "name": "placeholder",
+          "title": "Placeholder",
+          "description": "Sets the placeholder value of the element, generally used to provide a hint to the user",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "list",
+          "title": "List ID",
+          "description": "Allows associating a datalist to the component",
+          "required": false,
+          "type": "string",
+          "default": ""
+        },
+        {
+          "name": "maxlength",
+          "title": "Maximum length",
+          "description": "The maximum number of characters a user can enter",
+          "required": false,
+          "type": "number"
+        },
+        {
+          "name": "minlength",
+          "title": "Minimum length",
+          "description": "The minimum number of characters a user can enter",
+          "required": false,
+          "type": "number"
+        },
+        {
+          "name": "size",
+          "title": "Size",
+          "description": "Sets the width of the element to a specified number of characters",
+          "required": false,
+          "type": "number"
+        },
+        {
+          "name": "name",
+          "title": "Name",
+          "description": "This element's value will be surfaced during form submission under the provided name",
+          "type": "string",
+          "default": ""
+        },
+        {
+          "name": "required",
+          "title": "Required",
+          "description": "Require the field to be completed prior to form submission",
+          "type": "boolean",
+          "default": false
+        },
+        {
+          "name": "disabled",
+          "title": "Disabled",
+          "description": "Sets the disabled state of the text field",
+          "type": "boolean",
+          "default": false,
+          "required": false
+        },
+        {
+          "name": "hide-step",
+          "title": "Hide step",
+          "description": "Hides the step controls",
+          "type": "boolean",
+          "default": false,
+          "required": false
+        },
+        {
+          "name": "readonly",
+          "title": "Readonly",
+          "description": "When true, the control will be immutable by user interaction",
+          "type": "boolean",
+          "default": false,
+          "required": false
+        },
+        {
+          "name": "max",
+          "title": "Maximum",
+          "description": "The maximum value",
+          "type": "string",
+          "default": false,
+          "required": false
+        },
+        {
+          "name": "min",
+          "title": "Minimum",
+          "description": "The minimum value",
+          "type": "string",
+          "default": false,
+          "required": false
+        },
+        {
+          "name": "step",
+          "title": "Increment",
+          "description": "Amount to increment or decrement the value by",
+          "type": "string",
+          "default": false,
+          "required": false
+        }
+      ],
+      "slots": [
+        {
+          "name": "",
+          "title": "Default slot",
+          "description": "The content of the number field represents its visual label"
+        },
+        {
+          "name": "start",
+          "title": "Start slot",
+          "description": "Contents of the start slot are positioned before the option content"
+        },
+        {
+          "name": "end",
+          "title": "End slot",
+          "description": "Contents of the end slot are positioned after the option content"
+        }
+      ]
+    },
+    {
+      "name": "fluent-progress",
+      "title": "Progress",
+      "description": "The Fluent UI progress element",
+      "attributes": [
+        {
+          "name": "value",
+          "title": "Value",
+          "description": "Value between 1 and 100 to represent the progress visually and to assistive technologies",
+          "default": "",
+          "required": false,
+          "type": "number"
+        },
+        {
+          "name": "min",
+          "title": "Minimum",
+          "description": "The minimum value",
+          "default": 0,
+          "required": false,
+          "type": "number"
+        },
+        {
+          "name": "max",
+          "title": "Maximum",
+          "description": "The maximum value",
+          "default": 100,
+          "required": false,
+          "type": "number"
+        },
+        {
+          "name": "paused",
+          "title": "Paused",
+          "description": "Sets the paused state of the progress component",
+          "default": false,
+          "required": false,
+          "type": "boolean"
+        }
+      ],
+      "slots": [
+        {
+          "name": "determinate",
+          "title": "Determinate slot",
+          "description": "Slot to provide custom visual representations of the determinate progress bar"
+        },
+        {
+          "name": "indeterminate",
+          "title": "Indeterminate slot",
+          "description": "Slot to provide custom visual representations of the indeterminate progress bar"
+        }
+      ]
+    },
+    {
+      "name": "fluent-progress-ring",
+      "title": "Progress ring",
+      "description": "The Fluent UI progress-ring element",
+      "attributes": [
+        {
+          "name": "value",
+          "title": "Value",
+          "description": "Value between 1 and 100 to represent the progress visually and to assistive technologies",
+          "default": "",
+          "required": false,
+          "type": "number"
+        },
+        {
+          "name": "min",
+          "title": "Minimum",
+          "description": "The minimum value",
+          "default": 0,
+          "required": false,
+          "type": "number"
+        },
+        {
+          "name": "max",
+          "title": "Maximum",
+          "description": "The maximum value",
+          "default": 100,
+          "required": false,
+          "type": "number"
+        },
+        {
+          "name": "paused",
+          "title": "Paused",
+          "description": "Sets the paused state of the progress component",
+          "default": false,
+          "required": false,
+          "type": "boolean"
+        }
+      ],
+      "slots": [
+        {
+          "name": "determinate",
+          "title": "Determinate slot",
+          "description": "Slot to provide custom visual representations of the determinate progress ring"
+        },
+        {
+          "name": "indeterminate",
+          "title": "Indeterminate slot",
+          "description": "Slot to provide custom visual representations of the indeterminate progress ring"
+        }
+      ]
+    },
+    {
+      "name": "fluent-radio",
+      "title": "Radio",
+      "description": "The Fluent UI radio element",
+      "attributes": [
+        {
+          "name": "checked",
+          "title": "Checked",
+          "description": "Whether or not this radio is checked by default",
+          "required": false,
+          "type": "boolean"
+        },
+        {
+          "name": "name",
+          "title": "Name",
+          "description": "This element's value will be surfaced during form submission under the provided name",
+          "type": "string",
+          "default": "",
+          "required": false
+        },
+        {
+          "name": "required",
+          "title": "Required",
+          "description": "Require the field to be completed prior to form submission",
+          "type": "boolean",
+          "default": false,
+          "required": false
+        },
+        {
+          "name": "disabled",
+          "title": "Disabled",
+          "description": "Sets the disabled state of the radio",
+          "type": "boolean",
+          "default": false,
+          "required": false
+        },
+        {
+          "name": "readonly",
+          "title": "Readonly",
+          "description": "When true, the control will be immutable by user interaction",
+          "type": "boolean",
+          "default": false,
+          "required": false
+        }
+      ],
+      "slots": [
+        {
+          "name": "",
+          "title": "Default slot",
+          "description": "The content of the radio represents its visual label"
+        },
+        {
+          "name": "checked-indicator",
+          "title": "Checked indicator slot",
+          "description": "Slot to provide a custom icon to represent the checked state"
+        }
+      ]
+    },
+    {
+      "name": "fluent-radio-group",
+      "title": "Radio group",
+      "description": "The Fluent UI radio-group element",
+      "attributes": [
+        {
+          "name": "value",
+          "title": "Value",
+          "description": "The value of the radio group",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "orientation",
+          "title": "Orientation",
+          "description": "The visual orientation of the group",
+          "default": "horizontal",
+          "values": [
+            {
+              "name": "horizontal"
+            },
+            {
+              "name": "vertical"
+            }
+          ],
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "name",
+          "title": "Name",
+          "description": "Setting this value will set the name value for all child radios",
+          "type": "string",
+          "default": "",
+          "required": false
+        },
+        {
+          "name": "disabled",
+          "title": "Disabled",
+          "description": "Disables the radio group and child radios",
+          "type": "boolean",
+          "default": false,
+          "required": false
+        },
+        {
+          "name": "readonly",
+          "title": "Readonly",
+          "description": "When true, the child radios will be immutable by user interaction",
+          "type": "boolean",
+          "default": false,
+          "required": false
+        }
+      ],
+      "slots": [
+        {
+          "name": "",
+          "title": "Default slot",
+          "description": "Supports fluent-radio elements or elements with a role of 'radio'"
+        },
+        {
+          "name": "label",
+          "title": "Label slot",
+          "description": "The visual label for the group"
+        }
+      ]
+    },
+    {
+      "name": "fluent-select",
+      "title": "Select",
+      "description": "The Fluent UI select element",
+      "attributes": [
+        {
+          "name": "appearance",
+          "title": "Appearance",
+          "description": "The select's visual treatment",
+          "type": "string",
+          "values": [
+            {
+              "name": "filled"
+            },
+            {
+              "name": "outline"
+            }
+          ],
+          "default": "outline",
+          "required": false
+        },
+        {
+          "name": "disabled",
+          "title": "Disabled",
+          "description": "Sets the disabled state of the select",
+          "type": "boolean",
+          "default": false,
+          "required": false
+        },
+        {
+          "name": "name",
+          "title": "Name",
+          "description": "This element's value will be surfaced during form submission under the provided name",
+          "type": "string",
+          "default": "",
+          "required": false
+        }
+      ],
+      "slots": [
+        {
+          "name": "",
+          "title": "Default slot",
+          "description": "Supports fluent-option or option elements"
+        },
+        {
+          "name": "button-container",
+          "title": "Button container slot",
+          "description": "Slot to replace the entire invoking element and its contents"
+        },
+        {
+          "name": "selected-value",
+          "title": "Selected value slot",
+          "description": "Slot to replace the displayed value contents"
+        },
+        {
+          "name": "indicator",
+          "title": "Indicator slot",
+          "description": "Slot to provide a custom icon to represent the visual indicator"
+        },
+        {
+          "name": "start",
+          "title": "Start slot",
+          "description": "Contents of the start slot are positioned before the button container"
+        },
+        {
+          "name": "end",
+          "title": "End slot",
+          "description": "Contents of the end slot are positioned after the button container and after the indicator"
+        }
+      ]
+    },
+    {
+      "name": "fluent-skeleton",
+      "title": "Skeleton",
+      "description": "The Fluent UI skeleton element",
+      "attributes": [
+        {
+          "name": "fill",
+          "title": "Fill",
+          "description": "Indicates the Skeleton should have a filled style",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "shape",
+          "title": "Shape",
+          "description": "The shape of the Skeleton",
+          "type": "string",
+          "default": "rect",
+          "values": [
+            {
+              "name": "rect"
+            },
+            {
+              "name": "circle"
+            }
+          ],
+          "required": false
+        },
+        {
+          "name": "pattern",
+          "title": "Pattern URL",
+          "description": "Allows a reference to a hosted asset to be used rather than an inline SVG",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "shimmer",
+          "title": "Shimmer",
+          "description": "Indicates that the component has an activated shimmer effect",
+          "type": "boolean",
+          "required": false
+        }
+      ],
+      "slots": [
+        {
+          "name": "",
+          "title": "Default slot",
+          "description": "The default slot can be used to optionally include inline SVG's rather than a pattern"
+        }
+      ]
+    },
+    {
+      "name": "fluent-slider",
+      "title": "Slider",
+      "description": "The Fluent UI slider element",
+      "attributes": [
+        {
+          "name": "value",
+          "title": "Value",
+          "description": "The slider value",
+          "required": false,
+          "type": "number"
+        },
+        {
+          "name": "max",
+          "title": "Maximum",
+          "description": "The maximum value",
+          "type": "string",
+          "default": false,
+          "required": false
+        },
+        {
+          "name": "min",
+          "title": "Minimum",
+          "description": "The minimum value",
+          "type": "string",
+          "default": false,
+          "required": false
+        },
+        {
+          "name": "step",
+          "title": "Increment",
+          "description": "Amount to increment or decrement the value by",
+          "type": "string",
+          "default": false,
+          "required": false
+        },
+        {
+          "name": "orientation",
+          "title": "Orientation",
+          "description": "The orientation of the slider",
+          "default": "horizontal",
+          "values": [
+            {
+              "name": "horizontal"
+            },
+            {
+              "name": "vertical"
+            }
+          ],
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "name",
+          "title": "Name",
+          "description": "This element's value will be surfaced during form submission under the provided name",
+          "type": "string",
+          "default": "",
+          "required": false
+        },
+        {
+          "name": "required",
+          "title": "Required",
+          "description": "Require the field to be completed prior to form submission",
+          "type": "boolean",
+          "default": false,
+          "required": false
+        },
+        {
+          "name": "disabled",
+          "title": "Disabled",
+          "description": "Sets the disabled state of the slider",
+          "type": "boolean",
+          "default": false,
+          "required": false
+        },
+        {
+          "name": "readonly",
+          "title": "Readonly",
+          "description": "When true, the control will be immutable by user interaction",
+          "type": "boolean",
+          "default": false,
+          "required": false
+        }
+      ],
+      "slots": [
+        {
+          "name": "",
+          "title": "Default slot",
+          "description": "Default slotted content of the slider represents its visual labels"
+        },
+        {
+          "name": "track",
+          "title": "Track slot",
+          "description": "Slot to replace the slider track"
+        },
+        {
+          "name": "thumb",
+          "title": "Thumb slot",
+          "description": "Slot to replace the slider thumb"
+        }
+      ]
+    },
+    {
+      "name": "fluent-slider-label",
+      "title": "Slider label",
+      "description": "The Fluent UI slider-label element",
+      "attributes": [
+        {
+          "name": "hide-mark",
+          "title": "Hide mark",
+          "description": "Hides the tick mark",
+          "type": "boolean",
+          "default": false,
+          "required": false
+        },
+        {
+          "name": "disabled",
+          "title": "Disabled",
+          "description": "Sets the disabled state of the label",
+          "type": "boolean",
+          "default": false,
+          "required": false
+        },
+        {
+          "name": "position",
+          "title": "Position",
+          "description": "The position of the label relative to the min and max value of the parent",
+          "type": "string",
+          "default": false,
+          "required": false
+        }
+      ],
+      "slots": [
+        {
+          "name": "",
+          "title": "Default slot",
+          "description": "The content of the slider label"
+        }
+      ]
+    },
+    {
+      "name": "fluent-switch",
+      "title": "Switch",
+      "description": "The Fluent UI switch element",
+      "attributes": [
+        {
+          "name": "checked",
+          "title": "Checked",
+          "description": "Provides the default checked value",
+          "required": false,
+          "type": "boolean"
+        },
+        {
+          "name": "name",
+          "title": "Name",
+          "description": "This element's value will be surfaced during form submission under the provided name",
+          "type": "string",
+          "default": "",
+          "required": false
+        },
+        {
+          "name": "required",
+          "title": "Required",
+          "description": "Require the field to be completed prior to form submission",
+          "type": "boolean",
+          "default": false,
+          "required": false
+        },
+        {
+          "name": "disabled",
+          "title": "Disabled",
+          "description": "Sets the disabled state of the switch",
+          "type": "boolean",
+          "default": false,
+          "required": false
+        },
+        {
+          "name": "readonly",
+          "title": "Readonly",
+          "description": "When true, the control will be immutable by user interaction",
+          "type": "boolean",
+          "default": false,
+          "required": false
+        }
+      ],
+      "slots": [
+        {
+          "name": "",
+          "title": "Default slot",
+          "description": "The content of the switch represents its visual label"
+        },
+        {
+          "name": "checked-message",
+          "title": "Checked message slot",
+          "description": "Visible content representing the checked state"
+        },
+        {
+          "name": "unchecked-message",
+          "title": "Unchecked message slot",
+          "description": "Visible content representing the unchecked state"
+        }
+      ]
+    },
+    {
+      "name": "fluent-tabs",
+      "title": "Tabs",
+      "description": "The Fluent UI tabs element",
+      "attributes": [
+        {
+          "name": "orientation",
+          "title": "Orientation",
+          "description": "The orientation of the tabs",
+          "default": "horizontal",
+          "required": false,
+          "type": "string",
+          "values": [
+            {
+              "name": "horizontal"
+            },
+            {
+              "name": "vertical"
+            }
+          ]
+        },
+        {
+          "name": "activeid",
+          "title": "Active ID",
+          "description": "The HTML ID of the active tab",
+          "required": false,
+          "type": "string"
+        }
+      ],
+      "slots": [
+        {
+          "name": "tab",
+          "title": "Tab slot",
+          "description": "Slotted tabs are rendered and associated to their respective tab panel by their order in the DOM"
+        },
+        {
+          "name": "tabpanel",
+          "title": "Tabpanel slot",
+          "description": "Slotted tab panels are rendered and associated to their respective tabs by their order in the DOM"
+        },
+        {
+          "name": "start",
+          "title": "Start slot",
+          "description": "Contents of the start slot are positioned before the tablist"
+        },
+        {
+          "name": "end",
+          "title": "End slot",
+          "description": "Contents of the end slot are positioned after the tablist"
+        }
+      ]
+    },
+    {
+      "name": "fluent-tab",
+      "title": "Tab",
+      "description": "The Fluent UI tab element",
+      "attributes": [],
+      "slots": [
+        {
+          "name": "",
+          "title": "Default slot"
+        }
+      ]
+    },
+    {
+      "name": "fluent-tab-panel",
+      "title": "Tab panel",
+      "description": "The Fluent UI tab-panel element",
+      "attributes": [],
+      "slots": [
+        {
+          "name": "",
+          "title": "Default slot"
+        }
+      ]
+    },
+    {
+      "name": "fluent-text-area",
+      "title": "Text area",
+      "description": "The Fluent UI text-area element",
+      "attributes": [
+        {
+          "name": "appearance",
+          "title": "Appearance",
+          "description": "The text area's visual treatment",
+          "default": "outline",
+          "required": false,
+          "type": "string",
+          "values": [
+            {
+              "name": "outline"
+            },
+            {
+              "name": "filled"
+            }
+          ]
+        },
+        {
+          "name": "resize",
+          "title": "Resize",
+          "description": "The resize mode of the element",
+          "required": false,
+          "type": "string",
+          "values": [
+            {
+              "name": "none"
+            },
+            {
+              "name": "both"
+            },
+            {
+              "name": "horizontal"
+            },
+            {
+              "name": "vertical"
+            }
+          ],
+          "default": "none"
+        },
+        {
+          "name": "autofocus",
+          "title": "Autofocus",
+          "description": "Determines if the element should receive document focus on page load",
+          "required": false,
+          "type": "boolean",
+          "default": false
+        },
+        {
+          "name": "cols",
+          "title": "Columns",
+          "description": "Sizes the element vertically by a number of character columns",
+          "required": false,
+          "type": "number",
+          "default": 20
+        },
+        {
+          "name": "form",
+          "description": "The form attribute",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "list",
+          "title": "List ID",
+          "description": "Allows associating a datalist to the component",
+          "required": false,
+          "type": "string",
+          "default": ""
+        },
+        {
+          "name": "maxlength",
+          "title": "Maximum length",
+          "description": "The maximum number of characters a user can enter",
+          "required": false,
+          "type": "number"
+        },
+        {
+          "name": "minlength",
+          "title": "Minimum length",
+          "description": "The minimum number of characters a user can enter",
+          "required": false,
+          "type": "number"
+        },
+        {
+          "name": "placeholder",
+          "title": "Placeholder",
+          "description": "Sets the placeholder value of the element, generally used to provide a hint to the user",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "rows",
+          "title": "Rows",
+          "description": "Sizes the element vertically by a number of character rows",
+          "required": false,
+          "type": "number"
+        },
+        {
+          "name": "spellcheck",
+          "title": "Spellcheck",
+          "description": "Controls whether or not to enable spell checking for the input field, or if the default spell checking configuration should be used",
+          "required": false,
+          "type": "boolean"
+        },
+        {
+          "name": "value",
+          "title": "Value",
+          "description": "The HTML value attribute of the text area",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "name",
+          "title": "Name",
+          "description": "This element's value will be surfaced during form submission under the provided name",
+          "type": "string",
+          "default": "",
+          "required": false
+        },
+        {
+          "name": "required",
+          "title": "Required",
+          "description": "Require the field to be completed prior to form submission",
+          "type": "boolean",
+          "default": false,
+          "required": false
+        },
+        {
+          "name": "disabled",
+          "title": "Disabled",
+          "description": "Sets the disabled state of the text area",
+          "type": "boolean",
+          "default": false,
+          "required": false
+        },
+        {
+          "name": "readonly",
+          "title": "Readonly",
+          "description": "When true, the control will be immutable by user interaction",
+          "type": "boolean",
+          "default": false,
+          "required": false
+        }
+      ],
+      "slots": [
+        {
+          "name": "",
+          "title": "Default slot",
+          "description": "The content of the text area represents its visual label"
+        }
+      ]
+    },
+    {
+      "name": "fluent-text-field",
+      "title": "Text field",
+      "description": "The Fluent UI text-field element",
+      "attributes": [
+        {
+          "name": "value",
+          "title": "Value",
+          "description": "The HTML value attribute of the text field",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "appearance",
+          "title": "Appearance",
+          "description": "The text field's visual treatment",
+          "default": "outline",
+          "values": [
+            {
+              "name": "outline"
+            },
+            {
+              "name": "filled"
+            }
+          ],
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "autofocus",
+          "title": "Autofocus",
+          "description": "Determines if the element should receive document focus on page load",
+          "required": false,
+          "type": "boolean",
+          "default": false
+        },
+        {
+          "name": "placeholder",
+          "title": "Placeholder",
+          "description": "Sets the placeholder value of the element, generally used to provide a hint to the user",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "type",
+          "title": "Type",
+          "description": "Specifies the type of text input for the field",
+          "default": "text",
+          "values": [
+            {
+              "name": "email"
+            },
+            {
+              "name": "password"
+            },
+            {
+              "name": "tel"
+            },
+            {
+              "name": "text"
+            },
+            {
+              "name": "url"
+            }
+          ],
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "list",
+          "title": "List ID",
+          "description": "Allows associating a datalist to the component",
+          "required": false,
+          "type": "string",
+          "default": ""
+        },
+        {
+          "name": "maxlength",
+          "title": "Maximum length",
+          "description": "The maximum number of characters a user can enter",
+          "required": false,
+          "type": "number"
+        },
+        {
+          "name": "minlength",
+          "title": "Minimum length",
+          "description": "The minimum number of characters a user can enter",
+          "required": false,
+          "type": "number"
+        },
+        {
+          "name": "pattern",
+          "title": "Validation pattern",
+          "description": "A regular expression that the value must match to pass validation",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "size",
+          "title": "Size",
+          "description": "Sets the width of the element to a specified number of characters",
+          "required": false,
+          "type": "number"
+        },
+        {
+          "name": "spellcheck",
+          "title": "Spellcheck",
+          "description": "Controls whether or not to enable spell checking for the input field, or if the default spell checking configuration should be used",
+          "required": false,
+          "type": "boolean"
+        },
+        {
+          "name": "name",
+          "title": "Name",
+          "description": "This element's value will be surfaced during form submission under the provided name",
+          "type": "string",
+          "default": "",
+          "required": false
+        },
+        {
+          "name": "required",
+          "title": "Required",
+          "description": "Require the field to be completed prior to form submission",
+          "type": "boolean",
+          "default": false,
+          "required": false
+        },
+        {
+          "name": "disabled",
+          "title": "Disabled",
+          "description": "Sets the disabled state of the number field",
+          "type": "boolean",
+          "default": false,
+          "required": false
+        },
+        {
+          "name": "readonly",
+          "title": "Readonly",
+          "description": "When true, the control will be immutable by user interaction",
+          "type": "boolean",
+          "default": false,
+          "required": false
+        }
+      ],
+      "slots": [
+        {
+          "name": "",
+          "title": "Default slot",
+          "description": "The content of the radio represents its visual label"
+        },
+        {
+          "name": "start",
+          "title": "Start slot",
+          "description": "Contents of the start slot are positioned before the option content"
+        },
+        {
+          "name": "end",
+          "title": "End slot",
+          "description": "Contents of the end slot are positioned after the option content"
+        }
+      ]
+    },
+    {
+      "name": "fluent-tooltip",
+      "title": "Tooltip",
+      "description": "The Fluent UI tooltip element",
+      "attributes": [
+        {
+          "name": "visible",
+          "title": "Visible",
+          "description": "Sets whether the tooltip is visible or not",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "anchor",
+          "title": "Anchor ID",
+          "description": "The HTML ID of the element the tooltip is positioned relative to",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "delay",
+          "title": "Delay",
+          "description": "The delay in milliseconds before a tooltip is shown after a hover event",
+          "type": "number",
+          "default": 300,
+          "required": false
+        },
+        {
+          "name": "position",
+          "title": "Position",
+          "description": "Controls the placement of the tooltip relative to the configured 'Anchor ID'",
+          "values": [
+            {
+              "name": "top"
+            },
+            {
+              "name": "right"
+            },
+            {
+              "name": "bottom"
+            },
+            {
+              "name": "left"
+            },
+            {
+              "name": "start"
+            },
+            {
+              "name": "end"
+            }
+          ],
+          "type": "string",
+          "required": false
+        }
+      ],
+      "slots": [
+        {
+          "name": "",
+          "title": "Default slot",
+          "description": "The tooltip content"
+        }
+      ]
+    },
+    {
+      "name": "fluent-tree-item",
+      "title": "Tree item",
+      "description": "The Fluent UI tree item element",
+      "attributes": [
+        {
+          "name": "expanded",
+          "title": "Expanded",
+          "description": "Whether tree item is expanded or not",
+          "default": false,
+          "required": false,
+          "type": "boolean"
+        },
+        {
+          "name": "selected",
+          "title": "Selected",
+          "description": "Whether tree item is selected or not",
+          "default": false,
+          "required": false,
+          "type": "boolean"
+        },
+        {
+          "name": "disabled",
+          "title": "Disabled",
+          "description": "Sets the disabled state of the tree item",
+          "type": "boolean",
+          "default": false,
+          "required": false
+        }
+      ],
+      "slots": [
+        {
+          "name": "",
+          "title": "Default slot",
+          "description": "The visual label of the tree item"
+        },
+        {
+          "name": "item",
+          "title": "Item slot",
+          "description": "Nested fluent-tree-item elements automatically apply a slot of item for an intuitive API"
+        },
+        {
+          "name": "expand-collapse-glyph",
+          "title": "Expand collapse glyph slot",
+          "description": "Slot to provide a custom visual to represent the expanded and collapsed states"
+        },
+        {
+          "name": "start",
+          "title": "Start slot",
+          "description": "Contents of the start slot are positioned after the expand/collapse glyph and before the item content"
+        },
+        {
+          "name": "end",
+          "title": "End slot",
+          "description": "Contents of the end slot are positioned after the item content"
+        }
+      ]
+    },
+    {
+      "name": "fluent-tree-view",
+      "title": "Tree view",
+      "description": "The Fluent UI tree view element",
+      "attributes": [
+        {
+          "name": "render-collapsed-nodes",
+          "title": "Render collapsed nodes",
+          "description": "Determines whether the tree should render nodes under collapsed items",
+          "type": "boolean",
+          "required": false
+        }
+      ],
+      "slots": [
+        {
+          "name": "",
+          "title": "Default slot",
+          "description": "Supports fluent-tree-item elements or elements with a role of 'treeitem'"
+        }
+      ]
+    }
+  ]
+}
