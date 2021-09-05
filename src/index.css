@@ -1,72 +1,79 @@
-﻿body {
-  display: flex;
-  flex-direction: column;
-}
-body > div {
-  max-width: 970px;
-  margin: auto;
-  height: 100vh;
-  display: grid;
-  grid-template-rows: min-content 1fr min-content;
-}
-main {
-  overflow-y: clip;
-  display: grid;
-  grid-template-rows: min-content 1fr;
-}
-main > section {
-  border: 1px solid #fff;
-  padding: 0 5px;
-}
-section[itemprop="worksFor"] {
-  overflow-y: auto;
-}
-section[itemprop="worksFor"] section {
-  padding: 5px 10px;
-  margin: 5px 0;
-}
-section[itemprop="worksFor"] section:nth-of-type(even) {
-  background-color: #444;
-}
-section[itemprop="worksFor"] section:nth-of-type(odd) {
-  background-color: #777;
-}
-section[itemprop="worksFor"] section div:nth-child(2) {
-  font-style: italic;
-}
-[data-icon]::before {
-  content: attr(data-icon);
-  padding-right: 0.5em;
-  font-style: normal;
-}
-a[href=""] {
-  display: none;
-}
-footer {
-  padding-bottom: 10px;
-  text-align: center;
-}
-div[itemtype="https://schema.org/ContactPoint"] {
-  display: inline-block;
-  margin: 5px;
+body {
+    display: grid;
+    margin: 8px;
+    height: calc(100vh - 16px);
+    max-width: 115em;
+    margin-left: auto;
+    margin-right: auto;
 }
 header {
-  display: grid;
-  grid-template-columns: min-content 1fr;
-  grid-template-rows: min-content min-content min-content;
-  gap: 0px 0px;
-  grid-template-areas:
-    "name name"
-    ". ."
-    "contactPoint contactPoint";
+    padding: 12pt;
+    display: grid;
 }
-section[itemprop=contactPoint] {
-  grid-area: contactPoint;
+div[itemtype="https://schema.org/ContactPoint"] {
+    display: inline-block;
+    margin: 5px;
 }
-header img {
-  height: 100px;
-  margin: 5px;
+main {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
 }
-header h1[itemprop=name] {
-  grid-area: name;
+@media (min-width: 1280px) {
+    /* landscape layout */
+    body {
+        grid-template-columns: min-content 1fr;
+        grid-template-rows: 1fr;
+    }
+    header {
+        width: min-content;
+        text-align: center;
+        grid-template-rows: min-content min-content min-content min-content min-content min-content min-content;
+        gap: 0px 0px;
+    }
+}
+@media (max-width: 1280px) {
+    /* portrait layout */
+    body {
+        grid-template-columns: 1fr;
+        grid-template-rows: min-content 1fr;
+    }
+    header {
+        grid-template-columns: min-content 1fr;
+        grid-template-rows: min-content min-content min-content min-content 1fr;
+        grid-template-areas:
+            "headerImg ."
+            "headerImg ."
+            "headerImg ."
+            "headerImg ."
+            "headerImg ."
+            "headerImg ."
+            "contact contact";
+        gap: 0px 12pt;
+    }
+    header > span,header > a {
+        display: block;
+    }
+    header > img {
+        grid-area: headerImg;
+    }
+    section[itemptop="contactPoint"] {
+        grid-area: contact;
+    }
+}
+
+header img[itemprop=image] {
+    max-width: 256px;
+    max-height: 256px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+fluent-accordion[itemprop=worksFor] {
+    width: 100%;
+}
+
+fluent-accordion[itemprop=worksFor] img[itemprop=logo] {
+    height: 16px;
+    width: 16px;
 }

@@ -1,74 +1,72 @@
-﻿<!DOCTYPE html>
-<html lang="en-us" itemscope itemtype="https://schema.org/Person">
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr" itemscope itemtype="https://schema.org/Person">
 <head>
     <meta charset="utf-8" />
     <title>Shmueli Yosef Englard</title>
-    <link rel="stylesheet" href="winjs.dark.css" />
     <link rel="stylesheet" href="index.css" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://static2.sharepointonline.com/files/fabric/office-ui-fabric-core/11.0.0/css/fabric.min.css" />
 </head>
-<body class="win-type-body">
-    <diagnal-ribbon corner="right-top" href="https://github.com/shmuelie/shmuelie.englard.net" text="Hosted on GitHub"></diagnal-ribbon>
-    <div>
-        <header>
-            <h1 itemprop="name" class="win-h1"></h1>
-            <section>
-                <img itemprop="image" alt="Shmueli Englard" />
-            </section>
-            <section>
-                <h2 itemprop="jobTitle" class="win-h2"></h2>
-                <div class="win-type-subtitle" data-icon="&#128231;"><a itemprop="email" rel="me" class="win-link" data-formatter="email"></a></div>
-                <div class="win-type-subtitle" data-icon="&#128241;"><a itemprop="telephone" rel="me" class="win-link" data-formatter="telephone"></a></div>
-                <div class="win-type-subtitle" data-icon="&#128506;" itemprop="address"></div>
-            </section>
-            <section itemprop="contactPoint">
-                <template data-type=ContactPoint>
-                    <div itemscope itemtype="https://schema.org/ContactPoint">
-                        <meta itemprop="contactType" />
-                        <meta itemprop="url" />
-                        <meta itemprop="identifier" />
-                    </div>
-                </template>
-            </section>
-        </header>
-        <main>
-            <section>
-                <h2 class="win-h2">About</h2>
-                <p itemprop="description"></p>
-            </section>
-            <section itemprop="worksFor">
-                <h2 class="win-h2">Experience</h2>
-                <template data-type="EmployeeRole">
-                    <section itemscope itemtype="https://schema.org/EmployeeRole">
-                        <div itemprop="worksFor" itemscope itemtype="https://schema.org/Corporation">
-                            <h3 class="win-h3" itemprop="name"></h3>
-                        </div>
-                        <div>
-                            <time itemprop="startDate"></time> through <time itemprop="endDate"></time>
-                        </div>
-                        <ul itemprop="roleDescription">
-                            <template data-type="CreativeWork">
-                                <li itemscope itemtype="https://schema.org/CreativeWork">
-                                    <h3 itemprop="name" class="win-h3"></h3>
-                                    <p itemprop="description"></p>
-                                    <a href="" target="_blank" itemprop="url" class="win-link">Link</a>
-                                </li>
-                            </template>
-                            <template data-type="Text">
-                                <li></li>
-                            </template>
-                        </ul>
-                    </section>
-                </template>
-            </section>
-        </main>
-        <footer>
-            <section>
-                <p>Copyright &copy; Shmueli Englard.</p>
-            </section>
-        </footer>
-    </div>
+<body class="ms-Fabric" dir="ltr">
+    <header class="ms-depth-4">
+        <img itemprop="image" alt="Shmueli Englard" src="https://avatars0.githubusercontent.com/u/1119883?s=460&u=ff3333cb5414fe0726c7b91226ccda3cd65d4a4a&v=4" />
+        <h1 itemprop="name" class="ms-fontSize-28">Shmueli Yosef Englard</h1>
+        <span itemprop="jobTitle" class="ms-fontSize-20">Senior Software Engineer</span>
+        <a itemprop="email" rel="me" data-formatter="email" href="mailto:shmueli.yosef@englard.net">shmueli.yosef@englard.net</a>
+        <a itemprop="telephone" rel="me" data-formatter="telephone" href="tel:17177468354">+1 (717) 746-8354</a>
+        <span itemprop="address">East Brunswick, New Jersey, United States</span>
+        <section itemprop="contactPoint">
+            <template data-type="ContactPoint">
+                <div itemscope itemtype="https://schema.org/ContactPoint">
+                    <meta itemprop="contactType" />
+                    <meta itemprop="url" />
+                    <meta itemprop="identifier" />
+                </div>
+            </template>
+        </section>
+    </header>
+    <main class="ms-depth-4">
+        <fluent-tabs data-state='{"id":"rootTabs","attribute":"activeid","event":"change"}'>
+            <fluent-button href="#" slot="tab" appearance="outline">General<div slot="start" class="ms-Icon ms-Icon--Contact"></div>
+            </fluent-button>
+            <fluent-button href="#" slot="tab" appearance="outline">Work Experience<div slot="start" class="ms-Icon ms-Icon--Work"></div>
+            </fluent-button>
+            <fluent-button href="#" slot="tab" appearance="outline">Links<div slot="start" class="ms-Icon ms-Icon--Link"></div>
+            </fluent-button>
+            <fluent-button href="#" slot="tab" appearance="outline">Podcasts<div slot="start" class="ms-Icon ms-Icon--Microphone"></div>
+            </fluent-button>
+            <fluent-tab-panel></fluent-tab-panel>
+            <fluent-tab-panel>
+                <h2>Experience</h2>
+                <fluent-accordion itemprop="worksFor">
+                    <template data-type="EmployeeRole">
+                        <fluent-accordion-item itemscope itemtype="https://schema.org/EmployeeRole">
+                            <div slot="heading" itemprop="employer" itemscope itemtype="https://schema.org/Corporation">
+                                <img itemprop="logo" alt="" />
+                                <span itemprop="name"></span>
+                            </div>
+                            <div>
+                                <time itemprop="startDate"></time> through <time itemprop="endDate"></time>
+                            </div>
+                            <ul itemprop="roleDescription">
+                                <template data-type="CreativeWork">
+                                    <li itemscope itemtype="https://schema.org/CreativeWork">
+                                        <h3 itemprop="name"></h3>
+                                        <p itemprop="description"></p>
+                                        <a href="" target="_blank" itemprop="url">Link</a>
+                                    </li>
+                                </template>
+                                <template data-type="Text">
+                                    <li></li>
+                                </template>
+                            </ul>
+                        </fluent-accordion-item>
+                    </template>
+                </fluent-accordion>
+            </fluent-tab-panel>
+            <fluent-tab-panel></fluent-tab-panel>
+            <fluent-tab-panel></fluent-tab-panel>
+        </fluent-tabs>
+    </main>
     <script type="module" src="index.js"></script>
-    <script type="application/ld+json"></script>
 </body>
 </html>

@@ -1,9 +1,10 @@
-import { contantPoints } from './me.js'
-import { apply, ApplyOptions, Thing } from 'https://unpkg.com/microdata-tooling@1.0.3/dist/index.min.js'
+import { contantPoints, jobs } from './me.js'
+import { apply, ApplyOptions, Thing } from 'https://unpkg.com/microdata-tooling@1.0.4'
 import { formatDateTime, formatPhone } from './formatters.js'
 import { ContactPoint } from './schema.js'
-import { BadgeStyle, SimpleIcons, icons } from 'https://unpkg.com/shieldsio-elements@1.0.0/dist/index.min.js'
-import 'https://unpkg.com/@fluentui/web-components@1.1.1'
+import { BadgeStyle, SimpleIcons, icons } from 'https://unpkg.com/shieldsio-elements@1.0.0'
+import 'https://unpkg.com/@fluentui/web-components@1.4.1'
+import { StateEngine } from './state-engine.js'
 
 const applyOptions: ApplyOptions = {
     linkFormatter: (data: string, elementData: DOMStringMap): string | null => {
@@ -42,4 +43,8 @@ const applyOptions: ApplyOptions = {
     }
 };
 
-apply((contantPoints as any) as Thing, document.querySelector("html") as HTMLElement, applyOptions);
+apply((contantPoints as any) as Thing, document.querySelector("section[itemprop=contactPoint]") as HTMLElement, applyOptions);
+apply((jobs as any) as Thing, document.querySelector("fluent-accordion[itemprop=worksFor]") as HTMLElement, applyOptions);
+
+const stateEngine = new StateEngine();
+stateEngine.initialize(document.body);
