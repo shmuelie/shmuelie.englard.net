@@ -36,6 +36,7 @@
     "scripts": {
         "build": "gulp build",
         "clean": "gulp clean",
+        "postinstall": "gulp generate-paths",
         "preinstall": "npx -y only-allow pnpm",
         "test-server": "http-server ./dist/ -p 8000"
     },

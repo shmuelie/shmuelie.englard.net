@@ -388,3 +388,4 @@ MigrationBackup/
 dist/
 .vs/
 .vscode/
+tsconfig.paths.json

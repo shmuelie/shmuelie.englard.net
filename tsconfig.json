@@ -11,17 +11,6 @@
         "noImplicitThis": true,
         "noUnusedLocals": true,
         "noUnusedParameters": true,
-        "paths": {
-            "https://unpkg.com/@fluentui/web-components@1.1.1": [
-                "./node_modules/@fluentui/web-components"
-            ],
-            "https://unpkg.com/microdata-tooling@1.0.3/dist/index.min.js": [
-                "./node_modules/microdata-tooling"
-            ],
-            "https://unpkg.com/shieldsio-elements@1.0.0/dist/index.min.js": [
-                "./node_modules/shieldsio-elements"
-            ]
-        },
         "removeComments": true,
         "sourceMap": true,
         "strict": true,
@@ -29,6 +18,7 @@
         "strictNullChecks": true,
         "target": "ES2019"
     },
+    "extends": "./tsconfig.paths.json",
     "include": [
         "src/*.ts"
     ]
