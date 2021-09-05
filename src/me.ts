@@ -1,4 +1,4 @@
-import { CreativeWork, Person, SchemaValue, WithContext, ContactPoint, EmployeeRole } from './schema'
+import { ContactPoint, EmployeeRole } from './schema'
 
 export const contantPoints: ContactPoint[] = [
     {
