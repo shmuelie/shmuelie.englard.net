@@ -1,33 +1,35 @@
 {
-	"include": [ "src/*.ts" ],
-	"compilerOptions": {
-		"strict": true,
-		"alwaysStrict": true,
-		"target": "ES2019",
-		"module": "ES2020",
-		"noFallthroughCasesInSwitch": true,
-		"noImplicitAny": true,
-		"noImplicitReturns": true,
-		"noImplicitThis": true,
-		"noUnusedLocals": true,
-		"noUnusedParameters": true,
-		"removeComments": true,
-		"allowUnusedLabels": false,
-		"strictNullChecks": true,
-		"strictBindCallApply": true,
-		"sourceMap": true,
-		"downlevelIteration": true,
-		"moduleResolution": "node",
-		"paths": {
-			"https://unpkg.com/microdata-tooling@1.0.3/dist/index.min.js": [
-				"./node_modules/microdata-tooling"
-			],
-			"https://unpkg.com/shieldsio-elements@1.0.0/dist/index.min.js": [
-				"./node_modules/shieldsio-elements"
-			],
-			"https://unpkg.com/@fluentui/web-components@1.1.1": [
-				"./node_modules/@fluentui/web-components"
-			]
-		}
-	}
+    "compilerOptions": {
+        "allowUnusedLabels": false,
+        "alwaysStrict": true,
+        "downlevelIteration": true,
+        "module": "ES2020",
+        "moduleResolution": "node",
+        "noFallthroughCasesInSwitch": true,
+        "noImplicitAny": true,
+        "noImplicitReturns": true,
+        "noImplicitThis": true,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "paths": {
+            "https://unpkg.com/@fluentui/web-components@1.1.1": [
+                "./node_modules/@fluentui/web-components"
+            ],
+            "https://unpkg.com/microdata-tooling@1.0.3/dist/index.min.js": [
+                "./node_modules/microdata-tooling"
+            ],
+            "https://unpkg.com/shieldsio-elements@1.0.0/dist/index.min.js": [
+                "./node_modules/shieldsio-elements"
+            ]
+        },
+        "removeComments": true,
+        "sourceMap": true,
+        "strict": true,
+        "strictBindCallApply": true,
+        "strictNullChecks": true,
+        "target": "ES2019"
+    },
+    "include": [
+        "src/*.ts"
+    ]
 }
