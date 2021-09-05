@@ -17,6 +17,7 @@
         "gulp-sourcemaps": "3.0.0",
         "gulp-terser": "2.0.1",
         "gulp-typescript": "5.0.1",
+        "hashed-es6": "1.0.2",
         "http-server": "0.12.3",
         "microdata-tooling": "1.0.3",
         "shieldsio-elements": "1.0.0",
