@@ -6,12 +6,19 @@ interface DataStateConfig {
     id?: string;
 }
 
+export interface TagConfig {
+    attribute: string;
+    event: string;
+}
+
 export interface StateEngineConfigEntry {
     element: Element;
     attribute: string;
     event: string;
     id: string;
 }
+
+const dataStateAttributeName = "data-state";
 
 /**
  * Manage a section of a webage's state.
@@ -43,16 +50,15 @@ export class StateEngine {
         const element = e.target as (Element | null);
         if (element) {
             setTimeout(() => {
-                const elementConfig = JSON.parse(element.getAttribute("data-state") ?? "{}") as DataStateConfig
-                const elementId = element.id || elementConfig.id;
-                if (elementId && elementConfig.attribute) {
+                const config = this.getConfig(element);
+                if (config) {
                     if (this.updateHash) {
-                        const elementAttribute = elementConfig.attribute;
+                        const elementAttribute = config.attribute;
                         this.updateHash({
-                            [elementId]: element.getAttribute(elementAttribute)
+                            [config.id]: element.getAttribute(elementAttribute)
                         });
-                    } else if (elementConfig.event) {
-                        element.removeEventListener(elementConfig.event, this.boundElementUpdated);
+                    } else if (config.event) {
+                        element.removeEventListener(config.event, this.boundElementUpdated);
                     }
                 }
             }, 0);
@@ -67,18 +73,11 @@ export class StateEngine {
         this.reset();
         const startingState: SchemaConfig = {};
         for (const element of root.querySelectorAll("*[data-state]")) {
-            const elementConfig = JSON.parse(element.getAttribute("data-state") ?? "{}") as DataStateConfig
-            const elementId = element.id || elementConfig.id;
-            if (elementId && elementConfig.attribute && elementConfig.event) {
-                const elementAttribute = elementConfig.attribute;
-                this.config[elementId] = {
-                    element: element,
-                    attribute: elementAttribute,
-                    event: elementConfig.event,
-                    id: elementId
-                };
-                startingState[elementId] = element.getAttribute(elementAttribute) || "";
-                element.addEventListener(elementConfig.event, this.boundElementUpdated);
+            const config = this.getConfig(element);
+            if (config) {
+                this.config[config.id] = config;
+                startingState[config.id] = element.getAttribute(config.attribute) || "";
+                element.addEventListener(config.event, this.boundElementUpdated);
             }
         }
         this.updateHash = register(startingState, this.boundHashUpdated);
@@ -95,5 +94,34 @@ export class StateEngine {
             const elementConfig = this.config[elementId];
             elementConfig.element.removeEventListener(elementConfig.event, this.boundElementUpdated);
         }
+    }
+
+    /**
+     * Configurations for event and attribute based on tag name.
+     */
+    readonly tagConfigs: Record<string, TagConfig | undefined | null> = {};
+
+    /**
+     * Gets the {@link StateEngineConfigEntry} for an element.
+     * @param element The element to process.
+     * @returns Configuration based on data attrbute and tag config or null.
+     */
+    private getConfig(element: Element): StateEngineConfigEntry | null {
+        if (element.hasAttribute(dataStateAttributeName)) {
+            const elementConfig = JSON.parse(element.getAttribute(dataStateAttributeName) || "{}") as DataStateConfig
+            const elementId = element.id || elementConfig.id;
+            const tagConfig = this.tagConfigs[element.tagName];
+            const elementEvent = elementConfig.event ?? tagConfig?.event ?? null;
+            const elementAttribute = elementConfig.attribute ?? tagConfig?.attribute ?? null;
+            if (elementId && elementEvent && elementAttribute) {
+                return {
+                    attribute: elementAttribute,
+                    element: element,
+                    event: elementEvent,
+                    id: elementId
+                };
+            }
+        }
+        return null;
     }
 }
