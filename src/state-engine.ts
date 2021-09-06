@@ -25,7 +25,7 @@ const dataStateAttributeName = "data-state";
  */
 export class StateEngine {
     private updateHash: ProviderCallback | null = null;
-    private readonly config: Record<string, StateEngineConfigEntry> = {};
+    private readonly config: Record<string, StateEngineConfigEntry | undefined> = {};
     private readonly boundHashUpdated = this.hashUpdated.bind(this);
     private readonly boundElementUpdated = this.elementUpdated.bind(this);
 
@@ -37,7 +37,9 @@ export class StateEngine {
         setTimeout(() => {
             for (const elementId of Object.keys(state)) {
                 const elementConfig = this.config[elementId];
-                elementConfig.element.setAttribute(elementConfig.attribute, state[elementId]);
+                if (elementConfig) {
+                    elementConfig.element.setAttribute(elementConfig.attribute, state[elementId]);
+                }
             }
         }, 0);
     }
@@ -92,7 +94,9 @@ export class StateEngine {
         }
         for (const elementId of Object.keys(this.config)) {
             const elementConfig = this.config[elementId];
-            elementConfig.element.removeEventListener(elementConfig.event, this.boundElementUpdated);
+            if (elementConfig) {
+                elementConfig.element.removeEventListener(elementConfig.event, this.boundElementUpdated);
+            }
         }
     }
 
