@@ -3,8 +3,10 @@ import { apply, ApplyOptions, Thing } from 'https://unpkg.com/microdata-tooling@
 import { formatDateTime, formatPhone } from './formatters.js'
 import { ContactPoint } from './schema.js'
 import { BadgeStyle, SimpleIcons, icons } from 'https://unpkg.com/shieldsio-elements@1.0.0'
-import 'https://unpkg.com/@fluentui/web-components@1.4.1'
+import { allComponents, provideFluentDesignSystem } from 'https://unpkg.com/@fluentui/web-components@1.4.1'
 import { StateEngine } from './state-engine.js'
+
+provideFluentDesignSystem().register(allComponents);
 
 const applyOptions: ApplyOptions = {
     linkFormatter: (data: string, elementData: DOMStringMap): string | null => {
