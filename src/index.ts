@@ -10,7 +10,7 @@ const applyOptions: ApplyOptions = {
     linkFormatter: (data: string, elementData: DOMStringMap): string | null => {
         if ("formatter" in elementData) {
             if (elementData["formatter"] === "telephone") {
-                return formatPhone(data)?.display || null;
+                return formatPhone(data);
             }
             if (elementData["formatter"] === "email") {
                 return data.replace(/^mailto\:/, "");

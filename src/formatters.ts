@@ -1,28 +1,11 @@
 /**
- * Results from @see formatPhone.
- */
-interface PhoneResults {
-    /**
-     * A phone number formatted according to E.123.
-     */
-    display: string;
-    /**
-     * A phone number made as a 'tel' link.
-     */
-    link: string;
-}
-
-/**
  * Format a phone number.
  * @param tel The phone number to format.
  */
-export function formatPhone(tel: string): PhoneResults | null {
+export function formatPhone(tel: string): string | null {
     const parts = /^tel\:(\d{1})(\d{3})(\d{3})(\d{4})$/.exec(tel);
     if (parts) {
-        return {
-            display: `+${parts[1]} ${parts[2]} ${parts[3]} ${parts[4]}`,
-            link: tel
-        };
+        return `+${parts[1]} ${parts[2]} ${parts[3]} ${parts[4]}`;
     }
     return null;
 }
