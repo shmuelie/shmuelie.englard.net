@@ -36,7 +36,7 @@ const applyOptions: ApplyOptions = {
                 const link = document.createElement("a");
                 link.target = "_blank";
                 link.style.textDecoration = "none";
-                link.href = contact.url as string || "";
+                link.href = contact.url as string ?? "";
                 link.appendChild(widget);
                 element.appendChild(link);
             }
