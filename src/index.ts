@@ -47,4 +47,8 @@ apply((contantPoints as any) as Thing, document.querySelector("section[itemprop=
 apply((jobs as any) as Thing, document.querySelector("fluent-accordion[itemprop=worksFor]") as HTMLElement, applyOptions);
 
 const stateEngine = new StateEngine();
+stateEngine.tagConfigs["FLUENT-TABS"] = {
+    attribute: "activeid",
+    event: "change"
+};
 stateEngine.initialize(document.body);
