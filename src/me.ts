@@ -119,6 +119,12 @@ const contantPoints: ContactPoint[] = [
         contactType: "XDA-Developers",
         url: "https://forum.xda-developers.com/m/shmuelie.9862379/",
         identifier: "shmuelie"
+    },
+    {
+        "@type": "ContactPoint",
+        contactType: "Reddit",
+        url: "https://www.reddit.com/user/ShmueliEnglard",
+        identifier: "ShmueliEnglard"
     }
 ];
 contantPoints.sort((a, b) => (a.contactType as string).localeCompare(b.contactType as string));
