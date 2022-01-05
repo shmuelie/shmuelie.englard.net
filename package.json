@@ -22,8 +22,7 @@
 	"scripts": {
 		"test-server": "http-server ./dist/ -p 8000",
 		"build": "gulp build",
-		"clean": "gulp clean",
-		"preinstall": "npx -y only-allow pnpm"
+		"clean": "gulp clean"
 	},
 	"categories": [
 		"Other"
