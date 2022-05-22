@@ -78,6 +78,55 @@ export const contantPoints: ContactPoint[] = [
         contactType: "YouTube",
         url: "http://www.youtube.com/channel/UCeWZRExZngloGBB9ZPXAkJg",
         identifier: "UCeWZRExZngloGBB9ZPXAkJg"
+    },
+    {
+        "@type": "ContactPoint",
+        contactType: "GreasyFork",
+        url: "https://greasyfork.org/en/users/787382-shmuelie",
+        identifier: "shmuelie"
+    },
+    {
+        "@type": "ContactPoint",
+        contactType: "Anime-Planet",
+        url: "https://www.anime-planet.com/users/shmuelie",
+        identifier: "shmuelie"
+    },
+    {
+        "@type": "ContactPoint",
+        contactType: "Disqus",
+        url: "http://disqus.com/by/shmuelie",
+        identifier: "shmuelie"
+    },
+    {
+        "@type": "ContactPoint",
+        contactType: "Pinterest",
+        url: "https://www.pinterest.com/shmuelie",
+        identifier: "shmuelie"
+    },
+    {
+        "@type": "ContactPoint",
+        contactType: "Microsoft",
+        url: "https://docs.microsoft.com/en-us/users/shmuelie/",
+        identifier: "shmuelie"
+
+    },
+    {
+        "@type": "ContactPoint",
+        contactType: "XDA-Developers",
+        url: "https://forum.xda-developers.com/m/shmuelie.9862379/",
+        identifier: "shmuelie"
+    },
+    {
+        "@type": "ContactPoint",
+        contactType: "Reddit",
+        url: "https://www.reddit.com/user/ShmueliEnglard",
+        identifier: "ShmueliEnglard"
+    },
+    {
+        "@type": "ContactPoint",
+        contactType: "World Anvil",
+        url: "https://www.worldanvil.com/author/shmuelie",
+        identifier: "shmuelie"
     }
 ];
 contantPoints.sort((a, b) => (a.contactType as string).localeCompare(b.contactType as string));
