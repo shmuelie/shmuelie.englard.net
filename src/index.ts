@@ -1,4 +1,4 @@
-import { contantPoints, jobs } from './me.js'
+import { contantPoints } from './me.js'
 import { apply, ApplyOptions, Thing } from 'https://unpkg.com/microdata-tooling@1.0.4'
 import { formatDateTime, formatPhone } from './formatters.js'
 import { ContactPoint } from './schema.js'
@@ -46,7 +46,6 @@ const applyOptions: ApplyOptions = {
 };
 
 apply((contantPoints as any) as Thing, document.querySelector("section[itemprop=contactPoint]") as HTMLElement, applyOptions);
-apply((jobs as any) as Thing, document.querySelector("fluent-accordion[itemprop=worksFor]") as HTMLElement, applyOptions);
 
 const stateEngine = new StateEngine();
 stateEngine.tagConfigs["FLUENT-TABS"] = {

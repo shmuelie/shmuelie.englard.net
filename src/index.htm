@@ -28,42 +28,11 @@
         <fluent-tabs id="rootTabs" data-state>
             <fluent-button href="#" slot="tab" appearance="outline">General<div slot="start" class="ms-Icon ms-Icon--Contact"></div>
             </fluent-button>
-            <fluent-button href="#" slot="tab" appearance="outline">Work Experience<div slot="start" class="ms-Icon ms-Icon--Work"></div>
-            </fluent-button>
             <fluent-button href="#" slot="tab" appearance="outline">Links<div slot="start" class="ms-Icon ms-Icon--Link"></div>
             </fluent-button>
             <fluent-button href="#" slot="tab" appearance="outline">Podcasts<div slot="start" class="ms-Icon ms-Icon--Microphone"></div>
             </fluent-button>
             <fluent-button href="#" slot="tab" appearance="outline">Blog<div slot="start" class="ms-Icon ms-Icon--Blog"></div></fluent-button>
-            <fluent-tab-panel></fluent-tab-panel>
-            <fluent-tab-panel>
-                <h2>Experience</h2>
-                <fluent-accordion itemprop="worksFor">
-                    <template data-type="EmployeeRole">
-                        <fluent-accordion-item itemscope itemtype="https://schema.org/EmployeeRole">
-                            <div slot="heading" itemprop="employer" itemscope itemtype="https://schema.org/Corporation">
-                                <img itemprop="logo" alt="" />
-                                <span itemprop="name"></span>
-                            </div>
-                            <div>
-                                <time itemprop="startDate"></time> through <time itemprop="endDate"></time>
-                            </div>
-                            <ul itemprop="roleDescription">
-                                <template data-type="CreativeWork">
-                                    <li itemscope itemtype="https://schema.org/CreativeWork">
-                                        <h3 itemprop="name"></h3>
-                                        <p itemprop="description"></p>
-                                        <a href="" target="_blank" itemprop="url">Link</a>
-                                    </li>
-                                </template>
-                                <template data-type="Text">
-                                    <li></li>
-                                </template>
-                            </ul>
-                        </fluent-accordion-item>
-                    </template>
-                </fluent-accordion>
-            </fluent-tab-panel>
             <fluent-tab-panel></fluent-tab-panel>
             <fluent-tab-panel></fluent-tab-panel>
             <fluent-tab-panel></fluent-tab-panel>
