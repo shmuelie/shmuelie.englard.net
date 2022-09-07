@@ -2,14 +2,14 @@
 import ts from 'gulp-typescript'
 import sourcemaps from 'gulp-sourcemaps'
 import terser from 'gulp-terser'
-import del from 'del'
 import cleanCSS from 'gulp-clean-css'
 import fs from 'fs'
+import { deleteAsync } from 'del'
 
 const tsProject = ts.createProject("tsconfig.json");
 
 gulp.task("clean", function () {
-    return del("dist/*.*");
+    return deleteAsync("dist/*.*");
 });
 
 gulp.task("ts-build", function () {
