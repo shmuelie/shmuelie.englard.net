@@ -2,13 +2,14 @@ import { contantPoints } from './me.js'
 import { apply, ApplyOptions, Thing } from 'https://unpkg.com/microdata-tooling@1.0.4'
 import { formatDateTime, formatPhone } from './formatters.js'
 import { ContactPoint } from './schema.js'
-import { BadgeStyle, SimpleIcons, icons } from 'https://unpkg.com/shieldsio-elements@1.0.0'
+import { BadgeStyle, SimpleIcons, icons, SimpleIconBadge } from 'https://unpkg.com/shieldsio-elements@1.0.0'
 import { allComponents, provideFluentDesignSystem } from 'https://unpkg.com/@fluentui/web-components@2.5.4'
 import { StateEngine } from './state-engine.js'
+import { podcasts } from './podcasts.js'
 
 provideFluentDesignSystem().register(allComponents);
 
-const applyOptions: ApplyOptions = {
+const contactOptions: ApplyOptions = {
     linkFormatter: (data: string, elementData: DOMStringMap): string | null => {
         if ("formatter" in elementData) {
             if (elementData["formatter"] === "telephone") {
@@ -30,7 +31,7 @@ const applyOptions: ApplyOptions = {
         "ContactPoint": (data: Thing, element: HTMLElement): boolean => {
             const contact = data as ContactPoint;
             if (contact && contact.contactType && icons[contact.contactType as string]) {
-                const widget = document.createElement("simpleicon-badge");
+                const widget: SimpleIconBadge = document.createElement("simpleicon-badge");
                 widget.badgeStyle = BadgeStyle.ForTheBadge;
                 widget.logo = contact.contactType as SimpleIcons;
                 const link = document.createElement("a");
@@ -45,7 +46,12 @@ const applyOptions: ApplyOptions = {
     }
 };
 
-apply((contantPoints as any) as Thing, document.querySelector("section[itemprop=contactPoint]") as HTMLElement, applyOptions);
+apply((contantPoints as any) as Thing, document.querySelector("section[itemprop=contactPoint]") as HTMLElement, contactOptions);
+
+const podcastOptions: ApplyOptions = {
+};
+
+apply((podcasts as any) as Thing, document.querySelector('div.podcasts-view') as HTMLElement, podcastOptions);
 
 const stateEngine = new StateEngine();
 stateEngine.tagConfigs["FLUENT-TABS"] = {

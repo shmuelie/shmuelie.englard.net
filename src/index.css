@@ -69,11 +69,20 @@ header img[itemprop=image] {
     border-radius: 50%;
 }
 
-fluent-accordion[itemprop=worksFor] {
-    width: 100%;
+fluent-tab-panel div.podcasts-view {
+    display: flex;
+    flex-wrap: wrap;
 }
 
-fluent-accordion[itemprop=worksFor] img[itemprop=logo] {
-    height: 16px;
-    width: 16px;
+fluent-tab-panel div.podcasts-view fast-card {
+    max-width: 300px;
+}
+
+fluent-tab-panel div.podcasts-view fast-card div {
+    padding: 0 10px 10px;
+    color: var(--neutral-foreground-rest);
+}
+
+fluent-tab-panel div.podcasts-view fast-card div img {
+    max-width: 256px;
 }
