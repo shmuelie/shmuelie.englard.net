@@ -51,7 +51,7 @@ apply((contantPoints as any) as Thing, document.querySelector("section[itemprop=
 const podcastOptions: ApplyOptions = {
 };
 
-apply((podcasts as any) as Thing, document.querySelector('div.podcasts-view') as HTMLElement, podcastOptions);
+apply((podcasts as any) as Thing, document.querySelector('section.podcasts > div') as HTMLElement, podcastOptions);
 
 const stateEngine = new StateEngine();
 stateEngine.tagConfigs["FLUENT-TABS"] = {

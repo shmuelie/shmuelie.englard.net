@@ -69,20 +69,20 @@ header img[itemprop=image] {
     border-radius: 50%;
 }
 
-fluent-tab-panel div.podcasts-view {
+fluent-tab-panel.links > section > div {
     display: flex;
     flex-wrap: wrap;
 }
 
-fluent-tab-panel div.podcasts-view fast-card {
+fluent-tab-panel.links > section fast-card {
     max-width: 300px;
 }
 
-fluent-tab-panel div.podcasts-view fast-card div {
+fluent-tab-panel.links > section fast-card > div {
     padding: 0 10px 10px;
     color: var(--neutral-foreground-rest);
 }
 
-fluent-tab-panel div.podcasts-view fast-card div img {
+fluent-tab-panel.links > section fast-card > div > img {
     max-width: 256px;
 }

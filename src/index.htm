@@ -29,7 +29,7 @@
         <fluent-tabs id="rootTabs" data-state>
             <fluent-button href="#" slot="tab" appearance="outline">General<div slot="start" class="ms-Icon ms-Icon--Contact"></div>
             </fluent-button>
-            <fluent-button href="#" slot="tab" appearance="outline">Podcasts<div slot="start" class="ms-Icon ms-Icon--Microphone"></div>
+            <fluent-button href="#" slot="tab" appearance="outline">Links<div slot="start" class="ms-Icon ms-Icon--Link"></div>
             </fluent-button>
             <fluent-tab-panel>
                 <h1>About me</h1>
@@ -43,19 +43,22 @@
                     <li>Anime</li>
                 </ul>
             </fluent-tab-panel>
-            <fluent-tab-panel>
-                <div class="podcasts-view">
-                    <template data-type="PodcastSeries">
-                        <fast-card itemscope itemtype="https://schema.org/PodcastSeries">
-                            <div>
-                                <img itemprop="thumbnailUrl" alt="Podcast Thumbnail" />
-                                <h2 itemprop="name"></h2>
-                                <p itemprop="description"></p>
-                                <a itemprop="url">Web Page</a>
-                            </div>
-                        </fast-card>
-                    </template>
-                </div>
+            <fluent-tab-panel class="links">
+                <section class="podcasts">
+                    <h1 class="ms-fontSize-20"><div slot="start" class="ms-Icon ms-Icon--Microphone"></div>Podcasts</h1>
+                    <div>
+                        <template data-type="PodcastSeries">
+                            <fast-card itemscope itemtype="https://schema.org/PodcastSeries">
+                                <div>
+                                    <img itemprop="thumbnailUrl" alt="Podcast Thumbnail" />
+                                    <h2 itemprop="name"></h2>
+                                    <p itemprop="description"></p>
+                                    <a itemprop="url">Web Page</a>
+                                </div>
+                            </fast-card>
+                        </template>
+                    </div>
+                </section>
             </fluent-tab-panel>
         </fluent-tabs>
     </main>
