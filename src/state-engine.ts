@@ -1,20 +1,56 @@
 import { register, unregister, ProviderCallback, SchemaConfig } from 'https://unpkg.com/hashed-es6@1.0.2'
 
+/**
+ * Configuration from HTML attributes.
+ */
 interface DataStateConfig {
+    /**
+     * The attribute to read or set.
+     */
     attribute?: string;
+    /**
+     * Name of the event to listen to for changes.
+     */
     event?: string;
+    /**
+     * ID to use in hash. If not set, ID of the element is used.
+     */
     id?: string;
 }
 
+/**
+ * Configuration for a tag.
+ */
 export interface TagConfig {
+    /**
+     * The attribute to read or set.
+     */
     attribute: string;
+    /**
+     * Name of the event to listen to for changes.
+     */
     event: string;
 }
 
+/**
+ * Configuration for state engine.
+ */
 export interface StateEngineConfigEntry {
+    /**
+     * The element being configured.
+     */
     element: Element;
+    /**
+     * The attribute to read or set.
+     */
     attribute: string;
+    /**
+     * Name of the event to listen to for changes.
+     */
     event: string;
+    /**
+     * ID to use in hash. May be the same as element's ID.
+     */
     id: string;
 }
 
@@ -24,9 +60,21 @@ const dataStateAttributeName = "data-state";
  * Manage a section of a webage's state.
  */
 export class StateEngine {
+    /**
+     * Method to call when state has changed.
+     */
     private updateHash: ProviderCallback | null = null;
+    /**
+     * Configuration of state.
+     */
     private readonly config: Record<string, StateEngineConfigEntry | undefined> = {};
+    /**
+     * hashUpdated bound to the current instance.
+     */
     private readonly boundHashUpdated = this.hashUpdated.bind(this);
+    /**
+     * elementUpdated bound to the current instance.
+     */
     private readonly boundElementUpdated = this.elementUpdated.bind(this);
 
     /**

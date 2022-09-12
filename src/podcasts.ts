@@ -1,5 +1,8 @@
 import { PodcastSeries } from './schema'
 
+/**
+ * Podcasts I listen to.
+ */
 export const podcasts: PodcastSeries[] = [
     {
         "@type": "PodcastSeries",

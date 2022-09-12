@@ -1,5 +1,8 @@
 import { ContactPoint } from './schema'
 
+/**
+ * Collection of ways to contact me.
+ */
 export const contantPoints: ContactPoint[] = [
     {
         "@type": "ContactPoint",
@@ -129,4 +132,6 @@ export const contantPoints: ContactPoint[] = [
         identifier: "shmuelie"
     }
 ];
+
+// Collection is sorted by contact type.
 contantPoints.sort((a, b) => (a.contactType as string).localeCompare(b.contactType as string));

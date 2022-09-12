@@ -6,18 +6,21 @@ import { allComponents, provideFluentDesignSystem } from 'https://unpkg.com/@flu
 import { StateEngine } from './state-engine.js'
 import { podcasts } from './podcasts.js'
 
+// Loaded Fluent UI system.
 provideFluentDesignSystem().register(allComponents);
 
+// Configuration for data binding contact points.
 const contactOptions: ApplyOptions = {
     typeHelpers: {
         "ContactPoint": (data: Thing, element: HTMLElement): boolean => {
             const contact = data as ContactPoint;
+            // Ensure that contact and contact's type are not empty.
             if (contact && contact.contactType) {
                 let widget: SimpleIconBadge | ShieldIOStaticBadge;
-                if (icons[contact.contactType as string]) {
+                if (icons[contact.contactType as string]) { // If contact's type has a simple icon, use it.
                     widget = document.createElement("simpleicon-badge");
                     widget.logo = contact.contactType as SimpleIcons;
-                } else {
+                } else { // If contact's type doesn't have a simple icon, use simple badge with no icon.
                     widget = document.createElement("shieldio-badge");
                     widget.message = contact.contactType as string;
                 }
@@ -34,13 +37,17 @@ const contactOptions: ApplyOptions = {
     }
 };
 
+// Use data binding to create contact points.
 apply((contantPoints as any) as Thing, document.querySelector("section[itemprop=contactPoint]") as HTMLElement, contactOptions);
 
+// Configuration for data binding podcasts.
 const podcastOptions: ApplyOptions = {
 };
 
+// Use data binding to create podcasts.
 apply((podcasts as any) as Thing, document.querySelector('section.podcasts > div') as HTMLElement, podcastOptions);
 
+// Configure and create state engine.
 const stateEngine = new StateEngine();
 stateEngine.tagConfigs["FLUENT-TABS"] = {
     attribute: "activeid",

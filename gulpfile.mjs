@@ -6,12 +6,15 @@ import cleanCSS from 'gulp-clean-css'
 import fs from 'fs'
 import { deleteAsync } from 'del'
 
+// Load current project's typescript configuration.
 const tsProject = ts.createProject("tsconfig.json");
 
+// Clean build folder.
 gulp.task("clean", function () {
     return deleteAsync("dist/*.*");
 });
 
+// Build Typescript, minimizing output javascript, and copy to build folder.
 gulp.task("ts-build", function () {
     return tsProject.src().
            pipe(sourcemaps.init()).
@@ -24,6 +27,7 @@ gulp.task("ts-build", function () {
            pipe(gulp.dest("dist"));
 });
 
+// Minimize CSS and copy to build folder
 gulp.task("css-build", function () {
     return gulp.src("src/*.css").
            pipe(sourcemaps.init()).
@@ -35,6 +39,7 @@ gulp.task("css-build", function () {
            pipe(gulp.dest("dist"));
 });
 
+// Copy HTML to build folder.
 gulp.task("html-build", function () {
     return gulp.src("src/*.htm").
            pipe(sourcemaps.init()).
@@ -46,10 +51,12 @@ gulp.task("html-build", function () {
            pipe(gulp.dest("dist"));
 });
 
+// Copy static content to build folder.
 gulp.task("copy-static", function () {
     return gulp.src("www/*.*").pipe(gulp.dest("dist"));
 });
 
+// Generate paths for typescript intellisense.
 gulp.task("generate-paths", function (cb) {
     const pathsConfig = {
         compilerOptions: {
