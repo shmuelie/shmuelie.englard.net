@@ -51,5 +51,17 @@ export const podcasts: PodcastSeries[] = [
         url: "https://www.relay.fm/upgrade",
         webFeed: "https://www.relay.fm/upgrade/feed",
         author: "Relay FM"
+    },
+    {
+        "@type": "PodcastSeries",
+        name: "Ask Iliza Anything",
+        description: "Everyone deserves that best friend who delivers blunt advice with impunity. Comedian, writer, and actor Iliza Shlesinger is that friend. She has built a cult-like following of listeners seeking her hilarious take on their problems. Every week, people submit their burning questions to the show, with topics ranging from bad coworkers, psychotic bridesmaids, and a mother-in-law who won't move out to faking an accent and diarrhea etiquette. Iliza's answers range from wise and heart-felt to rage-fueled and off-the-wall. She enjoys nothing more than giving incisive life advice to total strangers, sometimes with a celebrity guest in tow. It's always entertaining, so go ahead: Ask Iliza Anything.",
+        genre: "Comedy",
+        inLanguage: "en-us",
+        isFamilyFriendly: false,
+        thumbnailUrl: "https://image.simplecastcdn.com/images/2e970d8d-719d-4665-b4cd-6a3c82c2cca6/443e2d4e-902b-46ec-93cd-853a25b389a1/3000x3000/2723cde9f8edd92b68353640e5a2b16989532ab027e154a6cf651a57ddfbb8dbddb1e0a331a49261000784cd85de5b4d6d7ad6811494ab178780e21134ddec15.jpeg?aid=rss_feed",
+        url: "https://ask-iliza-anything.simplecast.com",
+        webFeed: "https://feeds.simplecast.com/5Rl5K29L",
+        author: "Ask Iliza Anything"
     }
 ];
