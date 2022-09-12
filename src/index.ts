@@ -1,6 +1,5 @@
 import { contantPoints } from './me.js'
 import { apply, ApplyOptions, Thing } from 'https://unpkg.com/microdata-tooling@1.0.4'
-import { formatDateTime, formatPhone } from './formatters.js'
 import { ContactPoint } from './schema.js'
 import { BadgeStyle, SimpleIcons, icons, SimpleIconBadge } from 'https://unpkg.com/shieldsio-elements@1.0.0'
 import { allComponents, provideFluentDesignSystem } from 'https://unpkg.com/@fluentui/web-components@2.5.4'
@@ -10,23 +9,6 @@ import { podcasts } from './podcasts.js'
 provideFluentDesignSystem().register(allComponents);
 
 const contactOptions: ApplyOptions = {
-    linkFormatter: (data: string, elementData: DOMStringMap): string | null => {
-        if ("formatter" in elementData) {
-            if (elementData["formatter"] === "telephone") {
-                return formatPhone(data);
-            }
-            if (elementData["formatter"] === "email") {
-                return data.replace(/^mailto\:/, "");
-            }
-        }
-        return null;
-    },
-    timeFormatter: (data: string, _: DOMStringMap): string => {
-        if (data === "") {
-            return "Present";
-        }
-        return formatDateTime(data);
-    },
     typeHelpers: {
         "ContactPoint": (data: Thing, element: HTMLElement): boolean => {
             const contact = data as ContactPoint;
