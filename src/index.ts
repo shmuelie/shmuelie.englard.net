@@ -1,7 +1,7 @@
 import { contantPoints } from './me.js'
 import { apply, ApplyOptions, Thing } from 'https://unpkg.com/microdata-tooling@1.0.4'
 import { ContactPoint } from './schema.js'
-import { BadgeStyle, SimpleIcons, icons, SimpleIconBadge } from 'https://unpkg.com/shieldsio-elements@1.0.0'
+import { BadgeStyle, SimpleIcons, icons, SimpleIconBadge, ShieldIOStaticBadge } from 'https://unpkg.com/shieldsio-elements@1.0.0'
 import { allComponents, provideFluentDesignSystem } from 'https://unpkg.com/@fluentui/web-components@2.5.4'
 import { StateEngine } from './state-engine.js'
 import { podcasts } from './podcasts.js'
@@ -12,10 +12,16 @@ const contactOptions: ApplyOptions = {
     typeHelpers: {
         "ContactPoint": (data: Thing, element: HTMLElement): boolean => {
             const contact = data as ContactPoint;
-            if (contact && contact.contactType && icons[contact.contactType as string]) {
-                const widget: SimpleIconBadge = document.createElement("simpleicon-badge");
+            if (contact && contact.contactType) {
+                let widget: SimpleIconBadge | ShieldIOStaticBadge;
+                if (icons[contact.contactType as string]) {
+                    widget = document.createElement("simpleicon-badge");
+                    widget.logo = contact.contactType as SimpleIcons;
+                } else {
+                    widget = document.createElement("shieldio-badge");
+                    widget.message = contact.contactType as string;
+                }
                 widget.badgeStyle = BadgeStyle.ForTheBadge;
-                widget.logo = contact.contactType as SimpleIcons;
                 const link = document.createElement("a");
                 link.target = "_blank";
                 link.style.textDecoration = "none";
