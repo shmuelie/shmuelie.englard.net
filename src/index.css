@@ -74,15 +74,21 @@ fluent-tab-panel.links > section > div {
     flex-wrap: wrap;
 }
 
-fluent-tab-panel.links > section fast-card {
+fluent-tab-panel.links > section fluent-card {
+    max-width: 300px;
+    color: var(--neutral-foreground-rest);
+    margin: 10px;
+}
+
+fluent-tab-panel.links > section fluent-card img {
     max-width: 300px;
 }
 
-fluent-tab-panel.links > section fast-card > div {
+fluent-tab-panel.links > section fluent-card div {
     padding: 0 10px 10px;
-    color: var(--neutral-foreground-rest);
 }
 
-fluent-tab-panel.links > section fast-card > div > img {
-    max-width: 256px;
+fluent-tab-panel.links > section fluent-card p {
+    overflow-y: auto;
+    max-height: 100px;
 }
