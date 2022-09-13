@@ -5,6 +5,7 @@ import { BadgeStyle, SimpleIcons, icons, SimpleIconBadge, ShieldIOStaticBadge } 
 import { allComponents, provideFluentDesignSystem } from 'https://unpkg.com/@fluentui/web-components@2.5.4'
 import { StateEngine } from './state-engine.js'
 import { podcasts } from './podcasts.js'
+import { youtubeChannels } from './youtube.js'
 
 // Loaded Fluent UI system.
 provideFluentDesignSystem().register(allComponents);
@@ -46,6 +47,11 @@ const podcastOptions: ApplyOptions = {
 
 // Use data binding to create podcasts.
 apply((podcasts as any) as Thing, document.querySelector('section.podcasts > div') as HTMLElement, podcastOptions);
+
+const youtubeChannelOptions: ApplyOptions = {
+};
+
+apply((youtubeChannels as any) as Thing, document.querySelector('section.youtubeChannels > div') as HTMLElement, youtubeChannelOptions);
 
 // Configure and create state engine.
 const stateEngine = new StateEngine();
