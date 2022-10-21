@@ -6,6 +6,7 @@ import { allComponents, provideFluentDesignSystem } from 'https://unpkg.com/@flu
 import { StateEngine } from './state-engine.js'
 import { podcasts } from './podcasts.js'
 import { youtubeChannels } from './youtube.js'
+import {} from './index.htm.js'
 
 // Loaded Fluent UI system.
 provideFluentDesignSystem().register(allComponents);
@@ -40,6 +41,7 @@ const contactOptions: ApplyOptions = {
 
 // Use data binding to create contact points.
 apply((contantPoints as any) as Thing, document.querySelector("section[itemprop=contactPoint]") as HTMLElement, contactOptions);
+apply((contantPoints as any) as Thing, document.querySelector("div[itemprop=contactPoint]") as HTMLElement, contactOptions);
 
 // Configuration for data binding podcasts.
 const podcastOptions: ApplyOptions = {
@@ -60,3 +62,9 @@ stateEngine.tagConfigs["FLUENT-TABS"] = {
     event: "change"
 };
 stateEngine.initialize(document.body);
+
+const contactButton = document.getElementById("contactButton");
+const contactDialog = document.getElementById("contactDialog");
+contactButton.control.addEventListener("click", function () {
+    contactDialog.show();
+});

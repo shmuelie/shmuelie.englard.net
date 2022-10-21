@@ -30,6 +30,7 @@
     </header>
     <main class="ms-depth-4">
         <fluent-tabs id="rootTabs" data-state>
+            <fluent-button id="contactButton" href="#" slot="start" appearance="stealth"><div class="ms-Icon ms-Icon--ContactInfo"></div></fluent-button>
             <fluent-button href="#" slot="tab" appearance="outline">General<div slot="start" class="ms-Icon ms-Icon--Contact" aria-hidden="true"></div>
             </fluent-button>
             <fluent-button href="#" slot="tab" appearance="outline">Links<div slot="start" class="ms-Icon ms-Icon--Link" aria-hidden="true"></div>
@@ -80,6 +81,17 @@
             </fluent-tab-panel>
         </fluent-tabs>
     </main>
+    <fluent-dialog id="contactDialog" hidden>
+        <div itemprop="contactPoint">
+            <template data-type="ContactPoint">
+                <div itemscope itemtype="https://schema.org/ContactPoint">
+                    <meta itemprop="contactType" />
+                    <meta itemprop="url" />
+                    <meta itemprop="identifier" />
+                </div>
+            </template>
+        </div>
+    </fluent-dialog>
     <script type="module" src="index.js"></script>
 </body>
 </html>

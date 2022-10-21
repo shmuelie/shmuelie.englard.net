@@ -6,6 +6,7 @@
     "description": "Personal Website",
     "devDependencies": {
         "@fluentui/web-components": "2.5.4",
+        "@microsoft/fast-foundation": "2.46.14",
         "del": "7.0.0",
         "gulp": "4.0.2",
         "gulp-clean-css": "4.3.0",

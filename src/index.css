@@ -9,6 +9,7 @@ body {
 header {
     padding: 12pt;
     display: grid;
+    margin: 10px;
 }
 div[itemtype="https://schema.org/ContactPoint"] {
     display: inline-block;
@@ -18,6 +19,7 @@ main {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
+    margin: 10px;
 }
 @media (min-width: 1280px) {
     /* landscape layout */
@@ -57,8 +59,15 @@ main {
     header > img {
         grid-area: headerImg;
     }
-    section[itemptop="contactPoint"] {
-        grid-area: contact;
+}
+@media (max-width: 1160px) {
+    section[itemprop="contactPoint"] {
+        display: none;
+    }
+}
+@media (min-width: 1160px) {
+    fluent-button#contactButton {
+        display: none;
     }
 }
 
@@ -78,10 +87,12 @@ fluent-tab-panel.links > section fluent-card {
     max-width: 300px;
     color: var(--neutral-foreground-rest);
     margin: 10px;
+    width: 40vw;
 }
 
 fluent-tab-panel.links > section fluent-card img {
     max-width: 300px;
+    width: 40vw;
 }
 
 fluent-tab-panel.links > section fluent-card div {
@@ -90,5 +101,11 @@ fluent-tab-panel.links > section fluent-card div {
 
 fluent-tab-panel.links > section fluent-card p {
     overflow-y: auto;
-    max-height: 100px;
+    height: 100px;
+}
+
+fluent-tab-panel.links > section fluent-card h2 {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
 }
