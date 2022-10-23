@@ -1,74 +1,97 @@
 <!DOCTYPE html>
-<html lang="en-us" itemscope itemtype="https://schema.org/Person">
+<html lang="en-US" dir="ltr" itemscope itemtype="https://schema.org/Person" prefix="og: https://ogp.me/ns#">
 <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Shmueli Yosef Englard</title>
-    <link rel="stylesheet" href="winjs.dark.css" />
     <link rel="stylesheet" href="index.css" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://static2.sharepointonline.com/files/fabric/office-ui-fabric-core/11.0.0/css/fabric.min.css" />
+    <meta property="og:title" content="Shmueli Yosef Englard" />
+    <meta property="og:image" content="https://avatars0.githubusercontent.com/u/1119883?s=460&u=ff3333cb5414fe0726c7b91226ccda3cd65d4a4a&v=4" />
+    <meta property="og:description" content="Personal Website of Shmueli Englard" />
 </head>
-<body class="win-type-body">
-    <diagnal-ribbon corner="right-top" href="https://github.com/shmuelie/shmuelie.englard.net" text="Hosted on GitHub"></diagnal-ribbon>
-    <div>
-        <header>
-            <h1 itemprop="name" class="win-h1"></h1>
-            <section>
-                <img itemprop="image" alt="Shmueli Englard" />
-            </section>
-            <section>
-                <h2 itemprop="jobTitle" class="win-h2"></h2>
-                <div class="win-type-subtitle" data-icon="&#128231;"><a itemprop="email" rel="me" class="win-link" data-formatter="email"></a></div>
-                <div class="win-type-subtitle" data-icon="&#128241;"><a itemprop="telephone" rel="me" class="win-link" data-formatter="telephone"></a></div>
-                <div class="win-type-subtitle" data-icon="&#128506;" itemprop="address"></div>
-            </section>
-            <section itemprop="contactPoint">
-                <template data-type=ContactPoint>
-                    <div itemscope itemtype="https://schema.org/ContactPoint">
-                        <meta itemprop="contactType" />
-                        <meta itemprop="url" />
-                        <meta itemprop="identifier" />
-                    </div>
-                </template>
-            </section>
-        </header>
-        <main>
-            <section>
-                <h2 class="win-h2">About</h2>
-                <p itemprop="description"></p>
-            </section>
-            <section itemprop="worksFor">
-                <h2 class="win-h2">Experience</h2>
-                <template data-type="EmployeeRole">
-                    <section itemscope itemtype="https://schema.org/EmployeeRole">
-                        <div itemprop="worksFor" itemscope itemtype="https://schema.org/Corporation">
-                            <h3 class="win-h3" itemprop="name"></h3>
-                        </div>
-                        <div>
-                            <time itemprop="startDate"></time> through <time itemprop="endDate"></time>
-                        </div>
-                        <ul itemprop="roleDescription">
-                            <template data-type="CreativeWork">
-                                <li itemscope itemtype="https://schema.org/CreativeWork">
-                                    <h3 itemprop="name" class="win-h3"></h3>
+<body class="ms-Fabric" dir="ltr">
+    <header class="ms-depth-4">
+        <img itemprop="image" alt="Shmueli Englard" src="https://avatars0.githubusercontent.com/u/1119883?s=460&u=ff3333cb5414fe0726c7b91226ccda3cd65d4a4a&v=4" />
+        <h1 itemprop="name" class="ms-fontSize-28">Shmueli Yosef Englard</h1>
+        <span itemprop="jobTitle" class="ms-fontSize-20">Senior Software Engineer</span>
+        <a itemprop="email" rel="me" href="mailto:shmueli.yosef@englard.net">shmueli.yosef@englard.net</a>
+        <a itemprop="telephone" rel="me" href="tel:17177468354">+1 (717) 746-8354</a>
+        <span itemprop="address">Seattle, Washington, United States</span>
+        <section itemprop="contactPoint">
+            <template data-type="ContactPoint">
+                <div itemscope itemtype="https://schema.org/ContactPoint">
+                    <meta itemprop="contactType" />
+                    <meta itemprop="url" />
+                    <meta itemprop="identifier" />
+                </div>
+            </template>
+        </section>
+    </header>
+    <main class="ms-depth-4">
+        <fluent-tabs id="rootTabs" data-state>
+            <fluent-button id="contactButton" href="#" slot="start" appearance="stealth"><div class="ms-Icon ms-Icon--ContactInfo"></div></fluent-button>
+            <fluent-button href="#" slot="tab" appearance="outline">General<div slot="start" class="ms-Icon ms-Icon--Contact" aria-hidden="true"></div>
+            </fluent-button>
+            <fluent-button href="#" slot="tab" appearance="outline">Links<div slot="start" class="ms-Icon ms-Icon--Link" aria-hidden="true"></div>
+            </fluent-button>
+            <fluent-tab-panel>
+                <h1 class="ms-fontSize-28">About me</h1>
+                <p>Cutting my programming chops on the .NET 2.0 Betas in 2005, I grew to love developing software. I started out using VB.NET but moved on to C# quickly and never looked back. While most of my work is in C#, I have professional experience with cross platform development in Java, C++ (SWIG); web development in JavaScript, node.js and, database development with MS SQL Server, PostgreSQL and MySQL, and data integration services using different transport protocols using JSON, GeoJSON, XML and Google Protocol Buffers.</p>
+                <h1 class="ms-fontSize-28">Interests (other than work):</h1>
+                <ul>
+                    <li>Renaissance Faires</li>
+                    <li>LEGO</li>
+                    <li>RTS and Building Sims</li>
+                    <li>Table Top Games</li>
+                    <li>Anime</li>
+                </ul>
+            </fluent-tab-panel>
+            <fluent-tab-panel class="links">
+                <section class="podcasts">
+                    <h1 class="ms-fontSize-28"><div slot="start" class="ms-Icon ms-Icon--Microphone" aria-hidden="true"></div>Podcasts</h1>
+                    <div>
+                        <template data-type="PodcastSeries">
+                            <fluent-card itemscope itemtype="https://schema.org/PodcastSeries">
+                                <img itemprop="thumbnailUrl" alt="Podcast Thumbnail" />
+                                <div>
+                                    <h2 class="ms-fontSize-18" itemprop="name"></h2>
                                     <p itemprop="description"></p>
-                                    <a href="" target="_blank" itemprop="url" class="win-link">Link</a>
-                                </li>
-                            </template>
-                            <template data-type="Text">
-                                <li></li>
-                            </template>
-                        </ul>
-                    </section>
-                </template>
-            </section>
-        </main>
-        <footer>
-            <section>
-                <p>Copyright &copy; Shmueli Englard.</p>
-            </section>
-        </footer>
-    </div>
+                                    <a itemprop="url" target="_blank">Web Page</a>
+                                </div>
+                            </fluent-card>
+                        </template>
+                    </div>
+                </section>
+                <section class="youtubeChannels">
+                    <h1 class="ms-fontSize-28">YouTube Channels</h1>
+                    <div>
+                        <template data-type="CreativeWorkSeries">
+                            <fluent-card itemscope itemtype="https://schema.org/CreativeWorkSeries">
+                                <img itemprop="thumbnailUrl" alt="Channel Thumbnail" />
+                                <div>
+                                    <h2 class="ms-fontSize-18" itemprop="name"></h2>
+                                    <p itemprop="description"></p>
+                                    <a itemprop="url" target="_blank">Channel Page</a>
+                                </div>
+                            </fluent-card>
+                        </template>
+                    </div>
+                </section>
+            </fluent-tab-panel>
+        </fluent-tabs>
+    </main>
+    <fluent-dialog id="contactDialog" hidden>
+        <div itemprop="contactPoint">
+            <template data-type="ContactPoint">
+                <div itemscope itemtype="https://schema.org/ContactPoint">
+                    <meta itemprop="contactType" />
+                    <meta itemprop="url" />
+                    <meta itemprop="identifier" />
+                </div>
+            </template>
+        </div>
+    </fluent-dialog>
     <script type="module" src="index.js"></script>
-    <script type="application/ld+json"></script>
 </body>
 </html>
