@@ -109,3 +109,7 @@ fluent-tab-panel.links > section fluent-card h2 {
     overflow: hidden;
     white-space: nowrap;
 }
+
+fluent-dialog {
+    --dialog-height: unset;
+}
