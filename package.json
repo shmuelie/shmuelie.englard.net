@@ -1,38 +1,41 @@
 {
-	"version": "1.0.0",
-	"name": "static.shmuelie.englard.net",
-	"private": true,
-	"devDependencies": {
-		"del": "6.0.0",
-		"esm": "3.2.25",
-		"gulp": "4.0.2",
-		"gulp-clean-css": "4.3.0",
-		"gulp-cli": "2.3.0",
-		"gulp-sourcemaps": "3.0.0",
-		"gulp-terser": "2.0.1",
-		"gulp-typescript": "5.0.1",
-		"http-server": "0.12.3",
-		"terser": "5.5.1",
-		"typescript": "4.1.3",
-		"microdata-tooling": "1.0.3",
-		"shieldsio-elements": "1.0.0"
-	},
-	"author": "Shmueli Englard",
-	"description": "Personal Website",
-	"scripts": {
-		"test-server": "http-server ./dist/ -p 8000",
-		"build": "gulp build",
-		"clean": "gulp clean"
-	},
-	"categories": [
-		"Other"
-	],
-	"displayName": "Shmueli Englard Personal Site",
-	"homepage": "shmuelie.englard.net",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/shmuelie/shmuelie.englard.net"
-	},
-	"readme": "./README.md",
-	"license": "./LICENSE"
+    "author": "Shmueli Englard",
+    "categories": [
+        "Other"
+    ],
+    "description": "Personal Website",
+    "devDependencies": {
+        "@fluentui/web-components": "2.5.4",
+        "@microsoft/fast-foundation": "2.46.14",
+        "del": "7.0.0",
+        "gulp": "4.0.2",
+        "gulp-clean-css": "4.3.0",
+        "gulp-sourcemaps": "3.0.0",
+        "gulp-terser": "2.1.0",
+        "gulp-typescript": "5.0.1",
+        "hashed-es6": "1.0.2",
+        "http-server": "14.1.1",
+        "microdata-tooling": "1.0.4",
+        "shieldsio-elements": "1.0.0",
+        "terser": "5.15.0",
+        "typescript": "4.8.2"
+    },
+    "displayName": "Shmueli Englard Personal Site",
+    "homepage": "shmuelie.englard.net",
+    "license": "./LICENSE",
+    "name": "static.shmuelie.englard.net",
+    "private": true,
+    "readme": "./README.md",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/shmuelie/shmuelie.englard.net"
+    },
+    "scripts": {
+        "build": "gulp build",
+        "clean": "gulp clean",
+        "postinstall": "gulp generate-paths",
+        "preinstall": "npx -y only-allow pnpm",
+        "test-server": "http-server ./dist/ -p 8000"
+    },
+    "version": "1.0.0"
 }

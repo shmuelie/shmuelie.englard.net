@@ -1,72 +1,115 @@
-﻿body {
-  display: flex;
-  flex-direction: column;
-}
-body > div {
-  max-width: 970px;
-  margin: auto;
-  height: 100vh;
-  display: grid;
-  grid-template-rows: min-content 1fr min-content;
-}
-main {
-  overflow-y: clip;
-  display: grid;
-  grid-template-rows: min-content 1fr;
-}
-main > section {
-  border: 1px solid #fff;
-  padding: 0 5px;
-}
-section[itemprop="worksFor"] {
-  overflow-y: auto;
-}
-section[itemprop="worksFor"] section {
-  padding: 5px 10px;
-  margin: 5px 0;
-}
-section[itemprop="worksFor"] section:nth-of-type(even) {
-  background-color: #444;
-}
-section[itemprop="worksFor"] section:nth-of-type(odd) {
-  background-color: #777;
-}
-section[itemprop="worksFor"] section div:nth-child(2) {
-  font-style: italic;
-}
-[data-icon]::before {
-  content: attr(data-icon);
-  padding-right: 0.5em;
-  font-style: normal;
-}
-a[href=""] {
-  display: none;
-}
-footer {
-  padding-bottom: 10px;
-  text-align: center;
-}
-div[itemtype="https://schema.org/ContactPoint"] {
-  display: inline-block;
-  margin: 5px;
+body {
+    display: grid;
+    margin: 8px;
+    height: calc(100vh - 16px);
+    max-width: 115em;
+    margin-left: auto;
+    margin-right: auto;
 }
 header {
-  display: grid;
-  grid-template-columns: min-content 1fr;
-  grid-template-rows: min-content min-content min-content;
-  gap: 0px 0px;
-  grid-template-areas:
-    "name name"
-    ". ."
-    "contactPoint contactPoint";
+    padding: 12pt;
+    display: grid;
+    margin: 10px;
 }
-section[itemprop=contactPoint] {
-  grid-area: contactPoint;
+div[itemtype="https://schema.org/ContactPoint"] {
+    display: inline-block;
+    margin: 5px;
 }
-header img {
-  height: 100px;
-  margin: 5px;
+main {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    margin: 10px;
 }
-header h1[itemprop=name] {
-  grid-area: name;
+@media (min-width: 1280px) {
+    /* landscape layout */
+    body {
+        grid-template-columns: min-content 1fr;
+        grid-template-rows: 1fr;
+    }
+    header {
+        width: min-content;
+        text-align: center;
+        grid-template-rows: min-content min-content min-content min-content min-content min-content min-content;
+        gap: 0px 0px;
+    }
+}
+@media (max-width: 1280px) {
+    /* portrait layout */
+    body {
+        grid-template-columns: 1fr;
+        grid-template-rows: min-content 1fr;
+    }
+    header {
+        grid-template-columns: min-content 1fr;
+        grid-template-rows: min-content min-content min-content min-content 1fr;
+        grid-template-areas:
+            "headerImg ."
+            "headerImg ."
+            "headerImg ."
+            "headerImg ."
+            "headerImg ."
+            "headerImg ."
+            "contact contact";
+        gap: 0px 12pt;
+    }
+    header > span,header > a {
+        display: block;
+    }
+    header > img {
+        grid-area: headerImg;
+    }
+}
+@media (max-width: 1160px) {
+    section[itemprop="contactPoint"] {
+        display: none;
+    }
+}
+@media (min-width: 1160px) {
+    fluent-button#contactButton {
+        display: none;
+    }
+}
+
+header img[itemprop=image] {
+    max-width: 256px;
+    max-height: 256px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+fluent-tab-panel.links > section > div {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+fluent-tab-panel.links > section fluent-card {
+    max-width: 300px;
+    color: var(--neutral-foreground-rest);
+    margin: 10px;
+    width: 40vw;
+}
+
+fluent-tab-panel.links > section fluent-card img {
+    max-width: 300px;
+    width: 40vw;
+}
+
+fluent-tab-panel.links > section fluent-card div {
+    padding: 0 10px 10px;
+}
+
+fluent-tab-panel.links > section fluent-card p {
+    overflow-y: auto;
+    height: 100px;
+}
+
+fluent-tab-panel.links > section fluent-card h2 {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+fluent-dialog {
+    --dialog-height: unset;
 }
