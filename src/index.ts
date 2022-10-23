@@ -65,6 +65,9 @@ stateEngine.initialize(document.body);
 
 const contactButton = document.getElementById("contactButton");
 const contactDialog = document.getElementById("contactDialog");
-contactButton.control.addEventListener("click", function () {
+contactDialog.addEventListener("dismiss", function () {
+    contactDialog.hide();
+});
+contactButton.addEventListener("click", function () {
     contactDialog.show();
 });

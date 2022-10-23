@@ -3,7 +3,7 @@ import { Dialog, Button } from 'https://unpkg.com/@microsoft/fast-foundation@2.4
 declare global {
     interface Document
     {
-        getElementById(elementId: "contactButton"): Button;
-        getElementById(elementId: "contactDialog"): Dialog;
+        getElementById(elementId: "contactButton"): Button & HTMLElement;
+        getElementById(elementId: "contactDialog"): Dialog & HTMLElement;
     }
 }
