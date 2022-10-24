@@ -113,3 +113,7 @@ fluent-tab-panel.links > section fluent-card h2 {
 fluent-dialog {
     --dialog-height: unset;
 }
+
+section.youtubeChannels svg {
+    height: 1em;
+}
