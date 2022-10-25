@@ -2,12 +2,15 @@
 import ts from 'gulp-typescript'
 import sourcemaps from 'gulp-sourcemaps'
 import terser from 'gulp-terser'
-import cleanCSS from 'gulp-clean-css'
 import fs from 'fs'
 import { deleteAsync } from 'del'
+import dartSass from 'sass'
+import gulpSass from 'gulp-sass'
 
 // Load current project's typescript configuration.
 const tsProject = ts.createProject("tsconfig.json");
+
+const sass = gulpSass(dartSass);
 
 // Clean build folder.
 gulp.task("clean", function () {
@@ -29,9 +32,14 @@ gulp.task("ts-build", function () {
 
 // Minimize CSS and copy to build folder
 gulp.task("css-build", function () {
-    return gulp.src("src/*.css").
+    return gulp.src("src/*.scss").
            pipe(sourcemaps.init()).
-           pipe(cleanCSS()).
+           pipe(sass({
+               outputStyle: 'compressed',
+               importer: function (url) {
+                return { file: url.replace("~", "./node_modules/") };
+               }
+           })).
            pipe(sourcemaps.write(".", {
                includeContent: false,
                sourceRoot: "../src"
