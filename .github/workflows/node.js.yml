@@ -11,7 +11,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [15.x]
+        node-version: [18.x]
     steps:
     - uses: actions/checkout@v2
       with:
@@ -22,7 +22,7 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - run: npm install -g pnpm
     - run: pnpm install
-    - run: pnpm run build
+    - run: pnpm build
     - run: |
         git config user.name Shmueli Englard
         git config user.email shmueli.yosef@englard.net
