@@ -66,16 +66,24 @@ main {
     section[itemprop="contactPoint"] {
         display: none;
     }
+
+    header img[itemprop=image] {
+        max-width: 135px;
+        max-height: 135px;
+    }
 }
 @media (min-width: 1160px) {
     fluent-button#contactButton {
         display: none;
     }
+
+    header img[itemprop=image] {
+        max-width: 256px;
+        max-height: 256px;
+    }
 }
 
 header img[itemprop=image] {
-    max-width: 256px;
-    max-height: 256px;
     object-fit: cover;
     border-radius: 50%;
 }
