@@ -31,6 +31,7 @@ const contactOptions: ApplyOptions = {
                 link.target = "_blank";
                 link.style.textDecoration = "none";
                 link.href = contact.url as string ?? "";
+                link.rel = "me";
                 link.appendChild(widget);
                 element.appendChild(link);
             }
