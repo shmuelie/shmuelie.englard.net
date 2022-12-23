@@ -130,6 +130,12 @@ export const contantPoints: ContactPoint[] = [
         contactType: "World Anvil",
         url: "https://www.worldanvil.com/author/shmuelie",
         identifier: "shmuelie"
+    },
+    {
+        "@type": "ContactPoint",
+        contactType: "Mastodon",
+        url: "https://mastodon.social/@shmuelie",
+        identifier: "shmuelie"
     }
 ];
 
