@@ -136,6 +136,12 @@ export const contantPoints: ContactPoint[] = [
         contactType: "Mastodon",
         url: "https://mastodon.social/@shmuelie",
         identifier: "shmuelie"
+    },
+    {
+        "@type": "ContactPoint",
+        contactType: "Discord",
+        url: "https://discordapp.com/users/288693161390505986",
+        identifier: "shmuelie#3989"
     }
 ];
 
