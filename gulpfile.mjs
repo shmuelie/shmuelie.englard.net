@@ -4,7 +4,7 @@ import sourcemaps from 'gulp-sourcemaps'
 import terser from 'gulp-terser'
 import fs from 'fs'
 import { deleteAsync } from 'del'
-import dartSass from 'sass'
+import * as dartSass from 'sass'
 import gulpSass from 'gulp-sass'
 
 // Load current project's typescript configuration.
