@@ -6,6 +6,8 @@ import fs from 'fs'
 import { deleteAsync } from 'del'
 import * as dartSass from 'sass'
 import gulpSass from 'gulp-sass'
+import KEYS from 'jsdom-global/keys.js'
+import { gulpDom } from './gulp_jsdom.mjs'
 
 // Load current project's typescript configuration.
 const tsProject = ts.createProject("tsconfig.json");
@@ -47,11 +49,82 @@ gulp.task("css-build", function () {
            pipe(gulp.dest("dist"));
 });
 
+/**
+ * @typedef {import('./src/schema').ContactPoint} ContactPoint
+ * @type {ContactPoint[]}
+ */
+var contactPoints = JSON.parse(fs.readFileSync("src/me.json"));
+contactPoints.sort(function (a, b) {
+    return a.contactType.localeCompare(b.contactType);
+});
+
+/**
+ *
+ * @param {import('jsdom').JSDOM} document
+ * @param {import('jsdom').DOMWindow} window
+ * @returns {Promise<string?>}
+ */
+async function renderHtml(document, window) {
+    KEYS.forEach(function (key) {
+        global[key] = window[key];
+    });
+    global['customElements'] = window.customElements;
+
+    global.document = window.document;
+    global.window = window;
+    window.console = global.console;
+
+    const apply = (await import('microdata-tooling')).apply;
+    const icons = (await import('shieldsio-elements')).icons;
+
+    /**
+     * @type {import('microdata-tooling').ApplyOptions}
+     */
+    const contactOptions = {
+        typeHelpers: {
+            "ContactPoint": function (data, element) {
+                /**
+                 * @type {ContactPoint | null}
+                 */
+                const contact = data;
+                if (contact && contact.contactType) {
+                    /**
+                     * @type {import('shieldsio-elements').SimpleIconBadge | import('shieldsio-elements').ShieldIOStaticBadge}
+                     */
+                    let widget;
+                    if (icons[contact.contactType]) {
+                        widget = document.createElement("simpleicon-badge");
+                        widget.logo = contact.contactType;
+                    } else {
+                        widget = document.createElement("shieldio-badge");
+                        widget.message = contact.contactType;
+                    }
+                    widget.badgeStyle = "for-the-badge";
+                    const link = document.createElement("a");
+                    link.target = "_blank";
+                    link.style.textDecoration = "none";
+                    link.href = contact.url || "";
+                    link.rel = "me";
+                    link.appendChild(widget);
+                    element.appendChild(link);
+                }
+
+                return false;
+            }
+        }
+    };
+
+    apply(contactPoints, document.querySelector("section[itemprop=contactPoint]"), contactOptions);
+    apply(contactPoints, document.querySelector("div[itemprop=contactPoint]"), contactOptions);
+}
+
 // Copy HTML to build folder.
 gulp.task("html-build", function () {
+
     return gulp.src("src/*.htm").
            pipe(sourcemaps.init()).
            //pipe(htmlmin()).
+           pipe(gulpDom(renderHtml)).
            pipe(sourcemaps.write(".", {
                includeContent: false,
                sourceRoot: "../src"
