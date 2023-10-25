@@ -11,7 +11,7 @@ in `project.json`.
 - [microdata-tooling](https://shmuelie.github.io/microdata-tooling/) version 1.0.4
 - [shieldsio-elements](https://shmuelie.github.io/shieldsio-elements/) version 1.0.0
 - [hashed-es6](https://shmuelie.github.io/hashed-es6/) version 1.0.2
-- [Fluent UI](https://developer.microsoft.com/en-us/fluentui#/) version 2.5.4
+- [Fluent UI](https://developer.microsoft.com/en-us/fluentui#/) version 2.5.16
 
 ## Development
 
