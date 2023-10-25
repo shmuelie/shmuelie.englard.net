@@ -137,5 +137,11 @@
         "contactType": "Discord",
         "url": "https://discordapp.com/users/288693161390505986",
         "identifier": "shmuelie#3989"
+    },
+    {
+        "@type": "ContactPoint",
+        "contactType": "Yelp",
+        "url": "https://www.yelp.com/user_details?userid=8zoM85ingaMtzbtK-mlNjQ",
+        "identifier": "8zoM85ingaMtzbtK-mlNjQ"
     }
 ]
