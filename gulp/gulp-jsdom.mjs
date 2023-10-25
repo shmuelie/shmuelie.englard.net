@@ -5,7 +5,7 @@ import { JSDOM } from 'jsdom'
 const PLUGIN_NAME = "gulp-jsdom";
 
 /**
- *
+ * Allows for manipulation of HTML DOM in a gulp pipeline.
  * @param {(document:Document,window:import('jsdom').DOMWindow) => Promise<string?>} mutator
  * @param {import('jsdom').ConstructorOptions?} options
  * @param {boolean?} serialize
@@ -33,7 +33,14 @@ export function gulpDom(mutator, options, serialize) {
 				};
 				const output = await mutator.call(context, dom.window.document, dom.window);
 
-				file.contents = Buffer.from((typeof output === "string") ? output : (serialize === true) ? dom.serialize() : dom.window.document.documentElement.outerHTML);
+				if (typeof output === "string") {
+					file.contents = Buffer.from(output);
+				} else if (serialize) {
+					file.contents = Buffer.from(dom.serialize());
+				} else {
+					file.contents = Buffer.from(dom.window.document.documentElement.outerHTML)
+				}
+
 				this.push(file);
 			}
 
