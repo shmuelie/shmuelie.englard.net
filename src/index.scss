@@ -1,5 +1,9 @@
 @import '~@fluentui/common-styles/dist/sass/Fabric';
 
+.ms-depth-4 {
+    background-color: var(--neutral-layer-2);
+}
+
 body {
     display: grid;
     margin: 8px;
@@ -7,11 +11,18 @@ body {
     max-width: 115em;
     margin-left: auto;
     margin-right: auto;
+    background-color: var(--neutral-layer-1);
 }
 header {
     padding: 12pt;
     display: grid;
     margin: 10px;
+    font-family: var(--body-font);
+    font-size: var(--type-ramp-base-font-size);
+    line-height: var(--type-ramp-base-line-height);
+    font-weight: initial;
+    font-variation-settings: var(--type-ramp-base-font-variations);
+    color: var(--neutral-foreground-rest);
 }
 div[itemtype="https://schema.org/ContactPoint"] {
     display: inline-block;
