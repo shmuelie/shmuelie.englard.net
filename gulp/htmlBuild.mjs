@@ -1,7 +1,7 @@
 import gulp from 'gulp'
 import sourcemaps from 'gulp-sourcemaps'
 import KEYS from 'jsdom-global/keys.js'
-import { gulpDom } from './gulp-jsdom.mjs'
+import { gulpDom } from './gulpDom.mjs'
 import fs from 'fs'
 
 /**

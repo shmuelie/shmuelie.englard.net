@@ -1,10 +1,10 @@
 import gulp from 'gulp'
-import { clean } from "./gulp/gulp-clean.mjs"
-import { tsBuild } from './gulp/gulp-ts-build.mjs'
-import { cssBuild } from './gulp/gulp-css-build.mjs'
-import { htmlBuild } from './gulp/gulp-html-build.mjs'
-import { copyStatic } from './gulp/gulp-copy-static.mjs'
-import { generatePaths } from './gulp/gulp-generate-paths.mjs'
+import { clean } from "./gulp/clean.mjs"
+import { tsBuild } from './gulp/tsBuild.mjs'
+import { cssBuild } from './gulp/cssBuild.mjs'
+import { htmlBuild } from './gulp/htmlBuild.mjs'
+import { copyStatic } from './gulp/copyStatic.mjs'
+import { generatePaths } from './gulp/generatePaths.mjs'
 
 gulp.task("clean", clean);
 gulp.task("ts-build", tsBuild);
