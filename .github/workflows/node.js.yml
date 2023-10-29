@@ -1,34 +1,39 @@
 name: Node.js CI
-
 on:
   push:
     branches: [ master ]
-
 jobs:
   build:
-
+    name: Build site on Ubuntu using NodeJS 18.x
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [18.x]
     steps:
     - uses: actions/checkout@v3
       with:
         fetch-depth: 0
-    - name: Use Node.js ${{ matrix.node-version }}
+    - name: Use Node.js 18.x
       uses: actions/setup-node@v3
       with:
-        node-version: ${{ matrix.node-version }}
-    - run: npm install -g pnpm
-    - run: pnpm install
-    - run: pnpm build
-    - run: |
+        node-version: 18.x
+    - name: Install PNPM globally
+      run: npm install -g pnpm
+    - name: Install dependencies and confure build
+      run: pnpm install
+    - name: Build Site
+      run: pnpm build
+    - name: Configure git
+      run: |
         git config user.name Shmueli Englard
         git config user.email shmueli.yosef@englard.net
+    - name: Checkout Github Pages branch
+      run: |
         git checkout --progress gh-pages
-        rm -f ./*.*
-        cp ./dist/* ./
-        git add .
-        git commit --allow-empty -m "Updating GH Pages"
-        git push
+    - name: Clear root directory
+      run: rm -f ./*.*
+    - name: Copy build output to root directory
+      run: cp ./dist/* ./
+    - name: Add changes to git
+      run: git add .
+    - name: Commit changes to git
+      run: git commit --allow-empty -m "Updating GH Pages"
+    - name: Push git changes.
+      run: git push
