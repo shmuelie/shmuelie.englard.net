@@ -16,7 +16,7 @@ export function tsBuild() {
         pipe(terser()).
         pipe(sourcemaps.write(".", {
             includeContent: false,
-            sourceRoot: "../src"
+            sourceRoot: "https://github.com/shmuelie/shmuelie.englard.net/tree/master/src"
         })).
         pipe(gulp.dest("dist"));
 }

@@ -86,7 +86,7 @@ export function htmlBuild() {
         pipe(gulpDom(renderHtml)).
         pipe(sourcemaps.write(".", {
             includeContent: false,
-            sourceRoot: "../src"
+            sourceRoot: "https://github.com/shmuelie/shmuelie.englard.net/tree/master/src"
         })).
         pipe(gulp.dest("dist"));
 }
