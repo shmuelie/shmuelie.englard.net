@@ -28,6 +28,7 @@ jobs:
         git config user.email shmueli.yosef@englard.net
         git checkout --progress gh-pages
         cp ./dist/* ./
+        rm -f ./*
         git add .
         git commit --allow-empty -m "Updating GH Pages"
         git push
