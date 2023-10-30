@@ -6,9 +6,9 @@ const PLUGIN_NAME = "gulp-jsdom";
 
 /**
  * Allows for manipulation of HTML DOM in a gulp pipeline.
- * @param {(document:Document,window:import('jsdom').DOMWindow) => Promise<string?>} mutator
- * @param {import('jsdom').ConstructorOptions?} options
- * @param {boolean?} serialize
+ * @param {(document:Document,window:import('jsdom').DOMWindow) => Promise<string?>} mutator The function to manipulate the DOM.
+ * @param {import('jsdom').ConstructorOptions?} options Options for creating the JSDOM DOM.
+ * @param {boolean?} serialize If document should be converted to a string using JSDOM's serialize method. If not set, defaults to true.
  */
 export function gulpDom(mutator, options, serialize) {
     options = options || {};

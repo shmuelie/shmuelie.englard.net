@@ -2,7 +2,7 @@ import fs from 'fs'
 
 /**
  * Generates TypeScript path mappings for node modules.
- * @param {() => void} cb
+ * @param {() => void} cb Callback method to complete operation.
  * @returns {void}
  */
 export function generatePaths(cb) {
