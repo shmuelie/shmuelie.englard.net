@@ -95,11 +95,11 @@ export class DiagnalRibbon extends HTMLElement {
             }
         }
 
-        this.hyperLink.href = this.href || "";
+        this.hyperLink.href = this.href ?? "";
 
-        this.hyperLink.setAttribute("data-ribbon", this.text || "");
-        this.hyperLink.title = this.text || "";
-        this.hyperLink.innerText = this.text || "";
+        this.hyperLink.setAttribute("data-ribbon", this.text ?? "");
+        this.hyperLink.title = this.text ?? "";
+        this.hyperLink.innerText = this.text ?? "";
     }
 
     attributeChangedCallback?(_: string, __: string, ___: string): void {
