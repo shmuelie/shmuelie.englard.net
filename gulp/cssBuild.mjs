@@ -9,7 +9,7 @@ const sass = gulpSass(dartSass);
  * Compiles SASS, minifies it, and the copies it to the output folder.
  * @returns {NodeJS.ReadWriteStream}
  */
-export function cssBuild() {
+export function buildSass() {
     return gulp.src("src/*.scss").
         pipe(sourcemaps.init()).
         pipe(sass({

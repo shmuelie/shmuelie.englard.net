@@ -80,7 +80,7 @@ async function renderHtml(document, window) {
  * Modifies HTML to "render" content and then copies output to build folder.
  * @returns {NodeJS.ReadWriteStream}
  */
-export function htmlBuild() {
+export function buildHtml() {
     return gulp.src("src/*.htm").
         pipe(sourcemaps.init()).
         pipe(gulpDom(renderHtml)).
