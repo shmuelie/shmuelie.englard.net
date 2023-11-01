@@ -1,10 +1,5 @@
 import gulp from 'gulp'
-import { cleanBuildOutput } from "./gulp/cleanBuildOutput.mjs"
-import { buildTypeScriptProject } from './gulp/buildTypeScriptProject.mjs'
-import { buildSass } from './gulp/buildSass.mjs'
-import { buildHtml } from './gulp/buildHtml.mjs'
-import { copyStatic } from './gulp/copyStatic.mjs'
-import { generatePaths } from './gulp/generatePaths.mjs'
+import { buildHtml, buildSass, buildTypeScriptProject, cleanBuildOutput, copyStatic, generatePaths } from './gulp/index.mjs'
 
 gulp.task("clean", cleanBuildOutput);
 gulp.task(buildTypeScriptProject);
