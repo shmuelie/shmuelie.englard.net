@@ -1,8 +1,8 @@
 import gulp from 'gulp'
-import { cleanBuildOutput } from "./gulp/clean.mjs"
-import { buildTypeScriptProject } from './gulp/tsBuild.mjs'
-import { buildSass } from './gulp/cssBuild.mjs'
-import { buildHtml } from './gulp/htmlBuild.mjs'
+import { cleanBuildOutput } from "./gulp/cleanBuildOutput.mjs"
+import { buildTypeScriptProject } from './gulp/buildTypeScriptProject.mjs'
+import { buildSass } from './gulp/buildSass.mjs'
+import { buildHtml } from './gulp/buildHtml.mjs'
 import { copyStatic } from './gulp/copyStatic.mjs'
 import { generatePaths } from './gulp/generatePaths.mjs'
 
