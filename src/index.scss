@@ -1,8 +1,21 @@
 @import '~@fluentui/common-styles/dist/sass/Fabric';
 
-.ms-depth-4 {
-    background-color: var(--neutral-layer-2);
-    border-radius: calc(var(--control-corner-radius) * 1px);
+.card {
+    border: calc(var(--stroke-width) * 1px) solid var(--neutral-stroke-layer-rest);
+    border-radius: calc(var(--layer-corner-radius) * 1px);
+    box-shadow: var(--elevation-shadow-card-rest);
+}
+
+h1 {
+    font-size: var(--type-ramp-plus-4-font-size);
+    font-variation-settings: var(--type-ramp-plus-4-font-variations);
+    line-height: var(--type-ramp-plus-4-line-height);
+}
+
+h2 {
+    font-size: var(--type-ramp-plus-3-font-size);
+    font-variation-settings: var(--type-ramp-plus-3-font-variations);
+    line-height: var(--type-ramp-plus-3-line-height);
 }
 
 body {
@@ -15,8 +28,9 @@ body {
     background-color: var(--neutral-layer-1);
     font-family: var(--body-font);
     font-size: var(--type-ramp-base-font-size);
-    font-weight: initial;
+    font-weight: var(--font-weight);
     font-variation-settings: var(--type-ramp-base-font-variations);
+    line-height: var(--type-ramp-base-line-height);
     color: var(--neutral-foreground-rest);
     grid-template-columns: 1fr;
     grid-template-rows: min-content 1fr;
@@ -36,10 +50,15 @@ header {
         "headerImg ."
         "headerImg .";
     gap: 0px 12pt;
+
 }
 
 header > img {
     grid-area: headerImg;
+}
+
+header > h1, header > h2 {
+    margin: 0;
 }
 
 div[itemtype="https://schema.org/ContactPoint"] {
