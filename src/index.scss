@@ -55,6 +55,8 @@ header {
 
 header > img {
     grid-area: headerImg;
+    object-fit: cover;
+    border-radius: 50%;
 }
 
 header > h1, header > h2 {
@@ -85,13 +87,4 @@ main {
         max-width: 256px;
         max-height: 256px;
     }
-}
-
-header img[itemprop=image] {
-    object-fit: cover;
-    border-radius: 50%;
-}
-
-section.youtubeChannels svg {
-    height: 1em;
 }
