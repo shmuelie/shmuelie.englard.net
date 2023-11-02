@@ -18,12 +18,29 @@ body {
     font-weight: initial;
     font-variation-settings: var(--type-ramp-base-font-variations);
     color: var(--neutral-foreground-rest);
+    grid-template-columns: 1fr;
+    grid-template-rows: min-content 1fr;
 }
 
 header {
     padding: 12pt;
     display: grid;
     margin: 10px;
+    grid-template-columns: min-content 1fr;
+    grid-template-rows: min-content min-content min-content min-content 1fr;
+    grid-template-areas:
+        "headerImg ."
+        "headerImg ."
+        "headerImg ."
+        "headerImg ."
+        "headerImg ."
+        "headerImg ."
+        "contact contact";
+    gap: 0px 12pt;
+}
+
+header > img {
+    grid-area: headerImg;
 }
 
 div[itemtype="https://schema.org/ContactPoint"] {
@@ -36,51 +53,6 @@ main {
     flex-direction: column;
     flex-wrap: wrap;
     margin: 10px;
-}
-
-@media (min-width: 1280px) {
-    /* landscape layout */
-    body {
-        grid-template-columns: min-content 1fr;
-        grid-template-rows: 1fr;
-    }
-
-    header {
-        width: min-content;
-        text-align: center;
-        grid-template-rows: min-content min-content min-content min-content min-content min-content min-content;
-        gap: 0px 0px;
-    }
-}
-
-@media (max-width: 1280px) {
-    /* portrait layout */
-    body {
-        grid-template-columns: 1fr;
-        grid-template-rows: min-content 1fr;
-    }
-
-    header {
-        grid-template-columns: min-content 1fr;
-        grid-template-rows: min-content min-content min-content min-content 1fr;
-        grid-template-areas:
-            "headerImg ."
-            "headerImg ."
-            "headerImg ."
-            "headerImg ."
-            "headerImg ."
-            "headerImg ."
-            "contact contact";
-        gap: 0px 12pt;
-    }
-
-    header > span,header > a {
-        display: block;
-    }
-
-    header > img {
-        grid-area: headerImg;
-    }
 }
 
 @media (max-width: 1160px) {
