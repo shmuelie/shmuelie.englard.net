@@ -1,9 +1,12 @@
-import { CreativeWorkSeries } from "./schema";
+/**
+ * @typedef {import('./schema').CreativeWorkSeries} CreativeWorkSeries
+ */
 
 /**
  * YouTube Channels I watch to.
+ * @type {CreativeWorkSeries[]}
  */
-export const youtubeChannels: CreativeWorkSeries[] = [
+export const youtubeChannels = [
     {
         "@type": "CreativeWorkSeries",
         name: "Geographics",

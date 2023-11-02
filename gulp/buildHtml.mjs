@@ -2,19 +2,17 @@ import gulp from 'gulp'
 import sourcemaps from 'gulp-sourcemaps'
 import KEYS from 'jsdom-global/keys.js'
 import { gulpDom } from './gulpDom.mjs'
-import fs from 'fs'
+import { contactPoints } from '../data/contactPoints.mjs'
+import { podcasts } from '../data/podcasts.mjs'
+import { youtubeChannels } from '../data/youtubeChannels.mjs'
 
 /**
- * @typedef {import('./src/schema').ContactPoint} ContactPoint
+ * @typedef {import('microdata-tooling').apply} ApplyFunction
+ * @typedef {import('microdata-tooling').ApplyOptions} ApplyOptions
+ * @typedef {import('../data/schema').ContactPoint} ContactPoint
+ * @typedef {import('shieldsio-elements').SimpleIconBadge} SimpleIconBadge
+ * @typedef {import('shieldsio-elements').ShieldIOStaticBadge} ShieldIOStaticBadge
  */
-
-/**
- * @type {ContactPoint[]}
- */
-const contactPoints = JSON.parse(fs.readFileSync("src/me.json"));
-contactPoints.sort(function (a, b) {
-    return a.contactType.localeCompare(b.contactType);
-});
 
 /**
  * Changes input HTML DOM.
@@ -33,10 +31,55 @@ async function renderHtml(document, window) {
     window.console = global.console;
 
     const apply = (await import('microdata-tooling')).apply;
-    const icons = (await import('shieldsio-elements')).icons;
+    await renderContactPoints(document, apply)
+    renderPodcasts(document, apply);
+    renderYouTubeChannels(document, apply);
+}
+
+/**
+ *
+ * @param {Document} document
+ * @param {ApplyFunction} apply
+ * @returns {void}
+ */
+function renderYouTubeChannels(document, apply) {
+    /**
+     * @type {ApplyOptions}
+     */
+    const youtubeChannelOptions = {
+    };
+
+    apply(youtubeChannels, document.querySelector('section.youtubeChannels > div'), youtubeChannelOptions);
+}
+
+/**
+ *
+ * @param {Document} document
+ * @param {ApplyFunction} apply
+ * @returns {void}
+ */
+function renderPodcasts(document, apply) {
+    /**
+     * @type {ApplyOptions}
+     */
+    const podcastOptions = {
+    };
+
+    // Use data binding to create podcasts.
+    apply(podcasts, document.querySelector('section.podcasts > div'), podcastOptions);
+}
+
+/**
+ *
+ * @param {Document} document
+ * @param {ApplyFunction} apply
+ * @returns {Promise<void>}
+ */
+async function renderContactPoints(document, apply) {
+    const icons = (await import('shieldsio-elements')).icons
 
     /**
-     * @type {import('microdata-tooling').ApplyOptions}
+     * @type {ApplyOptions}
      */
     const contactOptions = {
         typeHelpers: {
@@ -44,36 +87,36 @@ async function renderHtml(document, window) {
                 /**
                  * @type {ContactPoint | null}
                  */
-                const contact = data;
+                const contact = data
                 if (contact?.contactType) {
                     /**
-                     * @type {import('shieldsio-elements').SimpleIconBadge | import('shieldsio-elements').ShieldIOStaticBadge}
+                     * @type {SimpleIconBadge | ShieldIOStaticBadge}
                      */
-                    let widget;
+                    let widget
                     if (icons[contact.contactType]) {
-                        widget = document.createElement("simpleicon-badge");
-                        widget.logo = contact.contactType;
+                        widget = document.createElement("simpleicon-badge")
+                        widget.logo = contact.contactType
                     } else {
-                        widget = document.createElement("shieldio-badge");
-                        widget.message = contact.contactType;
+                        widget = document.createElement("shieldio-badge")
+                        widget.message = contact.contactType
                     }
-                    widget.badgeStyle = "for-the-badge";
-                    const link = document.createElement("a");
-                    link.target = "_blank";
-                    link.style.textDecoration = "none";
-                    link.href = contact.url || "";
-                    link.rel = "me";
-                    link.appendChild(widget);
-                    element.appendChild(link);
+                    widget.badgeStyle = "for-the-badge"
+                    const link = document.createElement("a")
+                    link.target = "_blank"
+                    link.style.textDecoration = "none"
+                    link.href = contact.url || ""
+                    link.rel = "me"
+                    link.appendChild(widget)
+                    element.appendChild(link)
                 }
 
-                return false;
+                return false
             }
         }
-    };
+    }
 
-    apply(contactPoints, document.querySelector("section[itemprop=contactPoint]"), contactOptions);
-    apply(contactPoints, document.querySelector("div[itemprop=contactPoint]"), contactOptions);
+    apply(contactPoints, document.querySelector("section[itemprop=contactPoint]"), contactOptions)
+    apply(contactPoints, document.querySelector("div[itemprop=contactPoint]"), contactOptions)
 }
 
 /**

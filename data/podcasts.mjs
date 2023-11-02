@@ -1,9 +1,12 @@
-import { PodcastSeries } from './schema'
+/**
+ * @typedef {import('./schema').PodcastSeries} PodcastSeries
+ */
 
 /**
  * Podcasts I listen to.
+ * @type {PodcastSeries[]}
  */
-export const podcasts: PodcastSeries[] = [
+export const podcasts = [
     {
         "@type": "PodcastSeries",
         name: "Accidental Tech Podcast",
