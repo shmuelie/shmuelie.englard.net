@@ -49,7 +49,7 @@ function renderYouTubeChannels(document, apply) {
     const youtubeChannelOptions = {
     };
 
-    apply(youtubeChannels, document.querySelector('section.youtubeChannels > div'), youtubeChannelOptions);
+    //apply(youtubeChannels, document.querySelector('section.youtubeChannels > div'), youtubeChannelOptions);
 }
 
 /**
@@ -66,7 +66,7 @@ function renderPodcasts(document, apply) {
     };
 
     // Use data binding to create podcasts.
-    apply(podcasts, document.querySelector('section.podcasts > div'), podcastOptions);
+    //apply(podcasts, document.querySelector('section.podcasts > div'), podcastOptions);
 }
 
 /**
@@ -117,7 +117,6 @@ async function renderContactPoints(document, apply) {
     }
 
     apply(contactPoints, document.querySelector("section[itemprop=contactPoint]"), contactOptions);
-    apply(contactPoints, document.querySelector("div[itemprop=contactPoint]"), contactOptions);
 }
 
 /**

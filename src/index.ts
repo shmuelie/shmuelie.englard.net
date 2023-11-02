@@ -1,7 +1,6 @@
 import 'https://unpkg.com/shieldsio-elements@1.0.0'
 import { allComponents, baseLayerLuminance, provideFluentDesignSystem, StandardLuminance } from 'https://unpkg.com/@fluentui/web-components@2.5.16'
 import { StateEngine } from './state-engine.js'
-import {} from './index.htm.js'
 import { DesignToken } from 'https://unpkg.com/@microsoft/fast-foundation@2.49.3'
 
 const systemIsDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches;
@@ -18,12 +17,3 @@ stateEngine.tagConfigs["FLUENT-TABS"] = {
     event: "change"
 };
 stateEngine.initialize(document.body);
-
-const contactButton = document.getElementById("contactButton");
-const contactDialog = document.getElementById("contactDialog");
-contactDialog.addEventListener("dismiss", function () {
-    contactDialog.hide();
-});
-contactButton.addEventListener("click", function () {
-    contactDialog.show();
-});

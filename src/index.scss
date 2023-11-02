@@ -2,6 +2,7 @@
 
 .ms-depth-4 {
     background-color: var(--neutral-layer-2);
+    border-radius: calc(var(--control-corner-radius) * 1px);
 }
 
 body {
@@ -12,34 +13,38 @@ body {
     margin-left: auto;
     margin-right: auto;
     background-color: var(--neutral-layer-1);
-}
-header {
-    padding: 12pt;
-    display: grid;
-    margin: 10px;
     font-family: var(--body-font);
     font-size: var(--type-ramp-base-font-size);
-    line-height: var(--type-ramp-base-line-height);
     font-weight: initial;
     font-variation-settings: var(--type-ramp-base-font-variations);
     color: var(--neutral-foreground-rest);
 }
+
+header {
+    padding: 12pt;
+    display: grid;
+    margin: 10px;
+}
+
 div[itemtype="https://schema.org/ContactPoint"] {
     display: inline-block;
     margin: 5px;
 }
+
 main {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
     margin: 10px;
 }
+
 @media (min-width: 1280px) {
     /* landscape layout */
     body {
         grid-template-columns: min-content 1fr;
         grid-template-rows: 1fr;
     }
+
     header {
         width: min-content;
         text-align: center;
@@ -47,12 +52,14 @@ main {
         gap: 0px 0px;
     }
 }
+
 @media (max-width: 1280px) {
     /* portrait layout */
     body {
         grid-template-columns: 1fr;
         grid-template-rows: min-content 1fr;
     }
+
     header {
         grid-template-columns: min-content 1fr;
         grid-template-rows: min-content min-content min-content min-content 1fr;
@@ -66,28 +73,24 @@ main {
             "contact contact";
         gap: 0px 12pt;
     }
+
     header > span,header > a {
         display: block;
     }
+
     header > img {
         grid-area: headerImg;
     }
 }
-@media (max-width: 1160px) {
-    section[itemprop="contactPoint"] {
-        display: none;
-    }
 
+@media (max-width: 1160px) {
     header img[itemprop=image] {
         max-width: 135px;
         max-height: 135px;
     }
 }
-@media (min-width: 1160px) {
-    fluent-button#contactButton {
-        display: none;
-    }
 
+@media (min-width: 1160px) {
     header img[itemprop=image] {
         max-width: 256px;
         max-height: 256px;
@@ -97,42 +100,6 @@ main {
 header img[itemprop=image] {
     object-fit: cover;
     border-radius: 50%;
-}
-
-fluent-tab-panel.links > section > div {
-    display: flex;
-    flex-wrap: wrap;
-}
-
-fluent-tab-panel.links > section fluent-card {
-    max-width: 300px;
-    color: var(--neutral-foreground-rest);
-    margin: 10px;
-    width: 40vw;
-}
-
-fluent-tab-panel.links > section fluent-card img {
-    max-width: 300px;
-    width: 40vw;
-}
-
-fluent-tab-panel.links > section fluent-card div {
-    padding: 0 10px 10px;
-}
-
-fluent-tab-panel.links > section fluent-card p {
-    overflow-y: auto;
-    height: 100px;
-}
-
-fluent-tab-panel.links > section fluent-card h2 {
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
-}
-
-fluent-dialog {
-    --dialog-height: unset;
 }
 
 section.youtubeChannels svg {

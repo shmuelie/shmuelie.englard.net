@@ -17,19 +17,9 @@
         <a itemprop="email" rel="me" href="mailto:shmueli.yosef@englard.net">shmueli.yosef@englard.net</a>
         <a itemprop="telephone" rel="me" href="tel:17177468354">+1 (717) 746-8354</a>
         <span itemprop="address">Seattle, Washington, United States</span>
-        <section itemprop="contactPoint">
-            <template data-type="ContactPoint">
-                <div itemscope itemtype="https://schema.org/ContactPoint">
-                    <meta itemprop="contactType" />
-                    <meta itemprop="url" />
-                    <meta itemprop="identifier" />
-                </div>
-            </template>
-        </section>
     </header>
     <main class="ms-depth-4">
         <fluent-tabs id="rootTabs" data-state>
-            <fluent-button id="contactButton" href="#" slot="start" appearance="stealth"><div class="ms-Icon ms-Icon--ContactInfo"></div></fluent-button>
             <fluent-button href="#" slot="tab" appearance="outline">General<div slot="start" class="ms-Icon ms-Icon--Contact" aria-hidden="true"></div>
             </fluent-button>
             <fluent-button href="#" slot="tab" appearance="outline">Links<div slot="start" class="ms-Icon ms-Icon--Link" aria-hidden="true"></div>
@@ -47,52 +37,18 @@
                 </ul>
             </fluent-tab-panel>
             <fluent-tab-panel class="links">
-                <section class="podcasts">
-                    <h1 class="ms-fontSize-28"><div slot="start" class="ms-Icon ms-Icon--Microphone" aria-hidden="true"></div>Podcasts</h1>
-                    <div>
-                        <template data-type="PodcastSeries">
-                            <fluent-card itemscope itemtype="https://schema.org/PodcastSeries">
-                                <img itemprop="thumbnailUrl" alt="Podcast Thumbnail" />
-                                <div>
-                                    <h2 class="ms-fontSize-18" itemprop="name"></h2>
-                                    <p itemprop="description"></p>
-                                    <a itemprop="url" target="_blank" rel="noopener">Web Page</a>
-                                </div>
-                            </fluent-card>
-                        </template>
-                    </div>
-                </section>
-                <section class="youtubeChannels">
-                    <h1 class="ms-fontSize-28">
-                        <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>YouTube</title><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-                        YouTube Channels</h1>
-                    <div>
-                        <template data-type="CreativeWorkSeries">
-                            <fluent-card itemscope itemtype="https://schema.org/CreativeWorkSeries">
-                                <img itemprop="thumbnailUrl" alt="Channel Thumbnail" />
-                                <div>
-                                    <h2 class="ms-fontSize-18" itemprop="name"></h2>
-                                    <p itemprop="description"></p>
-                                    <a itemprop="url" target="_blank" rel="noopener">Channel Page</a>
-                                </div>
-                            </fluent-card>
-                        </template>
-                    </div>
+                <section itemprop="contactPoint">
+                    <template data-type="ContactPoint">
+                        <div itemscope itemtype="https://schema.org/ContactPoint">
+                            <meta itemprop="contactType" />
+                            <meta itemprop="url" />
+                            <meta itemprop="identifier" />
+                        </div>
+                    </template>
                 </section>
             </fluent-tab-panel>
         </fluent-tabs>
     </main>
-    <fluent-dialog id="contactDialog" hidden>
-        <div itemprop="contactPoint">
-            <template data-type="ContactPoint">
-                <div itemscope itemtype="https://schema.org/ContactPoint">
-                    <meta itemprop="contactType" />
-                    <meta itemprop="url" />
-                    <meta itemprop="identifier" />
-                </div>
-            </template>
-        </div>
-    </fluent-dialog>
     <script type="module" src="index.js"></script>
 </body>
 </html>
