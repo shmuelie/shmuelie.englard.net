@@ -160,7 +160,7 @@ export class StateEngine {
      */
     private getConfig(element: Element): StateEngineConfigEntry | null {
         if (element.hasAttribute(dataStateAttributeName)) {
-            const elementConfig = JSON.parse(element.getAttribute(dataStateAttributeName) ?? "{}") as DataStateConfig
+            const elementConfig = JSON.parse(element.getAttribute(dataStateAttributeName) || "{}") as DataStateConfig
             const elementId = element.id || elementConfig.id;
             const tagConfig = this.tagConfigs[element.tagName];
             const elementEvent = elementConfig.event ?? tagConfig?.event ?? null;
