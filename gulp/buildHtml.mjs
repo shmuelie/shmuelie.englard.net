@@ -76,7 +76,7 @@ function renderPodcasts(document, apply) {
  * @returns {Promise<void>}
  */
 async function renderContactPoints(document, apply) {
-    const icons = (await import('shieldsio-elements')).icons
+    const icons = (await import('shieldsio-elements')).icons;
 
     /**
      * @type {ApplyOptions}
@@ -87,36 +87,37 @@ async function renderContactPoints(document, apply) {
                 /**
                  * @type {ContactPoint | null}
                  */
-                const contact = data
+                const contact = data;
                 if (contact?.contactType) {
                     /**
                      * @type {SimpleIconBadge | ShieldIOStaticBadge}
                      */
-                    let widget
+                    let widget;
                     if (icons[contact.contactType]) {
-                        widget = document.createElement("simpleicon-badge")
-                        widget.logo = contact.contactType
+                        widget = document.createElement("simpleicon-badge");
+                        widget.logo = contact.contactType;
                     } else {
-                        widget = document.createElement("shieldio-badge")
-                        widget.message = contact.contactType
+                        widget = document.createElement("shieldio-badge");
+                        widget.message = contact.contactType;
                     }
-                    widget.badgeStyle = "for-the-badge"
-                    const link = document.createElement("a")
-                    link.target = "_blank"
-                    link.style.textDecoration = "none"
+                    widget.badgeStyle = "for-the-badge";
+                    const link = document.createElement("a");
+                    link.target = "_blank";
+                    link.style.textDecoration = "none";
                     link.href = contact.url || ""
-                    link.rel = "me"
-                    link.appendChild(widget)
-                    element.appendChild(link)
+                    link.rel = "me noopener";
+                    link.title = contact.contactType || "";
+                    link.appendChild(widget);
+                    element.appendChild(link);
                 }
 
-                return false
+                return false;
             }
         }
     }
 
-    apply(contactPoints, document.querySelector("section[itemprop=contactPoint]"), contactOptions)
-    apply(contactPoints, document.querySelector("div[itemprop=contactPoint]"), contactOptions)
+    apply(contactPoints, document.querySelector("section[itemprop=contactPoint]"), contactOptions);
+    apply(contactPoints, document.querySelector("div[itemprop=contactPoint]"), contactOptions);
 }
 
 /**
