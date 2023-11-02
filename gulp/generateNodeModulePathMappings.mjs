@@ -5,7 +5,7 @@ import fs from 'fs'
  * @param {() => void} cb Callback method to complete operation.
  * @returns {void}
  */
-export function generatePaths(cb) {
+export function generateNodeModulePathMappings(cb) {
     const pathsConfig = {
         compilerOptions: {
             paths: {}
