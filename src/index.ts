@@ -5,7 +5,7 @@ import { StateEngine } from './state-engine.js'
 import { podcasts } from './podcasts.js'
 import { youtubeChannels } from './youtube.js'
 import {} from './index.htm.js'
-import { DesignToken } from 'https://unpkg.com/@microsoft/fast-foundation@2.49.2'
+import { DesignToken } from 'https://unpkg.com/@microsoft/fast-foundation@2.49.3'
 
 const systemIsDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches;
 
