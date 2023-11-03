@@ -109,3 +109,11 @@ main {
         max-height: 256px;
     }
 }
+
+fluent-tabs::part(tablist) {
+    border-top-right-radius: calc(var(--layer-corner-radius) * 1px);
+    border-top-left-radius: calc(var(--layer-corner-radius) * 1px);
+    background-color: var(--neutral-layer-2);
+    width: 100%;
+    margin-bottom: calc(var(--layer-corner-radius) * 1px);
+}
