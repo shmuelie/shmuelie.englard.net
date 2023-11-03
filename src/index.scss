@@ -6,6 +6,22 @@
     box-shadow: var(--elevation-shadow-card-rest);
 }
 
+a {
+    color: var(--accent-foreground-rest);
+}
+
+a:hover {
+    color: var(--accent-foreground-hover);
+}
+
+a:active {
+    color: var(--accent-foreground-active);
+}
+
+a:focus {
+    color: var(--accent-foreground-focus);
+}
+
 h1 {
     font-size: var(--type-ramp-plus-4-font-size);
     font-variation-settings: var(--type-ramp-plus-4-font-variations);
