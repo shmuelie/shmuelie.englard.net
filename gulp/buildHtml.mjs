@@ -66,7 +66,7 @@ function renderPodcasts(document, apply) {
     };
 
     // Use data binding to create podcasts.
-    //apply(podcasts, document.querySelector('section.podcasts > div'), podcastOptions);
+    apply(podcasts, document.querySelector('fluent-tab-panel.podcasts > section'), podcastOptions);
 }
 
 /**

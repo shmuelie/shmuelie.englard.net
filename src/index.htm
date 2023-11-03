@@ -22,6 +22,7 @@
         <fluent-tabs id="rootTabs" data-state>
             <fluent-tab>General</fluent-tab>
             <fluent-tab>Links</fluent-tab>
+            <fluent-tab>Podcasts I Listen To</fluent-tab>
             <fluent-tab-panel>
                 <a class="badge" target="_blank" href="https://github.com/shmuelie/shmuelie.englard.net" rel="noopener" title="GitHub Repo">
                     <shieldio-badge message="GitHub Repo" color="181717" logocolor="FFFFFF" logo="GitHub" badgestyle="for-the-badge"></shieldio-badge>
@@ -40,7 +41,7 @@
                     <li>Anime</li>
                 </ul>
             </fluent-tab-panel>
-            <fluent-tab-panel class="links">
+            <fluent-tab-panel>
                 <section itemprop="contactPoint">
                     <template data-type="ContactPoint">
                         <div itemscope itemtype="https://schema.org/ContactPoint">
@@ -48,6 +49,20 @@
                             <meta itemprop="url" />
                             <meta itemprop="identifier" />
                         </div>
+                    </template>
+                </section>
+            </fluent-tab-panel>
+            <fluent-tab-panel class="podcasts">
+                <section>
+                    <template data-type="PodcastSeries">
+                        <fluent-card itemscope itemtype="https://schema.org/PodcastSeries">
+                            <img itemprop="thumbnailUrl" alt="Podcast Thumbnail" />
+                            <div>
+                                <h2 itemprop="name"></h2>
+                                <p itemprop="description"></p>
+                                <a itemprop="url" target="_blank">Web Page</a>
+                            </div>
+                        </fluent-card>
                     </template>
                 </section>
             </fluent-tab-panel>
