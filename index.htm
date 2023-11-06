@@ -20,7 +20,7 @@
         <fluent-tabs id="rootTabs" data-state="">
             <fluent-tab>General</fluent-tab>
             <fluent-tab>Links</fluent-tab>
-            <fluent-tab>Podcasts I Listen To</fluent-tab>
+            <fluent-tab>Interests</fluent-tab>
             <fluent-tab-panel>
                 <a class="badge" target="_blank" href="https://github.com/shmuelie/shmuelie.englard.net" rel="noopener" title="GitHub Repo">
                     <shieldio-badge message="GitHub Repo" color="181717" logocolor="FFFFFF" logo="GitHub" badgestyle="for-the-badge"></shieldio-badge>
@@ -30,14 +30,6 @@
                 </a>
                 <h1>About me</h1>
                 <p>Cutting my programming chops on the .NET 2.0 Betas in 2005, I grew to love developing software. I started out using VB.NET but moved on to C# quickly and never looked back. While most of my work is in C#, I have professional experience with cross platform development in Java, C++ (SWIG); web development in JavaScript, node.js and, database development with MS SQL Server, PostgreSQL and MySQL, and data integration services using different transport protocols using JSON, GeoJSON, XML and Google Protocol Buffers.</p>
-                <h1>Interests (other than work):</h1>
-                <ul>
-                    <li>Renaissance Faires</li>
-                    <li>LEGO</li>
-                    <li>RTS and Building Sims</li>
-                    <li>Table Top Games</li>
-                    <li>Anime</li>
-                </ul>
             </fluent-tab-panel>
             <fluent-tab-panel>
                 <section itemprop="contactPoint">
@@ -140,45 +132,49 @@
                             <meta itemprop="identifier" content="UCeWZRExZngloGBB9ZPXAkJg">
                         <a target="_blank" style="text-decoration: none;" href="http://www.youtube.com/channel/UCeWZRExZngloGBB9ZPXAkJg" rel="me noopener" title="YouTube"><simpleicon-badge logo="YouTube" badgestyle="for-the-badge"></simpleicon-badge></a></div></section>
             </fluent-tab-panel>
-            <fluent-tab-panel class="podcasts">
-                <section>
-                    
-                <fluent-card itemscope="" itemtype="https://schema.org/PodcastSeries">
-                            <img itemprop="thumbnailUrl" alt="Podcast Thumbnail" src="https://cdn.atp.fm/artwork">
-                            <div>
-                                <h2 itemprop="name">Accidental Tech Podcast</h2>
-                                <p itemprop="description">Three nerds discussing tech, Apple, programming, and loosely related matters.</p>
-                                <a itemprop="url" target="_blank" href="https://atp.fm/">Web Page</a>
-                            </div>
-                        </fluent-card><fluent-card itemscope="" itemtype="https://schema.org/PodcastSeries">
-                            <img itemprop="thumbnailUrl" alt="Podcast Thumbnail" src="http://relayfm.s3.amazonaws.com/uploads/broadcast/image/17/cortex_artwork.png">
-                            <div>
-                                <h2 itemprop="name">Cortex</h2>
-                                <p itemprop="description">CGP Grey and Myke Hurley are both independent content creators. Each episode, they get together to discuss their working lives. Hosted by CGP Grey and Myke Hurley.</p>
-                                <a itemprop="url" target="_blank" href="https://www.relay.fm/cortex">Web Page</a>
-                            </div>
-                        </fluent-card><fluent-card itemscope="" itemtype="https://schema.org/PodcastSeries">
-                            <img itemprop="thumbnailUrl" alt="Podcast Thumbnail" src="http://relayfm.s3.amazonaws.com/uploads/broadcast/image/23/radar_artwork.png">
-                            <div>
-                                <h2 itemprop="name">Under the Radar</h2>
-                                <p itemprop="description">From development and design to marketing and support, Under the Radar is all about independent app development. It's never longer than 30 minutes.  Hosted by Marco Arment and David Smith.</p>
-                                <a itemprop="url" target="_blank" href="https://www.relay.fm/radar">Web Page</a>
-                            </div>
-                        </fluent-card><fluent-card itemscope="" itemtype="https://schema.org/PodcastSeries">
-                            <img itemprop="thumbnailUrl" alt="Podcast Thumbnail" src="http://relayfm.s3.amazonaws.com/uploads/broadcast/image/11/upgrade_artwork.png">
-                            <div>
-                                <h2 itemprop="name">Upgrade</h2>
-                                <p itemprop="description">Upgrade looks at how technology shapes our lives, from the devices in our hands and pockets to the streaming services that keep us entertained. Hosted by Jason Snell and Myke Hurley.</p>
-                                <a itemprop="url" target="_blank" href="https://www.relay.fm/upgrade">Web Page</a>
-                            </div>
-                        </fluent-card><fluent-card itemscope="" itemtype="https://schema.org/PodcastSeries">
-                            <img itemprop="thumbnailUrl" alt="Podcast Thumbnail" src="https://image.simplecastcdn.com/images/2e970d8d-719d-4665-b4cd-6a3c82c2cca6/443e2d4e-902b-46ec-93cd-853a25b389a1/3000x3000/2723cde9f8edd92b68353640e5a2b16989532ab027e154a6cf651a57ddfbb8dbddb1e0a331a49261000784cd85de5b4d6d7ad6811494ab178780e21134ddec15.jpeg?aid=rss_feed">
-                            <div>
-                                <h2 itemprop="name">Ask Iliza Anything</h2>
-                                <p itemprop="description">Everyone deserves that best friend who delivers blunt advice with impunity. Comedian, writer, and actor Iliza Shlesinger is that friend. She has built a cult-like following of listeners seeking her hilarious take on their problems. Every week, people submit their burning questions to the show, with topics ranging from bad coworkers, psychotic bridesmaids, and a mother-in-law who won't move out to faking an accent and diarrhea etiquette. Iliza's answers range from wise and heart-felt to rage-fueled and off-the-wall. She enjoys nothing more than giving incisive life advice to total strangers, sometimes with a celebrity guest in tow. It's always entertaining, so go ahead: Ask Iliza Anything.</p>
-                                <a itemprop="url" target="_blank" href="https://ask-iliza-anything.simplecast.com">Web Page</a>
-                            </div>
-                        </fluent-card></section>
+            <fluent-tab-panel class="interests">
+                <section class="podcasts">
+                    <h1>Podcasts</h1>
+                    <p>Podcasts I listen to:</p>
+                    <div>
+                        
+                    <fluent-card itemscope="" itemtype="https://schema.org/PodcastSeries">
+                                <img itemprop="thumbnailUrl" alt="Podcast Thumbnail" src="https://cdn.atp.fm/artwork">
+                                <div>
+                                    <h2 itemprop="name">Accidental Tech Podcast</h2>
+                                    <p itemprop="description">Three nerds discussing tech, Apple, programming, and loosely related matters.</p>
+                                    <a itemprop="url" target="_blank" href="https://atp.fm/">Web Page</a>
+                                </div>
+                            </fluent-card><fluent-card itemscope="" itemtype="https://schema.org/PodcastSeries">
+                                <img itemprop="thumbnailUrl" alt="Podcast Thumbnail" src="http://relayfm.s3.amazonaws.com/uploads/broadcast/image/17/cortex_artwork.png">
+                                <div>
+                                    <h2 itemprop="name">Cortex</h2>
+                                    <p itemprop="description">CGP Grey and Myke Hurley are both independent content creators. Each episode, they get together to discuss their working lives. Hosted by CGP Grey and Myke Hurley.</p>
+                                    <a itemprop="url" target="_blank" href="https://www.relay.fm/cortex">Web Page</a>
+                                </div>
+                            </fluent-card><fluent-card itemscope="" itemtype="https://schema.org/PodcastSeries">
+                                <img itemprop="thumbnailUrl" alt="Podcast Thumbnail" src="http://relayfm.s3.amazonaws.com/uploads/broadcast/image/23/radar_artwork.png">
+                                <div>
+                                    <h2 itemprop="name">Under the Radar</h2>
+                                    <p itemprop="description">From development and design to marketing and support, Under the Radar is all about independent app development. It's never longer than 30 minutes.  Hosted by Marco Arment and David Smith.</p>
+                                    <a itemprop="url" target="_blank" href="https://www.relay.fm/radar">Web Page</a>
+                                </div>
+                            </fluent-card><fluent-card itemscope="" itemtype="https://schema.org/PodcastSeries">
+                                <img itemprop="thumbnailUrl" alt="Podcast Thumbnail" src="http://relayfm.s3.amazonaws.com/uploads/broadcast/image/11/upgrade_artwork.png">
+                                <div>
+                                    <h2 itemprop="name">Upgrade</h2>
+                                    <p itemprop="description">Upgrade looks at how technology shapes our lives, from the devices in our hands and pockets to the streaming services that keep us entertained. Hosted by Jason Snell and Myke Hurley.</p>
+                                    <a itemprop="url" target="_blank" href="https://www.relay.fm/upgrade">Web Page</a>
+                                </div>
+                            </fluent-card><fluent-card itemscope="" itemtype="https://schema.org/PodcastSeries">
+                                <img itemprop="thumbnailUrl" alt="Podcast Thumbnail" src="https://image.simplecastcdn.com/images/2e970d8d-719d-4665-b4cd-6a3c82c2cca6/443e2d4e-902b-46ec-93cd-853a25b389a1/3000x3000/2723cde9f8edd92b68353640e5a2b16989532ab027e154a6cf651a57ddfbb8dbddb1e0a331a49261000784cd85de5b4d6d7ad6811494ab178780e21134ddec15.jpeg?aid=rss_feed">
+                                <div>
+                                    <h2 itemprop="name">Ask Iliza Anything</h2>
+                                    <p itemprop="description">Everyone deserves that best friend who delivers blunt advice with impunity. Comedian, writer, and actor Iliza Shlesinger is that friend. She has built a cult-like following of listeners seeking her hilarious take on their problems. Every week, people submit their burning questions to the show, with topics ranging from bad coworkers, psychotic bridesmaids, and a mother-in-law who won't move out to faking an accent and diarrhea etiquette. Iliza's answers range from wise and heart-felt to rage-fueled and off-the-wall. She enjoys nothing more than giving incisive life advice to total strangers, sometimes with a celebrity guest in tow. It's always entertaining, so go ahead: Ask Iliza Anything.</p>
+                                    <a itemprop="url" target="_blank" href="https://ask-iliza-anything.simplecast.com">Web Page</a>
+                                </div>
+                            </fluent-card></div>
+                </section>
             </fluent-tab-panel>
         </fluent-tabs>
     </main>
