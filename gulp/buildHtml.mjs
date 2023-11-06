@@ -65,8 +65,10 @@ function renderPodcasts(document, apply) {
     const podcastOptions = {
     };
 
+    const podcastsElement = document.querySelector('fluent-tab-panel.podcasts > section');
     // Use data binding to create podcasts.
-    apply(podcasts, document.querySelector('fluent-tab-panel.podcasts > section'), podcastOptions);
+    apply(podcasts, podcastsElement, podcastOptions);
+    podcastsElement.removeChild(podcastsElement.querySelector("template"));
 }
 
 /**
@@ -116,7 +118,9 @@ async function renderContactPoints(document, apply) {
         }
     }
 
-    apply(contactPoints, document.querySelector("section[itemprop=contactPoint]"), contactOptions);
+    const contactsElement = document.querySelector("section[itemprop=contactPoint]");
+    apply(contactPoints, contactsElement, contactOptions);
+    contactsElement.removeChild(contactsElement.querySelector("template"));
 }
 
 /**
