@@ -1,0 +1,20 @@
+a {
+    color: var(--accent-foreground-rest);
+}
+
+a:hover {
+    color: var(--accent-foreground-hover);
+}
+
+a:active {
+    color: var(--accent-foreground-active);
+}
+
+a:focus {
+    color: var(--accent-foreground-focus);
+}
+
+a.badge {
+    text-decoration: none !important;
+    display: block;
+}

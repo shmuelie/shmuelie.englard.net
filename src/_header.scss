@@ -1,0 +1,40 @@
+header {
+    padding: 12pt;
+    display: grid;
+    margin: 10px;
+    grid-template-columns: min-content 1fr;
+    grid-template-rows: min-content min-content min-content min-content 1fr;
+    grid-template-areas:
+        "headerImg ."
+        "headerImg ."
+        "headerImg ."
+        "headerImg ."
+        "headerImg ."
+        "headerImg .";
+    gap: 0px 12pt;
+
+}
+
+header > img {
+    grid-area: headerImg;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+header > h1, header > h2 {
+    margin: 0;
+}
+
+@media (max-width: 1160px) {
+    header img[itemprop=image] {
+        max-width: 135px;
+        max-height: 135px;
+    }
+}
+
+@media (min-width: 1160px) {
+    header img[itemprop=image] {
+        max-width: 256px;
+        max-height: 256px;
+    }
+}
