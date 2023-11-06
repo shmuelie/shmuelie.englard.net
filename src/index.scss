@@ -1,7 +1,7 @@
 @use 'hyperlink';
 @use 'headings';
 @use 'header';
-@use 'podcasts';
+@use 'interests';
 
 .card {
     border: calc(var(--stroke-width) * 1px) solid var(--neutral-stroke-layer-rest);

@@ -65,7 +65,7 @@ function renderPodcasts(document, apply) {
     const podcastOptions = {
     };
 
-    const podcastsElement = document.querySelector('fluent-tab-panel.podcasts > section');
+    const podcastsElement = document.querySelector('fluent-tab-panel.interests > section.podcasts > div');
     // Use data binding to create podcasts.
     apply(podcasts, podcastsElement, podcastOptions);
     podcastsElement.removeChild(podcastsElement.querySelector("template"));
