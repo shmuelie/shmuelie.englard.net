@@ -5,9 +5,9 @@
     ],
     "description": "Personal Website",
     "devDependencies": {
-        "@fluentui/common-styles": "1.2.35",
-        "@fluentui/web-components": "2.5.16",
-        "@microsoft/fast-foundation": "2.49.3",
+        "@fluentui/common-styles": "1.2.47",
+        "@fluentui/web-components": "2.6.1",
+        "@microsoft/fast-foundation": "2.49.6",
         "cross-env": "7.0.3",
         "del": "7.1.0",
         "gulp": "4.0.2",
@@ -23,11 +23,11 @@
         "microdata-tooling": "1.0.4",
         "office-ui-fabric-core": "11.1.0",
         "plugin-error": "2.0.1",
-        "sass": "1.69.5",
+        "sass": "1.75.0",
         "shieldsio-elements": "1.0.0",
-        "terser": "5.24.0",
+        "terser": "5.30.4",
         "through2": "4.0.2",
-        "typescript": "5.2.2"
+        "typescript": "5.4.5"
     },
     "displayName": "Shmueli Englard Personal Site",
     "homepage": "shmuelie.englard.net",

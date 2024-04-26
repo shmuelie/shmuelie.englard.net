@@ -1,7 +1,7 @@
 import 'https://unpkg.com/shieldsio-elements@1.0.0'
-import { allComponents, baseLayerLuminance, provideFluentDesignSystem, StandardLuminance } from 'https://unpkg.com/@fluentui/web-components@2.5.16'
+import { allComponents, baseLayerLuminance, provideFluentDesignSystem, StandardLuminance } from 'https://unpkg.com/@fluentui/web-components@2.6.1'
 import { StateEngine } from './state-engine.js'
-import { DesignToken } from 'https://unpkg.com/@microsoft/fast-foundation@2.49.3'
+import { DesignToken } from 'https://unpkg.com/@microsoft/fast-foundation@2.49.6'
 
 const systemIsDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches;
 
