@@ -26,7 +26,7 @@ jobs:
         git config user.email shmueli.yosef@englard.net
     - name: Checkout Github Pages branch
       run: |
-        git checkout --progress gh-pages
+        git checkout --force --progress gh-pages
     - name: Clear root directory
       run: rm -f ./*.*
     - name: Copy build output to root directory
