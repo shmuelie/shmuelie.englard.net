@@ -1,7 +1,7 @@
 name: Node.js CI
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
 jobs:
   build:
     name: Build site on Ubuntu using NodeJS 18.x
