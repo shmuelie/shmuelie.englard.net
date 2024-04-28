@@ -1,6 +1,6 @@
 import { changeSrcToLazySrcInImgTag, lazyLoadImagesInit } from './dib-lazy-load.js'
 
-interface DibData {
+interface EmbedData {
     content: string;
     customCss?: string;
     additional_head_code?: string;
@@ -14,14 +14,10 @@ interface DibData {
     additional_js_files: string[];
     rssUrl?: string;
     rssTitle: string;
-    canonicalUrl?: string;
-    headTitle?: string;
-    headDescription?: string;
-    og_image?: string;
 }
 
-interface DibEmbed {
-    data: DibData;
+interface EmbedResponse {
+    data: EmbedData;
     status: string;
 }
 
@@ -29,13 +25,13 @@ function isInIframe(): boolean {
     return window.self !== window.top;
 }
 
-export interface DibOptions {
+export interface EmbedOptions {
     categories?: string[];
     authors?: string[];
     baseUrl?: string;
 }
 
-export async function loadRecentBlog(count: number, options: DibOptions = {}): Promise<void> {
+export async function embedRecentBlog(count: number, options: EmbedOptions = {}): Promise<void> {
     let urlBase = "https://api.dropinblog.com/v1/embed?b=f56590c5-56ae-4aab-8d55-df9c76db569c&blogurl=" + encodeURIComponent(location.toString().replace(location.search, "")) + "&domain=" + encodeURIComponent(window.location.host) + "&format=json&recentposts=" + count;
 
     if (options.categories && options.categories.length > 0) {
@@ -49,10 +45,10 @@ export async function loadRecentBlog(count: number, options: DibOptions = {}): P
     }
 
     const response = await fetch(urlBase);
-    parseData(await response.json() as DibEmbed);
+    parseData(await response.json() as EmbedResponse);
 }
 
-export async function loadBlog(options: DibOptions = {}): Promise<void> {
+export async function embedBlog(options: EmbedOptions = {}): Promise<void> {
     let urlBase = "https://api.dropinblog.com/v1/embed?b=f56590c5-56ae-4aab-8d55-df9c76db569c&blogurl=" + encodeURIComponent(location.toString().replace(location.search, "")) + "&domain=" + encodeURIComponent(window.location.host) + "&format=json";
 
     if (options.categories && options.categories.length > 0) {
@@ -66,10 +62,10 @@ export async function loadBlog(options: DibOptions = {}): Promise<void> {
     }
 
     const response = await fetch(urlBase);
-    parseData(await response.json() as DibEmbed);
+    parseData(await response.json() as EmbedResponse);
 }
 
-function parseData(json: DibEmbed): void {
+function parseData(json: EmbedResponse): void {
     appendElements(json.data);
     setTimeout(()=>{
         lazyLoadImagesInit();
@@ -135,7 +131,7 @@ function addContent(divId: string, content: string, process: boolean): void {
     }
 }
 
-function appendElements(data: DibData): void {
+function appendElements(data: EmbedData): void {
     data.content = changeSrcToLazySrcInImgTag(data.content)
     if (data.customCss) {
         addStyle(data.customCss);
