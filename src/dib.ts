@@ -1,3 +1,5 @@
+import { changeSrcToLazySrcInImgTag, lazyLoadImagesInit } from './dib-lazy-load.js'
+
 interface DibData {
     content: string;
     customCss?: string;
@@ -23,61 +25,48 @@ interface DibEmbed {
     status: string;
 }
 
-const DIB_FALLBACK_SVG_IMG = `data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20WIDTH%20HEIGHT'%3E%3C/svg%3E`;
-const DIB_LAZYLOAD_IMG_SRC = "data-lazy-load";
-
 function isInIframe(): boolean {
     return window.self !== window.top;
 }
 
-function changeSrcToLazySrcInImgTag(content: string = ""): string {
-
-    const parser = new DOMParser();
-    const doc = parser.parseFromString(content, "text/html");
-
-    Array.from(doc.querySelectorAll(".dib-post-featured-image img, .dib-post-content img, img.dib-post-featured-image, .dib-author-photo img")).forEach((img)=>{
-        img.setAttribute(DIB_LAZYLOAD_IMG_SRC, img.getAttribute("src") ?? "");
-        img.setAttribute("loading", "dib-lazy");
-        img.classList.add("dib-img-loading");
-        img.setAttribute("src", DIB_FALLBACK_SVG_IMG);
-    });
-
-    return doc.body.innerHTML
+export interface DibOptions {
+    categories?: string[];
+    authors?: string[];
+    baseUrl?: string;
 }
 
-export async function loadBlog() {
-    const response = await fetch("https://api.dropinblog.com/v1/embed?b=f56590c5-56ae-4aab-8d55-df9c76db569c&blogurl=" + encodeURIComponent(location.toString().replace(location.search, "")) + "&domain=" + encodeURIComponent(window.location.host) + "&format=json");
+export async function loadRecentBlog(count: number, options: DibOptions = {}): Promise<void> {
+    let urlBase = "https://api.dropinblog.com/v1/embed?b=f56590c5-56ae-4aab-8d55-df9c76db569c&blogurl=" + encodeURIComponent(location.toString().replace(location.search, "")) + "&domain=" + encodeURIComponent(window.location.host) + "&format=json&recentposts=" + count;
+
+    if (options.categories && options.categories.length > 0) {
+        urlBase += "&recentpostscategories=" + options.categories.join(",");
+    }
+    if (options.authors && options.authors.length > 0) {
+        urlBase += "&authors=" + options.authors.join(",");
+    }
+    if (options.baseUrl && options.baseUrl.length > 0) {
+        urlBase += "&baseurl=" + encodeURIComponent(options.baseUrl);
+    }
+
+    const response = await fetch(urlBase);
     parseData(await response.json() as DibEmbed);
 }
 
-function lazyLoadImagesInit(): void {
-    let lazyloadImages;
+export async function loadBlog(options: DibOptions = {}): Promise<void> {
+    let urlBase = "https://api.dropinblog.com/v1/embed?b=f56590c5-56ae-4aab-8d55-df9c76db569c&blogurl=" + encodeURIComponent(location.toString().replace(location.search, "")) + "&domain=" + encodeURIComponent(window.location.host) + "&format=json";
 
-    const lazyLoadOptions = {
-        root: null,
-        rootMargin: "500px 0%",
-    };
-    if ("IntersectionObserver" in window) {
-        lazyloadImages = document.querySelectorAll("img[loading='dib-lazy']");
-
-        let imageObserver = new IntersectionObserver(function(entries) {
-            entries.forEach(function(entry) {
-                let img = entry.target as HTMLImageElement;
-                if (entry.isIntersecting && !img.classList.contains("dib-lazy-loaded")) {
-                    img.src = img.getAttribute(DIB_LAZYLOAD_IMG_SRC) || "";
-                    img.onerror = img.onload = ()=>{
-                        img.classList.add("dib-lazy-loaded");
-                        img.classList.remove("dib-img-loading");
-                    }
-                    imageObserver.unobserve(img);
-                }
-            });
-        }, lazyLoadOptions);
-
-        lazyloadImages.forEach(function(image) {
-            imageObserver.observe(image);
-        });
+    if (options.categories && options.categories.length > 0) {
+        urlBase += "&categories=" + options.categories.join(",");
     }
+    if (options.authors && options.authors.length > 0) {
+        urlBase += "&authors=" + options.authors.join(",");
+    }
+    if (options.baseUrl && options.baseUrl.length > 0) {
+        urlBase += "&baseurl=" + encodeURIComponent(options.baseUrl);
+    }
+
+    const response = await fetch(urlBase);
+    parseData(await response.json() as DibEmbed);
 }
 
 function parseData(json: DibEmbed): void {
@@ -146,7 +135,7 @@ function addContent(divId: string, content: string, process: boolean): void {
     }
 }
 
-function appendElements(data: DibData) {
+function appendElements(data: DibData): void {
     data.content = changeSrcToLazySrcInImgTag(data.content)
     if (data.customCss) {
         addStyle(data.customCss);
