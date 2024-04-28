@@ -34,6 +34,8 @@ async function renderHtml(document, window) {
     await renderContactPoints(document, apply)
     renderPodcasts(document, apply);
     renderYouTubeChannels(document, apply);
+
+    document.querySelector("meta[name=datetime]").setAttribute("content", new Date().toISOString());
 }
 
 /**
