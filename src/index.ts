@@ -2,6 +2,7 @@ import 'https://unpkg.com/shieldsio-elements@1.0.0'
 import { allComponents, baseLayerLuminance, provideFluentDesignSystem, StandardLuminance } from 'https://unpkg.com/@fluentui/web-components@2.6.1'
 import { StateEngine } from './state-engine.js'
 import { DesignToken } from 'https://unpkg.com/@microsoft/fast-foundation@2.49.6'
+import { loadBlog } from './dib.js'
 
 const systemIsDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches;
 
@@ -17,3 +18,11 @@ stateEngine.tagConfigs["FLUENT-TABS"] = {
     event: "change"
 };
 stateEngine.initialize(document.body);
+
+if (document.readyState !== 'loading') {
+    loadBlog();
+} else {
+    document.addEventListener('DOMContentLoaded', function() {
+        loadBlog();
+    });
+}
