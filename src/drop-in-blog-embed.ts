@@ -69,12 +69,15 @@ export function parseResponse(response: EmbedResponse): BlogPosting[] {
 
     for (const postDiv of doc.querySelectorAll("div.dib-post")) {
         const textNode = postDiv.querySelector(".dib-post-content")?.firstChild as Text | null;
+        const titleElement = postDiv.querySelector<HTMLElement>(".dib-post-title");
+        const postUrl = new URL(titleElement?.querySelector<HTMLLinkElement>(".dib-post-title-link")?.href ?? "");
         posts.push({
             "@type": "BlogPosting",
-            name: postDiv.querySelector<HTMLElement>(".dib-post-title")?.innerText ?? "",
-            dateCreated: postDiv.querySelector<HTMLElement>(".dib-post-date")?.innerText ?? "",
+            headline: titleElement?.innerText ?? "",
+            dateCreated: (new Date(postDiv.querySelector<HTMLElement>(".dib-post-date")?.innerText ?? "")).toISOString(),
             abstract: textNode?.data.trim() ?? "",
-            image: postDiv.querySelector<HTMLImageElement>(".dib-post-featured-image img")?.src ?? ""
+            image: postDiv.querySelector<HTMLImageElement>(".dib-post-featured-image img")?.src ?? "",
+            name: postUrl.searchParams.get("p") ?? ""
         });
     }
 
