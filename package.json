@@ -22,6 +22,7 @@
         "jsdom-global": "3.0.2",
         "microdata-tooling": "1.0.4",
         "office-ui-fabric-core": "11.1.0",
+        "openapi-typescript": "6.7.5",
         "plugin-error": "2.0.1",
         "sass": "1.75.0",
         "shieldsio-elements": "1.0.0",
