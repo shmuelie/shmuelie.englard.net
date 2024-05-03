@@ -6,6 +6,12 @@ export type PostsResponse = operations['posts-list']['responses']['200']['conten
 export type PostsResponsePost = NonNullable<NonNullable<PostsResponse['data']>['posts']>[0];
 export type PostsResponseAuthor = NonNullable<NonNullable<PostsResponsePost>['author']>;
 export type PostResponse = operations['posts-retrieve']['responses']['200']['content']['application/json'];
+export type PostResponsePost = NonNullable<NonNullable<PostResponse['data']>['post']>;
+export type PostResponseAuthor = NonNullable<NonNullable<PostResponsePost>['author']>;
+
+export type Post = PostsResponsePost | PostResponsePost;
+
+export type Author = PostsResponseAuthor | PostResponseAuthor;
 
 const blogId = 'f56590c5-56ae-4aab-8d55-df9c76db569c';
 const oauthKey = '';
@@ -32,7 +38,20 @@ export async function getPosts(options: PostsOptions = {}): Promise<PostsRespons
     return await response.json() as PostsResponse;
 }
 
-export function convertPostsAuthor(author: PostsResponseAuthor | undefined) : Person | undefined {
+export async function getPost(id: number): Promise<PostResponse> {
+    const requestOptions: RequestInit = {
+        method: 'GET',
+        headers: {
+            accept: 'application/json',
+            authorization: `Bearer ${oauthKey}`
+        }
+    };
+    const requestUrl = new URL(`https://api.dropinblog.com/v2/blog/${blogId}/posts/${id}`);
+    const response = await fetch(requestUrl, requestOptions);
+    return await response.json() as PostResponse;
+}
+
+export function convertAuthor(author: Author | undefined) : Person | undefined {
     if (author) {
         return {
             "@type": "Person",
@@ -45,15 +64,22 @@ export function convertPostsAuthor(author: PostsResponseAuthor | undefined) : Pe
     return undefined;
 }
 
-export function convertPostsPost(post: PostsResponsePost): BlogPosting {
-    return {
+export function convertPost(post: Post) : BlogPosting {
+    let blogPosting: BlogPosting = {
         "@type": "BlogPosting",
+        "@id": post.id?.toString() ?? '0',
         abstract: post.summary,
         image: post.featuredImage,
         headline: post.title,
         datePublished: post.publishedAtIso8601,
         dateModified: post.updatedAtIso8601,
         keywords: post.keyword,
-        author: convertPostsAuthor(post.author)
+        author: convertAuthor(post.author)
+    };
+
+    if ('content' in post) {
+        blogPosting.articleBody = post.content;
     }
+
+    return blogPosting;
 }
