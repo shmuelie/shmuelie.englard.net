@@ -8,6 +8,7 @@
         "@fluentui/common-styles": "1.2.47",
         "@fluentui/web-components": "2.6.1",
         "@microsoft/fast-foundation": "2.49.6",
+        "@microsoft/fast-element": "1.13.0",
         "cross-env": "7.0.3",
         "del": "7.1.0",
         "gulp": "4.0.2",

@@ -11,6 +11,9 @@ devDependencies:
   '@fluentui/web-components':
     specifier: 2.6.1
     version: 2.6.1
+  '@microsoft/fast-element':
+    specifier: 1.13.0
+    version: 1.13.0
   '@microsoft/fast-foundation':
     specifier: 2.49.6
     version: 2.49.6

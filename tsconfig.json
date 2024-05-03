@@ -21,7 +21,8 @@
         "strictFunctionTypes": true,
         "strictNullChecks": true,
         "strictPropertyInitialization": true,
-        "target": "ES2019"
+        "target": "ES2019",
+        "experimentalDecorators": true
     },
     "extends": "./tsconfig.paths.json",
     "include": [
