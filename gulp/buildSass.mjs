@@ -20,9 +20,6 @@ export function buildSass() {
                 };
             }
         })).
-        pipe(sourcemaps.write(".", {
-            includeContent: false,
-            sourceRoot: "https://github.com/shmuelie/shmuelie.englard.net/tree/master/src"
-        })).
+        pipe(sourcemaps.write(".")).
         pipe(gulp.dest("dist"));
 }
