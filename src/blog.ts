@@ -1,5 +1,7 @@
 import { ApplyOptions, apply, Thing } from 'https://unpkg.com/microdata-tooling@1.0.4'
-import { getPosts, convertPost, isError } from './drop-in-blog.js'
+import { getPosts } from './drop-in-blog/api.js'
+import { isError } from './drop-in-blog/request-helper.js';
+import { convertPost } from './drop-in-blog/schema-converters.js'
 
 export async function loadBlog(): Promise<void> {
     const response = await getPosts();
