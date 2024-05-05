@@ -27,6 +27,10 @@ async function get<T>(url: URL): Promise<T> {
     return await response.json() as T;
 }
 
+export function isFullPost(post: Post): post is PostResponsePost {
+    return 'content' in post;
+}
+
 /**
  * Fetch a paginated collection of posts. By default, only posts that are published and accessible to the public will be returned.
  * @param options Optional options for the request.
@@ -71,7 +75,7 @@ export function convertPost(post: Post) : BlogPosting {
         author: convertAuthor(post.author)
     };
 
-    if ('content' in post) {
+    if (isFullPost(post)) {
         blogPosting.articleBody = post.content;
     }
 
