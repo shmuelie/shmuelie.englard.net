@@ -51,21 +51,25 @@ export async function getPost(id: number): Promise<PostResponse> {
 
 export function convertAuthor(author: Author | undefined) : Person | undefined {
     if (author) {
+        const id = author.id?.toString() ?? '0';
         return {
             "@type": "Person",
+            "@id": id,
+            identifier: author.slug ?? id,
             name: author.name,
             image: author.photo,
-            identifier: author.slug,
-            description: author.bio
+            description: author.bio,
         };
     }
     return undefined;
 }
 
 export function convertPost(post: Post) : BlogPosting {
+    const id = post.id?.toString() ?? '0';
     let blogPosting: BlogPosting = {
         "@type": "BlogPosting",
-        "@id": post.id?.toString() ?? '0',
+        "@id": id,
+        identifier: post.slug ?? id,
         abstract: post.summary,
         image: post.featuredImage,
         headline: post.title,
