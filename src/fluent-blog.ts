@@ -1,9 +1,12 @@
-import { allComponents, baseLayerLuminance, provideFluentDesignSystem, StandardLuminance, fluentCard } from 'https://unpkg.com/@fluentui/web-components@2.6.1'
-import { DesignToken, FoundationElement } from 'https://unpkg.com/@microsoft/fast-foundation@2.49.6'
+import { } from 'https://unpkg.com/@fluentui/web-components@2.6.1'
+import { FoundationElement } from 'https://unpkg.com/@microsoft/fast-foundation@2.49.6'
 import { attr, html } from 'https://unpkg.com/@microsoft/fast-element@1.13.0'
 import { BlogPosting } from '../data/schema'
 import { apply, Thing } from 'https://unpkg.com/microdata-tooling@1.0.4'
-import { getPosts, convertPost, getPost } from './drop-in-blog.js'
+import { getPosts } from './drop-in-blog/posts.js'
+import { convertPost } from './drop-in-blog/schema-converters.js'
+import { getPost } from './drop-in-blog/post.js'
+import { isError } from './drop-in-blog/request-helper'
 
 const template = html<FluentBlog>`
     <section class="blog-posts">
@@ -75,7 +78,11 @@ export class FluentBlog extends FoundationElement {
         const response = await getPosts({
             page: currentPage
         });
-        this._posts = response?.data?.posts?.map(convertPost) ?? [];
+        if (isError(response)) {
+            this._posts = [];
+        } else {
+            this._posts = response?.posts?.map(convertPost) ?? [];
+        }
         const postsElement = this.shadowRoot!.querySelector('section.blog-posts > div') as HTMLElement;
         apply(this._posts as unknown as Thing, postsElement);
     }
@@ -87,14 +94,13 @@ export class FluentBlog extends FoundationElement {
         }
 
         const response = await getPost(this.currentPost);
-        const post = response?.data?.post;
-        if (!post) {
+        if (!response || isError(response)) {
             this.currentPost = null;
             await this._loadPosts();
             return;
         }
 
-        this._post = convertPost(post);
+        this._post = convertPost(response);
     }
 }
 
