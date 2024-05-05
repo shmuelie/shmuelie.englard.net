@@ -100,20 +100,28 @@ export class FluentBlog extends FASTElement {
     currentPost: number | null = null;
 
     currentPageChanged(): void {
-        this._loadPosts();
+        this._load();
     }
 
     currentPostChanged(): void {
-        this._loadPost();
+        this._load();
     }
 
     override connectedCallback(): void {
         super.connectedCallback();
 
-        this._loadPost();
+        this._load();
     }
 
-    private async _loadPosts(): Promise<void> {
+    private async _load(): Promise<void> {
+        if (this.currentPost) {
+            const response = await getPost(this.currentPost);
+            if (response && !isError(response)) {
+                this.post = convertPost(response);
+                return;
+            }
+        }
+
         let currentPage: number;
         if (!this.currentPage) {
             currentPage = 0;
@@ -133,21 +141,5 @@ export class FluentBlog extends FASTElement {
                 }
             }
         }
-    }
-
-    private async _loadPost(): Promise<void> {
-        if (!this.currentPost) {
-            await this._loadPosts();
-            return;
-        }
-
-        const response = await getPost(this.currentPost);
-        if (!response || isError(response)) {
-            this.currentPost = null;
-            await this._loadPosts();
-            return;
-        }
-
-        this.post = convertPost(response);
     }
 }
