@@ -2,7 +2,6 @@
 @use 'headings';
 @use 'header';
 @use 'interests';
-@use 'blog';
 
 .card {
     border: calc(var(--stroke-width) * 1px) solid var(--neutral-stroke-layer-rest);

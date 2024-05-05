@@ -1,40 +1,93 @@
 import { } from 'https://unpkg.com/@fluentui/web-components@2.6.1'
-import { FoundationElement } from 'https://unpkg.com/@microsoft/fast-foundation@2.49.6'
-import { attr, html } from 'https://unpkg.com/@microsoft/fast-element@1.13.0'
+import { attr, html, repeat, observable, FASTElement, customElement, css, when } from 'https://unpkg.com/@microsoft/fast-element@1.13.0'
 import { BlogPosting } from '../data/schema'
-import { apply, Thing } from 'https://unpkg.com/microdata-tooling@1.0.4'
 import { getPosts } from './drop-in-blog/posts.js'
 import { convertPost } from './drop-in-blog/schema-converters.js'
 import { getPost } from './drop-in-blog/post.js'
-import { isError } from './drop-in-blog/request-helper'
+import { isError } from './drop-in-blog/request-helper.js'
 
-const template = html<FluentBlog>`
-    <section class="blog-posts">
-        <h1>${x => x.title }</h1>
-        <div>
-            <template data-type="BlogPosting">
-                <slot></slot>
-            </template>
-        </div>
-    </section>
+const listPostsTemplate = html<BlogPosting, FluentBlog>`
+<fluent-card
+    itemscope
+    itemtype="https://schema.org/BlogPosting"
+    title=${x => x.headline}
+    @click="${(x, c) => c.parent.currentPost = Number(x['@id'])}">
+    <img itemprop="image" src="${x => x.image}" alt="${x => x.headline}" />
+    <div>
+        <h2 itemprop="headline">${x => x.headline}</h2>
+        <p itemprop="abstract">${x => x.abstract}</p>
+    </div>
+</fluent-card>
+`
+
+const listTemplate = html<FluentBlog>`
+<section class="blog-posts">
+    <h1>${x => x.title }</h1>
+    <div>
+        ${repeat(x => x.posts, listPostsTemplate)}
+    </div>
+</section>
 `;
 
-export class FluentBlog extends FoundationElement {
-    private _posts: BlogPosting[] = [];
-    private _template: HTMLTemplateElement | null = null;
-    private _post: BlogPosting | null = null;
+const singleTemplate = html<FluentBlog>`
+<section class="blog-post">
+    <h1>${x => x.post?.headline}</h1>
+    <img src="${x => x.post?.image}" alt="${x => x.post?.headline}" />
+    <article :innerHTML="${x => x.post?.articleBody}"></article>
+</section>
+`;
 
-    constructor() {
-        super();
+const template = html<FluentBlog>`
+    ${when(x => x.post === null, listTemplate)}
+    ${when(x => x.post !== null, singleTemplate)}
+`;
+
+const styles = css`
+    section.blog-posts > div {
+        display: flex;
+        flex-wrap: wrap;
+        padding-left: 10px;
     }
 
-    get posts(): BlogPosting[] {
-        return this._posts;
+    section.blog-posts fluent-card {
+        max-width: 300px;
+        color: var(--neutral-foreground-rest);
+        margin: 10px;
+        width: 40vw;
+        cursor: pointer;
     }
 
-    get post(): BlogPosting | null {
-        return this._post;
+    section.blog-posts fluent-card img {
+        max-width: 300px;
+        width: 40vw;
     }
+
+    section.blog-posts fluent-card div {
+        padding: 0 10px 10px;
+    }
+
+    section.blog-posts fluent-card p {
+        overflow-y: auto;
+        height: 100px;
+    }
+
+    section.blog-posts fluent-card h2 {
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+    }
+`;
+
+@customElement({
+    name: 'fluent-blog',
+    template: template,
+    styles: styles
+})
+export class FluentBlog extends FASTElement {
+    @observable
+    posts: BlogPosting[] = [];
+    @observable
+    post: BlogPosting | null = null;
 
     @attr({
         attribute: 'current-page'
@@ -57,12 +110,6 @@ export class FluentBlog extends FoundationElement {
     override connectedCallback(): void {
         super.connectedCallback();
 
-        this._template = this.ownerDocument.createElement("template");
-        this._template.dataset['type'] = "BlogPosting";
-        if (this.firstChild) {
-            this._template.appendChild(this.firstChild.cloneNode());
-        }
-
         this._loadPost();
     }
 
@@ -78,13 +125,14 @@ export class FluentBlog extends FoundationElement {
         const response = await getPosts({
             page: currentPage
         });
-        if (isError(response)) {
-            this._posts = [];
-        } else {
-            this._posts = response?.posts?.map(convertPost) ?? [];
+        this.posts.splice(0, this.posts.length);
+        if (!isError(response)) {
+            for (const post of response.posts ?? []) {
+                if (post) {
+                    this.posts.push(convertPost(post));
+                }
+            }
         }
-        const postsElement = this.shadowRoot!.querySelector('section.blog-posts > div') as HTMLElement;
-        apply(this._posts as unknown as Thing, postsElement);
     }
 
     private async _loadPost(): Promise<void> {
@@ -100,12 +148,6 @@ export class FluentBlog extends FoundationElement {
             return;
         }
 
-        this._post = convertPost(response);
+        this.post = convertPost(response);
     }
 }
-
-export const fluentBlog = FoundationElement.compose({
-    baseName: 'blog',
-    baseClass: FluentBlog,
-    template: template
-});
