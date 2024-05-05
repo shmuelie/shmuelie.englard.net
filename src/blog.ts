@@ -1,9 +1,14 @@
 import { ApplyOptions, apply, Thing } from 'https://unpkg.com/microdata-tooling@1.0.4'
-import { getPosts, convertPost } from './drop-in-blog.js'
+import { getPosts, convertPost, isError } from './drop-in-blog.js'
 
 export async function loadBlog(): Promise<void> {
     const response = await getPosts();
-    const posts = response?.data?.posts?.map(convertPost) ?? [];
+
+    if (isError(response)) {
+        return;
+    }
+
+    const posts = response?.posts?.map(convertPost) ?? [];
 
     const applyOptions: ApplyOptions = {
     };

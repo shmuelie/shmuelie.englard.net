@@ -3,6 +3,7 @@ import { BlogPosting, Person } from '../data/schema'
 
 export type PostsOptions = operations['posts-list']['parameters']['query'];
 export type PostsResponse = operations['posts-list']['responses']['200']['content']['application/json'];
+export type PostsResponseData = NonNullable<PostsResponse['data']>;
 export type PostsResponsePost = NonNullable<NonNullable<PostsResponse['data']>['posts']>[0];
 export type PostsResponseAuthor = NonNullable<NonNullable<PostsResponsePost>['author']>;
 export type PostResponse = operations['posts-retrieve']['responses']['200']['content']['application/json'];
@@ -12,6 +13,11 @@ export type PostResponseAuthor = NonNullable<NonNullable<PostResponsePost>['auth
 export type Post = PostsResponsePost | PostResponsePost;
 
 export type Author = PostsResponseAuthor | PostResponseAuthor;
+
+export interface ErrorResponse {
+    readonly code: number;
+    readonly message: string;
+}
 
 const blogId = 'f56590c5-56ae-4aab-8d55-df9c76db569c';
 const oauthKey = '';
@@ -27,22 +33,51 @@ async function get<T>(url: URL): Promise<T> {
     return await response.json() as T;
 }
 
+interface Response<T> {
+    success?: boolean;
+    code?: number;
+    message?: string;
+    data?: T;
+}
+
+function orError<TData, TResponse extends Response<TData>>(response: TResponse, fallback: TData): TData | ErrorResponse {
+    if (response.success) {
+        return response.data ?? fallback;
+    }
+
+    return {
+        code: response.code ?? 0,
+        message: response.message ?? "Unknown Error"
+    };
+}
+
+export function isError(obj: any): obj is ErrorResponse {
+    return 'message' in obj && 'code' in obj;
+}
+
 export function isFullPost(post: Post): post is PostResponsePost {
     return 'content' in post;
 }
 
+const emptyPostsResponse: PostsResponseData = {
+    pagination: {
+        total: 0
+    },
+    posts: []
+};
+
 /**
  * Fetch a paginated collection of posts. By default, only posts that are published and accessible to the public will be returned.
  * @param options Optional options for the request.
- * @returns A collection of posts.
+ * @returns A PostsResponseData on success; an ErrorResponse on error.
  */
-export async function getPosts(options: PostsOptions = {}): Promise<PostsResponse> {
+export async function getPosts(options: PostsOptions = {}): Promise<PostsResponseData | ErrorResponse> {
     const requestUrl: URL = new URL(`https://api.dropinblog.com/v2/blog/${blogId}/posts`);
     const optionsMap = options as {[k:string]:any};
     for (const optionName of Object.keys(options)) {
         requestUrl.searchParams.append(optionName, optionsMap[optionName]);
     }
-    return await get<PostsResponse>(requestUrl);
+    return orError(await get<PostsResponse>(requestUrl), emptyPostsResponse);
 }
 
 export async function getPost(id: number): Promise<PostResponse> {
