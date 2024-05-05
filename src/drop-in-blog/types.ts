@@ -1,16 +1,23 @@
 import { operations } from '../../data/dropinblog.api';
 
-export type PostsOptions = operations['posts-list']['parameters']['query'];
-export type PostsResponse = operations['posts-list']['responses']['200']['content']['application/json'];
-export type PostsResponseData = NonNullable<PostsResponse['data']>;
-export type PostsResponsePost = NonNullable<NonNullable<PostsResponse['data']>['posts']>[0];
-export type PostsResponseAuthor = NonNullable<NonNullable<PostsResponsePost>['author']>;
-export type PostResponse = operations['posts-retrieve']['responses']['200']['content']['application/json'];
-export type PostResponsePost = NonNullable<NonNullable<PostResponse['data']>['post']>;
-export type PostResponseAuthor = NonNullable<NonNullable<PostResponsePost>['author']>;
-export type Post = PostsResponsePost | PostResponsePost;
-export type Author = PostsResponseAuthor | PostResponseAuthor;
+export namespace posts {
+    export type Options = operations['posts-list']['parameters']['query'];
+    export type Response = operations['posts-list']['responses']['200']['content']['application/json'];
+    export type Data = NonNullable<Response['data']>;
+    export type Post = NonNullable<Data['posts']>[0];
+    export type Author = NonNullable<NonNullable<Post>['author']>;
+}
 
-export function isFullPost(post: Post): post is PostResponsePost {
+export namespace post {
+    export type Response = operations['posts-retrieve']['responses']['200']['content']['application/json'];
+    export type Data = NonNullable<Response['data']>;
+    export type Post = NonNullable<Data['post']>;
+    export type Author = NonNullable<NonNullable<Post>['author']>;
+}
+
+export type Post = posts.Post | post.Post;
+export type Author = posts.Author | post.Author;
+
+export function isFullPost(post: Post): post is post.Post {
     return 'content' in post;
 }

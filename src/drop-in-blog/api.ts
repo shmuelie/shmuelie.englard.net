@@ -1,29 +1,36 @@
-import { ErrorResponse, orError, get } from './request-helper.js';
-import { PostsResponseData, PostsOptions, PostsResponse, PostResponse } from './types.js';
+import { ErrorResponse, orError, get, isError } from './request-helper.js';
+import { post, posts } from './types.js';
 
 const blogId = 'f56590c5-56ae-4aab-8d55-df9c76db569c';
-
-const emptyPostsResponse: PostsResponseData = {
-    pagination: {
-        total: 0
-    },
-    posts: []
-};
 
 /**
  * Fetch a paginated collection of posts. By default, only posts that are published and accessible to the public will be returned.
  * @param options Optional options for the request.
- * @returns A PostsResponseData on success; an ErrorResponse on error.
+ * @returns A posts.Data on success; an ErrorResponse on error.
  */
-export async function getPosts(options: PostsOptions = {}): Promise<PostsResponseData | ErrorResponse> {
+export async function getPosts(options: posts.Options = {}): Promise<posts.Data | ErrorResponse> {
     const requestUrl: URL = new URL(`https://api.dropinblog.com/v2/blog/${blogId}/posts`);
     const optionsMap = options as {[k:string]:any};
     for (const optionName of Object.keys(options)) {
         requestUrl.searchParams.append(optionName, optionsMap[optionName]);
     }
-    return orError(await get<PostsResponse>(requestUrl), emptyPostsResponse);
+    return orError<posts.Data, posts.Response>(await get<posts.Response>(requestUrl), {
+        pagination: {
+            total: 0
+        },
+        posts: []
+    });
 }
 
-export async function getPost(id: number): Promise<PostResponse> {
-    return await get<PostResponse>(new URL(`https://api.dropinblog.com/v2/blog/${blogId}/posts/${id}`));
+/**
+ * Retrieve a post
+ * @param id The ID of the post.
+ * @returns A post.Post on success; an ErrorResponse on error.
+ */
+export async function getPost(id: number): Promise<post.Post | ErrorResponse | null> {
+    const response =  orError<post.Data, post.Response>(await get<post.Response>(new URL(`https://api.dropinblog.com/v2/blog/${blogId}/posts/${id}`)), {});
+    if (isError(response)) {
+        return response;
+    }
+    return response.post ?? null;
 }
