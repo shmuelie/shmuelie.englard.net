@@ -26,6 +26,6 @@
     },
     "extends": "./tsconfig.paths.json",
     "include": [
-        "src/*.ts"
+        "src/**/*.ts"
 , "data/schema.d.ts"    ]
 }
