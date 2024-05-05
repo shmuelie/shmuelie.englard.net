@@ -46,7 +46,8 @@
         "clean": "cross-env NODE_OPTIONS=\"--loader ./unpkg.mjs\" gulp clean",
         "postinstall": "cross-env NODE_OPTIONS=\"--loader ./unpkg.mjs\" gulp generateNodeModulePathMappings",
         "preinstall": "npx -y only-allow pnpm",
-        "test-server": "http-server ./dist/ -p 8000"
+        "test-server": "http-server ./dist/ -p 8000",
+        "blog-api": "npx openapi-typescript ./data/dropinblog.api.json -o ./data/dropinblog.api.d.ts"
     },
     "version": "1.0.0"
 }
