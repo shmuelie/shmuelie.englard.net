@@ -26,6 +26,9 @@ export function isError(obj: any): obj is ErrorResponse {
 }
 
 const oauthKey = '';
+const blogId = 'f56590c5-56ae-4aab-8d55-df9c76db569c';
+
+export const rootUrl = `https://api.dropinblog.com/v2/blog/${blogId}`;
 
 export async function get<T>(url: URL): Promise<T> {
     const response = await fetch(url, {

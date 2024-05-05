@@ -1,5 +1,5 @@
 import { ApplyOptions, apply, Thing } from 'https://unpkg.com/microdata-tooling@1.0.4'
-import { getPosts } from './drop-in-blog/api.js'
+import { getPosts } from './drop-in-blog/posts.js'
 import { isError } from './drop-in-blog/request-helper.js';
 import { convertPost } from './drop-in-blog/schema-converters.js'
 

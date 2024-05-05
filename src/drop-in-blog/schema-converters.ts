@@ -1,5 +1,13 @@
 import { BlogPosting, Person } from '../../data/schema';
-import { Author, Post, isFullPost } from './types.js'
+import { Author as ListAuthor, Post as PostSummary } from './posts.js'
+import { Author as PostAuthor, Post as FullPost } from './post.js'
+
+export type Post = PostSummary | FullPost;
+export type Author = ListAuthor | PostAuthor;
+
+export function isFullPost(post: Post): post is FullPost {
+    return 'content' in post;
+}
 
 export function convertAuthor(author: Author | undefined) : Person | undefined {
     if (author) {
