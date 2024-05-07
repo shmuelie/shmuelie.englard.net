@@ -15,6 +15,7 @@ const listPostsTemplate = html<BlogPosting, FluentBlog>`
     <img itemprop="image" src="${x => x.image}" alt="${x => x.headline}" />
     <div>
         <h2 itemprop="headline">${x => x.headline}</h2>
+        <time datetime="${x => x.datePublished}">${x => new Date(<string>x.datePublished).toLocaleString()}</time>
         <p itemprop="abstract">${x => x.abstract}</p>
     </div>
 </fluent-card>
@@ -54,49 +55,53 @@ const template = html<FluentBlog>`
 `;
 
 const styles = css`
-    section.blog-posts > div {
-        display: flex;
-        flex-wrap: wrap;
-        padding-left: 10px;
-    }
+section.blog-posts > div {
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 10px;
+}
 
-    section.blog-posts fluent-card {
-        max-width: 300px;
-        color: var(--neutral-foreground-rest);
-        margin: 10px;
-        width: 40vw;
-        cursor: pointer;
-    }
+section.blog-posts fluent-card {
+    max-width: 300px;
+    color: var(--neutral-foreground-rest);
+    margin: 10px;
+    width: 40vw;
+    cursor: pointer;
+}
 
-    section.blog-posts fluent-card img {
-        max-width: 300px;
-        width: 40vw;
-    }
+section.blog-posts fluent-card img {
+    max-width: 300px;
+    width: 40vw;
+}
 
-    section.blog-posts fluent-card div {
-        padding: 0 10px 10px;
-    }
+section.blog-posts fluent-card div {
+    padding: 0 10px 10px;
+}
 
-    section.blog-posts fluent-card p {
-        overflow-y: auto;
-        height: 100px;
-    }
+section.blog-posts fluent-card time {
+    font-style: italic;
+}
 
-    section.blog-posts fluent-card h2 {
-        text-overflow: ellipsis;
-        overflow: hidden;
-        white-space: nowrap;
-    }
+section.blog-posts fluent-card p {
+    overflow-y: auto;
+    height: 100px;
+}
 
-    section.blog-post {
-        margin: 20px;
-    }
+section.blog-posts fluent-card h2 {
+    text-overflow: ellipsis;
+    overflow-x: clip;
+    white-space: nowrap;
+}
 
-    section.blog-post img {
-        border: calc(var(--stroke-width) * 1px) solid var(--neutral-stroke-layer-rest);
-        border-radius: calc(var(--layer-corner-radius) * 1px);
-        box-shadow: var(--elevation-shadow-card-rest);
-    }
+section.blog-post {
+    margin: 20px;
+}
+
+section.blog-post img {
+    border: calc(var(--stroke-width) * 1px) solid var(--neutral-stroke-layer-rest);
+    border-radius: calc(var(--layer-corner-radius) * 1px);
+    box-shadow: var(--elevation-shadow-card-rest);
+}
 `;
 
 const numberConverter: ValueConverter = {
