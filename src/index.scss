@@ -10,7 +10,8 @@
 }
 
 body {
-    display: grid;
+    display: flex;
+    flex-flow: column;
     margin: 8px;
     height: calc(100vh - 16px);
     max-width: 115em;
@@ -23,8 +24,6 @@ body {
     font-variation-settings: var(--type-ramp-base-font-variations);
     line-height: var(--type-ramp-base-line-height);
     color: var(--neutral-foreground-rest);
-    grid-template-columns: 1fr;
-    grid-template-rows: min-content 1fr;
 }
 
 div[itemtype="https://schema.org/ContactPoint"] {
@@ -33,10 +32,13 @@ div[itemtype="https://schema.org/ContactPoint"] {
 }
 
 main {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
     margin: 10px;
+    flex: 1;
+    height: 0%;
+}
+
+fluent-tabs {
+    height: 100%;
 }
 
 fluent-tabs::part(tablist) {
@@ -45,4 +47,8 @@ fluent-tabs::part(tablist) {
     background-color: var(--neutral-layer-2);
     width: 100%;
     margin-bottom: calc(var(--layer-corner-radius) * 1px);
+}
+
+fluent-tabs::part(tabpanel) {
+    overflow-y: auto;
 }
