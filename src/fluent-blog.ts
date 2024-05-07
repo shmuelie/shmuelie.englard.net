@@ -29,7 +29,7 @@ const listTemplate = html<FluentBlog>`
 </section>
 `;
 
-const singleTemplate = html<FluentBlog>`
+const postTemplate = html<FluentBlog>`
 <section class="blog-post">
     <h1>
         <fluent-flipper direction="previous" @click="${x => x.currentPost = null}"></fluent-flipper>
@@ -49,13 +49,36 @@ const loadingTemplate = html<FluentBlog>`
 </section>
 `;
 
+const noPostsTemplate = html<FluentBlog>`
+<section class="no-posts">
+    <h1>No Posts</h1>
+</section>
+`;
+
+const postsTemplate = html<FluentBlog>`
+${when(x => x.posts.length === 0, noPostsTemplate)}
+${when(x => x.posts.length > 0, listTemplate)}
+`;
+
+const loadedTemplate = html<FluentBlog>`
+${when(x => x.post === null, postsTemplate)}
+${when(x => x.post !== null, postTemplate)}
+`;
+
 const template = html<FluentBlog>`
     ${when(x => x.loading, loadingTemplate)}
-    ${when(x => x.post === null, listTemplate)}
-    ${when(x => x.post !== null, singleTemplate)}
+    ${when(x => !x.loading, loadedTemplate)}
 `;
 
 const styles = css`
+section.blog-loading {
+    margin: 20px;
+}
+
+section.no-posts {
+    margin: 20px;
+}
+
 section.blog-posts > div {
     display: flex;
     flex-wrap: wrap;
@@ -232,7 +255,8 @@ export class FluentBlog extends FASTElement {
         }
 
         const response = await getPosts({
-            page: currentPage
+            page: currentPage,
+
         });
         if (!isError(response)) {
             for (const post of response.posts ?? []) {
