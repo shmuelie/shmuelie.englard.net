@@ -35,6 +35,7 @@ const singleTemplate = html<FluentBlog>`
         <fluent-flipper direction="previous" @click="${x => x.currentPost = null}"></fluent-flipper>
         ${x => x.post?.headline}
     </h1>
+    <time datetime="${x => x.post?.datePublished}">${x => new Date(<string>x.post?.datePublished).toLocaleString()}</time>
     <img src="${x => x.post?.image}" alt="${x => x.post?.headline}" />
     <article :innerHTML="${x => x.post?.articleBody}"></article>
 </section>
@@ -97,10 +98,44 @@ section.blog-post {
     margin: 20px;
 }
 
+section.blog-post fluent-flipper {
+    color: var(--accent-foreground-rest);
+    width: calc(((var(--base-height-multiplier) + var(--density))* var(--design-unit) + var(--design-unit))* 1px)
+}
+
+section.blog-post fluent-flipper:hover {
+    color: var(--accent-foreground-hover);
+}
+
 section.blog-post img {
     border: calc(var(--stroke-width) * 1px) solid var(--neutral-stroke-layer-rest);
     border-radius: calc(var(--layer-corner-radius) * 1px);
     box-shadow: var(--elevation-shadow-card-rest);
+}
+
+section.blog-post a {
+    color: var(--accent-foreground-rest);
+}
+
+section.blog-post a:hover {
+    color: var(--accent-foreground-hover);
+}
+
+section.blog-post a:active {
+    color: var(--accent-foreground-active);
+}
+
+section.blog-post a:focus {
+    color: var(--accent-foreground-focus);
+}
+
+section.blog-post a.badge {
+    text-decoration: none !important;
+    display: block;
+}
+
+section.blog-post time {
+    font-style: italic;
 }
 `;
 
