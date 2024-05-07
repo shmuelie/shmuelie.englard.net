@@ -147,15 +147,26 @@ export class FluentBlog extends FASTElement {
         }
         this._loading = true;
 
+        if (!await this._loadPost()) {
+            await this._loadPosts();
+        }
+
+        this._loading = false;
+    }
+
+    private async _loadPost(): Promise<boolean> {
         if (this.currentPost) {
             const response = await getPost(this.currentPost);
             if (response && !isError(response)) {
                 this.post = convertPost(response);
-                this._loading = false;
-                return;
+                return true;
             }
         }
 
+        return false;
+    }
+
+    private async _loadPosts(): Promise<void> {
         let currentPage: number;
         if (!this.currentPage) {
             currentPage = 0;
@@ -181,6 +192,5 @@ export class FluentBlog extends FASTElement {
                 }
             }
         }
-        this._loading = false;
     }
 }
