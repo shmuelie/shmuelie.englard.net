@@ -1,5 +1,5 @@
 import { } from 'https://unpkg.com/@fluentui/web-components@2.6.1'
-import { attr, html, repeat, observable, FASTElement, customElement, css, when, ValueConverter } from 'https://unpkg.com/@microsoft/fast-element@1.13.0'
+import { attr, html, repeat, observable, FASTElement, customElement, css, when, ValueConverter, nullableNumberConverter } from 'https://unpkg.com/@microsoft/fast-element@1.13.0'
 import { BlogPosting } from '../data/schema'
 import { getPosts } from './drop-in-blog/posts.js'
 import { convertPost } from './drop-in-blog/schema-converters.js'
@@ -162,18 +162,29 @@ section.blog-post time {
 }
 `;
 
-const numberConverter: ValueConverter = {
-    toView(value: number | null | undefined): string {
-        if (value && !Number.isNaN(value)) {
-            value.toString();
-        }
-        return "";
-    },
-    fromView(value: string | null | undefined): number {
+export interface BlogState {
+    currentPage: number | null;
+    currentPost: number | null;
+}
+
+const blogStateConverter: ValueConverter = {
+    toView(value: BlogState | null | undefined): string | null {
         if (value) {
-            return Number(value);
+            return `${value.currentPage ?? 'null'}|${value.currentPost ?? 'null'}`
         }
-        return Number.NaN;
+        return null;
+    },
+    fromView(value: string | null | undefined): BlogState | null {
+        if (typeof value === 'string' && value !== "") {
+            const parts = value.split('|');
+            return {
+                currentPage: parts[0] === 'null' ? null : Number(parts[0]),
+                currentPost: parts[1] === 'null' ? null : Number(parts[1])
+            }
+        } else if (typeof value === 'object') {
+            return value as BlogState | null;
+        }
+        return null;
     }
 };
 
@@ -192,15 +203,24 @@ export class FluentBlog extends FASTElement {
 
     @attr({
         attribute: 'current-page',
-        converter: numberConverter
+        converter: nullableNumberConverter
     })
     currentPage: number | null = null;
 
     @attr({
         attribute: 'current-post',
-        converter: numberConverter
+        converter: nullableNumberConverter
     })
     currentPost: number | null = null;
+
+    @attr({
+        attribute: 'blog-state',
+        converter: blogStateConverter
+    })
+    blogState: BlogState | null = {
+        currentPage: null,
+        currentPost: null
+    };
 
     currentPageChanged(): void {
         this._load();
@@ -208,6 +228,16 @@ export class FluentBlog extends FASTElement {
 
     currentPostChanged(): void {
         this._load();
+    }
+
+    blogStateChanged(): void {
+        if (!this.loading) {
+            this.loading = true;
+            this.currentPage = this.blogState?.currentPage ?? null;
+            this.currentPost = this.blogState?.currentPost ?? null;
+            this.loading = false;
+            this._load();
+        }
     }
 
     override connectedCallback(): void {
@@ -224,9 +254,19 @@ export class FluentBlog extends FASTElement {
 
         this.posts.splice(0, this.posts.length);
 
-        if (!await this._loadPost()) {
-            await this._loadPosts();
+        try {
+            if (!await this._loadPost()) {
+                await this._loadPosts();
+            }
         }
+        catch {
+        }
+
+        this.blogState = {
+            currentPage: this.currentPage,
+            currentPost: this.currentPost
+        };
+        this.$emit("change");
 
         this.loading = false;
     }

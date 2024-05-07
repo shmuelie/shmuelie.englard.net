@@ -17,4 +17,8 @@ stateEngine.tagConfigs["FLUENT-TABS"] = {
     attribute: "activeid",
     event: "change"
 };
+stateEngine.tagConfigs["FLUENT-BLOG"] = {
+    attribute: "blog-state",
+    event: "change"
+};
 stateEngine.initialize(document.body);
