@@ -33,8 +33,8 @@ export function convertPost(post: Post) : BlogPosting {
         abstract: post.summary,
         image: post.featuredImage,
         headline: post.title,
-        datePublished: post.publishedAtIso8601,
-        dateModified: post.updatedAtIso8601,
+        datePublished: post.publishedAt,
+        dateModified: post.updatedAt,
         keywords: post.keyword,
         author: convertAuthor(post.author)
     };
