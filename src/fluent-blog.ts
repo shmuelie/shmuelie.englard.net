@@ -22,24 +22,25 @@ const listPostsTemplate = html<BlogPosting, FluentBlog>`
 
 const listTemplate = html<FluentBlog>`
 <section class="blog-posts">
-    <h1>${x => x.title }</h1>
     <div>
-        ${repeat(x => x.posts!, listPostsTemplate)}
+        ${repeat(x => x.posts, listPostsTemplate)}
     </div>
 </section>
 `;
 
 const singleTemplate = html<FluentBlog>`
 <section class="blog-post">
-    <h1>${x => x.post?.headline}</h1>
+    <h1>
+        <fluent-flipper direction="previous" @click="${x => x.currentPost = null}"></fluent-flipper>
+        ${x => x.post?.headline}
+    </h1>
     <img src="${x => x.post?.image}" alt="${x => x.post?.headline}" />
     <article :innerHTML="${x => x.post?.articleBody}"></article>
 </section>
 `;
 
 const loadingTemplate = html<FluentBlog>`
-<section class="blog-posts">
-    <h1>${x => x.title }</h1>
+<section class="blog-loading">
     <div>
         <fluent-progress-ring></fluent-progress-ring>
     </div>
@@ -47,8 +48,8 @@ const loadingTemplate = html<FluentBlog>`
 `;
 
 const template = html<FluentBlog>`
-    ${when(x => x.posts === null, loadingTemplate)}
-    ${when(x => x.post === null && x.posts !== null, listTemplate)}
+    ${when(x => x.loading, loadingTemplate)}
+    ${when(x => x.post === null, listTemplate)}
     ${when(x => x.post !== null, singleTemplate)}
 `;
 
@@ -86,6 +87,16 @@ const styles = css`
         overflow: hidden;
         white-space: nowrap;
     }
+
+    section.blog-post {
+        margin: 20px;
+    }
+
+    section.blog-post img {
+        border: calc(var(--stroke-width) * 1px) solid var(--neutral-stroke-layer-rest);
+        border-radius: calc(var(--layer-corner-radius) * 1px);
+        box-shadow: var(--elevation-shadow-card-rest);
+    }
 `;
 
 const numberConverter: ValueConverter = {
@@ -109,9 +120,10 @@ const numberConverter: ValueConverter = {
     styles: styles
 })
 export class FluentBlog extends FASTElement {
-    private _loading: boolean = false;
     @observable
-    posts: BlogPosting[] | null = null;
+    loading: boolean = false;
+    @observable
+    posts: BlogPosting[] = [];
     @observable
     post: BlogPosting | null = null;
 
@@ -142,16 +154,18 @@ export class FluentBlog extends FASTElement {
     }
 
     private async _load(): Promise<void> {
-        if (this._loading) {
+        if (this.loading) {
             return;
         }
-        this._loading = true;
+        this.loading = true;
+
+        this.posts.splice(0, this.posts.length);
 
         if (!await this._loadPost()) {
             await this._loadPosts();
         }
 
-        this._loading = false;
+        this.loading = false;
     }
 
     private async _loadPost(): Promise<boolean> {
@@ -167,24 +181,19 @@ export class FluentBlog extends FASTElement {
     }
 
     private async _loadPosts(): Promise<void> {
+        this.currentPost = null;
+        this.post = null;
+
         let currentPage: number;
         if (!this.currentPage) {
             currentPage = 0;
         } else {
             currentPage = this.currentPage;
         }
-        if (!this.currentPost) {
-            this.currentPost = null;
-        }
 
         const response = await getPosts({
             page: currentPage
         });
-        if (this.posts !== null) {
-            this.posts.splice(0, this.posts.length);
-        } else {
-            this.posts = [];
-        }
         if (!isError(response)) {
             for (const post of response.posts ?? []) {
                 if (post) {
