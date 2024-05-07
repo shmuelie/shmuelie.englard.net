@@ -9,9 +9,7 @@ import fs from 'fs'
 export async function generateDropInBlogTypings(cb) {
     const schemaFile = fs.readFileSync("data/dropinblog.api.json");
     const schema = JSON.parse(schemaFile);
-    const typings = await openapiTS(schema, {
-        immutableTypes: true
-    });
+    const typings = await openapiTS(schema);
     fs.writeFileSync("data/dropinblog.api.d.ts", typings);
     cb();
 }

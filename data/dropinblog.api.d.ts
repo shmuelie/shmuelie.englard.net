@@ -103,128 +103,128 @@ export interface operations {
       /** @description 200 */
       200: {
         content: {
-          readonly "application/json": {
+          "application/json": {
             /**
              * @default true
              * @example true
              */
-            readonly success?: boolean;
+            success?: boolean;
             /**
              * @default 0
              * @example 0
              */
-            readonly code?: number;
+            code?: number;
             /** @example en */
-            readonly locale?: string;
+            locale?: string;
             /** @example OK */
-            readonly message?: string;
-            readonly data?: {
-              readonly posts?: readonly ({
+            message?: string;
+            data?: {
+              posts?: ({
                   /**
                    * @default 0
                    * @example 42349491
                    */
-                  readonly id?: number;
+                  id?: number;
                   /** @example Welcome to DropInBlog ~ Blogging Made Easy */
-                  readonly title?: string;
+                  title?: string;
                   /** @example welcome-to-dropinblog */
-                  readonly slug?: string;
+                  slug?: string;
                   /** @example https://dropindemo.com/blog/welcome-to-dropinblog */
-                  readonly url?: string;
+                  url?: string;
                   /** @example Congrats on Finding Us – We're Happy You're Here! DropInBlog aims to be the simplest blogging solution for existing websites. Our primary goal is to help you get a stylish blog up and running on your site in minutes. But because we are geeks at heart, */
-                  readonly summary?: string;
+                  summary?: string;
                   /** @example https://dropinblog.net/34236460/files/featured/welcome-dib.png */
-                  readonly featuredImage?: string;
-                  readonly featuredImageWebm?: unknown;
-                  readonly featuredImageMp4?: unknown;
+                  featuredImage?: string;
+                  featuredImageWebm?: unknown;
+                  featuredImageMp4?: unknown;
                   /** @example 03/16/2024 */
-                  readonly publishedAt?: string;
+                  publishedAt?: string;
                   /** @example 2024-03-16T16:44:00-05:00 */
-                  readonly publishedAtIso8601?: string;
+                  publishedAtIso8601?: string;
                   /** @example 03/16/2024 */
-                  readonly updatedAt?: string;
+                  updatedAt?: string;
                   /** @example 2024-03-16T16:45:06-05:00 */
-                  readonly updatedAtIso8601?: string;
+                  updatedAtIso8601?: string;
                   /** @example blogging */
-                  readonly keyword?: string;
-                  readonly secondaryKeywords?: readonly string[];
+                  keyword?: string;
+                  secondaryKeywords?: string[];
                   /** @example Welcome to DropInBlog ~ Blogging Made Easy */
-                  readonly seoTitle?: string;
+                  seoTitle?: string;
                   /** @example Built to make embedding a blog into your website fast & easy. Be up and blogging in minutes. Feature rich & SEO friendly. Javascript, PHP or JSON integration. */
-                  readonly seoDescription?: string;
+                  seoDescription?: string;
                   /** @example */
-                  readonly canonicalUrl?: string;
+                  canonicalUrl?: string;
                   /**
                    * @default 0
                    * @example 0
                    */
-                  readonly pinned?: number;
+                  pinned?: number;
                   /** @example 3 minute read */
-                  readonly readtime?: string;
+                  readtime?: string;
                   /**
                    * @default 0
                    * @example 82
                    */
-                  readonly seo_score?: number;
+                  seo_score?: number;
                   /** @example published */
-                  readonly status?: string;
+                  status?: string;
                   /** @example public */
-                  readonly visibility?: string;
+                  visibility?: string;
                   /**
                    * @default 0
                    * @example 0
                    */
-                  readonly noindex?: number;
-                  readonly author?: {
+                  noindex?: number;
+                  author?: {
                     /**
                      * @default 0
                      * @example 217
                      */
-                    readonly id?: number;
+                    id?: number;
                     /** @example Jason */
-                    readonly name?: string;
+                    name?: string;
                     /** @example jason */
-                    readonly slug?: string;
+                    slug?: string;
                     /** @example https://dropinblog.net/34236460/authors/91ec7b998af85b554be184f7a9f62b28cec93c20.jpg */
-                    readonly photo?: string;
+                    photo?: string;
                     /** @example <p><span style="font-size: 11pt; font-family: Arial; color: #000000; background-color: transparent; font-weight: 400; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">Jason is a co-founder of <a href="https://dropinblog.com">DropInBlog</a>, and a bit of a coding geek. He just wants to make everyone&rsquo;s time on the web a little easier, and has over 10 years of experience building technical solutions to tough problems. When he&rsquo;s not coding out a new feature for DiB, you can find him tinkering with his own projects or reading up on the latest tech stack.</span></p> */
-                    readonly bio?: string;
+                    bio?: string;
                   };
-                  readonly categories?: readonly {
+                  categories?: {
                       /**
                        * @default 0
                        * @example 898924871
                        */
-                      readonly id?: number;
+                      id?: number;
                       /** @example Announcements */
-                      readonly title?: string;
+                      title?: string;
                       /** @example announcements */
-                      readonly slug?: string;
+                      slug?: string;
                     }[];
                 })[];
-              readonly pagination?: {
+              pagination?: {
                 /**
                  * @default 0
                  * @example 4
                  */
-                readonly total?: number;
+                total?: number;
                 /**
                  * @default 0
                  * @example 10
                  */
-                readonly per_page?: number;
+                per_page?: number;
                 /**
                  * @default 0
                  * @example 1
                  */
-                readonly current_page?: number;
+                current_page?: number;
                 /**
                  * @default 0
                  * @example 1
                  */
-                readonly last_page?: number;
-                readonly previous_page_url?: unknown;
-                readonly next_page_url?: unknown;
+                last_page?: number;
+                previous_page_url?: unknown;
+                next_page_url?: unknown;
               };
             };
           };
@@ -249,103 +249,103 @@ export interface operations {
       /** @description 200 */
       200: {
         content: {
-          readonly "application/json": {
+          "application/json": {
             /**
              * @default true
              * @example true
              */
-            readonly success?: boolean;
+            success?: boolean;
             /**
              * @default 0
              * @example 0
              */
-            readonly code?: number;
+            code?: number;
             /** @example en */
-            readonly locale?: string;
+            locale?: string;
             /** @example OK */
-            readonly message?: string;
-            readonly data?: {
-              readonly post?: {
+            message?: string;
+            data?: {
+              post?: {
                 /**
                  * @default 0
                  * @example 42349491
                  */
-                readonly id?: number;
+                id?: number;
                 /** @example Welcome to DropInBlog ~ Blogging Made Easy */
-                readonly title?: string;
+                title?: string;
                 /** @example welcome-to-dropinblog */
-                readonly slug?: string;
+                slug?: string;
                 /** @example https://dropindemo.com/blog/welcome-to-dropinblog */
-                readonly url?: string;
+                url?: string;
                 /** @example Congrats on Finding Us – We're Happy You're Here! DropInBlog aims to be the simplest blogging solution for existing websites. Our primary goal is to help you get a stylish blog up and running on your site in minutes. But because we are geeks at heart, */
-                readonly summary?: string;
+                summary?: string;
                 /** @example https://dropinblog.net/34236460/files/featured/welcome-dib.png */
-                readonly featuredImage?: string;
-                readonly featuredImageWebm?: unknown;
-                readonly featuredImageMp4?: unknown;
+                featuredImage?: string;
+                featuredImageWebm?: unknown;
+                featuredImageMp4?: unknown;
                 /** @example 03/16/2024 */
-                readonly publishedAt?: string;
+                publishedAt?: string;
                 /** @example 2024-03-16T16:44:00-05:00 */
-                readonly publishedAtIso8601?: string;
+                publishedAtIso8601?: string;
                 /** @example 03/16/2024 */
-                readonly updatedAt?: string;
+                updatedAt?: string;
                 /** @example 2024-03-16T16:45:06-05:00 */
-                readonly updatedAtIso8601?: string;
+                updatedAtIso8601?: string;
                 /** @example blogging */
-                readonly keyword?: string;
-                readonly secondaryKeywords?: readonly string[];
+                keyword?: string;
+                secondaryKeywords?: string[];
                 /** @example Welcome to DropInBlog ~ Blogging Made Easy */
-                readonly seoTitle?: string;
+                seoTitle?: string;
                 /** @example Built to make embedding a blog into your website fast & easy. Be up and blogging in minutes. Feature rich & SEO friendly. Javascript, PHP or JSON integration. */
-                readonly seoDescription?: string;
+                seoDescription?: string;
                 /** @example */
-                readonly canonicalUrl?: string;
+                canonicalUrl?: string;
                 /**
                  * @default 0
                  * @example 0
                  */
-                readonly pinned?: number;
+                pinned?: number;
                 /** @example 3 minute read */
-                readonly readtime?: string;
+                readtime?: string;
                 /**
                  * @default 0
                  * @example 82
                  */
-                readonly seo_score?: number;
+                seo_score?: number;
                 /** @example published */
-                readonly status?: string;
+                status?: string;
                 /** @example public */
-                readonly visibility?: string;
+                visibility?: string;
                 /**
                  * @default 0
                  * @example 0
                  */
-                readonly noindex?: number;
-                readonly author?: {
+                noindex?: number;
+                author?: {
                   /**
                    * @default 0
                    * @example 217
                    */
-                  readonly id?: number;
+                  id?: number;
                   /** @example Jason */
-                  readonly name?: string;
+                  name?: string;
                   /** @example jason */
-                  readonly slug?: string;
+                  slug?: string;
                   /** @example https://dropinblog.net/34236460/authors/91ec7b998af85b554be184f7a9f62b28cec93c20.jpg */
-                  readonly photo?: string;
+                  photo?: string;
                   /** @example <p><span style="font-size: 11pt; font-family: Arial; color: #000000; background-color: transparent; font-weight: 400; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">Jason is a co-founder of <a href="https://dropinblog.com">DropInBlog</a>, and a bit of a coding geek. He just wants to make everyone&rsquo;s time on the web a little easier, and has over 10 years of experience building technical solutions to tough problems. When he&rsquo;s not coding out a new feature for DiB, you can find him tinkering with his own projects or reading up on the latest tech stack.</span></p> */
-                  readonly bio?: string;
+                  bio?: string;
                 };
-                readonly categories?: readonly {
+                categories?: {
                     /**
                      * @default 0
                      * @example 898924871
                      */
-                    readonly id?: number;
+                    id?: number;
                     /** @example Announcements */
-                    readonly title?: string;
+                    title?: string;
                     /** @example announcements */
-                    readonly slug?: string;
+                    slug?: string;
                   }[];
                 /**
                  * @example <h2>Congrats on Finding Us &ndash; We're Happy You're Here!</h2>
@@ -368,7 +368,7 @@ export interface operations {
                  * <h2>Thank You!</h2>
                  * <p>We're thrilled you chose DropInBlog to fulfill your blogging needs. We hope we can meet all of your expectations and help you succeed on your blogging journey. So, for real, just <a href="https://m.me/dropinblog">drop us a line</a> if there's <em>anything</em> we can do to assist you along the way.<br /><br />Happy blogging!</p>
                  */
-                readonly content?: string;
+                content?: string;
                 /**
                  * @example <script type="application/ld+json">
                  * {
@@ -394,88 +394,88 @@ export interface operations {
                  * }
                  * </script>
                  */
-                readonly schema_article?: string;
-                readonly related_posts?: readonly ({
+                schema_article?: string;
+                related_posts?: ({
                     /**
                      * @default 0
                      * @example 42349488
                      */
-                    readonly id?: number;
+                    id?: number;
                     /** @example How to Add Categories to Your Blog */
-                    readonly title?: string;
+                    title?: string;
                     /** @example how-to-add-categories-to-your-blog */
-                    readonly slug?: string;
+                    slug?: string;
                     /** @example https://dropindemo.com/blog/how-to-add-categories-to-your-blog */
-                    readonly url?: string;
+                    url?: string;
                     /** @example Categories are important for search engine optimization and for organizing your content around themes. Website visitors will have a much easier time navigating your site if it is well organized – and when visitors have an easier time, visitors are happy! */
-                    readonly summary?: string;
+                    summary?: string;
                     /** @example https://dropinblog.net/34236460/files/featured/how-to-add-categories.png */
-                    readonly featuredImage?: string;
-                    readonly featuredImageWebm?: unknown;
-                    readonly featuredImageMp4?: unknown;
+                    featuredImage?: string;
+                    featuredImageWebm?: unknown;
+                    featuredImageMp4?: unknown;
                     /** @example 12/06/2021 */
-                    readonly publishedAt?: string;
+                    publishedAt?: string;
                     /** @example 2021-12-06T15:57:00-06:00 */
-                    readonly publishedAtIso8601?: string;
+                    publishedAtIso8601?: string;
                     /** @example 02/22/2024 */
-                    readonly updatedAt?: string;
+                    updatedAt?: string;
                     /** @example 2024-02-22T18:52:10-06:00 */
-                    readonly updatedAtIso8601?: string;
+                    updatedAtIso8601?: string;
                     /** @example add categories to your blog */
-                    readonly keyword?: string;
-                    readonly secondaryKeywords?: readonly unknown[];
+                    keyword?: string;
+                    secondaryKeywords?: unknown[];
                     /** @example How to Add Categories to Your Blog */
-                    readonly seoTitle?: string;
+                    seoTitle?: string;
                     /** @example Help your website visitors find the info they're looking for and encourage them to keep browsing your site by learning how to add categories to your blog. */
-                    readonly seoDescription?: string;
+                    seoDescription?: string;
                     /** @example */
-                    readonly canonicalUrl?: string;
+                    canonicalUrl?: string;
                     /**
                      * @default 0
                      * @example 0
                      */
-                    readonly pinned?: number;
+                    pinned?: number;
                     /** @example 2 minute read */
-                    readonly readtime?: string;
+                    readtime?: string;
                     /**
                      * @default 0
                      * @example 85
                      */
-                    readonly seo_score?: number;
+                    seo_score?: number;
                     /** @example published */
-                    readonly status?: string;
+                    status?: string;
                     /** @example public */
-                    readonly visibility?: string;
+                    visibility?: string;
                     /**
                      * @default 0
                      * @example 0
                      */
-                    readonly noindex?: number;
-                    readonly author?: {
+                    noindex?: number;
+                    author?: {
                       /**
                        * @default 0
                        * @example 219
                        */
-                      readonly id?: number;
+                      id?: number;
                       /** @example Jesse */
-                      readonly name?: string;
+                      name?: string;
                       /** @example jesse */
-                      readonly slug?: string;
+                      slug?: string;
                       /** @example https://dropinblog.net/34236460/authors/c321458d1a8f3afdff1944ceaa79be140f685ea8.jpg */
-                      readonly photo?: string;
+                      photo?: string;
                       /** @example <p><span style="font-size: 11pt; font-family: Arial; color: #000000; background-color: transparent; font-weight: 400; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">DropInBlog co-founder Jesse is dedicated to making DropInBlog the world&rsquo;s go-to blogging platform. He helped create DiB because he was tired of dealing with complicated and incomplete blogging solutions. Jesse loves experimenting with new features and finding new ways to make <a href="https://dropinblog.com">DropInBlog</a> even more awesome. </span></p> */
-                      readonly bio?: string;
+                      bio?: string;
                     };
-                    readonly categories?: readonly {
+                    categories?: {
                         /**
                          * @default 0
                          * @example 898924873
                          */
-                        readonly id?: number;
+                        id?: number;
                         /** @example Tips */
-                        readonly title?: string;
+                        title?: string;
                         /** @example tips */
-                        readonly slug?: string;
+                        slug?: string;
                       }[];
                   })[];
               };
@@ -506,103 +506,103 @@ export interface operations {
       /** @description 200 */
       200: {
         content: {
-          readonly "application/json": {
+          "application/json": {
             /**
              * @default true
              * @example true
              */
-            readonly success?: boolean;
+            success?: boolean;
             /**
              * @default 0
              * @example 0
              */
-            readonly code?: number;
+            code?: number;
             /** @example en */
-            readonly locale?: string;
+            locale?: string;
             /** @example OK */
-            readonly message?: string;
-            readonly data?: {
-              readonly posts?: readonly ({
+            message?: string;
+            data?: {
+              posts?: ({
                   /**
                    * @default 0
                    * @example 42349488
                    */
-                  readonly id?: number;
+                  id?: number;
                   /** @example How to Add Categories to Your Blog */
-                  readonly title?: string;
+                  title?: string;
                   /** @example how-to-add-categories-to-your-blog */
-                  readonly slug?: string;
+                  slug?: string;
                   /** @example https://dropindemo.com/blog/how-to-add-categories-to-your-blog */
-                  readonly url?: string;
+                  url?: string;
                   /** @example Categories are important for search engine optimization and for organizing your content around themes. Website visitors will have a much easier time navigating your site if it is well organized – and when visitors have an easier time, visitors are happy! */
-                  readonly summary?: string;
+                  summary?: string;
                   /** @example https://dropinblog.net/34236460/files/featured/how-to-add-categories.png */
-                  readonly featuredImage?: string;
-                  readonly featuredImageWebm?: unknown;
-                  readonly featuredImageMp4?: unknown;
+                  featuredImage?: string;
+                  featuredImageWebm?: unknown;
+                  featuredImageMp4?: unknown;
                   /** @example 12/06/2021 */
-                  readonly publishedAt?: string;
+                  publishedAt?: string;
                   /** @example 2021-12-06T15:57:00-06:00 */
-                  readonly publishedAtIso8601?: string;
+                  publishedAtIso8601?: string;
                   /** @example 02/22/2024 */
-                  readonly updatedAt?: string;
+                  updatedAt?: string;
                   /** @example 2024-02-22T18:52:10-06:00 */
-                  readonly updatedAtIso8601?: string;
+                  updatedAtIso8601?: string;
                   /** @example add categories to your blog */
-                  readonly keyword?: string;
-                  readonly secondaryKeywords?: readonly unknown[];
+                  keyword?: string;
+                  secondaryKeywords?: unknown[];
                   /** @example How to Add Categories to Your Blog */
-                  readonly seoTitle?: string;
+                  seoTitle?: string;
                   /** @example Help your website visitors find the info they're looking for and encourage them to keep browsing your site by learning how to add categories to your blog. */
-                  readonly seoDescription?: string;
+                  seoDescription?: string;
                   /** @example */
-                  readonly canonicalUrl?: string;
+                  canonicalUrl?: string;
                   /**
                    * @default 0
                    * @example 0
                    */
-                  readonly pinned?: number;
+                  pinned?: number;
                   /** @example 2 minute read */
-                  readonly readtime?: string;
+                  readtime?: string;
                   /**
                    * @default 0
                    * @example 85
                    */
-                  readonly seo_score?: number;
+                  seo_score?: number;
                   /** @example published */
-                  readonly status?: string;
+                  status?: string;
                   /** @example public */
-                  readonly visibility?: string;
+                  visibility?: string;
                   /**
                    * @default 0
                    * @example 0
                    */
-                  readonly noindex?: number;
-                  readonly author?: {
+                  noindex?: number;
+                  author?: {
                     /**
                      * @default 0
                      * @example 219
                      */
-                    readonly id?: number;
+                    id?: number;
                     /** @example Jesse */
-                    readonly name?: string;
+                    name?: string;
                     /** @example jesse */
-                    readonly slug?: string;
+                    slug?: string;
                     /** @example https://dropinblog.net/34236460/authors/c321458d1a8f3afdff1944ceaa79be140f685ea8.jpg */
-                    readonly photo?: string;
+                    photo?: string;
                     /** @example <p><span style="font-size: 11pt; font-family: Arial; color: #000000; background-color: transparent; font-weight: 400; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">DropInBlog co-founder Jesse is dedicated to making DropInBlog the world&rsquo;s go-to blogging platform. He helped create DiB because he was tired of dealing with complicated and incomplete blogging solutions. Jesse loves experimenting with new features and finding new ways to make <a href="https://dropinblog.com">DropInBlog</a> even more awesome. </span></p> */
-                    readonly bio?: string;
+                    bio?: string;
                   };
-                  readonly categories?: readonly {
+                  categories?: {
                       /**
                        * @default 0
                        * @example 898924873
                        */
-                      readonly id?: number;
+                      id?: number;
                       /** @example Tips */
-                      readonly title?: string;
+                      title?: string;
                       /** @example tips */
-                      readonly slug?: string;
+                      slug?: string;
                     }[];
                 })[];
             };
@@ -628,103 +628,103 @@ export interface operations {
       /** @description 200 */
       200: {
         content: {
-          readonly "application/json": {
+          "application/json": {
             /**
              * @default true
              * @example true
              */
-            readonly success?: boolean;
+            success?: boolean;
             /**
              * @default 0
              * @example 0
              */
-            readonly code?: number;
+            code?: number;
             /** @example en */
-            readonly locale?: string;
+            locale?: string;
             /** @example OK */
-            readonly message?: string;
-            readonly data?: {
-              readonly post?: {
+            message?: string;
+            data?: {
+              post?: {
                 /**
                  * @default 0
                  * @example 42349491
                  */
-                readonly id?: number;
+                id?: number;
                 /** @example Welcome to DropInBlog ~ Blogging Made Easy */
-                readonly title?: string;
+                title?: string;
                 /** @example welcome-to-dropinblog */
-                readonly slug?: string;
+                slug?: string;
                 /** @example https://dropindemo.com/blog/welcome-to-dropinblog */
-                readonly url?: string;
+                url?: string;
                 /** @example Congrats on Finding Us – We're Happy You're Here! DropInBlog aims to be the simplest blogging solution for existing websites. Our primary goal is to help you get a stylish blog up and running on your site in minutes. But because we are geeks at heart, */
-                readonly summary?: string;
+                summary?: string;
                 /** @example https://dropinblog.net/34236460/files/featured/welcome-dib.png */
-                readonly featuredImage?: string;
-                readonly featuredImageWebm?: unknown;
-                readonly featuredImageMp4?: unknown;
+                featuredImage?: string;
+                featuredImageWebm?: unknown;
+                featuredImageMp4?: unknown;
                 /** @example 03/16/2024 */
-                readonly publishedAt?: string;
+                publishedAt?: string;
                 /** @example 2024-03-16T16:44:00-05:00 */
-                readonly publishedAtIso8601?: string;
+                publishedAtIso8601?: string;
                 /** @example 03/16/2024 */
-                readonly updatedAt?: string;
+                updatedAt?: string;
                 /** @example 2024-03-16T16:45:06-05:00 */
-                readonly updatedAtIso8601?: string;
+                updatedAtIso8601?: string;
                 /** @example blogging */
-                readonly keyword?: string;
-                readonly secondaryKeywords?: readonly string[];
+                keyword?: string;
+                secondaryKeywords?: string[];
                 /** @example Welcome to DropInBlog ~ Blogging Made Easy */
-                readonly seoTitle?: string;
+                seoTitle?: string;
                 /** @example Built to make embedding a blog into your website fast & easy. Be up and blogging in minutes. Feature rich & SEO friendly. Javascript, PHP or JSON integration. */
-                readonly seoDescription?: string;
+                seoDescription?: string;
                 /** @example */
-                readonly canonicalUrl?: string;
+                canonicalUrl?: string;
                 /**
                  * @default 0
                  * @example 0
                  */
-                readonly pinned?: number;
+                pinned?: number;
                 /** @example 3 minute read */
-                readonly readtime?: string;
+                readtime?: string;
                 /**
                  * @default 0
                  * @example 82
                  */
-                readonly seo_score?: number;
+                seo_score?: number;
                 /** @example published */
-                readonly status?: string;
+                status?: string;
                 /** @example public */
-                readonly visibility?: string;
+                visibility?: string;
                 /**
                  * @default 0
                  * @example 0
                  */
-                readonly noindex?: number;
-                readonly author?: {
+                noindex?: number;
+                author?: {
                   /**
                    * @default 0
                    * @example 217
                    */
-                  readonly id?: number;
+                  id?: number;
                   /** @example Jason */
-                  readonly name?: string;
+                  name?: string;
                   /** @example jason */
-                  readonly slug?: string;
+                  slug?: string;
                   /** @example https://dropinblog.net/34236460/authors/91ec7b998af85b554be184f7a9f62b28cec93c20.jpg */
-                  readonly photo?: string;
+                  photo?: string;
                   /** @example <p><span style="font-size: 11pt; font-family: Arial; color: #000000; background-color: transparent; font-weight: 400; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">Jason is a co-founder of <a href="https://dropinblog.com">DropInBlog</a>, and a bit of a coding geek. He just wants to make everyone&rsquo;s time on the web a little easier, and has over 10 years of experience building technical solutions to tough problems. When he&rsquo;s not coding out a new feature for DiB, you can find him tinkering with his own projects or reading up on the latest tech stack.</span></p> */
-                  readonly bio?: string;
+                  bio?: string;
                 };
-                readonly categories?: readonly {
+                categories?: {
                     /**
                      * @default 0
                      * @example 898924871
                      */
-                    readonly id?: number;
+                    id?: number;
                     /** @example Announcements */
-                    readonly title?: string;
+                    title?: string;
                     /** @example announcements */
-                    readonly slug?: string;
+                    slug?: string;
                   }[];
                 /**
                  * @example <h2>Congrats on Finding Us &ndash; We're Happy You're Here!</h2>
@@ -747,7 +747,7 @@ export interface operations {
                  * <h2>Thank You!</h2>
                  * <p>We're thrilled you chose DropInBlog to fulfill your blogging needs. We hope we can meet all of your expectations and help you succeed on your blogging journey. So, for real, just <a href="https://m.me/dropinblog">drop us a line</a> if there's <em>anything</em> we can do to assist you along the way.<br /><br />Happy blogging!</p>
                  */
-                readonly content?: string;
+                content?: string;
                 /**
                  * @example <script type="application/ld+json">
                  * {
@@ -773,88 +773,88 @@ export interface operations {
                  * }
                  * </script>
                  */
-                readonly schema_article?: string;
-                readonly related_posts?: readonly ({
+                schema_article?: string;
+                related_posts?: ({
                     /**
                      * @default 0
                      * @example 42349488
                      */
-                    readonly id?: number;
+                    id?: number;
                     /** @example How to Add Categories to Your Blog */
-                    readonly title?: string;
+                    title?: string;
                     /** @example how-to-add-categories-to-your-blog */
-                    readonly slug?: string;
+                    slug?: string;
                     /** @example https://dropindemo.com/blog/how-to-add-categories-to-your-blog */
-                    readonly url?: string;
+                    url?: string;
                     /** @example Categories are important for search engine optimization and for organizing your content around themes. Website visitors will have a much easier time navigating your site if it is well organized – and when visitors have an easier time, visitors are happy! */
-                    readonly summary?: string;
+                    summary?: string;
                     /** @example https://dropinblog.net/34236460/files/featured/how-to-add-categories.png */
-                    readonly featuredImage?: string;
-                    readonly featuredImageWebm?: unknown;
-                    readonly featuredImageMp4?: unknown;
+                    featuredImage?: string;
+                    featuredImageWebm?: unknown;
+                    featuredImageMp4?: unknown;
                     /** @example 12/06/2021 */
-                    readonly publishedAt?: string;
+                    publishedAt?: string;
                     /** @example 2021-12-06T15:57:00-06:00 */
-                    readonly publishedAtIso8601?: string;
+                    publishedAtIso8601?: string;
                     /** @example 02/22/2024 */
-                    readonly updatedAt?: string;
+                    updatedAt?: string;
                     /** @example 2024-02-22T18:52:10-06:00 */
-                    readonly updatedAtIso8601?: string;
+                    updatedAtIso8601?: string;
                     /** @example add categories to your blog */
-                    readonly keyword?: string;
-                    readonly secondaryKeywords?: readonly unknown[];
+                    keyword?: string;
+                    secondaryKeywords?: unknown[];
                     /** @example How to Add Categories to Your Blog */
-                    readonly seoTitle?: string;
+                    seoTitle?: string;
                     /** @example Help your website visitors find the info they're looking for and encourage them to keep browsing your site by learning how to add categories to your blog. */
-                    readonly seoDescription?: string;
+                    seoDescription?: string;
                     /** @example */
-                    readonly canonicalUrl?: string;
+                    canonicalUrl?: string;
                     /**
                      * @default 0
                      * @example 0
                      */
-                    readonly pinned?: number;
+                    pinned?: number;
                     /** @example 2 minute read */
-                    readonly readtime?: string;
+                    readtime?: string;
                     /**
                      * @default 0
                      * @example 85
                      */
-                    readonly seo_score?: number;
+                    seo_score?: number;
                     /** @example published */
-                    readonly status?: string;
+                    status?: string;
                     /** @example public */
-                    readonly visibility?: string;
+                    visibility?: string;
                     /**
                      * @default 0
                      * @example 0
                      */
-                    readonly noindex?: number;
-                    readonly author?: {
+                    noindex?: number;
+                    author?: {
                       /**
                        * @default 0
                        * @example 219
                        */
-                      readonly id?: number;
+                      id?: number;
                       /** @example Jesse */
-                      readonly name?: string;
+                      name?: string;
                       /** @example jesse */
-                      readonly slug?: string;
+                      slug?: string;
                       /** @example https://dropinblog.net/34236460/authors/c321458d1a8f3afdff1944ceaa79be140f685ea8.jpg */
-                      readonly photo?: string;
+                      photo?: string;
                       /** @example <p><span style="font-size: 11pt; font-family: Arial; color: #000000; background-color: transparent; font-weight: 400; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">DropInBlog co-founder Jesse is dedicated to making DropInBlog the world&rsquo;s go-to blogging platform. He helped create DiB because he was tired of dealing with complicated and incomplete blogging solutions. Jesse loves experimenting with new features and finding new ways to make <a href="https://dropinblog.com">DropInBlog</a> even more awesome. </span></p> */
-                      readonly bio?: string;
+                      bio?: string;
                     };
-                    readonly categories?: readonly {
+                    categories?: {
                         /**
                          * @default 0
                          * @example 898924873
                          */
-                        readonly id?: number;
+                        id?: number;
                         /** @example Tips */
-                        readonly title?: string;
+                        title?: string;
                         /** @example tips */
-                        readonly slug?: string;
+                        slug?: string;
                       }[];
                   })[];
               };
@@ -879,39 +879,39 @@ export interface operations {
       /** @description 200 */
       200: {
         content: {
-          readonly "application/json": {
+          "application/json": {
             /**
              * @default true
              * @example true
              */
-            readonly success?: boolean;
+            success?: boolean;
             /**
              * @default 0
              * @example 0
              */
-            readonly code?: number;
+            code?: number;
             /** @example en */
-            readonly locale?: string;
+            locale?: string;
             /** @example OK */
-            readonly message?: string;
-            readonly data?: {
-              readonly categories?: readonly {
+            message?: string;
+            data?: {
+              categories?: {
                   /** @example Announcements */
-                  readonly title?: string;
+                  title?: string;
                   /** @example announcements */
-                  readonly slug?: string;
+                  slug?: string;
                   /** @example */
-                  readonly background_image?: string;
-                  readonly heading_description?: unknown;
+                  background_image?: string;
+                  heading_description?: unknown;
                   /** @example Announcements */
-                  readonly seo_title?: string;
+                  seo_title?: string;
                   /** @example */
-                  readonly seo_description?: string;
+                  seo_description?: string;
                   /**
                    * @default 0
                    * @example 898924871
                    */
-                  readonly id?: number;
+                  id?: number;
                 }[];
             };
           };
@@ -938,36 +938,36 @@ export interface operations {
       /** @description 200 */
       200: {
         content: {
-          readonly "application/json": {
+          "application/json": {
             /**
              * @default true
              * @example true
              */
-            readonly success?: boolean;
+            success?: boolean;
             /**
              * @default 0
              * @example 0
              */
-            readonly code?: number;
+            code?: number;
             /** @example en */
-            readonly locale?: string;
+            locale?: string;
             /** @example OK */
-            readonly message?: string;
-            readonly data?: {
-              readonly authors?: readonly {
+            message?: string;
+            data?: {
+              authors?: {
                   /**
                    * @default 0
                    * @example 1
                    */
-                  readonly id?: number;
+                  id?: number;
                   /** @example Jason */
-                  readonly name?: string;
+                  name?: string;
                   /** @example jason */
-                  readonly slug?: string;
-                  readonly photo?: unknown;
-                  readonly bio?: unknown;
-                  readonly seo_title?: unknown;
-                  readonly seo_description?: unknown;
+                  slug?: string;
+                  photo?: unknown;
+                  bio?: unknown;
+                  seo_title?: unknown;
+                  seo_description?: unknown;
                 }[];
             };
           };
