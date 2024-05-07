@@ -24,7 +24,7 @@ const listTemplate = html<FluentBlog>`
 <section class="blog-posts">
     <h1>${x => x.title }</h1>
     <div>
-        ${repeat(x => x.posts, listPostsTemplate)}
+        ${repeat(x => x.posts!, listPostsTemplate)}
     </div>
 </section>
 `;
@@ -37,8 +37,18 @@ const singleTemplate = html<FluentBlog>`
 </section>
 `;
 
+const loadingTemplate = html<FluentBlog>`
+<section class="blog-posts">
+    <h1>${x => x.title }</h1>
+    <div>
+        <fluent-progress-ring></fluent-progress-ring>
+    </div>
+</section>
+`;
+
 const template = html<FluentBlog>`
-    ${when(x => x.post === null, listTemplate)}
+    ${when(x => x.posts === null, loadingTemplate)}
+    ${when(x => x.post === null && x.posts !== null, listTemplate)}
     ${when(x => x.post !== null, singleTemplate)}
 `;
 
@@ -99,8 +109,9 @@ const numberConverter: ValueConverter = {
     styles: styles
 })
 export class FluentBlog extends FASTElement {
+    private _loading: boolean = false;
     @observable
-    posts: BlogPosting[] = [];
+    posts: BlogPosting[] | null = null;
     @observable
     post: BlogPosting | null = null;
 
@@ -131,10 +142,16 @@ export class FluentBlog extends FASTElement {
     }
 
     private async _load(): Promise<void> {
+        if (this._loading) {
+            return;
+        }
+        this._loading = true;
+
         if (this.currentPost) {
             const response = await getPost(this.currentPost);
             if (response && !isError(response)) {
                 this.post = convertPost(response);
+                this._loading = false;
                 return;
             }
         }
@@ -145,12 +162,18 @@ export class FluentBlog extends FASTElement {
         } else {
             currentPage = this.currentPage;
         }
-        this.currentPost = null;
+        if (!this.currentPost) {
+            this.currentPost = null;
+        }
 
         const response = await getPosts({
             page: currentPage
         });
-        this.posts.splice(0, this.posts.length);
+        if (this.posts !== null) {
+            this.posts.splice(0, this.posts.length);
+        } else {
+            this.posts = [];
+        }
         if (!isError(response)) {
             for (const post of response.posts ?? []) {
                 if (post) {
@@ -158,5 +181,6 @@ export class FluentBlog extends FASTElement {
                 }
             }
         }
+        this._loading = false;
     }
 }
