@@ -1,5 +1,5 @@
 import { } from 'https://unpkg.com/@fluentui/web-components@2.6.1'
-import { attr, html, repeat, observable, FASTElement, customElement, css, when } from 'https://unpkg.com/@microsoft/fast-element@1.13.0'
+import { attr, html, repeat, observable, FASTElement, customElement, css, when, ValueConverter } from 'https://unpkg.com/@microsoft/fast-element@1.13.0'
 import { BlogPosting } from '../data/schema'
 import { getPosts } from './drop-in-blog/posts.js'
 import { convertPost } from './drop-in-blog/schema-converters.js'
@@ -78,6 +78,21 @@ const styles = css`
     }
 `;
 
+const numberConverter: ValueConverter = {
+    toView(value: number | null | undefined): string {
+        if (value && !Number.isNaN(value)) {
+            value.toString();
+        }
+        return "";
+    },
+    fromView(value: string | null | undefined): number {
+        if (value) {
+            return Number(value);
+        }
+        return Number.NaN;
+    }
+};
+
 @customElement({
     name: 'fluent-blog',
     template: template,
@@ -90,12 +105,14 @@ export class FluentBlog extends FASTElement {
     post: BlogPosting | null = null;
 
     @attr({
-        attribute: 'current-page'
+        attribute: 'current-page',
+        converter: numberConverter
     })
     currentPage: number | null = null;
 
     @attr({
-        attribute: 'current-post'
+        attribute: 'current-post',
+        converter: numberConverter
     })
     currentPost: number | null = null;
 
