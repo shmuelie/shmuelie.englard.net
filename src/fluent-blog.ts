@@ -5,6 +5,7 @@ import { getPosts } from './drop-in-blog/posts.js'
 import { convertPost } from './drop-in-blog/schema-converters.js'
 import { getPost } from './drop-in-blog/post.js'
 import { isError } from './drop-in-blog/request-helper.js'
+import { register, unregister, ProviderCallback, SchemaConfig } from 'https://unpkg.com/hashed-es6@1.0.2'
 
 const listPostsTemplate = html<BlogPosting, FluentBlog>`
 <fluent-card
@@ -162,38 +163,15 @@ section.blog-post time {
 }
 `;
 
-export interface BlogState {
-    currentPage: number | null;
-    currentPost: number | null;
-}
-
-const blogStateConverter: ValueConverter = {
-    toView(value: BlogState | null | undefined): string | null {
-        if (value) {
-            return `${value.currentPage ?? 'null'}|${value.currentPost ?? 'null'}`
-        }
-        return null;
-    },
-    fromView(value: string | null | undefined): BlogState | null {
-        if (typeof value === 'string' && value !== "") {
-            const parts = value.split('|');
-            return {
-                currentPage: parts[0] === 'null' ? null : Number(parts[0]),
-                currentPost: parts[1] === 'null' ? null : Number(parts[1])
-            }
-        } else if (typeof value === 'object') {
-            return value as BlogState | null;
-        }
-        return null;
-    }
-};
-
 @customElement({
     name: 'fluent-blog',
     template: template,
     styles: styles
 })
 export class FluentBlog extends FASTElement {
+    private updateHash: ProviderCallback | null = null;
+    private readonly boundHashUpdated = this.hashUpdated.bind(this);
+
     @observable
     loading: boolean = false;
     @observable
@@ -213,15 +191,6 @@ export class FluentBlog extends FASTElement {
     })
     currentPost: number | null = null;
 
-    @attr({
-        attribute: 'blog-state',
-        converter: blogStateConverter
-    })
-    blogState: BlogState | null = {
-        currentPage: null,
-        currentPost: null
-    };
-
     currentPageChanged(): void {
         this._load();
     }
@@ -230,19 +199,28 @@ export class FluentBlog extends FASTElement {
         this._load();
     }
 
-    blogStateChanged(): void {
-        if (!this.loading) {
-            this.loading = true;
-            this.currentPage = this.blogState?.currentPage ?? null;
-            this.currentPost = this.blogState?.currentPost ?? null;
-            this.loading = false;
-            this._load();
-        }
-    }
-
     override connectedCallback(): void {
         super.connectedCallback();
 
+        const config: SchemaConfig = {};
+        config[this.id + "Page"] = this.currentPage ?? "";
+        config[this.id + "Post"] = this.currentPost ?? "";
+        this.updateHash = register(config, this.boundHashUpdated);
+        this._load();
+    }
+    private hashUpdated(state: Record<string, any>): void {
+        let page = state[this.id + "Page"];
+        if (page === "") {
+            page = null;
+        }
+        let post = state[this.id + "Post"];
+        if (post === "") {
+            post = null;
+        }
+        this.loading = true;
+        this.currentPage = page;
+        this.currentPost = post;
+        this.loading = false;
         this._load();
     }
 
@@ -262,10 +240,6 @@ export class FluentBlog extends FASTElement {
         catch {
         }
 
-        this.blogState = {
-            currentPage: this.currentPage,
-            currentPost: this.currentPost
-        };
         this.$emit("change");
 
         this.loading = false;
