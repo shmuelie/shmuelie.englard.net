@@ -1,11 +1,11 @@
 import { } from 'https://unpkg.com/@fluentui/web-components@2.6.1'
-import { attr, html, repeat, observable, FASTElement, customElement, css, when, ValueConverter, nullableNumberConverter } from 'https://unpkg.com/@microsoft/fast-element@1.13.0'
+import { attr, html, repeat, observable, FASTElement, customElement, css, when, nullableNumberConverter } from 'https://unpkg.com/@microsoft/fast-element@1.13.0'
 import { BlogPosting } from '../data/schema'
 import { getPosts } from './drop-in-blog/posts.js'
 import { convertPost } from './drop-in-blog/schema-converters.js'
 import { getPost } from './drop-in-blog/post.js'
 import { isError } from './drop-in-blog/request-helper.js'
-import { register, unregister, ProviderCallback, SchemaConfig } from 'https://unpkg.com/hashed-es6@1.0.2'
+import { register, ProviderCallback } from 'https://unpkg.com/hashed-es6@1.0.3'
 
 const listPostsTemplate = html<BlogPosting, FluentBlog>`
 <fluent-card
@@ -191,36 +191,52 @@ export class FluentBlog extends FASTElement {
     })
     currentPost: number | null = null;
 
+    private get currentPageId(): string {
+        return this.id + "Page";
+    }
+
+    private get currentPostId(): string {
+        return this.id + "Post";
+    }
+
     currentPageChanged(): void {
-        this._load();
+        if (this.updateHash) {
+            this.updateHash({
+                [this.currentPageId]: this.currentPage?.toString() ?? ""
+            });
+            this._load();
+        }
     }
 
     currentPostChanged(): void {
-        this._load();
+        if (this.updateHash) {
+            this.updateHash({
+                [this.currentPostId]: this.currentPost?.toString() ?? ""
+            });
+            this._load();
+        }
     }
 
     override connectedCallback(): void {
         super.connectedCallback();
 
-        const config: SchemaConfig = {};
-        config[this.id + "Page"] = this.currentPage ?? "";
-        config[this.id + "Post"] = this.currentPost ?? "";
-        this.updateHash = register(config, this.boundHashUpdated);
-        this._load();
+        this.updateHash = register({
+            [this.currentPageId]: this.currentPage?.toString() ?? "",
+            [this.currentPostId]: this.currentPost?.toString() ?? ""
+        }, this.boundHashUpdated);
     }
+
     private hashUpdated(state: Record<string, any>): void {
-        let page = state[this.id + "Page"];
+        let page = state[this.currentPageId];
         if (page === "") {
             page = null;
         }
-        let post = state[this.id + "Post"];
+        let post = state[this.currentPostId];
         if (post === "") {
             post = null;
         }
-        this.loading = true;
-        this.currentPage = page;
-        this.currentPost = post;
-        this.loading = false;
+        this.currentPage = Number(page);
+        this.currentPost = Number(post);
         this._load();
     }
 
