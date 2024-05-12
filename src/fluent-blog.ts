@@ -169,36 +169,66 @@ section.blog-post time {
     styles: styles
 })
 export class FluentBlog extends FASTElement {
+    /**
+     * Method to update the hash with state information. `null` when hash state not loaded.
+     */
     private updateHash: ProviderCallback | null = null;
+    /**
+     * hashUpdated bound to the current instance.
+     */
     private readonly boundHashUpdated = this.hashUpdated.bind(this);
 
+    /**
+     * The component is loading the blog content.
+     */
     @observable
     loading: boolean = false;
+    /**
+     * The blog post summaries that are currently visible.
+     */
     @observable
     posts: BlogPosting[] = [];
+    /**
+     * The blog post currently visible or null if showing the blog listing.
+     */
     @observable
     post: BlogPosting | null = null;
 
+    /**
+     * The current page in the blog listing.
+     */
     @attr({
         attribute: 'current-page',
         converter: nullableNumberConverter
     })
     currentPage: number | null = null;
 
+    /**
+     * The ID of the current blog post or null if showing the listing.
+     */
     @attr({
         attribute: 'current-post',
         converter: nullableNumberConverter
     })
     currentPost: number | null = null;
 
+    /**
+     * The ID for the current page in the state.
+     */
     private get currentPageId(): string {
         return this.id + "Page";
     }
 
+    /**
+     * The ID of the current post in the state.
+     */
     private get currentPostId(): string {
         return this.id + "Post";
     }
 
+    /**
+     * Handles the currentPage attribute changed.
+     */
     currentPageChanged(): void {
         if (this.updateHash) {
             this.updateHash({
@@ -208,6 +238,9 @@ export class FluentBlog extends FASTElement {
         }
     }
 
+    /**
+     * Handles the currentPost attribute changed.
+     */
     currentPostChanged(): void {
         if (this.updateHash) {
             this.updateHash({
@@ -226,6 +259,10 @@ export class FluentBlog extends FASTElement {
         }, this.boundHashUpdated);
     }
 
+    /**
+     * Callback for when the hash is updated.
+     * @param state The state from the hash.
+     */
     private hashUpdated(state: Record<string, any>): void {
         let page = state[this.currentPageId];
         if (page === "") {
@@ -240,6 +277,9 @@ export class FluentBlog extends FASTElement {
         this._load();
     }
 
+    /**
+     * Load the blog content.
+     */
     private async _load(): Promise<void> {
         if (this.loading) {
             return;
@@ -261,6 +301,10 @@ export class FluentBlog extends FASTElement {
         this.loading = false;
     }
 
+    /**
+     * Load the the currently selected blog.
+     * @returns true if there is a selected blog and it was loaded; otherwise, false.
+     */
     private async _loadPost(): Promise<boolean> {
         if (this.currentPost) {
             const response = await getPost(this.currentPost);
@@ -273,6 +317,9 @@ export class FluentBlog extends FASTElement {
         return false;
     }
 
+    /**
+     * Load the blog listings.
+     */
     private async _loadPosts(): Promise<void> {
         this.currentPost = null;
         this.post = null;
