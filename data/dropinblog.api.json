@@ -1490,6 +1490,228 @@
                 },
                 "deprecated": false
             }
+        },
+        "/v2/blog/{blog_id}/posts/search": {
+            "get": {
+                "summary": "Search posts",
+                "description": "Requires a **public** API key.",
+                "operationId": "posts-search",
+                "parameters": [
+                    {
+                        "name": "blog_id",
+                        "in": "path",
+                        "description": "Your blog ID.",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "required": true
+                    },
+                    {
+                        "name": "search",
+                        "in": "query",
+                        "description": "The search string.",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "statuses",
+                        "in": "query",
+                        "description": "Post status filter (draft, published, scheduled) with a comma separated list. Defaults to published.",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "200",
+                        "content": {
+                            "application/json": {
+                                "examples": {
+                                    "Result": {
+                                        "value": "{\n    \"success\": true,\n    \"code\": 0,\n    \"locale\": \"en\",\n    \"message\": \"OK\",\n    \"data\": {\n        \"posts\": [\n            {\n                \"id\": 42349488,\n                \"title\": \"How to Add Categories to Your Blog\",\n                \"slug\": \"how-to-add-categories-to-your-blog\",\n                \"url\": \"https://dropindemo.com/blog/how-to-add-categories-to-your-blog\",\n                \"summary\": \"Categories are important for search engine optimization and for organizing your content around themes. Website visitors will have a much easier time navigating your site if it is well organized – and when visitors have an easier time, visitors are happy!\",\n                \"featuredImage\": \"https://dropinblog.net/34236460/files/featured/how-to-add-categories.png\",\n                \"featuredImageWebm\": null,\n                \"featuredImageMp4\": null,\n                \"publishedAt\": \"12/06/2021\",\n                \"publishedAtIso8601\": \"2021-12-06T15:57:00-06:00\",\n                \"updatedAt\": \"02/22/2024\",\n                \"updatedAtIso8601\": \"2024-02-22T18:52:10-06:00\",\n                \"keyword\": \"add categories to your blog\",\n                \"secondaryKeywords\": [],\n                \"seoTitle\": \"How to Add Categories to Your Blog\",\n                \"seoDescription\": \"Help your website visitors find the info they're looking for and encourage them to keep browsing your site by learning how to add categories to your blog.\",\n                \"canonicalUrl\": \"\",\n                \"pinned\": 0,\n                \"readtime\": \"2 minute read\",\n                \"seo_score\": 85,\n                \"status\": \"published\",\n                \"visibility\": \"public\",\n                \"noindex\": 0,\n                \"author\": {\n                    \"id\": 219,\n                    \"name\": \"Jesse\",\n                    \"slug\": \"jesse\",\n                    \"photo\": \"https://dropinblog.net/34236460/authors/c321458d1a8f3afdff1944ceaa79be140f685ea8.jpg\",\n                    \"bio\": \"<p><span style=\\\"font-size: 11pt; font-family: Arial; color: #000000; background-color: transparent; font-weight: 400; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;\\\">DropInBlog co-founder Jesse is dedicated to making DropInBlog the world&rsquo;s go-to blogging platform. He helped create DiB because he was tired of dealing with complicated and incomplete blogging solutions. Jesse loves experimenting with new features and finding new ways to make <a href=\\\"https://dropinblog.com\\\">DropInBlog</a> even more awesome. </span></p>\"\n                },\n                \"categories\": [\n                    {\n                        \"id\": 898924873,\n                        \"title\": \"Tips\",\n                        \"slug\": \"tips\"\n                    }\n                ]\n            }\n        ]\n    }\n}"
+                                    }
+                                },
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true,
+                                            "default": true
+                                        },
+                                        "code": {
+                                            "type": "integer",
+                                            "example": 0,
+                                            "default": 0
+                                        },
+                                        "locale": {
+                                            "type": "string",
+                                            "example": "en"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "OK"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "posts": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "id": {
+                                                                "type": "integer",
+                                                                "example": 42349488,
+                                                                "default": 0
+                                                            },
+                                                            "title": {
+                                                                "type": "string",
+                                                                "example": "How to Add Categories to Your Blog"
+                                                            },
+                                                            "slug": {
+                                                                "type": "string",
+                                                                "example": "how-to-add-categories-to-your-blog"
+                                                            },
+                                                            "url": {
+                                                                "type": "string",
+                                                                "example": "https://dropindemo.com/blog/how-to-add-categories-to-your-blog"
+                                                            },
+                                                            "summary": {
+                                                                "type": "string",
+                                                                "example": "Categories are important for search engine optimization and for organizing your content around themes. Website visitors will have a much easier time navigating your site if it is well organized – and when visitors have an easier time, visitors are happy!"
+                                                            },
+                                                            "featuredImage": {
+                                                                "type": "string",
+                                                                "example": "https://dropinblog.net/34236460/files/featured/how-to-add-categories.png"
+                                                            },
+                                                            "featuredImageWebm": {},
+                                                            "featuredImageMp4": {},
+                                                            "publishedAt": {
+                                                                "type": "string",
+                                                                "example": "12/06/2021"
+                                                            },
+                                                            "publishedAtIso8601": {
+                                                                "type": "string",
+                                                                "example": "2021-12-06T15:57:00-06:00"
+                                                            },
+                                                            "updatedAt": {
+                                                                "type": "string",
+                                                                "example": "02/22/2024"
+                                                            },
+                                                            "updatedAtIso8601": {
+                                                                "type": "string",
+                                                                "example": "2024-02-22T18:52:10-06:00"
+                                                            },
+                                                            "keyword": {
+                                                                "type": "string",
+                                                                "example": "add categories to your blog"
+                                                            },
+                                                            "secondaryKeywords": {
+                                                                "type": "array"
+                                                            },
+                                                            "seoTitle": {
+                                                                "type": "string",
+                                                                "example": "How to Add Categories to Your Blog"
+                                                            },
+                                                            "seoDescription": {
+                                                                "type": "string",
+                                                                "example": "Help your website visitors find the info they're looking for and encourage them to keep browsing your site by learning how to add categories to your blog."
+                                                            },
+                                                            "canonicalUrl": {
+                                                                "type": "string",
+                                                                "example": ""
+                                                            },
+                                                            "pinned": {
+                                                                "type": "integer",
+                                                                "example": 0,
+                                                                "default": 0
+                                                            },
+                                                            "readtime": {
+                                                                "type": "string",
+                                                                "example": "2 minute read"
+                                                            },
+                                                            "seo_score": {
+                                                                "type": "integer",
+                                                                "example": 85,
+                                                                "default": 0
+                                                            },
+                                                            "status": {
+                                                                "type": "string",
+                                                                "example": "published"
+                                                            },
+                                                            "visibility": {
+                                                                "type": "string",
+                                                                "example": "public"
+                                                            },
+                                                            "noindex": {
+                                                                "type": "integer",
+                                                                "example": 0,
+                                                                "default": 0
+                                                            },
+                                                            "author": {
+                                                                "type": "object",
+                                                                "properties": {
+                                                                    "id": {
+                                                                        "type": "integer",
+                                                                        "example": 219,
+                                                                        "default": 0
+                                                                    },
+                                                                    "name": {
+                                                                        "type": "string",
+                                                                        "example": "Jesse"
+                                                                    },
+                                                                    "slug": {
+                                                                        "type": "string",
+                                                                        "example": "jesse"
+                                                                    },
+                                                                    "photo": {
+                                                                        "type": "string",
+                                                                        "example": "https://dropinblog.net/34236460/authors/c321458d1a8f3afdff1944ceaa79be140f685ea8.jpg"
+                                                                    },
+                                                                    "bio": {
+                                                                        "type": "string",
+                                                                        "example": "<p><span style=\"font-size: 11pt; font-family: Arial; color: #000000; background-color: transparent; font-weight: 400; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;\">DropInBlog co-founder Jesse is dedicated to making DropInBlog the world&rsquo;s go-to blogging platform. He helped create DiB because he was tired of dealing with complicated and incomplete blogging solutions. Jesse loves experimenting with new features and finding new ways to make <a href=\"https://dropinblog.com\">DropInBlog</a> even more awesome. </span></p>"
+                                                                    }
+                                                                }
+                                                            },
+                                                            "categories": {
+                                                                "type": "array",
+                                                                "items": {
+                                                                    "type": "object",
+                                                                    "properties": {
+                                                                        "id": {
+                                                                            "type": "integer",
+                                                                            "example": 898924873,
+                                                                            "default": 0
+                                                                        },
+                                                                        "title": {
+                                                                            "type": "string",
+                                                                            "example": "Tips"
+                                                                        },
+                                                                        "slug": {
+                                                                            "type": "string",
+                                                                            "example": "tips"
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "deprecated": false
+            }
         }
     },
     "x-readme": {

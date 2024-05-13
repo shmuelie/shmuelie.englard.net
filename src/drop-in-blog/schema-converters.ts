@@ -1,9 +1,10 @@
 import { BlogPosting, Person } from '../../data/schema';
 import { Author as ListAuthor, Post as PostSummary } from './posts.js'
+import { Author as SearchAuthor, Post as SearchPost } from './search.js'
 import { Author as PostAuthor, Post as FullPost } from './post.js'
 
-export type Post = PostSummary | FullPost;
-export type Author = ListAuthor | PostAuthor;
+export type Post = PostSummary | FullPost | SearchPost;
+export type Author = ListAuthor | PostAuthor | SearchAuthor;
 
 export function isFullPost(post: Post): post is FullPost {
     return 'content' in post;
