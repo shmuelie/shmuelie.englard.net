@@ -30,7 +30,7 @@ jobs:
     - name: Clear root directory
       run: rm -f ./*.*
     - name: Copy build output to root directory
-      run: cp ./dist/* ./
+      run: cp -r ./dist/* ./
     - name: Add changes to git
       run: git add .
     - name: Commit changes to git
