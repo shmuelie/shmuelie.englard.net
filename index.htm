@@ -6,33 +6,35 @@
     <meta property="og:title" content="Shmueli Yosef Englard">
     <meta property="og:image" content="https://avatars0.githubusercontent.com/u/1119883?s=460&amp;u=ff3333cb5414fe0726c7b91226ccda3cd65d4a4a&amp;v=4">
     <meta property="og:description" content="Personal Website of Shmueli Englard">
-    <meta name="datetime" content="2024-04-28T19:05:06.853Z">
+    <meta name="datetime" content="2024-05-13T02:23:21.221Z">
 </head>
 <body dir="ltr">
     <header class="card">
         <img itemprop="image" alt="Shmueli Englard" src="https://avatars0.githubusercontent.com/u/1119883?s=460&amp;u=ff3333cb5414fe0726c7b91226ccda3cd65d4a4a&amp;v=4">
-        <h1 itemprop="name">Shmueli Yosef Englard</h1>
-        <h2 itemprop="jobTitle">Senior Software Engineer</h2>
-        <a itemprop="email" rel="me" href="mailto:shmueli.yosef@englard.net">shmueli.yosef@englard.net</a>
-        <a itemprop="telephone" rel="me" href="tel:17177468354">+1 (717) 746-8354</a>
-        <span itemprop="address">Seattle, Washington, United States</span>
+        <div>
+            <h1 itemprop="name">Shmueli Yosef Englard</h1>
+            <h2 itemprop="jobTitle">Senior Software Engineer</h2>
+            <a itemprop="email" rel="me" href="mailto:shmueli.yosef@englard.net">shmueli.yosef@englard.net</a>
+            <a itemprop="telephone" rel="me" href="tel:17177468354">+1 (717) 746-8354</a>
+            <span itemprop="address">Seattle, Washington, United States</span>
+        </div>
     </header>
     <main class="card">
-        <fluent-tabs id="rootTabs" data-state="">
+        <fluent-tabs id="rootTabs">
             <fluent-tab>General</fluent-tab>
-            <fluent-tab>Links</fluent-tab>
             <fluent-tab>Interests</fluent-tab>
+            <fluent-tab>Blog</fluent-tab>
             <fluent-tab-panel>
-                <a class="badge" target="_blank" href="https://github.com/shmuelie/shmuelie.englard.net" rel="noopener" title="GitHub Repo">
-                    <shieldio-badge message="GitHub Repo" color="181717" logocolor="FFFFFF" logo="GitHub" badgestyle="for-the-badge"></shieldio-badge>
-                </a>
-                <a class="badge" target="_blank" href="https://github.com/shmuelie/shmuelie.englard.net/actions/workflows/node.js.yml" rel="noopener" title="GitHub Workflow Status">
-                    <img alt="GitHub Workflow Status" src="https://img.shields.io/github/actions/workflow/status/shmuelie/shmuelie.englard.net/node.js.yml?style=for-the-badge&amp;logo=github&amp;logoColor=FFFFFF">
-                </a>
-                <h1>About me</h1>
-                <p>Cutting my programming chops on the .NET 2.0 Betas in 2005, I grew to love developing software. I started out using VB.NET but moved on to C# quickly and never looked back. While most of my work is in C#, I have professional experience with cross platform development in Java, C++ (SWIG); web development in JavaScript, node.js and, database development with MS SQL Server, PostgreSQL and MySQL, and data integration services using different transport protocols using JSON, GeoJSON, XML and Google Protocol Buffers.</p>
-            </fluent-tab-panel>
-            <fluent-tab-panel>
+                <section>
+                    <a class="badge" target="_blank" href="https://github.com/shmuelie/shmuelie.englard.net" rel="noopener" title="GitHub Repo">
+                        <shieldio-badge message="GitHub Repo" color="181717" logocolor="FFFFFF" logo="GitHub" badgestyle="for-the-badge"></shieldio-badge>
+                    </a>
+                    <a class="badge" target="_blank" href="https://github.com/shmuelie/shmuelie.englard.net/actions/workflows/node.js.yml" rel="noopener" title="GitHub Workflow Status">
+                        <img alt="GitHub Workflow Status" src="https://img.shields.io/github/actions/workflow/status/shmuelie/shmuelie.englard.net/node.js.yml?style=for-the-badge&amp;logo=github&amp;logoColor=FFFFFF">
+                    </a>
+                    <h1>About me</h1>
+                    <p>Cutting my programming chops on the .NET 2.0 Betas in 2005, I grew to love developing software. I started out using VB.NET but moved on to C# quickly and never looked back. While most of my work is in C#, I have professional experience with cross platform development in Java, C++ (SWIG); web development in JavaScript, node.js and, database development with MS SQL Server, PostgreSQL and MySQL, and data integration services using different transport protocols using JSON, GeoJSON, XML and Google Protocol Buffers.</p>
+                </section>
                 <section itemprop="contactPoint">
                     
                 <div itemscope="" itemtype="https://schema.org/ContactPoint">
@@ -176,6 +178,9 @@
                                 </div>
                             </fluent-card></div>
                 </section>
+            </fluent-tab-panel>
+            <fluent-tab-panel class="blog">
+                <fluent-blog id="theblog"></fluent-blog>
             </fluent-tab-panel>
         </fluent-tabs>
     </main>
