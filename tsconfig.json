@@ -3,6 +3,7 @@
         "allowUnusedLabels": false,
         "alwaysStrict": true,
         "downlevelIteration": true,
+        "experimentalDecorators": true,
         "forceConsistentCasingInFileNames": true,
         "module": "ES2020",
         "moduleResolution": "node",
@@ -25,6 +26,7 @@
     },
     "extends": "./tsconfig.paths.json",
     "include": [
-        "src/*.ts"
-, "data/schema.d.ts"    ]
+        "src/**/*.ts",
+        "data/schema.d.ts"
+    ]
 }
