@@ -151,6 +151,12 @@ export const contactPoints = [
         contactType: "Yelp",
         url: "https://www.yelp.com/user_details?userid=8zoM85ingaMtzbtK-mlNjQ",
         identifier: "8zoM85ingaMtzbtK-mlNjQ"
+    },
+    {
+        "@type": "ContactPoint",
+        contactType: "UserBenchmark",
+        url: "https://www.userbenchmark.com/User?id=shmuelie&tab=PProfile",
+        identifier: "shmuelie"
     }
 ];
 
