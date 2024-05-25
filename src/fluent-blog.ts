@@ -1,11 +1,10 @@
 import { } from 'https://unpkg.com/@fluentui/web-components@2.6.1'
 import { attr, html, repeat, observable, FASTElement, customElement, css, when, nullableNumberConverter } from 'https://unpkg.com/@microsoft/fast-element@1.13.0'
 import { BlogPosting } from '../data/schema'
-import { getPosts } from './drop-in-blog/posts.js'
 import { convertPost } from './drop-in-blog/schema-converters.js'
-import { getPost } from './drop-in-blog/post.js'
 import { isError } from './drop-in-blog/request-helper.js'
 import { register, ProviderCallback } from 'https://unpkg.com/hashed-es6@1.0.3'
+import { Blog } from './drop-in-blog/blog.js'
 
 const listPostsTemplate = html<BlogPosting, FluentBlog>`
 <fluent-card
@@ -178,6 +177,8 @@ export class FluentBlog extends FASTElement {
      */
     private readonly boundHashUpdated = this.hashUpdated.bind(this);
 
+    private blogApi: Blog | null = null;
+
     /**
      * The component is loading the blog content.
      */
@@ -211,6 +212,16 @@ export class FluentBlog extends FASTElement {
         converter: nullableNumberConverter
     })
     currentPost: number | null = null;
+
+    @attr({
+        attribute: 'blog-id'
+    })
+    blogId: string | null = null;
+
+    @attr({
+        attribute: 'oauth-key'
+    })
+    oauthKey: string | null = null;
 
     /**
      * The ID for the current page in the state.
@@ -248,6 +259,25 @@ export class FluentBlog extends FASTElement {
             });
             this._load();
         }
+    }
+
+    private configureBlogApi(): void {
+        if (!this.blogApi &&
+            this.blogId &&
+            this.oauthKey) {
+                this.blogApi = new Blog(this.blogId, this.oauthKey);
+        }
+        if (this.updateHash) {
+            this._load();
+        }
+    }
+
+    blogIdChanged(): void {
+        this.configureBlogApi();
+    }
+
+    oauthKeyChanged(): void {
+        this.configureBlogApi();
     }
 
     override connectedCallback(): void {
@@ -307,7 +337,7 @@ export class FluentBlog extends FASTElement {
      */
     private async _loadPost(): Promise<boolean> {
         if (this.currentPost) {
-            const response = await getPost(this.currentPost);
+            const response = await this.blogApi?.getPost(this.currentPost);
             if (response && !isError(response)) {
                 this.post = convertPost(response);
                 return true;
@@ -331,11 +361,11 @@ export class FluentBlog extends FASTElement {
             currentPage = this.currentPage;
         }
 
-        const response = await getPosts({
+        const response = await this.blogApi?.getPosts({
             page: currentPage,
 
         });
-        if (!isError(response)) {
+        if (response && !isError(response)) {
             for (const post of response.posts ?? []) {
                 if (post) {
                     this.posts.push(convertPost(post));

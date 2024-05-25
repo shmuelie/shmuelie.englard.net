@@ -1,5 +1,5 @@
 import { operations } from '../../data/dropinblog.api';
-import { ErrorResponse, orError, get, rootUrl } from './request-helper.js';
+import { ErrorResponse, orError, get } from './request-helper.js';
 
 export type Options = operations['posts-list']['parameters']['query'];
 export type Response = operations['posts-list']['responses']['200']['content']['application/json'];
@@ -12,13 +12,8 @@ export type Author = NonNullable<NonNullable<Post>['author']>;
  * @param options Optional options for the request.
  * @returns A Data on success; an ErrorResponse on error.
  */
-export async function getPosts(options: Options = {}): Promise<Data | ErrorResponse> {
-    const requestUrl: URL = new URL(`${rootUrl}/posts`);
-    const optionsMap = options as {[k:string]:any};
-    for (const optionName of Object.keys(options)) {
-        requestUrl.searchParams.append(optionName, optionsMap[optionName]);
-    }
-    return orError<Data, Response>(await get<Response>(requestUrl), {
+export async function getPosts(blogId: string, oauthKey: string, options: Options = {}): Promise<Data | ErrorResponse> {
+    return orError<Data, Response>(await get<Response>(blogId, oauthKey, 'posts', options as {[k:string]:any}), {
         pagination: {
             total: 0
         },

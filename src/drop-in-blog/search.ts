@@ -1,5 +1,5 @@
 import { operations } from '../../data/dropinblog.api';
-import { ErrorResponse, orError, get, rootUrl, isError } from './request-helper.js';
+import { ErrorResponse, orError, get, isError } from './request-helper.js';
 
 export type Query = operations['posts-search']['parameters']['query'];
 export type Response = operations['posts-search']['responses']['200']['content']['application/json'];
@@ -12,13 +12,8 @@ export type Author = NonNullable<NonNullable<Post>['author']>;
  * @param query The search query.
  * @returns An array of posts on success; an ErrorResponse on error.
  */
-export async function searchPosts(query: Query): Promise<Post[] | ErrorResponse> {
-    const requestUrl: URL = new URL(`${rootUrl}/search`);
-    const queryMap = query as {[k:string]:any};
-    for (const queryName of Object.keys(query)) {
-        requestUrl.searchParams.append(queryName, queryMap[queryName]);
-    }
-    const response = orError<Data, Response>(await get<Response>(requestUrl), {
+export async function searchPosts(blogId: string, oauthKey: string, query: Query): Promise<Post[] | ErrorResponse> {
+    const response = orError<Data, Response>(await get<Response>(blogId, oauthKey, 'search', query as {[k:string]:any}), {
         posts: []
     });
     if (isError(response)) {
