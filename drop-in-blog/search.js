@@ -1,2 +1,2 @@
-import{orError,get,rootUrl,isError}from"./request-helper.js";export async function searchPosts(r){var o;const s=new URL(`${rootUrl}/search`),t=r;for(const o of Object.keys(r))s.searchParams.append(o,t[o]);const e=orError(await get(s),{posts:[]});return isError(e)?e:null!==(o=e.posts)&&void 0!==o?o:[]}
+import{orError,get,isError}from"./request-helper.js";export async function searchPosts(r,o,s){var t;const e=orError(await get(r,o,"search",s),{posts:[]});return isError(e)?e:null!==(t=e.posts)&&void 0!==t?t:[]}
 //# sourceMappingURL=search.js.map

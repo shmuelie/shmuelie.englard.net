@@ -1,2 +1,2 @@
-import{orError,get,rootUrl,isError}from"./request-helper.js";export async function getCategories(){var r;const o=orError(await get(new URL(`${rootUrl}/categories`)),{categories:[]});return isError(o)?o:null!==(r=o.categories)&&void 0!==r?r:[]}
+import{orError,get,isError}from"./request-helper.js";export async function getCategories(r,e){var o;const t=orError(await get(r,e,"categories"),{categories:[]});return isError(t)?t:null!==(o=t.categories)&&void 0!==o?o:[]}
 //# sourceMappingURL=categories.js.map
