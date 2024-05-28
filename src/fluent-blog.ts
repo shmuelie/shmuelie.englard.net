@@ -1,22 +1,20 @@
 import { } from 'https://unpkg.com/@fluentui/web-components@2.6.1'
 import { attr, html, repeat, observable, FASTElement, customElement, css, when, nullableNumberConverter } from 'https://unpkg.com/@microsoft/fast-element@1.13.0'
-import { BlogPosting } from '../data/schema'
-import { convertPost } from './drop-in-blog/schema-converters.js'
 import { isError } from './drop-in-blog/request-helper.js'
 import { register, ProviderCallback } from 'https://unpkg.com/hashed-es6@1.0.3'
-import { Blog } from './drop-in-blog/blog.js'
+import { Blog, Post, PostSummary } from './drop-in-blog/blog.js'
 
-const listPostsTemplate = html<BlogPosting, FluentBlog>`
+const listPostsTemplate = html<PostSummary, FluentBlog>`
 <fluent-card
     itemscope
     itemtype="https://schema.org/BlogPosting"
-    title=${x => x.headline}
-    @click="${(x, c) => c.parent.currentPost = Number(x['@id'])}">
-    <img itemprop="image" src="${x => x.image}" alt="${x => x.headline}" />
+    title=${x => x.title}
+    @click="${(x, c) => c.parent.currentPost = Number(x.id?.toString() ?? '0')}">
+    <img itemprop="image" src="${x => x.featuredImage}" alt="${x => x.title}" />
     <div>
-        <h2 itemprop="headline">${x => x.headline}</h2>
-        <time datetime="${x => x.datePublished}">${x => new Date(<string>x.datePublished).toLocaleString()}</time>
-        <p itemprop="abstract">${x => x.abstract}</p>
+        <h2 itemprop="headline">${x => x.title}</h2>
+        <time datetime="${x => x.publishedAt}">${x => new Date(<string>x.publishedAt).toLocaleString()}</time>
+        <p itemprop="abstract">${x => x.summary}</p>
     </div>
 </fluent-card>
 `
@@ -33,11 +31,11 @@ const postTemplate = html<FluentBlog>`
 <section class="blog-post">
     <h1>
         <fluent-flipper direction="previous" @click="${x => x.currentPost = null}"></fluent-flipper>
-        ${x => x.post?.headline}
+        ${x => x.post?.title}
     </h1>
-    <time datetime="${x => x.post?.datePublished}">${x => new Date(<string>x.post?.datePublished).toLocaleString()}</time>
-    <img src="${x => x.post?.image}" alt="${x => x.post?.headline}" />
-    <article :innerHTML="${x => x.post?.articleBody}"></article>
+    <time datetime="${x => x.post?.publishedAt}">${x => new Date(<string>x.post?.publishedAt).toLocaleString()}</time>
+    <img src="${x => x.post?.featuredImage}" alt="${x => x.post?.title}" />
+    <article :innerHTML="${x => x.post?.content}"></article>
 </section>
 `;
 
@@ -188,12 +186,12 @@ export class FluentBlog extends FASTElement {
      * The blog post summaries that are currently visible.
      */
     @observable
-    posts: BlogPosting[] = [];
+    posts: PostSummary[] = [];
     /**
      * The blog post currently visible or null if showing the blog listing.
      */
     @observable
-    post: BlogPosting | null = null;
+    post: Post | null = null;
 
     /**
      * The current page in the blog listing.
@@ -339,7 +337,7 @@ export class FluentBlog extends FASTElement {
         if (this.currentPost) {
             const response = await this.blogApi?.getPost(this.currentPost);
             if (response && !isError(response)) {
-                this.post = convertPost(response);
+                this.post = response;
                 return true;
             }
         }
@@ -368,7 +366,7 @@ export class FluentBlog extends FASTElement {
         if (response && !isError(response)) {
             for (const post of response.posts ?? []) {
                 if (post) {
-                    this.posts.push(convertPost(post));
+                    this.posts.push(post);
                 }
             }
         }

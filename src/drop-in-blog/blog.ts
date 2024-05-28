@@ -1,8 +1,13 @@
-import { getPosts, Data, Options } from './posts.js';
+import { getPosts, Data as PostsResponse, Options as PostsOptions } from './posts.js';
+export { Data as PostsResponse, Options as PostsOptions, Post as PostSummary } from './posts.js';
 import { getPost, Post } from './post.js';
+export { Post } from './post.js';
 import { getAuthors, Author } from './authors.js';
+export { Author } from './authors.js';
 import { getCategories, Category } from './categories.js';
+export { Category } from './categories.js';
 import { searchPosts, Query, Post as SearchPost } from './search.js';
+export { Query, Post as SearchPost } from './search.js';
 import { ErrorResponse } from './request-helper.js';
 
 export class Blog {
@@ -18,7 +23,7 @@ export class Blog {
         return await getAuthors(this.blogId, this.oauthKey);
     }
 
-    async getPosts(options: Options = {}): Promise<Data | ErrorResponse> {
+    async getPosts(options: PostsOptions = {}): Promise<PostsResponse | ErrorResponse> {
         return await getPosts(this.blogId, this.oauthKey, options);
     }
 
