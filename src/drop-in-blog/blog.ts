@@ -1,14 +1,13 @@
-import { getPosts, Data as PostsResponse, Options as PostsOptions } from './posts.js';
-export { Data as PostsResponse, Options as PostsOptions, Post as PostSummary } from './posts.js';
-import { getPost, Post } from './post.js';
-export { Post } from './post.js';
-import { getAuthors, Author } from './authors.js';
-export { Author } from './authors.js';
-import { getCategories, Category } from './categories.js';
-export { Category } from './categories.js';
-import { searchPosts, Query, Post as SearchPost } from './search.js';
-export { Query, Post as SearchPost } from './search.js';
+import { getPosts, PostsResponse, Options as PostsOptions } from './posts.js';
+export { PostsResponse, Options as PostsOptions} from './posts.js';
+import { getPost } from './post.js';
+import { getAuthors } from './authors.js';
+import { getCategories } from './categories.js';
+import { searchPosts, Query } from './search.js';
+export { Query } from './search.js';
 import { ErrorResponse } from './request-helper.js';
+import { Author, Category, Post, PostSummary } from './schemas.js';
+export { Author, Category, Post, PostSummary } from './schemas.js';
 
 export class Blog {
     readonly blogId: string;
@@ -27,7 +26,7 @@ export class Blog {
         return await getPosts(this.blogId, this.oauthKey, options);
     }
 
-    async searchPosts(query: Query): Promise<SearchPost[] | ErrorResponse> {
+    async searchPosts(query: Query): Promise<PostSummary[] | ErrorResponse> {
         return await searchPosts(this.blogId, this.oauthKey, query);
     }
 

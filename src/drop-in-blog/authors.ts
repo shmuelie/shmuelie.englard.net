@@ -1,9 +1,9 @@
 import { operations } from '../../data/dropinblog.api';
 import { ErrorResponse, orError, get, isError } from './request-helper.js';
+import { Author } from './schemas.js';
 
-export type Response = operations['authors-list']['responses']['200']['content']['application/json'];
-export type Data = NonNullable<Response['data']>;
-export type Author = NonNullable<Data['authors']>[0];
+type Response = operations['authors-list']['responses']['200']['content']['application/json'];
+type Data = NonNullable<Response['data']>;
 
 export async function getAuthors(blogId: string, oauthKey: string): Promise<Author[] | ErrorResponse> {
     const response = orError<Data, Response>(await get<Response>(blogId, oauthKey, 'authors'), {

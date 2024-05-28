@@ -52,9 +52,206 @@ export interface paths {
 export type webhooks = Record<string, never>;
 
 export interface components {
-  schemas: never;
+  schemas: {
+    category: {
+      /**
+       * @default 0
+       * @example 898924871
+       */
+      id?: number;
+      /** @example Announcements */
+      title?: string;
+      /** @example announcements */
+      slug?: string;
+    };
+    author: {
+      /**
+       * @default 0
+       * @example 217
+       */
+      id?: number;
+      /** @example Jason */
+      name?: string;
+      /** @example jason */
+      slug?: string;
+      /** @example https://dropinblog.net/34236460/authors/91ec7b998af85b554be184f7a9f62b28cec93c20.jpg */
+      photo?: string;
+      /** @example <p><span style="font-size: 11pt; font-family: Arial; color: #000000; background-color: transparent; font-weight: 400; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">Jason is a co-founder of <a href="https://dropinblog.com">DropInBlog</a>, and a bit of a coding geek. He just wants to make everyone&rsquo;s time on the web a little easier, and has over 10 years of experience building technical solutions to tough problems. When he&rsquo;s not coding out a new feature for DiB, you can find him tinkering with his own projects or reading up on the latest tech stack.</span></p> */
+      bio?: string;
+    };
+    post_summary: {
+      /**
+       * @default 0
+       * @example 42349488
+       */
+      id?: number;
+      /** @example How to Add Categories to Your Blog */
+      title?: string;
+      /** @example how-to-add-categories-to-your-blog */
+      slug?: string;
+      /** @example https://dropindemo.com/blog/how-to-add-categories-to-your-blog */
+      url?: string;
+      /** @example Categories are important for search engine optimization and for organizing your content around themes. Website visitors will have a much easier time navigating your site if it is well organized – and when visitors have an easier time, visitors are happy! */
+      summary?: string;
+      /** @example https://dropinblog.net/34236460/files/featured/how-to-add-categories.png */
+      featuredImage?: string;
+      featuredImageWebm?: unknown;
+      featuredImageMp4?: unknown;
+      /** @example 12/06/2021 */
+      publishedAt?: string;
+      /** @example 2021-12-06T15:57:00-06:00 */
+      publishedAtIso8601?: string;
+      /** @example 02/22/2024 */
+      updatedAt?: string;
+      /** @example 2024-02-22T18:52:10-06:00 */
+      updatedAtIso8601?: string;
+      /** @example add categories to your blog */
+      keyword?: string;
+      secondaryKeywords?: unknown[];
+      /** @example How to Add Categories to Your Blog */
+      seoTitle?: string;
+      /** @example Help your website visitors find the info they're looking for and encourage them to keep browsing your site by learning how to add categories to your blog. */
+      seoDescription?: string;
+      /** @example */
+      canonicalUrl?: string;
+      /**
+       * @default 0
+       * @example 0
+       */
+      pinned?: number;
+      /** @example 2 minute read */
+      readtime?: string;
+      /**
+       * @default 0
+       * @example 85
+       */
+      seo_score?: number;
+      /** @example published */
+      status?: string;
+      /** @example public */
+      visibility?: string;
+      /**
+       * @default 0
+       * @example 0
+       */
+      noindex?: number;
+      author?: components["schemas"]["author"];
+      categories?: components["schemas"]["category"][];
+    };
+    post: {
+      /**
+       * @default 0
+       * @example 42349491
+       */
+      id?: number;
+      /** @example Welcome to DropInBlog ~ Blogging Made Easy */
+      title?: string;
+      /** @example welcome-to-dropinblog */
+      slug?: string;
+      /** @example https://dropindemo.com/blog/welcome-to-dropinblog */
+      url?: string;
+      /** @example Congrats on Finding Us – We're Happy You're Here! DropInBlog aims to be the simplest blogging solution for existing websites. Our primary goal is to help you get a stylish blog up and running on your site in minutes. But because we are geeks at heart, */
+      summary?: string;
+      /** @example https://dropinblog.net/34236460/files/featured/welcome-dib.png */
+      featuredImage?: string;
+      featuredImageWebm?: unknown;
+      featuredImageMp4?: unknown;
+      /** @example 03/16/2024 */
+      publishedAt?: string;
+      /** @example 2024-03-16T16:44:00-05:00 */
+      publishedAtIso8601?: string;
+      /** @example 03/16/2024 */
+      updatedAt?: string;
+      /** @example 2024-03-16T16:45:06-05:00 */
+      updatedAtIso8601?: string;
+      /** @example blogging */
+      keyword?: string;
+      secondaryKeywords?: string[];
+      /** @example Welcome to DropInBlog ~ Blogging Made Easy */
+      seoTitle?: string;
+      /** @example Built to make embedding a blog into your website fast & easy. Be up and blogging in minutes. Feature rich & SEO friendly. Javascript, PHP or JSON integration. */
+      seoDescription?: string;
+      /** @example */
+      canonicalUrl?: string;
+      /**
+       * @default 0
+       * @example 0
+       */
+      pinned?: number;
+      /** @example 3 minute read */
+      readtime?: string;
+      /**
+       * @default 0
+       * @example 82
+       */
+      seo_score?: number;
+      /** @example published */
+      status?: string;
+      /** @example public */
+      visibility?: string;
+      /**
+       * @default 0
+       * @example 0
+       */
+      noindex?: number;
+      author?: components["schemas"]["author"];
+      categories?: components["schemas"]["category"][];
+      /**
+       * @example <h2>Congrats on Finding Us &ndash; We're Happy You're Here!</h2>
+       * <p>DropInBlog aims to be the simplest blogging solution for existing websites. Our primary goal is to help you get a stylish blog up and running on your site in minutes.</p>
+       * <p>But because we are geeks at heart, we also want to help you boost your website's SEO and offer you loads of useful features along the way.</p>
+       * <p><img class="dib-img-loading" loading="dib-lazy" data-lazy-load="https://io.dropinblog.com/assets/img/samples/embed/blogging-made-easy.webp" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20WIDTH%20HEIGHT'%3E%3C/svg%3E" alt="DropInBlog - Blogging Made Easy" width="1253" height="705" /></p>
+       * <h3>How Do I Start?</h3>
+       * <p>Integrating DropInBlog onto your site is easy ... just click the Code &amp; Layout tab in your admin panel and follow Steps 1 &amp; 2. <strong>That's it!</strong></p>
+       * <p><strong><img class="dib-img-loading" loading="dib-lazy" data-lazy-load="https://io.dropinblog.com/assets/img/samples/embed/dropinblog-integration-codes.jpeg" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20WIDTH%20HEIGHT'%3E%3C/svg%3E" alt="Code and Layout - Step 1 and Step 2 code example" width="1253" height="398" /></strong><strong></strong></p>
+       * <p>For more detailed instructions, watch our <a href="https://vimeo.com/248082632">integration video</a> ... or <a href="https://m.me/dropinblog">shoot us a message</a>. We're here to help in any way we can. We love all things blog related and we want you to as well. If you run into any snags while using DropInBlog, just let us know. Your success is our success!</p>
+       * <h3>What's next?</h3>
+       * <p>Once you're rolling, there are plenty of features you can implement. You can <a href="https://dropinblog.com/blog/how-to-add-authors-to-your-blog/">create authors</a> for each of your posts, organize them in <a href="https://dropinblog.com/blog/how-to-add-categories-to-your-blog/">categories</a>, <a href="https://dropinblog.com/blog/how-to-get-better-search-engine-rankings-with-the-dropinblog-seo-analyzer/">optimize your post's SEO</a> ... and tweak a bunch of other settings.</p>
+       * <p>Play around, go crazy. We understand not everyone finds blogging as enjoyable as we do, but we hope we're at least making the process simple and pain-free!</p>
+       * <p><img class="dib-img-loading" loading="dib-lazy" data-lazy-load="https://io.dropinblog.com/assets/img/samples/embed/Integration.png" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20WIDTH%20HEIGHT'%3E%3C/svg%3E" alt="" width="700" height="394" /></p>
+       * <h3>And what's this about SEO?</h3>
+       * <p>Search engine optimization is complicated &ndash; we're not going to try and deny that. Our goal is to help walk you through it step by step. We want each blog post you write to have the best shot at making its way to the top of search results.</p>
+       * <p>Our SEO Analyzer guides you through the process of optimizing your posts. As you create posts you'll see your SEO score increase as each benchmark is hit. Follow the suggested tips and try to get your SEO score as close to 100 as you can. There's a surprise waiting for you if you make it. ;)</p>
+       * <p><img class="dib-img-loading" loading="dib-lazy" data-lazy-load="https://io.dropinblog.com/assets/img/samples/embed/SEO.png" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20WIDTH%20HEIGHT'%3E%3C/svg%3E" alt="" width="1400" height="788" /></p>
+       * <p class="clear">With these best practices in place, Google will start to take notice. This in turn means you'll start seeing an increase in your website's search ranking and ultimately more visitors to your website. Win, win, win!</p>
+       * <h2>Thank You!</h2>
+       * <p>We're thrilled you chose DropInBlog to fulfill your blogging needs. We hope we can meet all of your expectations and help you succeed on your blogging journey. So, for real, just <a href="https://m.me/dropinblog">drop us a line</a> if there's <em>anything</em> we can do to assist you along the way.<br /><br />Happy blogging!</p>
+       */
+      content?: string;
+      /**
+       * @example <script type="application/ld+json">
+       * {
+       *   "@context": "http://schema.org",
+       *   "@type": "BlogPosting",
+       *   "mainEntityOfPage": {
+       *     "@type": "WebPage",
+       *     "@id": "https://dropindemo.com/blog/welcome-to-dropinblog"
+       *   },
+       *   "url": "https://dropindemo.com/blog/welcome-to-dropinblog",
+       *   "headline": "Welcome to DropInBlog ~ Blogging Made Easy",
+       *   "datePublished": "2024-03-16T16:44:00-05:00",
+       *   "dateModified": "2024-03-16T16:45:06-05:00",
+       *     "author": {
+       *     "@type": "Person",
+       *     "name": "Jason",
+       *     "url": "https://dropindemo.com/blog/author/jason"
+       *   },
+       *       "image": ["https://dropinblog.net/34236460/files/featured/welcome-dib.png"],
+       *     "wordCount": "415",
+       *   "description": "Built to make embedding a blog into your website fast &amp; easy. Be up and blogging in minutes. Feature rich &amp; SEO friendly. Javascript, PHP or JSON integration.",
+       *   "articleBody": "CONGRATS ON FINDING US – WE&#039;RE HAPPY YOU&#039;RE HERE! DropInBlog aims to be the simplest blogging solution for existing websites. Our primary goal is to help you get a stylish blog up and running on your site in minutes. But because we are geeks at heart, we also want to help you boost your website&#039;s SEO and offer you loads of useful features along the way. [DropInBlog - Blogging Made Easy] HOW DO I START? Integrating DropInBlog onto your site is easy ... just click the Code &amp; Layout tab in your admin panel and follow Steps 1 &amp; 2. THAT&#039;S IT! [CODE AND LAYOUT - STEP 1 AND STEP 2 CODE EXAMPLE] For more detailed instructions, watch our integration video ... or shoot us a message. We&#039;re here to help in any way we can. We love all things blog related and we want you to as well. If you run into any snags while using DropInBlog, just let us know. Your success is our success! WHAT&#039;S NEXT? Once you&#039;re rolling, there are plenty of features you can implement. You can create authors for each of your posts, organize them in categories, optimize your post&#039;s SEO ... and tweak a bunch of other settings. Play around, go crazy. We understand not everyone finds blogging as enjoyable as we do, but we hope we&#039;re at least making the process simple and pain-free! AND WHAT&#039;S THIS ABOUT SEO? Search engine optimization is complicated – we&#039;re not going to try and deny that. Our goal is to help walk you through it step by step. We want each blog post you write to have the best shot at making its way to the top of search results. Our SEO Analyzer guides you through the process of optimizing your posts. As you create posts you&#039;ll see your SEO score increase as each benchmark is hit. Follow the suggested tips and try to get your SEO score as close to 100 as you can. There&#039;s a surprise waiting for you if you make it. ;) With these best practices in place, Google will start to take notice. This in turn means you&#039;ll start seeing an increase in your website&#039;s search ranking and ultimately more visitors to your website. Win, win, win! THANK YOU! We&#039;re thrilled you chose DropInBlog to fulfill your blogging needs. We hope we can meet all of your expectations and help you succeed on your blogging journey. So, for real, just drop us a line if there&#039;s _anything_ we can do to assist you along the way. Happy blogging! "
+       * }
+       * </script>
+       */
+      schema_article?: string;
+      related_posts?: components["schemas"]["post_summary"][];
+    };
+  };
   responses: never;
-  parameters: never;
+  parameters: {
+    /** @description Your blog ID. */
+    blog_id: string;
+  };
   requestBodies: never;
   headers: never;
   pathItems: never;
@@ -95,8 +292,7 @@ export interface operations {
         post_slugs?: string;
       };
       path: {
-        /** @description Your blog ID. */
-        blog_id: string;
+        blog_id: components["parameters"]["blog_id"];
       };
     };
     responses: {
@@ -119,89 +315,7 @@ export interface operations {
             /** @example OK */
             message?: string;
             data?: {
-              posts?: ({
-                  /**
-                   * @default 0
-                   * @example 42349491
-                   */
-                  id?: number;
-                  /** @example Welcome to DropInBlog ~ Blogging Made Easy */
-                  title?: string;
-                  /** @example welcome-to-dropinblog */
-                  slug?: string;
-                  /** @example https://dropindemo.com/blog/welcome-to-dropinblog */
-                  url?: string;
-                  /** @example Congrats on Finding Us – We're Happy You're Here! DropInBlog aims to be the simplest blogging solution for existing websites. Our primary goal is to help you get a stylish blog up and running on your site in minutes. But because we are geeks at heart, */
-                  summary?: string;
-                  /** @example https://dropinblog.net/34236460/files/featured/welcome-dib.png */
-                  featuredImage?: string;
-                  featuredImageWebm?: unknown;
-                  featuredImageMp4?: unknown;
-                  /** @example 03/16/2024 */
-                  publishedAt?: string;
-                  /** @example 2024-03-16T16:44:00-05:00 */
-                  publishedAtIso8601?: string;
-                  /** @example 03/16/2024 */
-                  updatedAt?: string;
-                  /** @example 2024-03-16T16:45:06-05:00 */
-                  updatedAtIso8601?: string;
-                  /** @example blogging */
-                  keyword?: string;
-                  secondaryKeywords?: string[];
-                  /** @example Welcome to DropInBlog ~ Blogging Made Easy */
-                  seoTitle?: string;
-                  /** @example Built to make embedding a blog into your website fast & easy. Be up and blogging in minutes. Feature rich & SEO friendly. Javascript, PHP or JSON integration. */
-                  seoDescription?: string;
-                  /** @example */
-                  canonicalUrl?: string;
-                  /**
-                   * @default 0
-                   * @example 0
-                   */
-                  pinned?: number;
-                  /** @example 3 minute read */
-                  readtime?: string;
-                  /**
-                   * @default 0
-                   * @example 82
-                   */
-                  seo_score?: number;
-                  /** @example published */
-                  status?: string;
-                  /** @example public */
-                  visibility?: string;
-                  /**
-                   * @default 0
-                   * @example 0
-                   */
-                  noindex?: number;
-                  author?: {
-                    /**
-                     * @default 0
-                     * @example 217
-                     */
-                    id?: number;
-                    /** @example Jason */
-                    name?: string;
-                    /** @example jason */
-                    slug?: string;
-                    /** @example https://dropinblog.net/34236460/authors/91ec7b998af85b554be184f7a9f62b28cec93c20.jpg */
-                    photo?: string;
-                    /** @example <p><span style="font-size: 11pt; font-family: Arial; color: #000000; background-color: transparent; font-weight: 400; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">Jason is a co-founder of <a href="https://dropinblog.com">DropInBlog</a>, and a bit of a coding geek. He just wants to make everyone&rsquo;s time on the web a little easier, and has over 10 years of experience building technical solutions to tough problems. When he&rsquo;s not coding out a new feature for DiB, you can find him tinkering with his own projects or reading up on the latest tech stack.</span></p> */
-                    bio?: string;
-                  };
-                  categories?: {
-                      /**
-                       * @default 0
-                       * @example 898924871
-                       */
-                      id?: number;
-                      /** @example Announcements */
-                      title?: string;
-                      /** @example announcements */
-                      slug?: string;
-                    }[];
-                })[];
+              posts?: components["schemas"]["post_summary"][];
               pagination?: {
                 /**
                  * @default 0
@@ -239,8 +353,7 @@ export interface operations {
   "posts-retrieve": {
     parameters: {
       path: {
-        /** @description Your blog ID. */
-        blog_id: string;
+        blog_id: components["parameters"]["blog_id"];
         /** @description The ID of your post. */
         id: number;
       };
@@ -265,220 +378,7 @@ export interface operations {
             /** @example OK */
             message?: string;
             data?: {
-              post?: {
-                /**
-                 * @default 0
-                 * @example 42349491
-                 */
-                id?: number;
-                /** @example Welcome to DropInBlog ~ Blogging Made Easy */
-                title?: string;
-                /** @example welcome-to-dropinblog */
-                slug?: string;
-                /** @example https://dropindemo.com/blog/welcome-to-dropinblog */
-                url?: string;
-                /** @example Congrats on Finding Us – We're Happy You're Here! DropInBlog aims to be the simplest blogging solution for existing websites. Our primary goal is to help you get a stylish blog up and running on your site in minutes. But because we are geeks at heart, */
-                summary?: string;
-                /** @example https://dropinblog.net/34236460/files/featured/welcome-dib.png */
-                featuredImage?: string;
-                featuredImageWebm?: unknown;
-                featuredImageMp4?: unknown;
-                /** @example 03/16/2024 */
-                publishedAt?: string;
-                /** @example 2024-03-16T16:44:00-05:00 */
-                publishedAtIso8601?: string;
-                /** @example 03/16/2024 */
-                updatedAt?: string;
-                /** @example 2024-03-16T16:45:06-05:00 */
-                updatedAtIso8601?: string;
-                /** @example blogging */
-                keyword?: string;
-                secondaryKeywords?: string[];
-                /** @example Welcome to DropInBlog ~ Blogging Made Easy */
-                seoTitle?: string;
-                /** @example Built to make embedding a blog into your website fast & easy. Be up and blogging in minutes. Feature rich & SEO friendly. Javascript, PHP or JSON integration. */
-                seoDescription?: string;
-                /** @example */
-                canonicalUrl?: string;
-                /**
-                 * @default 0
-                 * @example 0
-                 */
-                pinned?: number;
-                /** @example 3 minute read */
-                readtime?: string;
-                /**
-                 * @default 0
-                 * @example 82
-                 */
-                seo_score?: number;
-                /** @example published */
-                status?: string;
-                /** @example public */
-                visibility?: string;
-                /**
-                 * @default 0
-                 * @example 0
-                 */
-                noindex?: number;
-                author?: {
-                  /**
-                   * @default 0
-                   * @example 217
-                   */
-                  id?: number;
-                  /** @example Jason */
-                  name?: string;
-                  /** @example jason */
-                  slug?: string;
-                  /** @example https://dropinblog.net/34236460/authors/91ec7b998af85b554be184f7a9f62b28cec93c20.jpg */
-                  photo?: string;
-                  /** @example <p><span style="font-size: 11pt; font-family: Arial; color: #000000; background-color: transparent; font-weight: 400; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">Jason is a co-founder of <a href="https://dropinblog.com">DropInBlog</a>, and a bit of a coding geek. He just wants to make everyone&rsquo;s time on the web a little easier, and has over 10 years of experience building technical solutions to tough problems. When he&rsquo;s not coding out a new feature for DiB, you can find him tinkering with his own projects or reading up on the latest tech stack.</span></p> */
-                  bio?: string;
-                };
-                categories?: {
-                    /**
-                     * @default 0
-                     * @example 898924871
-                     */
-                    id?: number;
-                    /** @example Announcements */
-                    title?: string;
-                    /** @example announcements */
-                    slug?: string;
-                  }[];
-                /**
-                 * @example <h2>Congrats on Finding Us &ndash; We're Happy You're Here!</h2>
-                 * <p>DropInBlog aims to be the simplest blogging solution for existing websites. Our primary goal is to help you get a stylish blog up and running on your site in minutes.</p>
-                 * <p>But because we are geeks at heart, we also want to help you boost your website's SEO and offer you loads of useful features along the way.</p>
-                 * <p><img class="dib-img-loading" loading="dib-lazy" data-lazy-load="https://io.dropinblog.com/assets/img/samples/embed/blogging-made-easy.webp" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20WIDTH%20HEIGHT'%3E%3C/svg%3E" alt="DropInBlog - Blogging Made Easy" width="1253" height="705" /></p>
-                 * <h3>How Do I Start?</h3>
-                 * <p>Integrating DropInBlog onto your site is easy ... just click the Code &amp; Layout tab in your admin panel and follow Steps 1 &amp; 2. <strong>That's it!</strong></p>
-                 * <p><strong><img class="dib-img-loading" loading="dib-lazy" data-lazy-load="https://io.dropinblog.com/assets/img/samples/embed/dropinblog-integration-codes.jpeg" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20WIDTH%20HEIGHT'%3E%3C/svg%3E" alt="Code and Layout - Step 1 and Step 2 code example" width="1253" height="398" /></strong><strong></strong></p>
-                 * <p>For more detailed instructions, watch our <a href="https://vimeo.com/248082632">integration video</a> ... or <a href="https://m.me/dropinblog">shoot us a message</a>. We're here to help in any way we can. We love all things blog related and we want you to as well. If you run into any snags while using DropInBlog, just let us know. Your success is our success!</p>
-                 * <h3>What's next?</h3>
-                 * <p>Once you're rolling, there are plenty of features you can implement. You can <a href="https://dropinblog.com/blog/how-to-add-authors-to-your-blog/">create authors</a> for each of your posts, organize them in <a href="https://dropinblog.com/blog/how-to-add-categories-to-your-blog/">categories</a>, <a href="https://dropinblog.com/blog/how-to-get-better-search-engine-rankings-with-the-dropinblog-seo-analyzer/">optimize your post's SEO</a> ... and tweak a bunch of other settings.</p>
-                 * <p>Play around, go crazy. We understand not everyone finds blogging as enjoyable as we do, but we hope we're at least making the process simple and pain-free!</p>
-                 * <p><img class="dib-img-loading" loading="dib-lazy" data-lazy-load="https://io.dropinblog.com/assets/img/samples/embed/Integration.png" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20WIDTH%20HEIGHT'%3E%3C/svg%3E" alt="" width="700" height="394" /></p>
-                 * <h3>And what's this about SEO?</h3>
-                 * <p>Search engine optimization is complicated &ndash; we're not going to try and deny that. Our goal is to help walk you through it step by step. We want each blog post you write to have the best shot at making its way to the top of search results.</p>
-                 * <p>Our SEO Analyzer guides you through the process of optimizing your posts. As you create posts you'll see your SEO score increase as each benchmark is hit. Follow the suggested tips and try to get your SEO score as close to 100 as you can. There's a surprise waiting for you if you make it. ;)</p>
-                 * <p><img class="dib-img-loading" loading="dib-lazy" data-lazy-load="https://io.dropinblog.com/assets/img/samples/embed/SEO.png" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20WIDTH%20HEIGHT'%3E%3C/svg%3E" alt="" width="1400" height="788" /></p>
-                 * <p class="clear">With these best practices in place, Google will start to take notice. This in turn means you'll start seeing an increase in your website's search ranking and ultimately more visitors to your website. Win, win, win!</p>
-                 * <h2>Thank You!</h2>
-                 * <p>We're thrilled you chose DropInBlog to fulfill your blogging needs. We hope we can meet all of your expectations and help you succeed on your blogging journey. So, for real, just <a href="https://m.me/dropinblog">drop us a line</a> if there's <em>anything</em> we can do to assist you along the way.<br /><br />Happy blogging!</p>
-                 */
-                content?: string;
-                /**
-                 * @example <script type="application/ld+json">
-                 * {
-                 *   "@context": "http://schema.org",
-                 *   "@type": "BlogPosting",
-                 *   "mainEntityOfPage": {
-                 *     "@type": "WebPage",
-                 *     "@id": "https://dropindemo.com/blog/welcome-to-dropinblog"
-                 *   },
-                 *   "url": "https://dropindemo.com/blog/welcome-to-dropinblog",
-                 *   "headline": "Welcome to DropInBlog ~ Blogging Made Easy",
-                 *   "datePublished": "2024-03-16T16:44:00-05:00",
-                 *   "dateModified": "2024-03-16T16:45:06-05:00",
-                 *     "author": {
-                 *     "@type": "Person",
-                 *     "name": "Jason",
-                 *     "url": "https://dropindemo.com/blog/author/jason"
-                 *   },
-                 *       "image": ["https://dropinblog.net/34236460/files/featured/welcome-dib.png"],
-                 *     "wordCount": "415",
-                 *   "description": "Built to make embedding a blog into your website fast &amp; easy. Be up and blogging in minutes. Feature rich &amp; SEO friendly. Javascript, PHP or JSON integration.",
-                 *   "articleBody": "CONGRATS ON FINDING US – WE&#039;RE HAPPY YOU&#039;RE HERE! DropInBlog aims to be the simplest blogging solution for existing websites. Our primary goal is to help you get a stylish blog up and running on your site in minutes. But because we are geeks at heart, we also want to help you boost your website&#039;s SEO and offer you loads of useful features along the way. [DropInBlog - Blogging Made Easy] HOW DO I START? Integrating DropInBlog onto your site is easy ... just click the Code &amp; Layout tab in your admin panel and follow Steps 1 &amp; 2. THAT&#039;S IT! [CODE AND LAYOUT - STEP 1 AND STEP 2 CODE EXAMPLE] For more detailed instructions, watch our integration video ... or shoot us a message. We&#039;re here to help in any way we can. We love all things blog related and we want you to as well. If you run into any snags while using DropInBlog, just let us know. Your success is our success! WHAT&#039;S NEXT? Once you&#039;re rolling, there are plenty of features you can implement. You can create authors for each of your posts, organize them in categories, optimize your post&#039;s SEO ... and tweak a bunch of other settings. Play around, go crazy. We understand not everyone finds blogging as enjoyable as we do, but we hope we&#039;re at least making the process simple and pain-free! AND WHAT&#039;S THIS ABOUT SEO? Search engine optimization is complicated – we&#039;re not going to try and deny that. Our goal is to help walk you through it step by step. We want each blog post you write to have the best shot at making its way to the top of search results. Our SEO Analyzer guides you through the process of optimizing your posts. As you create posts you&#039;ll see your SEO score increase as each benchmark is hit. Follow the suggested tips and try to get your SEO score as close to 100 as you can. There&#039;s a surprise waiting for you if you make it. ;) With these best practices in place, Google will start to take notice. This in turn means you&#039;ll start seeing an increase in your website&#039;s search ranking and ultimately more visitors to your website. Win, win, win! THANK YOU! We&#039;re thrilled you chose DropInBlog to fulfill your blogging needs. We hope we can meet all of your expectations and help you succeed on your blogging journey. So, for real, just drop us a line if there&#039;s _anything_ we can do to assist you along the way. Happy blogging! "
-                 * }
-                 * </script>
-                 */
-                schema_article?: string;
-                related_posts?: ({
-                    /**
-                     * @default 0
-                     * @example 42349488
-                     */
-                    id?: number;
-                    /** @example How to Add Categories to Your Blog */
-                    title?: string;
-                    /** @example how-to-add-categories-to-your-blog */
-                    slug?: string;
-                    /** @example https://dropindemo.com/blog/how-to-add-categories-to-your-blog */
-                    url?: string;
-                    /** @example Categories are important for search engine optimization and for organizing your content around themes. Website visitors will have a much easier time navigating your site if it is well organized – and when visitors have an easier time, visitors are happy! */
-                    summary?: string;
-                    /** @example https://dropinblog.net/34236460/files/featured/how-to-add-categories.png */
-                    featuredImage?: string;
-                    featuredImageWebm?: unknown;
-                    featuredImageMp4?: unknown;
-                    /** @example 12/06/2021 */
-                    publishedAt?: string;
-                    /** @example 2021-12-06T15:57:00-06:00 */
-                    publishedAtIso8601?: string;
-                    /** @example 02/22/2024 */
-                    updatedAt?: string;
-                    /** @example 2024-02-22T18:52:10-06:00 */
-                    updatedAtIso8601?: string;
-                    /** @example add categories to your blog */
-                    keyword?: string;
-                    secondaryKeywords?: unknown[];
-                    /** @example How to Add Categories to Your Blog */
-                    seoTitle?: string;
-                    /** @example Help your website visitors find the info they're looking for and encourage them to keep browsing your site by learning how to add categories to your blog. */
-                    seoDescription?: string;
-                    /** @example */
-                    canonicalUrl?: string;
-                    /**
-                     * @default 0
-                     * @example 0
-                     */
-                    pinned?: number;
-                    /** @example 2 minute read */
-                    readtime?: string;
-                    /**
-                     * @default 0
-                     * @example 85
-                     */
-                    seo_score?: number;
-                    /** @example published */
-                    status?: string;
-                    /** @example public */
-                    visibility?: string;
-                    /**
-                     * @default 0
-                     * @example 0
-                     */
-                    noindex?: number;
-                    author?: {
-                      /**
-                       * @default 0
-                       * @example 219
-                       */
-                      id?: number;
-                      /** @example Jesse */
-                      name?: string;
-                      /** @example jesse */
-                      slug?: string;
-                      /** @example https://dropinblog.net/34236460/authors/c321458d1a8f3afdff1944ceaa79be140f685ea8.jpg */
-                      photo?: string;
-                      /** @example <p><span style="font-size: 11pt; font-family: Arial; color: #000000; background-color: transparent; font-weight: 400; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">DropInBlog co-founder Jesse is dedicated to making DropInBlog the world&rsquo;s go-to blogging platform. He helped create DiB because he was tired of dealing with complicated and incomplete blogging solutions. Jesse loves experimenting with new features and finding new ways to make <a href="https://dropinblog.com">DropInBlog</a> even more awesome. </span></p> */
-                      bio?: string;
-                    };
-                    categories?: {
-                        /**
-                         * @default 0
-                         * @example 898924873
-                         */
-                        id?: number;
-                        /** @example Tips */
-                        title?: string;
-                        /** @example tips */
-                        slug?: string;
-                      }[];
-                  })[];
-              };
+              post?: components["schemas"]["post"];
             };
           };
         };
@@ -498,8 +398,7 @@ export interface operations {
         statuses?: string;
       };
       path: {
-        /** @description Your blog ID. */
-        blog_id: string;
+        blog_id: components["parameters"]["blog_id"];
       };
     };
     responses: {
@@ -522,89 +421,7 @@ export interface operations {
             /** @example OK */
             message?: string;
             data?: {
-              posts?: ({
-                  /**
-                   * @default 0
-                   * @example 42349488
-                   */
-                  id?: number;
-                  /** @example How to Add Categories to Your Blog */
-                  title?: string;
-                  /** @example how-to-add-categories-to-your-blog */
-                  slug?: string;
-                  /** @example https://dropindemo.com/blog/how-to-add-categories-to-your-blog */
-                  url?: string;
-                  /** @example Categories are important for search engine optimization and for organizing your content around themes. Website visitors will have a much easier time navigating your site if it is well organized – and when visitors have an easier time, visitors are happy! */
-                  summary?: string;
-                  /** @example https://dropinblog.net/34236460/files/featured/how-to-add-categories.png */
-                  featuredImage?: string;
-                  featuredImageWebm?: unknown;
-                  featuredImageMp4?: unknown;
-                  /** @example 12/06/2021 */
-                  publishedAt?: string;
-                  /** @example 2021-12-06T15:57:00-06:00 */
-                  publishedAtIso8601?: string;
-                  /** @example 02/22/2024 */
-                  updatedAt?: string;
-                  /** @example 2024-02-22T18:52:10-06:00 */
-                  updatedAtIso8601?: string;
-                  /** @example add categories to your blog */
-                  keyword?: string;
-                  secondaryKeywords?: unknown[];
-                  /** @example How to Add Categories to Your Blog */
-                  seoTitle?: string;
-                  /** @example Help your website visitors find the info they're looking for and encourage them to keep browsing your site by learning how to add categories to your blog. */
-                  seoDescription?: string;
-                  /** @example */
-                  canonicalUrl?: string;
-                  /**
-                   * @default 0
-                   * @example 0
-                   */
-                  pinned?: number;
-                  /** @example 2 minute read */
-                  readtime?: string;
-                  /**
-                   * @default 0
-                   * @example 85
-                   */
-                  seo_score?: number;
-                  /** @example published */
-                  status?: string;
-                  /** @example public */
-                  visibility?: string;
-                  /**
-                   * @default 0
-                   * @example 0
-                   */
-                  noindex?: number;
-                  author?: {
-                    /**
-                     * @default 0
-                     * @example 219
-                     */
-                    id?: number;
-                    /** @example Jesse */
-                    name?: string;
-                    /** @example jesse */
-                    slug?: string;
-                    /** @example https://dropinblog.net/34236460/authors/c321458d1a8f3afdff1944ceaa79be140f685ea8.jpg */
-                    photo?: string;
-                    /** @example <p><span style="font-size: 11pt; font-family: Arial; color: #000000; background-color: transparent; font-weight: 400; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">DropInBlog co-founder Jesse is dedicated to making DropInBlog the world&rsquo;s go-to blogging platform. He helped create DiB because he was tired of dealing with complicated and incomplete blogging solutions. Jesse loves experimenting with new features and finding new ways to make <a href="https://dropinblog.com">DropInBlog</a> even more awesome. </span></p> */
-                    bio?: string;
-                  };
-                  categories?: {
-                      /**
-                       * @default 0
-                       * @example 898924873
-                       */
-                      id?: number;
-                      /** @example Tips */
-                      title?: string;
-                      /** @example tips */
-                      slug?: string;
-                    }[];
-                })[];
+              posts?: components["schemas"]["post_summary"][];
             };
           };
         };
@@ -618,8 +435,7 @@ export interface operations {
   "posts-retrieve-by-slug": {
     parameters: {
       path: {
-        /** @description Your blog ID. */
-        blog_id: string;
+        blog_id: components["parameters"]["blog_id"];
         /** @description The slug of your post. */
         slug: string;
       };
@@ -644,220 +460,7 @@ export interface operations {
             /** @example OK */
             message?: string;
             data?: {
-              post?: {
-                /**
-                 * @default 0
-                 * @example 42349491
-                 */
-                id?: number;
-                /** @example Welcome to DropInBlog ~ Blogging Made Easy */
-                title?: string;
-                /** @example welcome-to-dropinblog */
-                slug?: string;
-                /** @example https://dropindemo.com/blog/welcome-to-dropinblog */
-                url?: string;
-                /** @example Congrats on Finding Us – We're Happy You're Here! DropInBlog aims to be the simplest blogging solution for existing websites. Our primary goal is to help you get a stylish blog up and running on your site in minutes. But because we are geeks at heart, */
-                summary?: string;
-                /** @example https://dropinblog.net/34236460/files/featured/welcome-dib.png */
-                featuredImage?: string;
-                featuredImageWebm?: unknown;
-                featuredImageMp4?: unknown;
-                /** @example 03/16/2024 */
-                publishedAt?: string;
-                /** @example 2024-03-16T16:44:00-05:00 */
-                publishedAtIso8601?: string;
-                /** @example 03/16/2024 */
-                updatedAt?: string;
-                /** @example 2024-03-16T16:45:06-05:00 */
-                updatedAtIso8601?: string;
-                /** @example blogging */
-                keyword?: string;
-                secondaryKeywords?: string[];
-                /** @example Welcome to DropInBlog ~ Blogging Made Easy */
-                seoTitle?: string;
-                /** @example Built to make embedding a blog into your website fast & easy. Be up and blogging in minutes. Feature rich & SEO friendly. Javascript, PHP or JSON integration. */
-                seoDescription?: string;
-                /** @example */
-                canonicalUrl?: string;
-                /**
-                 * @default 0
-                 * @example 0
-                 */
-                pinned?: number;
-                /** @example 3 minute read */
-                readtime?: string;
-                /**
-                 * @default 0
-                 * @example 82
-                 */
-                seo_score?: number;
-                /** @example published */
-                status?: string;
-                /** @example public */
-                visibility?: string;
-                /**
-                 * @default 0
-                 * @example 0
-                 */
-                noindex?: number;
-                author?: {
-                  /**
-                   * @default 0
-                   * @example 217
-                   */
-                  id?: number;
-                  /** @example Jason */
-                  name?: string;
-                  /** @example jason */
-                  slug?: string;
-                  /** @example https://dropinblog.net/34236460/authors/91ec7b998af85b554be184f7a9f62b28cec93c20.jpg */
-                  photo?: string;
-                  /** @example <p><span style="font-size: 11pt; font-family: Arial; color: #000000; background-color: transparent; font-weight: 400; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">Jason is a co-founder of <a href="https://dropinblog.com">DropInBlog</a>, and a bit of a coding geek. He just wants to make everyone&rsquo;s time on the web a little easier, and has over 10 years of experience building technical solutions to tough problems. When he&rsquo;s not coding out a new feature for DiB, you can find him tinkering with his own projects or reading up on the latest tech stack.</span></p> */
-                  bio?: string;
-                };
-                categories?: {
-                    /**
-                     * @default 0
-                     * @example 898924871
-                     */
-                    id?: number;
-                    /** @example Announcements */
-                    title?: string;
-                    /** @example announcements */
-                    slug?: string;
-                  }[];
-                /**
-                 * @example <h2>Congrats on Finding Us &ndash; We're Happy You're Here!</h2>
-                 * <p>DropInBlog aims to be the simplest blogging solution for existing websites. Our primary goal is to help you get a stylish blog up and running on your site in minutes.</p>
-                 * <p>But because we are geeks at heart, we also want to help you boost your website's SEO and offer you loads of useful features along the way.</p>
-                 * <p><img class="dib-img-loading" loading="dib-lazy" data-lazy-load="https://io.dropinblog.com/assets/img/samples/embed/blogging-made-easy.webp" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20WIDTH%20HEIGHT'%3E%3C/svg%3E" alt="DropInBlog - Blogging Made Easy" width="1253" height="705" /></p>
-                 * <h3>How Do I Start?</h3>
-                 * <p>Integrating DropInBlog onto your site is easy ... just click the Code &amp; Layout tab in your admin panel and follow Steps 1 &amp; 2. <strong>That's it!</strong></p>
-                 * <p><strong><img class="dib-img-loading" loading="dib-lazy" data-lazy-load="https://io.dropinblog.com/assets/img/samples/embed/dropinblog-integration-codes.jpeg" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20WIDTH%20HEIGHT'%3E%3C/svg%3E" alt="Code and Layout - Step 1 and Step 2 code example" width="1253" height="398" /></strong><strong></strong></p>
-                 * <p>For more detailed instructions, watch our <a href="https://vimeo.com/248082632">integration video</a> ... or <a href="https://m.me/dropinblog">shoot us a message</a>. We're here to help in any way we can. We love all things blog related and we want you to as well. If you run into any snags while using DropInBlog, just let us know. Your success is our success!</p>
-                 * <h3>What's next?</h3>
-                 * <p>Once you're rolling, there are plenty of features you can implement. You can <a href="https://dropinblog.com/blog/how-to-add-authors-to-your-blog/">create authors</a> for each of your posts, organize them in <a href="https://dropinblog.com/blog/how-to-add-categories-to-your-blog/">categories</a>, <a href="https://dropinblog.com/blog/how-to-get-better-search-engine-rankings-with-the-dropinblog-seo-analyzer/">optimize your post's SEO</a> ... and tweak a bunch of other settings.</p>
-                 * <p>Play around, go crazy. We understand not everyone finds blogging as enjoyable as we do, but we hope we're at least making the process simple and pain-free!</p>
-                 * <p><img class="dib-img-loading" loading="dib-lazy" data-lazy-load="https://io.dropinblog.com/assets/img/samples/embed/Integration.png" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20WIDTH%20HEIGHT'%3E%3C/svg%3E" alt="" width="700" height="394" /></p>
-                 * <h3>And what's this about SEO?</h3>
-                 * <p>Search engine optimization is complicated &ndash; we're not going to try and deny that. Our goal is to help walk you through it step by step. We want each blog post you write to have the best shot at making its way to the top of search results.</p>
-                 * <p>Our SEO Analyzer guides you through the process of optimizing your posts. As you create posts you'll see your SEO score increase as each benchmark is hit. Follow the suggested tips and try to get your SEO score as close to 100 as you can. There's a surprise waiting for you if you make it. ;)</p>
-                 * <p><img class="dib-img-loading" loading="dib-lazy" data-lazy-load="https://io.dropinblog.com/assets/img/samples/embed/SEO.png" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20WIDTH%20HEIGHT'%3E%3C/svg%3E" alt="" width="1400" height="788" /></p>
-                 * <p class="clear">With these best practices in place, Google will start to take notice. This in turn means you'll start seeing an increase in your website's search ranking and ultimately more visitors to your website. Win, win, win!</p>
-                 * <h2>Thank You!</h2>
-                 * <p>We're thrilled you chose DropInBlog to fulfill your blogging needs. We hope we can meet all of your expectations and help you succeed on your blogging journey. So, for real, just <a href="https://m.me/dropinblog">drop us a line</a> if there's <em>anything</em> we can do to assist you along the way.<br /><br />Happy blogging!</p>
-                 */
-                content?: string;
-                /**
-                 * @example <script type="application/ld+json">
-                 * {
-                 *   "@context": "http://schema.org",
-                 *   "@type": "BlogPosting",
-                 *   "mainEntityOfPage": {
-                 *     "@type": "WebPage",
-                 *     "@id": "https://dropindemo.com/blog/welcome-to-dropinblog"
-                 *   },
-                 *   "url": "https://dropindemo.com/blog/welcome-to-dropinblog",
-                 *   "headline": "Welcome to DropInBlog ~ Blogging Made Easy",
-                 *   "datePublished": "2024-03-16T16:44:00-05:00",
-                 *   "dateModified": "2024-03-16T16:45:06-05:00",
-                 *     "author": {
-                 *     "@type": "Person",
-                 *     "name": "Jason",
-                 *     "url": "https://dropindemo.com/blog/author/jason"
-                 *   },
-                 *       "image": ["https://dropinblog.net/34236460/files/featured/welcome-dib.png"],
-                 *     "wordCount": "415",
-                 *   "description": "Built to make embedding a blog into your website fast &amp; easy. Be up and blogging in minutes. Feature rich &amp; SEO friendly. Javascript, PHP or JSON integration.",
-                 *   "articleBody": "CONGRATS ON FINDING US – WE&#039;RE HAPPY YOU&#039;RE HERE! DropInBlog aims to be the simplest blogging solution for existing websites. Our primary goal is to help you get a stylish blog up and running on your site in minutes. But because we are geeks at heart, we also want to help you boost your website&#039;s SEO and offer you loads of useful features along the way. [DropInBlog - Blogging Made Easy] HOW DO I START? Integrating DropInBlog onto your site is easy ... just click the Code &amp; Layout tab in your admin panel and follow Steps 1 &amp; 2. THAT&#039;S IT! [CODE AND LAYOUT - STEP 1 AND STEP 2 CODE EXAMPLE] For more detailed instructions, watch our integration video ... or shoot us a message. We&#039;re here to help in any way we can. We love all things blog related and we want you to as well. If you run into any snags while using DropInBlog, just let us know. Your success is our success! WHAT&#039;S NEXT? Once you&#039;re rolling, there are plenty of features you can implement. You can create authors for each of your posts, organize them in categories, optimize your post&#039;s SEO ... and tweak a bunch of other settings. Play around, go crazy. We understand not everyone finds blogging as enjoyable as we do, but we hope we&#039;re at least making the process simple and pain-free! AND WHAT&#039;S THIS ABOUT SEO? Search engine optimization is complicated – we&#039;re not going to try and deny that. Our goal is to help walk you through it step by step. We want each blog post you write to have the best shot at making its way to the top of search results. Our SEO Analyzer guides you through the process of optimizing your posts. As you create posts you&#039;ll see your SEO score increase as each benchmark is hit. Follow the suggested tips and try to get your SEO score as close to 100 as you can. There&#039;s a surprise waiting for you if you make it. ;) With these best practices in place, Google will start to take notice. This in turn means you&#039;ll start seeing an increase in your website&#039;s search ranking and ultimately more visitors to your website. Win, win, win! THANK YOU! We&#039;re thrilled you chose DropInBlog to fulfill your blogging needs. We hope we can meet all of your expectations and help you succeed on your blogging journey. So, for real, just drop us a line if there&#039;s _anything_ we can do to assist you along the way. Happy blogging! "
-                 * }
-                 * </script>
-                 */
-                schema_article?: string;
-                related_posts?: ({
-                    /**
-                     * @default 0
-                     * @example 42349488
-                     */
-                    id?: number;
-                    /** @example How to Add Categories to Your Blog */
-                    title?: string;
-                    /** @example how-to-add-categories-to-your-blog */
-                    slug?: string;
-                    /** @example https://dropindemo.com/blog/how-to-add-categories-to-your-blog */
-                    url?: string;
-                    /** @example Categories are important for search engine optimization and for organizing your content around themes. Website visitors will have a much easier time navigating your site if it is well organized – and when visitors have an easier time, visitors are happy! */
-                    summary?: string;
-                    /** @example https://dropinblog.net/34236460/files/featured/how-to-add-categories.png */
-                    featuredImage?: string;
-                    featuredImageWebm?: unknown;
-                    featuredImageMp4?: unknown;
-                    /** @example 12/06/2021 */
-                    publishedAt?: string;
-                    /** @example 2021-12-06T15:57:00-06:00 */
-                    publishedAtIso8601?: string;
-                    /** @example 02/22/2024 */
-                    updatedAt?: string;
-                    /** @example 2024-02-22T18:52:10-06:00 */
-                    updatedAtIso8601?: string;
-                    /** @example add categories to your blog */
-                    keyword?: string;
-                    secondaryKeywords?: unknown[];
-                    /** @example How to Add Categories to Your Blog */
-                    seoTitle?: string;
-                    /** @example Help your website visitors find the info they're looking for and encourage them to keep browsing your site by learning how to add categories to your blog. */
-                    seoDescription?: string;
-                    /** @example */
-                    canonicalUrl?: string;
-                    /**
-                     * @default 0
-                     * @example 0
-                     */
-                    pinned?: number;
-                    /** @example 2 minute read */
-                    readtime?: string;
-                    /**
-                     * @default 0
-                     * @example 85
-                     */
-                    seo_score?: number;
-                    /** @example published */
-                    status?: string;
-                    /** @example public */
-                    visibility?: string;
-                    /**
-                     * @default 0
-                     * @example 0
-                     */
-                    noindex?: number;
-                    author?: {
-                      /**
-                       * @default 0
-                       * @example 219
-                       */
-                      id?: number;
-                      /** @example Jesse */
-                      name?: string;
-                      /** @example jesse */
-                      slug?: string;
-                      /** @example https://dropinblog.net/34236460/authors/c321458d1a8f3afdff1944ceaa79be140f685ea8.jpg */
-                      photo?: string;
-                      /** @example <p><span style="font-size: 11pt; font-family: Arial; color: #000000; background-color: transparent; font-weight: 400; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">DropInBlog co-founder Jesse is dedicated to making DropInBlog the world&rsquo;s go-to blogging platform. He helped create DiB because he was tired of dealing with complicated and incomplete blogging solutions. Jesse loves experimenting with new features and finding new ways to make <a href="https://dropinblog.com">DropInBlog</a> even more awesome. </span></p> */
-                      bio?: string;
-                    };
-                    categories?: {
-                        /**
-                         * @default 0
-                         * @example 898924873
-                         */
-                        id?: number;
-                        /** @example Tips */
-                        title?: string;
-                        /** @example tips */
-                        slug?: string;
-                      }[];
-                  })[];
-              };
+              post?: components["schemas"]["post"];
             };
           };
         };
@@ -871,8 +474,7 @@ export interface operations {
   "categories-list": {
     parameters: {
       path: {
-        /** @description Your blog ID. */
-        blog_id: string;
+        blog_id: components["parameters"]["blog_id"];
       };
     };
     responses: {
@@ -895,24 +497,7 @@ export interface operations {
             /** @example OK */
             message?: string;
             data?: {
-              categories?: {
-                  /** @example Announcements */
-                  title?: string;
-                  /** @example announcements */
-                  slug?: string;
-                  /** @example */
-                  background_image?: string;
-                  heading_description?: unknown;
-                  /** @example Announcements */
-                  seo_title?: string;
-                  /** @example */
-                  seo_description?: string;
-                  /**
-                   * @default 0
-                   * @example 898924871
-                   */
-                  id?: number;
-                }[];
+              categories?: components["schemas"]["category"][];
             };
           };
         };
@@ -930,8 +515,7 @@ export interface operations {
         exclude_without_published_post?: number;
       };
       path: {
-        /** @description Your blog ID. */
-        blog_id: string;
+        blog_id: components["parameters"]["blog_id"];
       };
     };
     responses: {
@@ -954,21 +538,7 @@ export interface operations {
             /** @example OK */
             message?: string;
             data?: {
-              authors?: {
-                  /**
-                   * @default 0
-                   * @example 1
-                   */
-                  id?: number;
-                  /** @example Jason */
-                  name?: string;
-                  /** @example jason */
-                  slug?: string;
-                  photo?: unknown;
-                  bio?: unknown;
-                  seo_title?: unknown;
-                  seo_description?: unknown;
-                }[];
+              authors?: components["schemas"]["author"][];
             };
           };
         };

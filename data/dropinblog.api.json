@@ -5,16 +5,303 @@
         "title": "Drop In Blog REST API",
         "version": "2"
     },
+    "externalDocs": {
+        "url": "https://dropinblog.readme.io/reference/api-reference"
+    },
     "servers": [
         {
             "url": "https://api.dropinblog.com/"
         }
     ],
+    "jsonSchemaDialect": "https://spec.openapis.org/oas/3.1/dialect/base",
     "components": {
         "securitySchemes": {
             "sec0": {
-                "type": "oauth2",
-                "flows": {}
+                "type": "apiKey",
+                "in": "header",
+                "scheme": "bearer",
+                "name": "Authorization"
+            }
+        },
+        "schemas": {
+            "category": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 898924871,
+                        "default": 0
+                    },
+                    "title": {
+                        "type": "string",
+                        "example": "Announcements"
+                    },
+                    "slug": {
+                        "type": "string",
+                        "example": "announcements"
+                    }
+                }
+            },
+            "author": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 217,
+                        "default": 0
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "Jason"
+                    },
+                    "slug": {
+                        "type": "string",
+                        "example": "jason"
+                    },
+                    "photo": {
+                        "type": "string",
+                        "example": "https://dropinblog.net/34236460/authors/91ec7b998af85b554be184f7a9f62b28cec93c20.jpg"
+                    },
+                    "bio": {
+                        "type": "string",
+                        "example": "<p><span style=\"font-size: 11pt; font-family: Arial; color: #000000; background-color: transparent; font-weight: 400; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;\">Jason is a co-founder of <a href=\"https://dropinblog.com\">DropInBlog</a>, and a bit of a coding geek. He just wants to make everyone&rsquo;s time on the web a little easier, and has over 10 years of experience building technical solutions to tough problems. When he&rsquo;s not coding out a new feature for DiB, you can find him tinkering with his own projects or reading up on the latest tech stack.</span></p>"
+                    }
+                }
+            },
+            "post_summary": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 42349488,
+                        "default": 0
+                    },
+                    "title": {
+                        "type": "string",
+                        "example": "How to Add Categories to Your Blog"
+                    },
+                    "slug": {
+                        "type": "string",
+                        "example": "how-to-add-categories-to-your-blog"
+                    },
+                    "url": {
+                        "type": "string",
+                        "example": "https://dropindemo.com/blog/how-to-add-categories-to-your-blog"
+                    },
+                    "summary": {
+                        "type": "string",
+                        "example": "Categories are important for search engine optimization and for organizing your content around themes. Website visitors will have a much easier time navigating your site if it is well organized – and when visitors have an easier time, visitors are happy!"
+                    },
+                    "featuredImage": {
+                        "type": "string",
+                        "example": "https://dropinblog.net/34236460/files/featured/how-to-add-categories.png"
+                    },
+                    "featuredImageWebm": {},
+                    "featuredImageMp4": {},
+                    "publishedAt": {
+                        "type": "string",
+                        "example": "12/06/2021"
+                    },
+                    "publishedAtIso8601": {
+                        "type": "string",
+                        "example": "2021-12-06T15:57:00-06:00"
+                    },
+                    "updatedAt": {
+                        "type": "string",
+                        "example": "02/22/2024"
+                    },
+                    "updatedAtIso8601": {
+                        "type": "string",
+                        "example": "2024-02-22T18:52:10-06:00"
+                    },
+                    "keyword": {
+                        "type": "string",
+                        "example": "add categories to your blog"
+                    },
+                    "secondaryKeywords": {
+                        "type": "array"
+                    },
+                    "seoTitle": {
+                        "type": "string",
+                        "example": "How to Add Categories to Your Blog"
+                    },
+                    "seoDescription": {
+                        "type": "string",
+                        "example": "Help your website visitors find the info they're looking for and encourage them to keep browsing your site by learning how to add categories to your blog."
+                    },
+                    "canonicalUrl": {
+                        "type": "string",
+                        "example": ""
+                    },
+                    "pinned": {
+                        "type": "integer",
+                        "example": 0,
+                        "default": 0
+                    },
+                    "readtime": {
+                        "type": "string",
+                        "example": "2 minute read"
+                    },
+                    "seo_score": {
+                        "type": "integer",
+                        "example": 85,
+                        "default": 0
+                    },
+                    "status": {
+                        "type": "string",
+                        "example": "published"
+                    },
+                    "visibility": {
+                        "type": "string",
+                        "example": "public"
+                    },
+                    "noindex": {
+                        "type": "integer",
+                        "example": 0,
+                        "default": 0
+                    },
+                    "author": {
+                        "$ref": "#/components/schemas/author"
+                    },
+                    "categories": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/category"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 42349491,
+                        "default": 0
+                    },
+                    "title": {
+                        "type": "string",
+                        "example": "Welcome to DropInBlog ~ Blogging Made Easy"
+                    },
+                    "slug": {
+                        "type": "string",
+                        "example": "welcome-to-dropinblog"
+                    },
+                    "url": {
+                        "type": "string",
+                        "example": "https://dropindemo.com/blog/welcome-to-dropinblog"
+                    },
+                    "summary": {
+                        "type": "string",
+                        "example": "Congrats on Finding Us – We're Happy You're Here! DropInBlog aims to be the simplest blogging solution for existing websites. Our primary goal is to help you get a stylish blog up and running on your site in minutes. But because we are geeks at heart,"
+                    },
+                    "featuredImage": {
+                        "type": "string",
+                        "example": "https://dropinblog.net/34236460/files/featured/welcome-dib.png"
+                    },
+                    "featuredImageWebm": {},
+                    "featuredImageMp4": {},
+                    "publishedAt": {
+                        "type": "string",
+                        "example": "03/16/2024"
+                    },
+                    "publishedAtIso8601": {
+                        "type": "string",
+                        "example": "2024-03-16T16:44:00-05:00"
+                    },
+                    "updatedAt": {
+                        "type": "string",
+                        "example": "03/16/2024"
+                    },
+                    "updatedAtIso8601": {
+                        "type": "string",
+                        "example": "2024-03-16T16:45:06-05:00"
+                    },
+                    "keyword": {
+                        "type": "string",
+                        "example": "blogging"
+                    },
+                    "secondaryKeywords": {
+                        "type": "array",
+                        "items": {
+                            "type": "string",
+                            "example": "embed a blog"
+                        }
+                    },
+                    "seoTitle": {
+                        "type": "string",
+                        "example": "Welcome to DropInBlog ~ Blogging Made Easy"
+                    },
+                    "seoDescription": {
+                        "type": "string",
+                        "example": "Built to make embedding a blog into your website fast & easy. Be up and blogging in minutes. Feature rich & SEO friendly. Javascript, PHP or JSON integration."
+                    },
+                    "canonicalUrl": {
+                        "type": "string",
+                        "example": ""
+                    },
+                    "pinned": {
+                        "type": "integer",
+                        "example": 0,
+                        "default": 0
+                    },
+                    "readtime": {
+                        "type": "string",
+                        "example": "3 minute read"
+                    },
+                    "seo_score": {
+                        "type": "integer",
+                        "example": 82,
+                        "default": 0
+                    },
+                    "status": {
+                        "type": "string",
+                        "example": "published"
+                    },
+                    "visibility": {
+                        "type": "string",
+                        "example": "public"
+                    },
+                    "noindex": {
+                        "type": "integer",
+                        "example": 0,
+                        "default": 0
+                    },
+                    "author": {
+                        "$ref": "#/components/schemas/author"
+                    },
+                    "categories": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/category"
+                        }
+                    },
+                    "content": {
+                        "type": "string",
+                        "example": "<h2>Congrats on Finding Us &ndash; We're Happy You're Here!</h2>\r\n<p>DropInBlog aims to be the simplest blogging solution for existing websites. Our primary goal is to help you get a stylish blog up and running on your site in minutes.</p>\r\n<p>But because we are geeks at heart, we also want to help you boost your website's SEO and offer you loads of useful features along the way.</p>\r\n<p><img class=\"dib-img-loading\" loading=\"dib-lazy\" data-lazy-load=\"https://io.dropinblog.com/assets/img/samples/embed/blogging-made-easy.webp\" src=\"data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20WIDTH%20HEIGHT'%3E%3C/svg%3E\" alt=\"DropInBlog - Blogging Made Easy\" width=\"1253\" height=\"705\" /></p>\r\n<h3>How Do I Start?</h3>\r\n<p>Integrating DropInBlog onto your site is easy ... just click the Code &amp; Layout tab in your admin panel and follow Steps 1 &amp; 2. <strong>That's it!</strong></p>\r\n<p><strong><img class=\"dib-img-loading\" loading=\"dib-lazy\" data-lazy-load=\"https://io.dropinblog.com/assets/img/samples/embed/dropinblog-integration-codes.jpeg\" src=\"data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20WIDTH%20HEIGHT'%3E%3C/svg%3E\" alt=\"Code and Layout - Step 1 and Step 2 code example\" width=\"1253\" height=\"398\" /></strong><strong></strong></p>\r\n<p>For more detailed instructions, watch our <a href=\"https://vimeo.com/248082632\">integration video</a> ... or <a href=\"https://m.me/dropinblog\">shoot us a message</a>. We're here to help in any way we can. We love all things blog related and we want you to as well. If you run into any snags while using DropInBlog, just let us know. Your success is our success!</p>\r\n<h3>What's next?</h3>\r\n<p>Once you're rolling, there are plenty of features you can implement. You can <a href=\"https://dropinblog.com/blog/how-to-add-authors-to-your-blog/\">create authors</a> for each of your posts, organize them in <a href=\"https://dropinblog.com/blog/how-to-add-categories-to-your-blog/\">categories</a>, <a href=\"https://dropinblog.com/blog/how-to-get-better-search-engine-rankings-with-the-dropinblog-seo-analyzer/\">optimize your post's SEO</a> ... and tweak a bunch of other settings.</p>\r\n<p>Play around, go crazy. We understand not everyone finds blogging as enjoyable as we do, but we hope we're at least making the process simple and pain-free!</p>\r\n<p><img class=\"dib-img-loading\" loading=\"dib-lazy\" data-lazy-load=\"https://io.dropinblog.com/assets/img/samples/embed/Integration.png\" src=\"data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20WIDTH%20HEIGHT'%3E%3C/svg%3E\" alt=\"\" width=\"700\" height=\"394\" /></p>\r\n<h3>And what's this about SEO?</h3>\r\n<p>Search engine optimization is complicated &ndash; we're not going to try and deny that. Our goal is to help walk you through it step by step. We want each blog post you write to have the best shot at making its way to the top of search results.</p>\r\n<p>Our SEO Analyzer guides you through the process of optimizing your posts. As you create posts you'll see your SEO score increase as each benchmark is hit. Follow the suggested tips and try to get your SEO score as close to 100 as you can. There's a surprise waiting for you if you make it. ;)</p>\r\n<p><img class=\"dib-img-loading\" loading=\"dib-lazy\" data-lazy-load=\"https://io.dropinblog.com/assets/img/samples/embed/SEO.png\" src=\"data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20WIDTH%20HEIGHT'%3E%3C/svg%3E\" alt=\"\" width=\"1400\" height=\"788\" /></p>\r\n<p class=\"clear\">With these best practices in place, Google will start to take notice. This in turn means you'll start seeing an increase in your website's search ranking and ultimately more visitors to your website. Win, win, win!</p>\r\n<h2>Thank You!</h2>\r\n<p>We're thrilled you chose DropInBlog to fulfill your blogging needs. We hope we can meet all of your expectations and help you succeed on your blogging journey. So, for real, just <a href=\"https://m.me/dropinblog\">drop us a line</a> if there's <em>anything</em> we can do to assist you along the way.<br /><br />Happy blogging!</p>"
+                    },
+                    "schema_article": {
+                        "type": "string",
+                        "example": "<script type=\"application/ld+json\">\n{\n  \"@context\": \"http://schema.org\",\n  \"@type\": \"BlogPosting\",\n  \"mainEntityOfPage\": {\n    \"@type\": \"WebPage\",\n    \"@id\": \"https://dropindemo.com/blog/welcome-to-dropinblog\"\n  },\n  \"url\": \"https://dropindemo.com/blog/welcome-to-dropinblog\",\n  \"headline\": \"Welcome to DropInBlog ~ Blogging Made Easy\",\n  \"datePublished\": \"2024-03-16T16:44:00-05:00\",\n  \"dateModified\": \"2024-03-16T16:45:06-05:00\",\n    \"author\": {\n    \"@type\": \"Person\",\n    \"name\": \"Jason\",\n    \"url\": \"https://dropindemo.com/blog/author/jason\"\n  },\n      \"image\": [\"https://dropinblog.net/34236460/files/featured/welcome-dib.png\"],\n    \"wordCount\": \"415\",\n  \"description\": \"Built to make embedding a blog into your website fast &amp; easy. Be up and blogging in minutes. Feature rich &amp; SEO friendly. Javascript, PHP or JSON integration.\",\n  \"articleBody\": \"CONGRATS ON FINDING US – WE&#039;RE HAPPY YOU&#039;RE HERE! DropInBlog aims to be the simplest blogging solution for existing websites. Our primary goal is to help you get a stylish blog up and running on your site in minutes. But because we are geeks at heart, we also want to help you boost your website&#039;s SEO and offer you loads of useful features along the way. [DropInBlog - Blogging Made Easy] HOW DO I START? Integrating DropInBlog onto your site is easy ... just click the Code &amp; Layout tab in your admin panel and follow Steps 1 &amp; 2. THAT&#039;S IT! [CODE AND LAYOUT - STEP 1 AND STEP 2 CODE EXAMPLE] For more detailed instructions, watch our integration video ... or shoot us a message. We&#039;re here to help in any way we can. We love all things blog related and we want you to as well. If you run into any snags while using DropInBlog, just let us know. Your success is our success! WHAT&#039;S NEXT? Once you&#039;re rolling, there are plenty of features you can implement. You can create authors for each of your posts, organize them in categories, optimize your post&#039;s SEO ... and tweak a bunch of other settings. Play around, go crazy. We understand not everyone finds blogging as enjoyable as we do, but we hope we&#039;re at least making the process simple and pain-free! AND WHAT&#039;S THIS ABOUT SEO? Search engine optimization is complicated – we&#039;re not going to try and deny that. Our goal is to help walk you through it step by step. We want each blog post you write to have the best shot at making its way to the top of search results. Our SEO Analyzer guides you through the process of optimizing your posts. As you create posts you&#039;ll see your SEO score increase as each benchmark is hit. Follow the suggested tips and try to get your SEO score as close to 100 as you can. There&#039;s a surprise waiting for you if you make it. ;) With these best practices in place, Google will start to take notice. This in turn means you&#039;ll start seeing an increase in your website&#039;s search ranking and ultimately more visitors to your website. Win, win, win! THANK YOU! We&#039;re thrilled you chose DropInBlog to fulfill your blogging needs. We hope we can meet all of your expectations and help you succeed on your blogging journey. So, for real, just drop us a line if there&#039;s _anything_ we can do to assist you along the way. Happy blogging! \"\n}\n</script>"
+                    },
+                    "related_posts": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/post_summary"
+                        }
+                    }
+                }
+            }
+        },
+        "parameters": {
+            "blog_id": {
+                "name": "blog_id",
+                "in": "path",
+                "description": "Your blog ID.",
+                "schema": {
+                    "type": "string"
+                },
+                "required": true
             }
         }
     },
@@ -31,13 +318,7 @@
                 "operationId": "posts-list",
                 "parameters": [
                     {
-                        "name": "blog_id",
-                        "in": "path",
-                        "description": "Your blog ID.",
-                        "schema": {
-                            "type": "string"
-                        },
-                        "required": true
+                        "$ref": "#/components/parameters/blog_id"
                     },
                     {
                         "name": "statuses",
@@ -160,149 +441,7 @@
                                                 "posts": {
                                                     "type": "array",
                                                     "items": {
-                                                        "type": "object",
-                                                        "properties": {
-                                                            "id": {
-                                                                "type": "integer",
-                                                                "example": 42349491,
-                                                                "default": 0
-                                                            },
-                                                            "title": {
-                                                                "type": "string",
-                                                                "example": "Welcome to DropInBlog ~ Blogging Made Easy"
-                                                            },
-                                                            "slug": {
-                                                                "type": "string",
-                                                                "example": "welcome-to-dropinblog"
-                                                            },
-                                                            "url": {
-                                                                "type": "string",
-                                                                "example": "https://dropindemo.com/blog/welcome-to-dropinblog"
-                                                            },
-                                                            "summary": {
-                                                                "type": "string",
-                                                                "example": "Congrats on Finding Us – We're Happy You're Here! DropInBlog aims to be the simplest blogging solution for existing websites. Our primary goal is to help you get a stylish blog up and running on your site in minutes. But because we are geeks at heart,"
-                                                            },
-                                                            "featuredImage": {
-                                                                "type": "string",
-                                                                "example": "https://dropinblog.net/34236460/files/featured/welcome-dib.png"
-                                                            },
-                                                            "featuredImageWebm": {},
-                                                            "featuredImageMp4": {},
-                                                            "publishedAt": {
-                                                                "type": "string",
-                                                                "example": "03/16/2024"
-                                                            },
-                                                            "publishedAtIso8601": {
-                                                                "type": "string",
-                                                                "example": "2024-03-16T16:44:00-05:00"
-                                                            },
-                                                            "updatedAt": {
-                                                                "type": "string",
-                                                                "example": "03/16/2024"
-                                                            },
-                                                            "updatedAtIso8601": {
-                                                                "type": "string",
-                                                                "example": "2024-03-16T16:45:06-05:00"
-                                                            },
-                                                            "keyword": {
-                                                                "type": "string",
-                                                                "example": "blogging"
-                                                            },
-                                                            "secondaryKeywords": {
-                                                                "type": "array",
-                                                                "items": {
-                                                                    "type": "string",
-                                                                    "example": "embed a blog"
-                                                                }
-                                                            },
-                                                            "seoTitle": {
-                                                                "type": "string",
-                                                                "example": "Welcome to DropInBlog ~ Blogging Made Easy"
-                                                            },
-                                                            "seoDescription": {
-                                                                "type": "string",
-                                                                "example": "Built to make embedding a blog into your website fast & easy. Be up and blogging in minutes. Feature rich & SEO friendly. Javascript, PHP or JSON integration."
-                                                            },
-                                                            "canonicalUrl": {
-                                                                "type": "string",
-                                                                "example": ""
-                                                            },
-                                                            "pinned": {
-                                                                "type": "integer",
-                                                                "example": 0,
-                                                                "default": 0
-                                                            },
-                                                            "readtime": {
-                                                                "type": "string",
-                                                                "example": "3 minute read"
-                                                            },
-                                                            "seo_score": {
-                                                                "type": "integer",
-                                                                "example": 82,
-                                                                "default": 0
-                                                            },
-                                                            "status": {
-                                                                "type": "string",
-                                                                "example": "published"
-                                                            },
-                                                            "visibility": {
-                                                                "type": "string",
-                                                                "example": "public"
-                                                            },
-                                                            "noindex": {
-                                                                "type": "integer",
-                                                                "example": 0,
-                                                                "default": 0
-                                                            },
-                                                            "author": {
-                                                                "type": "object",
-                                                                "properties": {
-                                                                    "id": {
-                                                                        "type": "integer",
-                                                                        "example": 217,
-                                                                        "default": 0
-                                                                    },
-                                                                    "name": {
-                                                                        "type": "string",
-                                                                        "example": "Jason"
-                                                                    },
-                                                                    "slug": {
-                                                                        "type": "string",
-                                                                        "example": "jason"
-                                                                    },
-                                                                    "photo": {
-                                                                        "type": "string",
-                                                                        "example": "https://dropinblog.net/34236460/authors/91ec7b998af85b554be184f7a9f62b28cec93c20.jpg"
-                                                                    },
-                                                                    "bio": {
-                                                                        "type": "string",
-                                                                        "example": "<p><span style=\"font-size: 11pt; font-family: Arial; color: #000000; background-color: transparent; font-weight: 400; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;\">Jason is a co-founder of <a href=\"https://dropinblog.com\">DropInBlog</a>, and a bit of a coding geek. He just wants to make everyone&rsquo;s time on the web a little easier, and has over 10 years of experience building technical solutions to tough problems. When he&rsquo;s not coding out a new feature for DiB, you can find him tinkering with his own projects or reading up on the latest tech stack.</span></p>"
-                                                                    }
-                                                                }
-                                                            },
-                                                            "categories": {
-                                                                "type": "array",
-                                                                "items": {
-                                                                    "type": "object",
-                                                                    "properties": {
-                                                                        "id": {
-                                                                            "type": "integer",
-                                                                            "example": 898924871,
-                                                                            "default": 0
-                                                                        },
-                                                                        "title": {
-                                                                            "type": "string",
-                                                                            "example": "Announcements"
-                                                                        },
-                                                                        "slug": {
-                                                                            "type": "string",
-                                                                            "example": "announcements"
-                                                                        }
-                                                                    }
-                                                                }
-                                                            }
-                                                        }
+                                                        "$ref": "#/components/schemas/post_summary"
                                                     }
                                                 },
                                                 "pagination": {
@@ -350,13 +489,7 @@
                 "operationId": "posts-retrieve",
                 "parameters": [
                     {
-                        "name": "blog_id",
-                        "in": "path",
-                        "description": "Your blog ID.",
-                        "schema": {
-                            "type": "string"
-                        },
-                        "required": true
+                        "$ref": "#/components/parameters/blog_id"
                     },
                     {
                         "name": "id",
@@ -404,301 +537,7 @@
                                             "type": "object",
                                             "properties": {
                                                 "post": {
-                                                    "type": "object",
-                                                    "properties": {
-                                                        "id": {
-                                                            "type": "integer",
-                                                            "example": 42349491,
-                                                            "default": 0
-                                                        },
-                                                        "title": {
-                                                            "type": "string",
-                                                            "example": "Welcome to DropInBlog ~ Blogging Made Easy"
-                                                        },
-                                                        "slug": {
-                                                            "type": "string",
-                                                            "example": "welcome-to-dropinblog"
-                                                        },
-                                                        "url": {
-                                                            "type": "string",
-                                                            "example": "https://dropindemo.com/blog/welcome-to-dropinblog"
-                                                        },
-                                                        "summary": {
-                                                            "type": "string",
-                                                            "example": "Congrats on Finding Us – We're Happy You're Here! DropInBlog aims to be the simplest blogging solution for existing websites. Our primary goal is to help you get a stylish blog up and running on your site in minutes. But because we are geeks at heart,"
-                                                        },
-                                                        "featuredImage": {
-                                                            "type": "string",
-                                                            "example": "https://dropinblog.net/34236460/files/featured/welcome-dib.png"
-                                                        },
-                                                        "featuredImageWebm": {},
-                                                        "featuredImageMp4": {},
-                                                        "publishedAt": {
-                                                            "type": "string",
-                                                            "example": "03/16/2024"
-                                                        },
-                                                        "publishedAtIso8601": {
-                                                            "type": "string",
-                                                            "example": "2024-03-16T16:44:00-05:00"
-                                                        },
-                                                        "updatedAt": {
-                                                            "type": "string",
-                                                            "example": "03/16/2024"
-                                                        },
-                                                        "updatedAtIso8601": {
-                                                            "type": "string",
-                                                            "example": "2024-03-16T16:45:06-05:00"
-                                                        },
-                                                        "keyword": {
-                                                            "type": "string",
-                                                            "example": "blogging"
-                                                        },
-                                                        "secondaryKeywords": {
-                                                            "type": "array",
-                                                            "items": {
-                                                                "type": "string",
-                                                                "example": "embed a blog"
-                                                            }
-                                                        },
-                                                        "seoTitle": {
-                                                            "type": "string",
-                                                            "example": "Welcome to DropInBlog ~ Blogging Made Easy"
-                                                        },
-                                                        "seoDescription": {
-                                                            "type": "string",
-                                                            "example": "Built to make embedding a blog into your website fast & easy. Be up and blogging in minutes. Feature rich & SEO friendly. Javascript, PHP or JSON integration."
-                                                        },
-                                                        "canonicalUrl": {
-                                                            "type": "string",
-                                                            "example": ""
-                                                        },
-                                                        "pinned": {
-                                                            "type": "integer",
-                                                            "example": 0,
-                                                            "default": 0
-                                                        },
-                                                        "readtime": {
-                                                            "type": "string",
-                                                            "example": "3 minute read"
-                                                        },
-                                                        "seo_score": {
-                                                            "type": "integer",
-                                                            "example": 82,
-                                                            "default": 0
-                                                        },
-                                                        "status": {
-                                                            "type": "string",
-                                                            "example": "published"
-                                                        },
-                                                        "visibility": {
-                                                            "type": "string",
-                                                            "example": "public"
-                                                        },
-                                                        "noindex": {
-                                                            "type": "integer",
-                                                            "example": 0,
-                                                            "default": 0
-                                                        },
-                                                        "author": {
-                                                            "type": "object",
-                                                            "properties": {
-                                                                "id": {
-                                                                    "type": "integer",
-                                                                    "example": 217,
-                                                                    "default": 0
-                                                                },
-                                                                "name": {
-                                                                    "type": "string",
-                                                                    "example": "Jason"
-                                                                },
-                                                                "slug": {
-                                                                    "type": "string",
-                                                                    "example": "jason"
-                                                                },
-                                                                "photo": {
-                                                                    "type": "string",
-                                                                    "example": "https://dropinblog.net/34236460/authors/91ec7b998af85b554be184f7a9f62b28cec93c20.jpg"
-                                                                },
-                                                                "bio": {
-                                                                    "type": "string",
-                                                                    "example": "<p><span style=\"font-size: 11pt; font-family: Arial; color: #000000; background-color: transparent; font-weight: 400; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;\">Jason is a co-founder of <a href=\"https://dropinblog.com\">DropInBlog</a>, and a bit of a coding geek. He just wants to make everyone&rsquo;s time on the web a little easier, and has over 10 years of experience building technical solutions to tough problems. When he&rsquo;s not coding out a new feature for DiB, you can find him tinkering with his own projects or reading up on the latest tech stack.</span></p>"
-                                                                }
-                                                            }
-                                                        },
-                                                        "categories": {
-                                                            "type": "array",
-                                                            "items": {
-                                                                "type": "object",
-                                                                "properties": {
-                                                                    "id": {
-                                                                        "type": "integer",
-                                                                        "example": 898924871,
-                                                                        "default": 0
-                                                                    },
-                                                                    "title": {
-                                                                        "type": "string",
-                                                                        "example": "Announcements"
-                                                                    },
-                                                                    "slug": {
-                                                                        "type": "string",
-                                                                        "example": "announcements"
-                                                                    }
-                                                                }
-                                                            }
-                                                        },
-                                                        "content": {
-                                                            "type": "string",
-                                                            "example": "<h2>Congrats on Finding Us &ndash; We're Happy You're Here!</h2>\r\n<p>DropInBlog aims to be the simplest blogging solution for existing websites. Our primary goal is to help you get a stylish blog up and running on your site in minutes.</p>\r\n<p>But because we are geeks at heart, we also want to help you boost your website's SEO and offer you loads of useful features along the way.</p>\r\n<p><img class=\"dib-img-loading\" loading=\"dib-lazy\" data-lazy-load=\"https://io.dropinblog.com/assets/img/samples/embed/blogging-made-easy.webp\" src=\"data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20WIDTH%20HEIGHT'%3E%3C/svg%3E\" alt=\"DropInBlog - Blogging Made Easy\" width=\"1253\" height=\"705\" /></p>\r\n<h3>How Do I Start?</h3>\r\n<p>Integrating DropInBlog onto your site is easy ... just click the Code &amp; Layout tab in your admin panel and follow Steps 1 &amp; 2. <strong>That's it!</strong></p>\r\n<p><strong><img class=\"dib-img-loading\" loading=\"dib-lazy\" data-lazy-load=\"https://io.dropinblog.com/assets/img/samples/embed/dropinblog-integration-codes.jpeg\" src=\"data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20WIDTH%20HEIGHT'%3E%3C/svg%3E\" alt=\"Code and Layout - Step 1 and Step 2 code example\" width=\"1253\" height=\"398\" /></strong><strong></strong></p>\r\n<p>For more detailed instructions, watch our <a href=\"https://vimeo.com/248082632\">integration video</a> ... or <a href=\"https://m.me/dropinblog\">shoot us a message</a>. We're here to help in any way we can. We love all things blog related and we want you to as well. If you run into any snags while using DropInBlog, just let us know. Your success is our success!</p>\r\n<h3>What's next?</h3>\r\n<p>Once you're rolling, there are plenty of features you can implement. You can <a href=\"https://dropinblog.com/blog/how-to-add-authors-to-your-blog/\">create authors</a> for each of your posts, organize them in <a href=\"https://dropinblog.com/blog/how-to-add-categories-to-your-blog/\">categories</a>, <a href=\"https://dropinblog.com/blog/how-to-get-better-search-engine-rankings-with-the-dropinblog-seo-analyzer/\">optimize your post's SEO</a> ... and tweak a bunch of other settings.</p>\r\n<p>Play around, go crazy. We understand not everyone finds blogging as enjoyable as we do, but we hope we're at least making the process simple and pain-free!</p>\r\n<p><img class=\"dib-img-loading\" loading=\"dib-lazy\" data-lazy-load=\"https://io.dropinblog.com/assets/img/samples/embed/Integration.png\" src=\"data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20WIDTH%20HEIGHT'%3E%3C/svg%3E\" alt=\"\" width=\"700\" height=\"394\" /></p>\r\n<h3>And what's this about SEO?</h3>\r\n<p>Search engine optimization is complicated &ndash; we're not going to try and deny that. Our goal is to help walk you through it step by step. We want each blog post you write to have the best shot at making its way to the top of search results.</p>\r\n<p>Our SEO Analyzer guides you through the process of optimizing your posts. As you create posts you'll see your SEO score increase as each benchmark is hit. Follow the suggested tips and try to get your SEO score as close to 100 as you can. There's a surprise waiting for you if you make it. ;)</p>\r\n<p><img class=\"dib-img-loading\" loading=\"dib-lazy\" data-lazy-load=\"https://io.dropinblog.com/assets/img/samples/embed/SEO.png\" src=\"data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20WIDTH%20HEIGHT'%3E%3C/svg%3E\" alt=\"\" width=\"1400\" height=\"788\" /></p>\r\n<p class=\"clear\">With these best practices in place, Google will start to take notice. This in turn means you'll start seeing an increase in your website's search ranking and ultimately more visitors to your website. Win, win, win!</p>\r\n<h2>Thank You!</h2>\r\n<p>We're thrilled you chose DropInBlog to fulfill your blogging needs. We hope we can meet all of your expectations and help you succeed on your blogging journey. So, for real, just <a href=\"https://m.me/dropinblog\">drop us a line</a> if there's <em>anything</em> we can do to assist you along the way.<br /><br />Happy blogging!</p>"
-                                                        },
-                                                        "schema_article": {
-                                                            "type": "string",
-                                                            "example": "<script type=\"application/ld+json\">\n{\n  \"@context\": \"http://schema.org\",\n  \"@type\": \"BlogPosting\",\n  \"mainEntityOfPage\": {\n    \"@type\": \"WebPage\",\n    \"@id\": \"https://dropindemo.com/blog/welcome-to-dropinblog\"\n  },\n  \"url\": \"https://dropindemo.com/blog/welcome-to-dropinblog\",\n  \"headline\": \"Welcome to DropInBlog ~ Blogging Made Easy\",\n  \"datePublished\": \"2024-03-16T16:44:00-05:00\",\n  \"dateModified\": \"2024-03-16T16:45:06-05:00\",\n    \"author\": {\n    \"@type\": \"Person\",\n    \"name\": \"Jason\",\n    \"url\": \"https://dropindemo.com/blog/author/jason\"\n  },\n      \"image\": [\"https://dropinblog.net/34236460/files/featured/welcome-dib.png\"],\n    \"wordCount\": \"415\",\n  \"description\": \"Built to make embedding a blog into your website fast &amp; easy. Be up and blogging in minutes. Feature rich &amp; SEO friendly. Javascript, PHP or JSON integration.\",\n  \"articleBody\": \"CONGRATS ON FINDING US – WE&#039;RE HAPPY YOU&#039;RE HERE! DropInBlog aims to be the simplest blogging solution for existing websites. Our primary goal is to help you get a stylish blog up and running on your site in minutes. But because we are geeks at heart, we also want to help you boost your website&#039;s SEO and offer you loads of useful features along the way. [DropInBlog - Blogging Made Easy] HOW DO I START? Integrating DropInBlog onto your site is easy ... just click the Code &amp; Layout tab in your admin panel and follow Steps 1 &amp; 2. THAT&#039;S IT! [CODE AND LAYOUT - STEP 1 AND STEP 2 CODE EXAMPLE] For more detailed instructions, watch our integration video ... or shoot us a message. We&#039;re here to help in any way we can. We love all things blog related and we want you to as well. If you run into any snags while using DropInBlog, just let us know. Your success is our success! WHAT&#039;S NEXT? Once you&#039;re rolling, there are plenty of features you can implement. You can create authors for each of your posts, organize them in categories, optimize your post&#039;s SEO ... and tweak a bunch of other settings. Play around, go crazy. We understand not everyone finds blogging as enjoyable as we do, but we hope we&#039;re at least making the process simple and pain-free! AND WHAT&#039;S THIS ABOUT SEO? Search engine optimization is complicated – we&#039;re not going to try and deny that. Our goal is to help walk you through it step by step. We want each blog post you write to have the best shot at making its way to the top of search results. Our SEO Analyzer guides you through the process of optimizing your posts. As you create posts you&#039;ll see your SEO score increase as each benchmark is hit. Follow the suggested tips and try to get your SEO score as close to 100 as you can. There&#039;s a surprise waiting for you if you make it. ;) With these best practices in place, Google will start to take notice. This in turn means you&#039;ll start seeing an increase in your website&#039;s search ranking and ultimately more visitors to your website. Win, win, win! THANK YOU! We&#039;re thrilled you chose DropInBlog to fulfill your blogging needs. We hope we can meet all of your expectations and help you succeed on your blogging journey. So, for real, just drop us a line if there&#039;s _anything_ we can do to assist you along the way. Happy blogging! \"\n}\n</script>"
-                                                        },
-                                                        "related_posts": {
-                                                            "type": "array",
-                                                            "items": {
-                                                                "type": "object",
-                                                                "properties": {
-                                                                    "id": {
-                                                                        "type": "integer",
-                                                                        "example": 42349488,
-                                                                        "default": 0
-                                                                    },
-                                                                    "title": {
-                                                                        "type": "string",
-                                                                        "example": "How to Add Categories to Your Blog"
-                                                                    },
-                                                                    "slug": {
-                                                                        "type": "string",
-                                                                        "example": "how-to-add-categories-to-your-blog"
-                                                                    },
-                                                                    "url": {
-                                                                        "type": "string",
-                                                                        "example": "https://dropindemo.com/blog/how-to-add-categories-to-your-blog"
-                                                                    },
-                                                                    "summary": {
-                                                                        "type": "string",
-                                                                        "example": "Categories are important for search engine optimization and for organizing your content around themes. Website visitors will have a much easier time navigating your site if it is well organized – and when visitors have an easier time, visitors are happy!"
-                                                                    },
-                                                                    "featuredImage": {
-                                                                        "type": "string",
-                                                                        "example": "https://dropinblog.net/34236460/files/featured/how-to-add-categories.png"
-                                                                    },
-                                                                    "featuredImageWebm": {},
-                                                                    "featuredImageMp4": {},
-                                                                    "publishedAt": {
-                                                                        "type": "string",
-                                                                        "example": "12/06/2021"
-                                                                    },
-                                                                    "publishedAtIso8601": {
-                                                                        "type": "string",
-                                                                        "example": "2021-12-06T15:57:00-06:00"
-                                                                    },
-                                                                    "updatedAt": {
-                                                                        "type": "string",
-                                                                        "example": "02/22/2024"
-                                                                    },
-                                                                    "updatedAtIso8601": {
-                                                                        "type": "string",
-                                                                        "example": "2024-02-22T18:52:10-06:00"
-                                                                    },
-                                                                    "keyword": {
-                                                                        "type": "string",
-                                                                        "example": "add categories to your blog"
-                                                                    },
-                                                                    "secondaryKeywords": {
-                                                                        "type": "array"
-                                                                    },
-                                                                    "seoTitle": {
-                                                                        "type": "string",
-                                                                        "example": "How to Add Categories to Your Blog"
-                                                                    },
-                                                                    "seoDescription": {
-                                                                        "type": "string",
-                                                                        "example": "Help your website visitors find the info they're looking for and encourage them to keep browsing your site by learning how to add categories to your blog."
-                                                                    },
-                                                                    "canonicalUrl": {
-                                                                        "type": "string",
-                                                                        "example": ""
-                                                                    },
-                                                                    "pinned": {
-                                                                        "type": "integer",
-                                                                        "example": 0,
-                                                                        "default": 0
-                                                                    },
-                                                                    "readtime": {
-                                                                        "type": "string",
-                                                                        "example": "2 minute read"
-                                                                    },
-                                                                    "seo_score": {
-                                                                        "type": "integer",
-                                                                        "example": 85,
-                                                                        "default": 0
-                                                                    },
-                                                                    "status": {
-                                                                        "type": "string",
-                                                                        "example": "published"
-                                                                    },
-                                                                    "visibility": {
-                                                                        "type": "string",
-                                                                        "example": "public"
-                                                                    },
-                                                                    "noindex": {
-                                                                        "type": "integer",
-                                                                        "example": 0,
-                                                                        "default": 0
-                                                                    },
-                                                                    "author": {
-                                                                        "type": "object",
-                                                                        "properties": {
-                                                                            "id": {
-                                                                                "type": "integer",
-                                                                                "example": 219,
-                                                                                "default": 0
-                                                                            },
-                                                                            "name": {
-                                                                                "type": "string",
-                                                                                "example": "Jesse"
-                                                                            },
-                                                                            "slug": {
-                                                                                "type": "string",
-                                                                                "example": "jesse"
-                                                                            },
-                                                                            "photo": {
-                                                                                "type": "string",
-                                                                                "example": "https://dropinblog.net/34236460/authors/c321458d1a8f3afdff1944ceaa79be140f685ea8.jpg"
-                                                                            },
-                                                                            "bio": {
-                                                                                "type": "string",
-                                                                                "example": "<p><span style=\"font-size: 11pt; font-family: Arial; color: #000000; background-color: transparent; font-weight: 400; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;\">DropInBlog co-founder Jesse is dedicated to making DropInBlog the world&rsquo;s go-to blogging platform. He helped create DiB because he was tired of dealing with complicated and incomplete blogging solutions. Jesse loves experimenting with new features and finding new ways to make <a href=\"https://dropinblog.com\">DropInBlog</a> even more awesome. </span></p>"
-                                                                            }
-                                                                        }
-                                                                    },
-                                                                    "categories": {
-                                                                        "type": "array",
-                                                                        "items": {
-                                                                            "type": "object",
-                                                                            "properties": {
-                                                                                "id": {
-                                                                                    "type": "integer",
-                                                                                    "example": 898924873,
-                                                                                    "default": 0
-                                                                                },
-                                                                                "title": {
-                                                                                    "type": "string",
-                                                                                    "example": "Tips"
-                                                                                },
-                                                                                "slug": {
-                                                                                    "type": "string",
-                                                                                    "example": "tips"
-                                                                                }
-                                                                            }
-                                                                        }
-                                                                    }
-                                                                }
-                                                            }
-                                                        }
-                                                    }
+                                                    "$ref": "#/components/schemas/post"
                                                 }
                                             }
                                         }
@@ -718,13 +557,7 @@
                 "operationId": "posts-search",
                 "parameters": [
                     {
-                        "name": "blog_id",
-                        "in": "path",
-                        "description": "Your blog ID.",
-                        "schema": {
-                            "type": "string"
-                        },
-                        "required": true
+                        "$ref": "#/components/parameters/blog_id"
                     },
                     {
                         "name": "search",
@@ -781,145 +614,7 @@
                                                 "posts": {
                                                     "type": "array",
                                                     "items": {
-                                                        "type": "object",
-                                                        "properties": {
-                                                            "id": {
-                                                                "type": "integer",
-                                                                "example": 42349488,
-                                                                "default": 0
-                                                            },
-                                                            "title": {
-                                                                "type": "string",
-                                                                "example": "How to Add Categories to Your Blog"
-                                                            },
-                                                            "slug": {
-                                                                "type": "string",
-                                                                "example": "how-to-add-categories-to-your-blog"
-                                                            },
-                                                            "url": {
-                                                                "type": "string",
-                                                                "example": "https://dropindemo.com/blog/how-to-add-categories-to-your-blog"
-                                                            },
-                                                            "summary": {
-                                                                "type": "string",
-                                                                "example": "Categories are important for search engine optimization and for organizing your content around themes. Website visitors will have a much easier time navigating your site if it is well organized – and when visitors have an easier time, visitors are happy!"
-                                                            },
-                                                            "featuredImage": {
-                                                                "type": "string",
-                                                                "example": "https://dropinblog.net/34236460/files/featured/how-to-add-categories.png"
-                                                            },
-                                                            "featuredImageWebm": {},
-                                                            "featuredImageMp4": {},
-                                                            "publishedAt": {
-                                                                "type": "string",
-                                                                "example": "12/06/2021"
-                                                            },
-                                                            "publishedAtIso8601": {
-                                                                "type": "string",
-                                                                "example": "2021-12-06T15:57:00-06:00"
-                                                            },
-                                                            "updatedAt": {
-                                                                "type": "string",
-                                                                "example": "02/22/2024"
-                                                            },
-                                                            "updatedAtIso8601": {
-                                                                "type": "string",
-                                                                "example": "2024-02-22T18:52:10-06:00"
-                                                            },
-                                                            "keyword": {
-                                                                "type": "string",
-                                                                "example": "add categories to your blog"
-                                                            },
-                                                            "secondaryKeywords": {
-                                                                "type": "array"
-                                                            },
-                                                            "seoTitle": {
-                                                                "type": "string",
-                                                                "example": "How to Add Categories to Your Blog"
-                                                            },
-                                                            "seoDescription": {
-                                                                "type": "string",
-                                                                "example": "Help your website visitors find the info they're looking for and encourage them to keep browsing your site by learning how to add categories to your blog."
-                                                            },
-                                                            "canonicalUrl": {
-                                                                "type": "string",
-                                                                "example": ""
-                                                            },
-                                                            "pinned": {
-                                                                "type": "integer",
-                                                                "example": 0,
-                                                                "default": 0
-                                                            },
-                                                            "readtime": {
-                                                                "type": "string",
-                                                                "example": "2 minute read"
-                                                            },
-                                                            "seo_score": {
-                                                                "type": "integer",
-                                                                "example": 85,
-                                                                "default": 0
-                                                            },
-                                                            "status": {
-                                                                "type": "string",
-                                                                "example": "published"
-                                                            },
-                                                            "visibility": {
-                                                                "type": "string",
-                                                                "example": "public"
-                                                            },
-                                                            "noindex": {
-                                                                "type": "integer",
-                                                                "example": 0,
-                                                                "default": 0
-                                                            },
-                                                            "author": {
-                                                                "type": "object",
-                                                                "properties": {
-                                                                    "id": {
-                                                                        "type": "integer",
-                                                                        "example": 219,
-                                                                        "default": 0
-                                                                    },
-                                                                    "name": {
-                                                                        "type": "string",
-                                                                        "example": "Jesse"
-                                                                    },
-                                                                    "slug": {
-                                                                        "type": "string",
-                                                                        "example": "jesse"
-                                                                    },
-                                                                    "photo": {
-                                                                        "type": "string",
-                                                                        "example": "https://dropinblog.net/34236460/authors/c321458d1a8f3afdff1944ceaa79be140f685ea8.jpg"
-                                                                    },
-                                                                    "bio": {
-                                                                        "type": "string",
-                                                                        "example": "<p><span style=\"font-size: 11pt; font-family: Arial; color: #000000; background-color: transparent; font-weight: 400; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;\">DropInBlog co-founder Jesse is dedicated to making DropInBlog the world&rsquo;s go-to blogging platform. He helped create DiB because he was tired of dealing with complicated and incomplete blogging solutions. Jesse loves experimenting with new features and finding new ways to make <a href=\"https://dropinblog.com\">DropInBlog</a> even more awesome. </span></p>"
-                                                                    }
-                                                                }
-                                                            },
-                                                            "categories": {
-                                                                "type": "array",
-                                                                "items": {
-                                                                    "type": "object",
-                                                                    "properties": {
-                                                                        "id": {
-                                                                            "type": "integer",
-                                                                            "example": 898924873,
-                                                                            "default": 0
-                                                                        },
-                                                                        "title": {
-                                                                            "type": "string",
-                                                                            "example": "Tips"
-                                                                        },
-                                                                        "slug": {
-                                                                            "type": "string",
-                                                                            "example": "tips"
-                                                                        }
-                                                                    }
-                                                                }
-                                                            }
-                                                        }
+                                                        "$ref": "#/components/schemas/post_summary"
                                                     }
                                                 }
                                             }
@@ -940,13 +635,7 @@
                 "operationId": "posts-retrieve-by-slug",
                 "parameters": [
                     {
-                        "name": "blog_id",
-                        "in": "path",
-                        "description": "Your blog ID.",
-                        "schema": {
-                            "type": "string"
-                        },
-                        "required": true
+                        "$ref": "#/components/parameters/blog_id"
                     },
                     {
                         "name": "slug",
@@ -993,301 +682,7 @@
                                             "type": "object",
                                             "properties": {
                                                 "post": {
-                                                    "type": "object",
-                                                    "properties": {
-                                                        "id": {
-                                                            "type": "integer",
-                                                            "example": 42349491,
-                                                            "default": 0
-                                                        },
-                                                        "title": {
-                                                            "type": "string",
-                                                            "example": "Welcome to DropInBlog ~ Blogging Made Easy"
-                                                        },
-                                                        "slug": {
-                                                            "type": "string",
-                                                            "example": "welcome-to-dropinblog"
-                                                        },
-                                                        "url": {
-                                                            "type": "string",
-                                                            "example": "https://dropindemo.com/blog/welcome-to-dropinblog"
-                                                        },
-                                                        "summary": {
-                                                            "type": "string",
-                                                            "example": "Congrats on Finding Us – We're Happy You're Here! DropInBlog aims to be the simplest blogging solution for existing websites. Our primary goal is to help you get a stylish blog up and running on your site in minutes. But because we are geeks at heart,"
-                                                        },
-                                                        "featuredImage": {
-                                                            "type": "string",
-                                                            "example": "https://dropinblog.net/34236460/files/featured/welcome-dib.png"
-                                                        },
-                                                        "featuredImageWebm": {},
-                                                        "featuredImageMp4": {},
-                                                        "publishedAt": {
-                                                            "type": "string",
-                                                            "example": "03/16/2024"
-                                                        },
-                                                        "publishedAtIso8601": {
-                                                            "type": "string",
-                                                            "example": "2024-03-16T16:44:00-05:00"
-                                                        },
-                                                        "updatedAt": {
-                                                            "type": "string",
-                                                            "example": "03/16/2024"
-                                                        },
-                                                        "updatedAtIso8601": {
-                                                            "type": "string",
-                                                            "example": "2024-03-16T16:45:06-05:00"
-                                                        },
-                                                        "keyword": {
-                                                            "type": "string",
-                                                            "example": "blogging"
-                                                        },
-                                                        "secondaryKeywords": {
-                                                            "type": "array",
-                                                            "items": {
-                                                                "type": "string",
-                                                                "example": "embed a blog"
-                                                            }
-                                                        },
-                                                        "seoTitle": {
-                                                            "type": "string",
-                                                            "example": "Welcome to DropInBlog ~ Blogging Made Easy"
-                                                        },
-                                                        "seoDescription": {
-                                                            "type": "string",
-                                                            "example": "Built to make embedding a blog into your website fast & easy. Be up and blogging in minutes. Feature rich & SEO friendly. Javascript, PHP or JSON integration."
-                                                        },
-                                                        "canonicalUrl": {
-                                                            "type": "string",
-                                                            "example": ""
-                                                        },
-                                                        "pinned": {
-                                                            "type": "integer",
-                                                            "example": 0,
-                                                            "default": 0
-                                                        },
-                                                        "readtime": {
-                                                            "type": "string",
-                                                            "example": "3 minute read"
-                                                        },
-                                                        "seo_score": {
-                                                            "type": "integer",
-                                                            "example": 82,
-                                                            "default": 0
-                                                        },
-                                                        "status": {
-                                                            "type": "string",
-                                                            "example": "published"
-                                                        },
-                                                        "visibility": {
-                                                            "type": "string",
-                                                            "example": "public"
-                                                        },
-                                                        "noindex": {
-                                                            "type": "integer",
-                                                            "example": 0,
-                                                            "default": 0
-                                                        },
-                                                        "author": {
-                                                            "type": "object",
-                                                            "properties": {
-                                                                "id": {
-                                                                    "type": "integer",
-                                                                    "example": 217,
-                                                                    "default": 0
-                                                                },
-                                                                "name": {
-                                                                    "type": "string",
-                                                                    "example": "Jason"
-                                                                },
-                                                                "slug": {
-                                                                    "type": "string",
-                                                                    "example": "jason"
-                                                                },
-                                                                "photo": {
-                                                                    "type": "string",
-                                                                    "example": "https://dropinblog.net/34236460/authors/91ec7b998af85b554be184f7a9f62b28cec93c20.jpg"
-                                                                },
-                                                                "bio": {
-                                                                    "type": "string",
-                                                                    "example": "<p><span style=\"font-size: 11pt; font-family: Arial; color: #000000; background-color: transparent; font-weight: 400; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;\">Jason is a co-founder of <a href=\"https://dropinblog.com\">DropInBlog</a>, and a bit of a coding geek. He just wants to make everyone&rsquo;s time on the web a little easier, and has over 10 years of experience building technical solutions to tough problems. When he&rsquo;s not coding out a new feature for DiB, you can find him tinkering with his own projects or reading up on the latest tech stack.</span></p>"
-                                                                }
-                                                            }
-                                                        },
-                                                        "categories": {
-                                                            "type": "array",
-                                                            "items": {
-                                                                "type": "object",
-                                                                "properties": {
-                                                                    "id": {
-                                                                        "type": "integer",
-                                                                        "example": 898924871,
-                                                                        "default": 0
-                                                                    },
-                                                                    "title": {
-                                                                        "type": "string",
-                                                                        "example": "Announcements"
-                                                                    },
-                                                                    "slug": {
-                                                                        "type": "string",
-                                                                        "example": "announcements"
-                                                                    }
-                                                                }
-                                                            }
-                                                        },
-                                                        "content": {
-                                                            "type": "string",
-                                                            "example": "<h2>Congrats on Finding Us &ndash; We're Happy You're Here!</h2>\r\n<p>DropInBlog aims to be the simplest blogging solution for existing websites. Our primary goal is to help you get a stylish blog up and running on your site in minutes.</p>\r\n<p>But because we are geeks at heart, we also want to help you boost your website's SEO and offer you loads of useful features along the way.</p>\r\n<p><img class=\"dib-img-loading\" loading=\"dib-lazy\" data-lazy-load=\"https://io.dropinblog.com/assets/img/samples/embed/blogging-made-easy.webp\" src=\"data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20WIDTH%20HEIGHT'%3E%3C/svg%3E\" alt=\"DropInBlog - Blogging Made Easy\" width=\"1253\" height=\"705\" /></p>\r\n<h3>How Do I Start?</h3>\r\n<p>Integrating DropInBlog onto your site is easy ... just click the Code &amp; Layout tab in your admin panel and follow Steps 1 &amp; 2. <strong>That's it!</strong></p>\r\n<p><strong><img class=\"dib-img-loading\" loading=\"dib-lazy\" data-lazy-load=\"https://io.dropinblog.com/assets/img/samples/embed/dropinblog-integration-codes.jpeg\" src=\"data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20WIDTH%20HEIGHT'%3E%3C/svg%3E\" alt=\"Code and Layout - Step 1 and Step 2 code example\" width=\"1253\" height=\"398\" /></strong><strong></strong></p>\r\n<p>For more detailed instructions, watch our <a href=\"https://vimeo.com/248082632\">integration video</a> ... or <a href=\"https://m.me/dropinblog\">shoot us a message</a>. We're here to help in any way we can. We love all things blog related and we want you to as well. If you run into any snags while using DropInBlog, just let us know. Your success is our success!</p>\r\n<h3>What's next?</h3>\r\n<p>Once you're rolling, there are plenty of features you can implement. You can <a href=\"https://dropinblog.com/blog/how-to-add-authors-to-your-blog/\">create authors</a> for each of your posts, organize them in <a href=\"https://dropinblog.com/blog/how-to-add-categories-to-your-blog/\">categories</a>, <a href=\"https://dropinblog.com/blog/how-to-get-better-search-engine-rankings-with-the-dropinblog-seo-analyzer/\">optimize your post's SEO</a> ... and tweak a bunch of other settings.</p>\r\n<p>Play around, go crazy. We understand not everyone finds blogging as enjoyable as we do, but we hope we're at least making the process simple and pain-free!</p>\r\n<p><img class=\"dib-img-loading\" loading=\"dib-lazy\" data-lazy-load=\"https://io.dropinblog.com/assets/img/samples/embed/Integration.png\" src=\"data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20WIDTH%20HEIGHT'%3E%3C/svg%3E\" alt=\"\" width=\"700\" height=\"394\" /></p>\r\n<h3>And what's this about SEO?</h3>\r\n<p>Search engine optimization is complicated &ndash; we're not going to try and deny that. Our goal is to help walk you through it step by step. We want each blog post you write to have the best shot at making its way to the top of search results.</p>\r\n<p>Our SEO Analyzer guides you through the process of optimizing your posts. As you create posts you'll see your SEO score increase as each benchmark is hit. Follow the suggested tips and try to get your SEO score as close to 100 as you can. There's a surprise waiting for you if you make it. ;)</p>\r\n<p><img class=\"dib-img-loading\" loading=\"dib-lazy\" data-lazy-load=\"https://io.dropinblog.com/assets/img/samples/embed/SEO.png\" src=\"data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20WIDTH%20HEIGHT'%3E%3C/svg%3E\" alt=\"\" width=\"1400\" height=\"788\" /></p>\r\n<p class=\"clear\">With these best practices in place, Google will start to take notice. This in turn means you'll start seeing an increase in your website's search ranking and ultimately more visitors to your website. Win, win, win!</p>\r\n<h2>Thank You!</h2>\r\n<p>We're thrilled you chose DropInBlog to fulfill your blogging needs. We hope we can meet all of your expectations and help you succeed on your blogging journey. So, for real, just <a href=\"https://m.me/dropinblog\">drop us a line</a> if there's <em>anything</em> we can do to assist you along the way.<br /><br />Happy blogging!</p>"
-                                                        },
-                                                        "schema_article": {
-                                                            "type": "string",
-                                                            "example": "<script type=\"application/ld+json\">\n{\n  \"@context\": \"http://schema.org\",\n  \"@type\": \"BlogPosting\",\n  \"mainEntityOfPage\": {\n    \"@type\": \"WebPage\",\n    \"@id\": \"https://dropindemo.com/blog/welcome-to-dropinblog\"\n  },\n  \"url\": \"https://dropindemo.com/blog/welcome-to-dropinblog\",\n  \"headline\": \"Welcome to DropInBlog ~ Blogging Made Easy\",\n  \"datePublished\": \"2024-03-16T16:44:00-05:00\",\n  \"dateModified\": \"2024-03-16T16:45:06-05:00\",\n    \"author\": {\n    \"@type\": \"Person\",\n    \"name\": \"Jason\",\n    \"url\": \"https://dropindemo.com/blog/author/jason\"\n  },\n      \"image\": [\"https://dropinblog.net/34236460/files/featured/welcome-dib.png\"],\n    \"wordCount\": \"415\",\n  \"description\": \"Built to make embedding a blog into your website fast &amp; easy. Be up and blogging in minutes. Feature rich &amp; SEO friendly. Javascript, PHP or JSON integration.\",\n  \"articleBody\": \"CONGRATS ON FINDING US – WE&#039;RE HAPPY YOU&#039;RE HERE! DropInBlog aims to be the simplest blogging solution for existing websites. Our primary goal is to help you get a stylish blog up and running on your site in minutes. But because we are geeks at heart, we also want to help you boost your website&#039;s SEO and offer you loads of useful features along the way. [DropInBlog - Blogging Made Easy] HOW DO I START? Integrating DropInBlog onto your site is easy ... just click the Code &amp; Layout tab in your admin panel and follow Steps 1 &amp; 2. THAT&#039;S IT! [CODE AND LAYOUT - STEP 1 AND STEP 2 CODE EXAMPLE] For more detailed instructions, watch our integration video ... or shoot us a message. We&#039;re here to help in any way we can. We love all things blog related and we want you to as well. If you run into any snags while using DropInBlog, just let us know. Your success is our success! WHAT&#039;S NEXT? Once you&#039;re rolling, there are plenty of features you can implement. You can create authors for each of your posts, organize them in categories, optimize your post&#039;s SEO ... and tweak a bunch of other settings. Play around, go crazy. We understand not everyone finds blogging as enjoyable as we do, but we hope we&#039;re at least making the process simple and pain-free! AND WHAT&#039;S THIS ABOUT SEO? Search engine optimization is complicated – we&#039;re not going to try and deny that. Our goal is to help walk you through it step by step. We want each blog post you write to have the best shot at making its way to the top of search results. Our SEO Analyzer guides you through the process of optimizing your posts. As you create posts you&#039;ll see your SEO score increase as each benchmark is hit. Follow the suggested tips and try to get your SEO score as close to 100 as you can. There&#039;s a surprise waiting for you if you make it. ;) With these best practices in place, Google will start to take notice. This in turn means you&#039;ll start seeing an increase in your website&#039;s search ranking and ultimately more visitors to your website. Win, win, win! THANK YOU! We&#039;re thrilled you chose DropInBlog to fulfill your blogging needs. We hope we can meet all of your expectations and help you succeed on your blogging journey. So, for real, just drop us a line if there&#039;s _anything_ we can do to assist you along the way. Happy blogging! \"\n}\n</script>"
-                                                        },
-                                                        "related_posts": {
-                                                            "type": "array",
-                                                            "items": {
-                                                                "type": "object",
-                                                                "properties": {
-                                                                    "id": {
-                                                                        "type": "integer",
-                                                                        "example": 42349488,
-                                                                        "default": 0
-                                                                    },
-                                                                    "title": {
-                                                                        "type": "string",
-                                                                        "example": "How to Add Categories to Your Blog"
-                                                                    },
-                                                                    "slug": {
-                                                                        "type": "string",
-                                                                        "example": "how-to-add-categories-to-your-blog"
-                                                                    },
-                                                                    "url": {
-                                                                        "type": "string",
-                                                                        "example": "https://dropindemo.com/blog/how-to-add-categories-to-your-blog"
-                                                                    },
-                                                                    "summary": {
-                                                                        "type": "string",
-                                                                        "example": "Categories are important for search engine optimization and for organizing your content around themes. Website visitors will have a much easier time navigating your site if it is well organized – and when visitors have an easier time, visitors are happy!"
-                                                                    },
-                                                                    "featuredImage": {
-                                                                        "type": "string",
-                                                                        "example": "https://dropinblog.net/34236460/files/featured/how-to-add-categories.png"
-                                                                    },
-                                                                    "featuredImageWebm": {},
-                                                                    "featuredImageMp4": {},
-                                                                    "publishedAt": {
-                                                                        "type": "string",
-                                                                        "example": "12/06/2021"
-                                                                    },
-                                                                    "publishedAtIso8601": {
-                                                                        "type": "string",
-                                                                        "example": "2021-12-06T15:57:00-06:00"
-                                                                    },
-                                                                    "updatedAt": {
-                                                                        "type": "string",
-                                                                        "example": "02/22/2024"
-                                                                    },
-                                                                    "updatedAtIso8601": {
-                                                                        "type": "string",
-                                                                        "example": "2024-02-22T18:52:10-06:00"
-                                                                    },
-                                                                    "keyword": {
-                                                                        "type": "string",
-                                                                        "example": "add categories to your blog"
-                                                                    },
-                                                                    "secondaryKeywords": {
-                                                                        "type": "array"
-                                                                    },
-                                                                    "seoTitle": {
-                                                                        "type": "string",
-                                                                        "example": "How to Add Categories to Your Blog"
-                                                                    },
-                                                                    "seoDescription": {
-                                                                        "type": "string",
-                                                                        "example": "Help your website visitors find the info they're looking for and encourage them to keep browsing your site by learning how to add categories to your blog."
-                                                                    },
-                                                                    "canonicalUrl": {
-                                                                        "type": "string",
-                                                                        "example": ""
-                                                                    },
-                                                                    "pinned": {
-                                                                        "type": "integer",
-                                                                        "example": 0,
-                                                                        "default": 0
-                                                                    },
-                                                                    "readtime": {
-                                                                        "type": "string",
-                                                                        "example": "2 minute read"
-                                                                    },
-                                                                    "seo_score": {
-                                                                        "type": "integer",
-                                                                        "example": 85,
-                                                                        "default": 0
-                                                                    },
-                                                                    "status": {
-                                                                        "type": "string",
-                                                                        "example": "published"
-                                                                    },
-                                                                    "visibility": {
-                                                                        "type": "string",
-                                                                        "example": "public"
-                                                                    },
-                                                                    "noindex": {
-                                                                        "type": "integer",
-                                                                        "example": 0,
-                                                                        "default": 0
-                                                                    },
-                                                                    "author": {
-                                                                        "type": "object",
-                                                                        "properties": {
-                                                                            "id": {
-                                                                                "type": "integer",
-                                                                                "example": 219,
-                                                                                "default": 0
-                                                                            },
-                                                                            "name": {
-                                                                                "type": "string",
-                                                                                "example": "Jesse"
-                                                                            },
-                                                                            "slug": {
-                                                                                "type": "string",
-                                                                                "example": "jesse"
-                                                                            },
-                                                                            "photo": {
-                                                                                "type": "string",
-                                                                                "example": "https://dropinblog.net/34236460/authors/c321458d1a8f3afdff1944ceaa79be140f685ea8.jpg"
-                                                                            },
-                                                                            "bio": {
-                                                                                "type": "string",
-                                                                                "example": "<p><span style=\"font-size: 11pt; font-family: Arial; color: #000000; background-color: transparent; font-weight: 400; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;\">DropInBlog co-founder Jesse is dedicated to making DropInBlog the world&rsquo;s go-to blogging platform. He helped create DiB because he was tired of dealing with complicated and incomplete blogging solutions. Jesse loves experimenting with new features and finding new ways to make <a href=\"https://dropinblog.com\">DropInBlog</a> even more awesome. </span></p>"
-                                                                            }
-                                                                        }
-                                                                    },
-                                                                    "categories": {
-                                                                        "type": "array",
-                                                                        "items": {
-                                                                            "type": "object",
-                                                                            "properties": {
-                                                                                "id": {
-                                                                                    "type": "integer",
-                                                                                    "example": 898924873,
-                                                                                    "default": 0
-                                                                                },
-                                                                                "title": {
-                                                                                    "type": "string",
-                                                                                    "example": "Tips"
-                                                                                },
-                                                                                "slug": {
-                                                                                    "type": "string",
-                                                                                    "example": "tips"
-                                                                                }
-                                                                            }
-                                                                        }
-                                                                    }
-                                                                }
-                                                            }
-                                                        }
-                                                    }
+                                                    "$ref": "#/components/schemas/post"
                                                 }
                                             }
                                         }
@@ -1307,13 +702,7 @@
                 "operationId": "categories-list",
                 "parameters": [
                     {
-                        "name": "blog_id",
-                        "in": "path",
-                        "description": "Your blog ID.",
-                        "schema": {
-                            "type": "string"
-                        },
-                        "required": true
+                        "$ref": "#/components/parameters/blog_id"
                     }
                 ],
                 "responses": {
@@ -1353,35 +742,7 @@
                                                 "categories": {
                                                     "type": "array",
                                                     "items": {
-                                                        "type": "object",
-                                                        "properties": {
-                                                            "title": {
-                                                                "type": "string",
-                                                                "example": "Announcements"
-                                                            },
-                                                            "slug": {
-                                                                "type": "string",
-                                                                "example": "announcements"
-                                                            },
-                                                            "background_image": {
-                                                                "type": "string",
-                                                                "example": ""
-                                                            },
-                                                            "heading_description": {},
-                                                            "seo_title": {
-                                                                "type": "string",
-                                                                "example": "Announcements"
-                                                            },
-                                                            "seo_description": {
-                                                                "type": "string",
-                                                                "example": ""
-                                                            },
-                                                            "id": {
-                                                                "type": "integer",
-                                                                "example": 898924871,
-                                                                "default": 0
-                                                            }
-                                                        }
+                                                        "$ref": "#/components/schemas/category"
                                                     }
                                                 }
                                             }
@@ -1402,13 +763,7 @@
                 "operationId": "authors-list",
                 "parameters": [
                     {
-                        "name": "blog_id",
-                        "in": "path",
-                        "description": "Your blog ID.",
-                        "schema": {
-                            "type": "string"
-                        },
-                        "required": true
+                        "$ref": "#/components/parameters/blog_id"
                     },
                     {
                         "name": "exclude_without_published_post",
@@ -1458,248 +813,7 @@
                                                 "authors": {
                                                     "type": "array",
                                                     "items": {
-                                                        "type": "object",
-                                                        "properties": {
-                                                            "id": {
-                                                                "type": "integer",
-                                                                "example": 1,
-                                                                "default": 0
-                                                            },
-                                                            "name": {
-                                                                "type": "string",
-                                                                "example": "Jason"
-                                                            },
-                                                            "slug": {
-                                                                "type": "string",
-                                                                "example": "jason"
-                                                            },
-                                                            "photo": {},
-                                                            "bio": {},
-                                                            "seo_title": {},
-                                                            "seo_description": {}
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                },
-                "deprecated": false
-            }
-        },
-        "/v2/blog/{blog_id}/posts/search": {
-            "get": {
-                "summary": "Search posts",
-                "description": "Requires a **public** API key.",
-                "operationId": "posts-search",
-                "parameters": [
-                    {
-                        "name": "blog_id",
-                        "in": "path",
-                        "description": "Your blog ID.",
-                        "schema": {
-                            "type": "string"
-                        },
-                        "required": true
-                    },
-                    {
-                        "name": "search",
-                        "in": "query",
-                        "description": "The search string.",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "name": "statuses",
-                        "in": "query",
-                        "description": "Post status filter (draft, published, scheduled) with a comma separated list. Defaults to published.",
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "200",
-                        "content": {
-                            "application/json": {
-                                "examples": {
-                                    "Result": {
-                                        "value": "{\n    \"success\": true,\n    \"code\": 0,\n    \"locale\": \"en\",\n    \"message\": \"OK\",\n    \"data\": {\n        \"posts\": [\n            {\n                \"id\": 42349488,\n                \"title\": \"How to Add Categories to Your Blog\",\n                \"slug\": \"how-to-add-categories-to-your-blog\",\n                \"url\": \"https://dropindemo.com/blog/how-to-add-categories-to-your-blog\",\n                \"summary\": \"Categories are important for search engine optimization and for organizing your content around themes. Website visitors will have a much easier time navigating your site if it is well organized – and when visitors have an easier time, visitors are happy!\",\n                \"featuredImage\": \"https://dropinblog.net/34236460/files/featured/how-to-add-categories.png\",\n                \"featuredImageWebm\": null,\n                \"featuredImageMp4\": null,\n                \"publishedAt\": \"12/06/2021\",\n                \"publishedAtIso8601\": \"2021-12-06T15:57:00-06:00\",\n                \"updatedAt\": \"02/22/2024\",\n                \"updatedAtIso8601\": \"2024-02-22T18:52:10-06:00\",\n                \"keyword\": \"add categories to your blog\",\n                \"secondaryKeywords\": [],\n                \"seoTitle\": \"How to Add Categories to Your Blog\",\n                \"seoDescription\": \"Help your website visitors find the info they're looking for and encourage them to keep browsing your site by learning how to add categories to your blog.\",\n                \"canonicalUrl\": \"\",\n                \"pinned\": 0,\n                \"readtime\": \"2 minute read\",\n                \"seo_score\": 85,\n                \"status\": \"published\",\n                \"visibility\": \"public\",\n                \"noindex\": 0,\n                \"author\": {\n                    \"id\": 219,\n                    \"name\": \"Jesse\",\n                    \"slug\": \"jesse\",\n                    \"photo\": \"https://dropinblog.net/34236460/authors/c321458d1a8f3afdff1944ceaa79be140f685ea8.jpg\",\n                    \"bio\": \"<p><span style=\\\"font-size: 11pt; font-family: Arial; color: #000000; background-color: transparent; font-weight: 400; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;\\\">DropInBlog co-founder Jesse is dedicated to making DropInBlog the world&rsquo;s go-to blogging platform. He helped create DiB because he was tired of dealing with complicated and incomplete blogging solutions. Jesse loves experimenting with new features and finding new ways to make <a href=\\\"https://dropinblog.com\\\">DropInBlog</a> even more awesome. </span></p>\"\n                },\n                \"categories\": [\n                    {\n                        \"id\": 898924873,\n                        \"title\": \"Tips\",\n                        \"slug\": \"tips\"\n                    }\n                ]\n            }\n        ]\n    }\n}"
-                                    }
-                                },
-                                "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "success": {
-                                            "type": "boolean",
-                                            "example": true,
-                                            "default": true
-                                        },
-                                        "code": {
-                                            "type": "integer",
-                                            "example": 0,
-                                            "default": 0
-                                        },
-                                        "locale": {
-                                            "type": "string",
-                                            "example": "en"
-                                        },
-                                        "message": {
-                                            "type": "string",
-                                            "example": "OK"
-                                        },
-                                        "data": {
-                                            "type": "object",
-                                            "properties": {
-                                                "posts": {
-                                                    "type": "array",
-                                                    "items": {
-                                                        "type": "object",
-                                                        "properties": {
-                                                            "id": {
-                                                                "type": "integer",
-                                                                "example": 42349488,
-                                                                "default": 0
-                                                            },
-                                                            "title": {
-                                                                "type": "string",
-                                                                "example": "How to Add Categories to Your Blog"
-                                                            },
-                                                            "slug": {
-                                                                "type": "string",
-                                                                "example": "how-to-add-categories-to-your-blog"
-                                                            },
-                                                            "url": {
-                                                                "type": "string",
-                                                                "example": "https://dropindemo.com/blog/how-to-add-categories-to-your-blog"
-                                                            },
-                                                            "summary": {
-                                                                "type": "string",
-                                                                "example": "Categories are important for search engine optimization and for organizing your content around themes. Website visitors will have a much easier time navigating your site if it is well organized – and when visitors have an easier time, visitors are happy!"
-                                                            },
-                                                            "featuredImage": {
-                                                                "type": "string",
-                                                                "example": "https://dropinblog.net/34236460/files/featured/how-to-add-categories.png"
-                                                            },
-                                                            "featuredImageWebm": {},
-                                                            "featuredImageMp4": {},
-                                                            "publishedAt": {
-                                                                "type": "string",
-                                                                "example": "12/06/2021"
-                                                            },
-                                                            "publishedAtIso8601": {
-                                                                "type": "string",
-                                                                "example": "2021-12-06T15:57:00-06:00"
-                                                            },
-                                                            "updatedAt": {
-                                                                "type": "string",
-                                                                "example": "02/22/2024"
-                                                            },
-                                                            "updatedAtIso8601": {
-                                                                "type": "string",
-                                                                "example": "2024-02-22T18:52:10-06:00"
-                                                            },
-                                                            "keyword": {
-                                                                "type": "string",
-                                                                "example": "add categories to your blog"
-                                                            },
-                                                            "secondaryKeywords": {
-                                                                "type": "array"
-                                                            },
-                                                            "seoTitle": {
-                                                                "type": "string",
-                                                                "example": "How to Add Categories to Your Blog"
-                                                            },
-                                                            "seoDescription": {
-                                                                "type": "string",
-                                                                "example": "Help your website visitors find the info they're looking for and encourage them to keep browsing your site by learning how to add categories to your blog."
-                                                            },
-                                                            "canonicalUrl": {
-                                                                "type": "string",
-                                                                "example": ""
-                                                            },
-                                                            "pinned": {
-                                                                "type": "integer",
-                                                                "example": 0,
-                                                                "default": 0
-                                                            },
-                                                            "readtime": {
-                                                                "type": "string",
-                                                                "example": "2 minute read"
-                                                            },
-                                                            "seo_score": {
-                                                                "type": "integer",
-                                                                "example": 85,
-                                                                "default": 0
-                                                            },
-                                                            "status": {
-                                                                "type": "string",
-                                                                "example": "published"
-                                                            },
-                                                            "visibility": {
-                                                                "type": "string",
-                                                                "example": "public"
-                                                            },
-                                                            "noindex": {
-                                                                "type": "integer",
-                                                                "example": 0,
-                                                                "default": 0
-                                                            },
-                                                            "author": {
-                                                                "type": "object",
-                                                                "properties": {
-                                                                    "id": {
-                                                                        "type": "integer",
-                                                                        "example": 219,
-                                                                        "default": 0
-                                                                    },
-                                                                    "name": {
-                                                                        "type": "string",
-                                                                        "example": "Jesse"
-                                                                    },
-                                                                    "slug": {
-                                                                        "type": "string",
-                                                                        "example": "jesse"
-                                                                    },
-                                                                    "photo": {
-                                                                        "type": "string",
-                                                                        "example": "https://dropinblog.net/34236460/authors/c321458d1a8f3afdff1944ceaa79be140f685ea8.jpg"
-                                                                    },
-                                                                    "bio": {
-                                                                        "type": "string",
-                                                                        "example": "<p><span style=\"font-size: 11pt; font-family: Arial; color: #000000; background-color: transparent; font-weight: 400; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;\">DropInBlog co-founder Jesse is dedicated to making DropInBlog the world&rsquo;s go-to blogging platform. He helped create DiB because he was tired of dealing with complicated and incomplete blogging solutions. Jesse loves experimenting with new features and finding new ways to make <a href=\"https://dropinblog.com\">DropInBlog</a> even more awesome. </span></p>"
-                                                                    }
-                                                                }
-                                                            },
-                                                            "categories": {
-                                                                "type": "array",
-                                                                "items": {
-                                                                    "type": "object",
-                                                                    "properties": {
-                                                                        "id": {
-                                                                            "type": "integer",
-                                                                            "example": 898924873,
-                                                                            "default": 0
-                                                                        },
-                                                                        "title": {
-                                                                            "type": "string",
-                                                                            "example": "Tips"
-                                                                        },
-                                                                        "slug": {
-                                                                            "type": "string",
-                                                                            "example": "tips"
-                                                                        }
-                                                                    }
-                                                                }
-                                                            }
-                                                        }
+                                                        "$ref": "#/components/schemas/author"
                                                     }
                                                 }
                                             }
