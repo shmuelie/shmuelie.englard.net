@@ -21,11 +21,23 @@ const listPostsTemplate = html<BlogPosting, FluentBlog>`
 </fluent-card>
 `
 
+const previousTemplate = html<FluentBlog>`
+<fluent-flipper direction="previous" @click="${x => x.currentPage = (x.currentPage ?? 1) - 1}"></fluent-flipper>
+`;
+
+const nextTemplate = html<FluentBlog>`
+<fluent-flipper direction="next" @click="${x => x.currentPage = (x.currentPage ?? 0) + 1}"></fluent-flipper>
+`;
+
 const listTemplate = html<FluentBlog>`
 <section class="blog-posts">
     <div>
         ${repeat(x => x.posts, listPostsTemplate)}
     </div>
+    <nav>
+        ${when(x => x.currentPage && x.currentPage > 0, previousTemplate)}
+        ${when(x => x.currentPage && x.currentPage < x.lastPage, nextTemplate)}
+    </nav>
 </section>
 `;
 
@@ -194,6 +206,10 @@ export class FluentBlog extends FASTElement {
      */
     @observable
     post: BlogPosting | null = null;
+    @observable
+    totalPosts: number = 0;
+    @observable
+    lastPage: number = 0;
 
     /**
      * The current page in the blog listing.
@@ -366,6 +382,8 @@ export class FluentBlog extends FASTElement {
 
         });
         if (response && !isError(response)) {
+            this.totalPosts = response?.pagination?.total ?? 0;
+            this.lastPage = response?.pagination?.last_page ?? 0;
             for (const post of response.posts ?? []) {
                 if (post) {
                     this.posts.push(convertPost(post));
