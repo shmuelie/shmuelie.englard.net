@@ -95,8 +95,8 @@ export interface components {
       summary?: string;
       /** @example https://dropinblog.net/34236460/files/featured/how-to-add-categories.png */
       featuredImage?: string;
-      featuredImageWebm?: unknown;
-      featuredImageMp4?: unknown;
+      featuredImageWebm?: string;
+      featuredImageMp4?: string;
       /** @example 12/06/2021 */
       publishedAt?: string;
       /** @example 2021-12-06T15:57:00-06:00 */
@@ -154,8 +154,8 @@ export interface components {
       summary?: string;
       /** @example https://dropinblog.net/34236460/files/featured/welcome-dib.png */
       featuredImage?: string;
-      featuredImageWebm?: unknown;
-      featuredImageMp4?: unknown;
+      featuredImageWebm?: string;
+      featuredImageMp4?: string;
       /** @example 03/16/2024 */
       publishedAt?: string;
       /** @example 2024-03-16T16:44:00-05:00 */
@@ -337,8 +337,8 @@ export interface operations {
                  * @example 1
                  */
                 last_page?: number;
-                previous_page_url?: unknown;
-                next_page_url?: unknown;
+                previous_page_url?: string;
+                next_page_url?: string;
               };
             };
           };
