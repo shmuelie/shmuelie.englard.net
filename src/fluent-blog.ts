@@ -54,18 +54,15 @@ const noPostsTemplate = html<FluentBlog>`
 `;
 
 const postsTemplate = html<FluentBlog>`
-${when(x => x.posts.length === 0, noPostsTemplate)}
-${when(x => x.posts.length > 0, listTemplate)}
+${when(x => x.posts.length === 0, noPostsTemplate, listTemplate)}
 `;
 
 const loadedTemplate = html<FluentBlog>`
-${when(x => x.post === null, postsTemplate)}
-${when(x => x.post !== null, postTemplate)}
+${when(x => x.post === null, postsTemplate, postTemplate)}
 `;
 
 const template = html<FluentBlog>`
-    ${when(x => x.loading, loadingTemplate)}
-    ${when(x => !x.loading, loadedTemplate)}
+${when(x => x.loading, loadingTemplate, loadedTemplate)}
 `;
 
 const styles = css`
