@@ -5,13 +5,14 @@ import { register, ProviderCallback } from 'https://unpkg.com/hashed-es6@1.0.3'
 import { Blog, Post, PostSummary } from '../drop-in-blog/blog.js'
 import { template } from './template.js'
 import { styles } from './styles.js'
+import { IFluentBlog } from './IFluentBlog.js'
 
 @customElement({
     name: 'fluent-blog',
     template: template,
     styles: styles
 })
-export class FluentBlog extends FASTElement {
+export class FluentBlog extends FASTElement implements IFluentBlog {
     /**
      * Method to update the hash with state information. `null` when hash state not loaded.
      */
