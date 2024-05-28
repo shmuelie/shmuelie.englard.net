@@ -3,6 +3,7 @@ import { attr, html, repeat, observable, FASTElement, customElement, css, when, 
 import { isError } from './drop-in-blog/request-helper.js'
 import { register, ProviderCallback } from 'https://unpkg.com/hashed-es6@1.0.3'
 import { Blog, Post, PostSummary } from './drop-in-blog/blog.js'
+import { render } from './render.js'
 
 const listPostsTemplate = html<PostSummary, FluentBlog>`
 <fluent-card
@@ -27,16 +28,20 @@ const listTemplate = html<FluentBlog>`
 </section>
 `;
 
-const postTemplate = html<FluentBlog>`
+const postTemplate = html<Post, FluentBlog>`
 <section class="blog-post">
     <h1>
-        <fluent-flipper direction="previous" @click="${x => x.currentPost = null}"></fluent-flipper>
-        ${x => x.post?.title}
+        <fluent-flipper direction="previous" @click="${(_, c) => c.parent.currentPost = null}"></fluent-flipper>
+        ${x => x.title}
     </h1>
-    <time datetime="${x => x.post?.publishedAt}">${x => new Date(<string>x.post?.publishedAt).toLocaleString()}</time>
-    <img src="${x => x.post?.featuredImage}" alt="${x => x.post?.title}" />
-    <article :innerHTML="${x => x.post?.content}"></article>
+    <time datetime="${x => x.publishedAt}">${x => new Date(<string>x.publishedAt).toLocaleString()}</time>
+    <img src="${x => x.featuredImage}" alt="${x => x.title}" />
+    <article :innerHTML="${x => x.content}"></article>
 </section>
+`;
+
+const postTemplateRenderer = html<FluentBlog>`
+${render(x => x.post, postTemplate)}
 `;
 
 const loadingTemplate = html<FluentBlog>`
@@ -58,7 +63,7 @@ ${when(x => x.posts.length === 0, noPostsTemplate, listTemplate)}
 `;
 
 const loadedTemplate = html<FluentBlog>`
-${when(x => x.post === null, postsTemplate, postTemplate)}
+${when(x => x.post === null, postsTemplate, postTemplateRenderer)}
 `;
 
 const template = html<FluentBlog>`
