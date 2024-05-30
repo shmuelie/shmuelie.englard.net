@@ -1,4 +1,4 @@
-import { Post } from "./Post";
+import { Post } from "./_Post";
 import { Response } from "./Response";
 
 
