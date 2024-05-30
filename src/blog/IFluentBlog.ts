@@ -1,4 +1,5 @@
-import { Post, PostSummary } from '../drop-in-blog/blog.js';
+import { Post } from "../drop-in-blog/Post";
+import { PostSummary } from "../drop-in-blog/PostSummary";
 
 export interface IFluentBlog {
     /**

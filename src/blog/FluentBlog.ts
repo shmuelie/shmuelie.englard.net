@@ -1,11 +1,12 @@
 import { } from 'https://unpkg.com/@fluentui/web-components@2.6.1'
 import { attr, observable, FASTElement, customElement, nullableNumberConverter } from 'https://unpkg.com/@microsoft/fast-element@1.13.0'
-import { isError } from '../drop-in-blog/request-helper.js'
 import { register, ProviderCallback } from 'https://unpkg.com/hashed-es6@1.0.3'
-import { Blog, Post, PostSummary } from '../drop-in-blog/blog.js'
+import { Blog } from '../drop-in-blog/blog.js'
 import { template } from './template.js'
 import { styles } from './styles.js'
 import { IFluentBlog } from './IFluentBlog.js'
+import { Post } from '../drop-in-blog/Post.js'
+import { PostSummary } from '../drop-in-blog/PostSummary.js'
 
 @customElement({
     name: 'fluent-blog',
@@ -182,10 +183,14 @@ export class FluentBlog extends FASTElement implements IFluentBlog {
      */
     private async _loadPost(): Promise<boolean> {
         if (this.currentPost) {
-            const response = await this.blogApi?.getPost(this.currentPost);
-            if (response && !isError(response)) {
-                this.post = response;
-                return true;
+            try {
+                const response = await this.blogApi?.getPost(this.currentPost);
+                if (response) {
+                    this.post = response;
+                    return true;
+                }
+            }
+            catch {
             }
         }
 
@@ -206,16 +211,19 @@ export class FluentBlog extends FASTElement implements IFluentBlog {
             currentPage = this.currentPage;
         }
 
-        const response = await this.blogApi?.getPosts({
-            page: currentPage,
-
-        });
-        if (response && !isError(response)) {
-            for (const post of response.posts ?? []) {
-                if (post) {
-                    this.posts.push(post);
+        try {
+            const response = await this.blogApi?.getPosts({
+                page: currentPage
+            });
+            if (response) {
+                for (const post of response.posts ?? []) {
+                    if (post) {
+                        this.posts.push(post);
+                    }
                 }
             }
+        }
+        catch {
         }
     }
 }

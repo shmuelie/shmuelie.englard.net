@@ -1,6 +1,6 @@
-import { html } from 'https://unpkg.com/@microsoft/fast-element@1.13.0';
-import { PostSummary } from '../drop-in-blog/blog.js';
+import { html } from 'https://unpkg.com/@microsoft/fast-element@1.13.0';;
 import { IFluentBlog } from './IFluentBlog.js';
+import { PostSummary } from '../drop-in-blog/PostSummary.js';
 
 /**
  * Template for showing post summaries
