@@ -23,7 +23,6 @@
         "jsdom-global": "3.0.2",
         "microdata-tooling": "1.0.4",
         "office-ui-fabric-core": "11.1.0",
-        "openapi-typescript": "6.7.5",
         "plugin-error": "2.0.1",
         "sass": "1.75.0",
         "shieldsio-elements": "1.0.0",
@@ -46,8 +45,7 @@
         "clean": "cross-env NODE_OPTIONS=\"--loader ./unpkg.mjs\" gulp clean",
         "postinstall": "cross-env NODE_OPTIONS=\"--loader ./unpkg.mjs\" gulp generateNodeModulePathMappings",
         "preinstall": "npx -y only-allow pnpm",
-        "test-server": "http-server ./dist/ -p 8000 -e htm",
-        "blog-api": "cross-env NODE_OPTIONS=\"--loader ./unpkg.mjs\" gulp generateDropInBlogTypings"
+        "test-server": "http-server ./dist/ -p 8000 -e htm"
     },
     "version": "1.0.0"
 }
