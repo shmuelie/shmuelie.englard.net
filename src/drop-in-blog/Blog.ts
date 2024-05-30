@@ -6,7 +6,7 @@ import { SearchQuery } from "./SearchQuery.js";
 import { PostResponse } from "./PostResponse.js";
 import { PostsResponse } from "./PostsResponse.js";
 import { PostsParameters } from "./PostsParameters.js";
-import { Post } from "./_Post.js";
+import { Post } from "./Post.js";
 import { PostSummary } from "./PostSummary.js";
 import { Category } from "./Category.js";
 import { Author } from "./Author.js";

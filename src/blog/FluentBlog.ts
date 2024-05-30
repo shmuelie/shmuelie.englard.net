@@ -1,11 +1,11 @@
 import { } from 'https://unpkg.com/@fluentui/web-components@2.6.1'
 import { attr, observable, FASTElement, customElement, nullableNumberConverter } from 'https://unpkg.com/@microsoft/fast-element@1.13.0'
 import { register, ProviderCallback } from 'https://unpkg.com/hashed-es6@1.0.3'
-import { Blog } from '../drop-in-blog/_Blog.js'
+import { Blog } from '../drop-in-blog/Blog.js'
 import { template } from './template.js'
 import { styles } from './styles.js'
 import { IFluentBlog } from './IFluentBlog.js'
-import { Post } from '../drop-in-blog/_Post.js'
+import { Post } from '../drop-in-blog/Post.js'
 import { PostSummary } from '../drop-in-blog/PostSummary'
 
 @customElement({
