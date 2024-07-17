@@ -1,4 +1,4 @@
-import 'https://unpkg.com/shieldsio-elements@1.0.0'
+import 'https://unpkg.com/shieldsio-elements@1.1.1'
 import { allComponents, baseLayerLuminance, provideFluentDesignSystem, StandardLuminance } from 'https://unpkg.com/@fluentui/web-components@2.6.1'
 import { DesignToken, Tabs } from 'https://unpkg.com/@microsoft/fast-foundation@2.49.6'
 import { register } from 'https://unpkg.com/hashed-es6@1.0.3'

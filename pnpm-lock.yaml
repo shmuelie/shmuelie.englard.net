@@ -69,8 +69,8 @@ importers:
         specifier: 1.77.6
         version: 1.77.6
       shieldsio-elements:
-        specifier: 1.0.0
-        version: 1.0.0
+        specifier: 1.1.1
+        version: 1.1.1
       terser:
         specifier: 5.31.1
         version: 5.31.1
@@ -1556,8 +1556,8 @@ packages:
     resolution: {integrity: sha512-7++dFhtcx3353uBaq8DDR4NuxBetBzC7ZQOhmTQInHEd6bSrXdiEyzCvG07Z44UYdLShWUyXt5M/yhz8ekcb1A==}
     engines: {node: '>=8'}
 
-  shieldsio-elements@1.0.0:
-    resolution: {integrity: sha512-wpwPBV9tJr7EsH0mxCnRCwxsGY4jfWyi2xCivq4uxai0tEp/1Aqx1LSSzPO8+FUW4XQu71caC2pSHopxiGBOGw==}
+  shieldsio-elements@1.1.1:
+    resolution: {integrity: sha512-cJjsG4x5JibQfA3IM7evV+3CO4a67OWzUiyct8xmWHJ7klBwF3EXnK8tyj8SZj6go0JxjOJHMGn+A50X646uRQ==}
 
   side-channel@1.0.4:
     resolution: {integrity: sha512-q5XPytqFEIKHkGdiMIrY10mvLRvnQh42/+GoBlFW3b2LXLE2xxJpZFdm94we0BaoV3RwJyGqg5wS7epxTv0Zvw==}
@@ -3596,7 +3596,7 @@ snapshots:
 
   shebang-regex@3.0.0: {}
 
-  shieldsio-elements@1.0.0: {}
+  shieldsio-elements@1.1.1: {}
 
   side-channel@1.0.4:
     dependencies:
