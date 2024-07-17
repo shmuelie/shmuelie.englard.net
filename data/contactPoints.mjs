@@ -9,8 +9,8 @@
 export const contactPoints = [
     {
         "@type": "ContactPoint",
-        contactType: "Twitter",
-        url: "https://twitter.com/Shmuelie",
+        contactType: "X",
+        url: "https://x.com/Shmuelie",
         identifier: "Shmuelie"
     },
     {
