@@ -157,6 +157,18 @@ export const contactPoints = [
         contactType: "UserBenchmark",
         url: "https://www.userbenchmark.com/User?id=shmuelie&tab=PProfile",
         identifier: "shmuelie"
+    },
+    {
+        "@type": "ContactPoint",
+        contactType: "Bluesky",
+        url: "https://bsky.app/profile/shmuelie.bsky.social",
+        identifier: "shmuelie.bsky.social"
+    },
+    {
+        "@type": "ContactPoint",
+        contactType: "Threads",
+        url: "https://www.threads.net/@shmuelienglard",
+        identifier: "shmuelienglard"
     }
 ];
 
