@@ -92,5 +92,6 @@ section.blog-post a.badge {
 
 section.blog-post time {
     font-style: italic;
+    display: block;
 }
 `;
