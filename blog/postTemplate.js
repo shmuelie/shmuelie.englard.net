@@ -2,10 +2,10 @@ import{html}from"https://unpkg.com/@microsoft/fast-element@1.13.0";import{render
 <section class="blog-post">
     <h1>
         <fluent-flipper direction="previous" @click="${(t,e)=>e.parent.currentPost=null}"></fluent-flipper>
-        ${t=>t.title}
+        <span>${t=>t.title}</span>
     </h1>
-    <time datetime="${t=>t.publishedAt}">${t=>new Date(t.publishedAt).toLocaleString()}</time>
     <img src="${t=>t.featuredImage}" alt="${t=>t.title}" />
+    <time datetime="${t=>t.publishedAt}">${t=>new Date(t.publishedAt).toLocaleString()}</time>
     <article :innerHTML="${t=>t.content}"></article>
 </section>
 `;export const postTemplateRenderer=html`
