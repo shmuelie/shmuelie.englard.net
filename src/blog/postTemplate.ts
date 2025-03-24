@@ -10,10 +10,10 @@ const postTemplate = html<Post, IFluentBlog> `
 <section class="blog-post">
     <h1>
         <fluent-flipper direction="previous" @click="${(_, c) => c.parent.currentPost = null}"></fluent-flipper>
-        ${x => x.title}
+        <span>${x => x.title}</span>
     </h1>
-    <time datetime="${x => x.publishedAt}">${x => new Date(<string>x.publishedAt).toLocaleString()}</time>
     <img src="${x => x.featuredImage}" alt="${x => x.title}" />
+    <time datetime="${x => x.publishedAt}">${x => new Date(<string>x.publishedAt).toLocaleString()}</time>
     <article :innerHTML="${x => x.content}"></article>
 </section>
 `;
