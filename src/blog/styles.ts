@@ -67,6 +67,9 @@ section.blog-post img {
     border: calc(var(--stroke-width) * 1px) solid var(--neutral-stroke-layer-rest);
     border-radius: calc(var(--layer-corner-radius) * 1px);
     box-shadow: var(--elevation-shadow-card-rest);
+    object-fit: cover;
+    width: 100%;
+    max-height: 300px;
 }
 
 section.blog-post a {
