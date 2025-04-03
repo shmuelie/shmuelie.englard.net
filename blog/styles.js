@@ -1,4 +1,4 @@
-import{css}from"https://unpkg.com/@microsoft/fast-element@1.13.0";export const styles=css`
+import{css}from"https://unpkg.com/@microsoft/fast-element@1.14.0";export const styles=css`
 section.blog-loading {
     margin: 20px;
 }

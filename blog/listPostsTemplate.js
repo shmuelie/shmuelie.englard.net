@@ -1,4 +1,4 @@
-import{html}from"https://unpkg.com/@microsoft/fast-element@1.13.0";export const listPostsTemplate=html`
+import{html}from"https://unpkg.com/@microsoft/fast-element@1.14.0";export const listPostsTemplate=html`
 <fluent-card
     itemscope
     itemtype="https://schema.org/BlogPosting"
