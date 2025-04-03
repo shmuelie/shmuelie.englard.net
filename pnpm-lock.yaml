@@ -9,17 +9,17 @@ importers:
   .:
     devDependencies:
       '@fluentui/common-styles':
-        specifier: 1.2.55
-        version: 1.2.55
+        specifier: 1.2.67
+        version: 1.2.67
       '@fluentui/web-components':
         specifier: 2.6.1
         version: 2.6.1
       '@microsoft/fast-element':
-        specifier: 1.13.0
-        version: 1.13.0
+        specifier: 1.14.0
+        version: 1.14.0
       '@microsoft/fast-foundation':
-        specifier: 2.49.6
-        version: 2.49.6
+        specifier: 2.50.0
+        version: 2.50.0
       cross-env:
         specifier: 7.0.3
         version: 7.0.3
@@ -83,8 +83,8 @@ importers:
 
 packages:
 
-  '@fluentui/common-styles@1.2.55':
-    resolution: {integrity: sha512-dmaElThdKsyr2LrZ5bDBWSszuCaUC1DwVPL6lBp22YcVR5nhzPlpAhAPMKHWUZ3yuCRLlblg0IUukWoyjRXTrw==}
+  '@fluentui/common-styles@1.2.67':
+    resolution: {integrity: sha512-QLFSMOKJeI027N0iDIfPyW5gfziXNOwydIgry2E+ehMvqGyIAYEj9emXi3MWwlbXM+6jtU51Axlc9pdCH4qIwA==}
 
   '@fluentui/web-components@2.6.1':
     resolution: {integrity: sha512-coyV+QZBVqcrJbncR2iyL0ZMXGFRJmP+JYUlewkYBt8bgmTMIwKBdUX0cN9S6KUp8JHoC2OSRqL8MYgT3T+YLQ==}
@@ -121,11 +121,11 @@ packages:
   '@microsoft/fast-colors@5.3.1':
     resolution: {integrity: sha512-72RZXVfCbwQzvo5sXXkuLXLT7rMeYaSf5r/6ewQiv/trBtqpWRm4DEH2EilHw/iWTBKOXs1qZNQndgUMa5n4LA==}
 
-  '@microsoft/fast-element@1.13.0':
-    resolution: {integrity: sha512-iFhzKbbD0cFRo9cEzLS3Tdo9BYuatdxmCEKCpZs1Cro/93zNMpZ/Y9/Z7SknmW6fhDZbpBvtO8lLh9TFEcNVAQ==}
+  '@microsoft/fast-element@1.14.0':
+    resolution: {integrity: sha512-zXvuSOzvsu8zDTy9eby8ix8VqLop2rwKRgp++ZN2kTCsoB3+QJVoaGD2T/Cyso2ViZQFXNpiNCVKfnmxBvmWkQ==}
 
-  '@microsoft/fast-foundation@2.49.6':
-    resolution: {integrity: sha512-DZVr+J/NIoskFC1Y6xnAowrMkdbf2d5o7UyWK6gW5AiQ6S386Ql8dw4KcC4kHaeE1yL2CKvweE79cj6ZhJhTvA==}
+  '@microsoft/fast-foundation@2.50.0':
+    resolution: {integrity: sha512-8mFYG88Xea1jZf2TI9Lm/jzZ6RWR8x29r24mGuLojNYqIR2Bl8+hnswoV6laApKdCbGMPKnsAL/O68Q0sRxeVg==}
 
   '@microsoft/fast-web-utilities@5.4.1':
     resolution: {integrity: sha512-ReWYncndjV3c8D8iq9tp7NcFNc1vbVHvcBFPME2nNFKNbS1XCesYZGlIlf3ot5EmuOXPlrzUHOWzQ2vFpIkqDg==}
@@ -687,7 +687,7 @@ packages:
     resolution: {integrity: sha512-oWb1Z6mkHIskLzEJ/XWX0srkpkTQ7vaopMQkyaEIoq0fmtFVxOthb8cCxeT+p3ynTdkk/RZwbgG4brR5BeWECw==}
     engines: {node: '>= 4.0'}
     os: [darwin]
-    deprecated: The v1 package contains DANGEROUS / INSECURE binaries. Upgrade to safe fsevents v2
+    deprecated: Upgrade to fsevents v2 to mitigate potential security issues
 
   fsevents@2.3.3:
     resolution: {integrity: sha512-5xoDfX+fL7faATnagmWPpbFtwh/R77WmMMqqHGS65C3vvB0YHrgF+B1YmZ3441tMj5n63k0212XNoJwzlhffQw==}
@@ -1919,15 +1919,15 @@ packages:
 
 snapshots:
 
-  '@fluentui/common-styles@1.2.55':
+  '@fluentui/common-styles@1.2.67':
     dependencies:
       office-ui-fabric-core: 11.1.0
 
   '@fluentui/web-components@2.6.1':
     dependencies:
       '@microsoft/fast-colors': 5.3.1
-      '@microsoft/fast-element': 1.13.0
-      '@microsoft/fast-foundation': 2.49.6
+      '@microsoft/fast-element': 1.14.0
+      '@microsoft/fast-foundation': 2.50.0
       '@microsoft/fast-web-utilities': 5.4.1
       tslib: 2.6.2
 
@@ -1968,11 +1968,11 @@ snapshots:
 
   '@microsoft/fast-colors@5.3.1': {}
 
-  '@microsoft/fast-element@1.13.0': {}
+  '@microsoft/fast-element@1.14.0': {}
 
-  '@microsoft/fast-foundation@2.49.6':
+  '@microsoft/fast-foundation@2.50.0':
     dependencies:
-      '@microsoft/fast-element': 1.13.0
+      '@microsoft/fast-element': 1.14.0
       '@microsoft/fast-web-utilities': 5.4.1
       tabbable: 5.3.3
       tslib: 1.14.1

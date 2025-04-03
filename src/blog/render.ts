@@ -18,7 +18,7 @@ import {
     SyntheticViewTemplate,
     TemplateValue,
     ViewTemplate
-} from 'https://unpkg.com/@microsoft/fast-element@1.13.0';
+} from 'https://unpkg.com/@microsoft/fast-element@1.14.0';
 
 const isFunction = (object: any): object is Function => typeof object === "function";
 const isString = (object: any): object is string => typeof object === "string";

@@ -1,4 +1,4 @@
-import { html } from 'https://unpkg.com/@microsoft/fast-element@1.13.0';;
+import { html } from 'https://unpkg.com/@microsoft/fast-element@1.14.0';
 import { IFluentBlog } from './IFluentBlog.js';
 import { PostSummary } from '../drop-in-blog/PostSummary.js';
 

@@ -1,5 +1,5 @@
 import { } from 'https://unpkg.com/@fluentui/web-components@2.6.1'
-import { attr, observable, FASTElement, customElement, nullableNumberConverter } from 'https://unpkg.com/@microsoft/fast-element@1.13.0'
+import { attr, observable, FASTElement, customElement, nullableNumberConverter } from 'https://unpkg.com/@microsoft/fast-element@1.14.0'
 import { register, ProviderCallback } from 'https://unpkg.com/hashed-es6@1.0.3'
 import { Blog } from '../drop-in-blog/Blog.js'
 import { template } from './template.js'
