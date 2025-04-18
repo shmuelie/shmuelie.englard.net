@@ -1,3 +1,10 @@
+import { registerHooks } from 'node:module';
+import * as unpkg from './../unpkg.mjs'
+
+registerHooks({
+    resolve: unpkg.resolve
+});
+
 export { cleanBuildOutput } from "./cleanBuildOutput.mjs"
 export { buildTypeScriptProject } from './buildTypeScriptProject.mjs'
 export { buildSass } from './buildSass.mjs'

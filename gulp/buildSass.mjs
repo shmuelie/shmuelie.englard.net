@@ -13,12 +13,7 @@ export function buildSass() {
     return gulp.src("src/*.scss").
         pipe(sourcemaps.init()).
         pipe(sass({
-            outputStyle: 'compressed',
-            importer: function (url) {
-                return {
-                    file: url.replace("~", "./node_modules/")
-                };
-            }
+            style: 'compressed'
         })).
         pipe(sourcemaps.write(".")).
         pipe(gulp.dest("dist"));

@@ -22,7 +22,12 @@ import { youtubeChannels } from '../data/youtubeChannels.mjs'
  */
 async function renderHtml(document, window) {
     KEYS.forEach(function (key) {
-        global[key] = window[key];
+        try {
+            global[key] = window[key];
+        }
+        catch {
+            // Ignore errors for keys that don't exist in the window object.
+        }
     });
     global['customElements'] = window.customElements;
 
