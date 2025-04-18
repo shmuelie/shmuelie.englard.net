@@ -11,6 +11,8 @@ import { PostSummary } from "./PostSummary.js";
 import { Category } from "./Category.js";
 import { Author } from "./Author.js";
 
+// See https://dropinblog.readme.io/reference/api-reference for docs.
+
 export class Blog {
     readonly blogId: string;
     readonly oauthKey: string;
