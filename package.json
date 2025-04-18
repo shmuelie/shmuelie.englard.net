@@ -9,7 +9,6 @@
         "@fluentui/web-components": "2.6.1",
         "@microsoft/fast-element": "1.14.0",
         "@microsoft/fast-foundation": "2.50.0",
-        "cross-env": "7.0.3",
         "del": "8.0.0",
         "gulp": "5.0.0",
         "gulp-clean-css": "4.3.0",
@@ -41,9 +40,9 @@
         "url": "https://github.com/shmuelie/shmuelie.englard.net"
     },
     "scripts": {
-        "build": "cross-env NODE_OPTIONS=\"--loader ./unpkg.mjs\" gulp build",
-        "clean": "cross-env NODE_OPTIONS=\"--loader ./unpkg.mjs\" gulp clean",
-        "postinstall": "cross-env NODE_OPTIONS=\"--loader ./unpkg.mjs\" gulp generateNodeModulePathMappings",
+        "build": "gulp build",
+        "clean": "gulp clean",
+        "postinstall": "gulp generateNodeModulePathMappings",
         "preinstall": "npx -y only-allow pnpm",
         "test-server": "http-server ./dist/ -p 8000 -e htm"
     },
