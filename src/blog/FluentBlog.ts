@@ -42,6 +42,12 @@ export class FluentBlog extends FASTElement implements IFluentBlog {
     post: Post | null = null;
 
     /**
+     * The total number of pages in the blog listing.
+     */
+    @observable
+    totalPages: number = 0;
+
+    /**
      * The current page in the blog listing.
      */
     @attr({
@@ -216,6 +222,7 @@ export class FluentBlog extends FASTElement implements IFluentBlog {
                 page: currentPage
             });
             if (response) {
+                this.totalPages = response.pagination?.last_page ?? 0;
                 for (const post of response.posts ?? []) {
                     if (post) {
                         this.posts.push(post);

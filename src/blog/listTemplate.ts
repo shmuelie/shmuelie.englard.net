@@ -1,6 +1,7 @@
-import { html, repeat } from 'https://unpkg.com/@microsoft/fast-element@1.14.0';
+import { html, repeat, when } from 'https://unpkg.com/@microsoft/fast-element@1.14.0';
 import { IFluentBlog } from './IFluentBlog.js';
 import { listPostsTemplate } from './listPostsTemplate.js';
+import { paginationTemplate } from './paginationTemplate.js';
 
 /**
  * Template for showing a collection of posts.
@@ -10,5 +11,6 @@ export const listTemplate = html<IFluentBlog> `
     <div>
         ${repeat(x => x.posts, listPostsTemplate)}
     </div>
+    ${when(x => x.totalPages > 1, paginationTemplate)}
 </section>
 `;

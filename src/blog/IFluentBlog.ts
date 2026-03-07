@@ -15,7 +15,15 @@ export interface IFluentBlog {
      */
     post: Post | null;
     /**
+     * The current page in the blog listing.
+     */
+    currentPage: number | null;
+    /**
      * The ID of the current blog post or null if showing the listing.
      */
     currentPost: number | null;
+    /**
+     * The total number of pages in the blog listing.
+     */
+    totalPages: number;
 }
