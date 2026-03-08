@@ -1,39 +1,49 @@
-name: Node.js CI
+name: Deploy to GitHub Pages
 on:
   push:
     branches: [ main ]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
 jobs:
   build:
-    name: Build site on Ubuntu using NodeJS 23.x
+    name: Build site
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
+    - name: Install PNPM
+      uses: pnpm/action-setup@v4
       with:
-        fetch-depth: 0
+        version: latest
     - name: Use Node.js 23.x
-      uses: actions/setup-node@v3
+      uses: actions/setup-node@v4
       with:
         node-version: 23.11.0
-    - name: Install PNPM globally
-      run: npm install -g pnpm
-    - name: Install dependencies and confure build
+        cache: 'pnpm'
+    - name: Install dependencies
       run: pnpm install
     - name: Build Site
       run: pnpm build
-    - name: Configure git
-      run: |
-        git config user.name Shmueli Englard
-        git config user.email shmueli.yosef@englard.net
-    - name: Checkout Github Pages branch
-      run: |
-        git checkout --force --progress gh-pages
-    - name: Clear root directory
-      run: rm -f ./*.*
-    - name: Copy build output to root directory
-      run: cp -r ./dist/* ./
-    - name: Add changes to git
-      run: git add .
-    - name: Commit changes to git
-      run: git commit --allow-empty -m "Updating GH Pages"
-    - name: Push git changes.
-      run: git push
+    - name: Upload Pages artifact
+      uses: actions/upload-pages-artifact@v3
+      with:
+        path: dist/
+
+  deploy:
+    name: Deploy to GitHub Pages
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+    - name: Deploy to GitHub Pages
+      id: deployment
+      uses: actions/deploy-pages@v4
