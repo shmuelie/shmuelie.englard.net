@@ -9,6 +9,6 @@ import{html}from"https://unpkg.com/@microsoft/fast-element@1.14.0";import{render
     <article :innerHTML="${t=>t.content}"></article>
 </section>
 `;export const postTemplateRenderer=html`
-${render((t=>t.post),postTemplate)}
+${render(t=>t.post,postTemplate)}
 `;
 //# sourceMappingURL=postTemplate.js.map
