@@ -4,9 +4,7 @@ Source code for [shmuelie.englard.net](https://shmuelie.englard.net/).
 
 ## Runtime Dependencies
 
-All libraries are loaded from CDN in production and from NPM for development.
-This means that runtime dependencies are listed under development dependencies
-in `package.json`.
+All runtime libraries load from [unpkg CDN](https://unpkg.com/) in production and from local `node_modules` during development. This means runtime dependencies are listed under `devDependencies` in `package.json`. Source code imports use full unpkg.com URLs (e.g., `https://unpkg.com/@microsoft/fast-element@1.14.0`), which are redirected to local packages at build time via `registerHooks()` in `gulp/index.mjs`.
 
 - [shieldsio-elements](https://shmuelie.github.io/shieldsio-elements/)
 - [hashed-es6](https://shmuelie.github.io/hashed-es6/)
