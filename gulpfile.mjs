@@ -1,5 +1,5 @@
 import gulp from 'gulp'
-import { buildHtml, buildSass, buildTypeScriptProject, cleanBuildOutput, copyStatic, generateNodeModulePathMappings } from './gulp/index.mjs'
+import { buildHtml, buildSass, buildTypeScriptProject, cleanBuildOutput, copyStatic, generateNodeModulePathMappings, buildBlogRedirects } from './gulp/index.mjs'
 
 gulp.task("clean", cleanBuildOutput);
 gulp.task(buildTypeScriptProject);
@@ -7,11 +7,13 @@ gulp.task(buildSass);
 gulp.task(buildHtml);
 gulp.task(copyStatic);
 gulp.task(generateNodeModulePathMappings);
+gulp.task(buildBlogRedirects);
 
 gulp.task("build", gulp.series([
     "clean",
     buildTypeScriptProject.name,
     buildSass.name,
     buildHtml.name,
-    copyStatic.name
+    copyStatic.name,
+    buildBlogRedirects.name
 ]));
