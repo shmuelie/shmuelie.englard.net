@@ -1,5 +1,5 @@
 import gulp from 'gulp'
-import { buildHtml, buildSass, buildTypeScriptProject, cleanBuildOutput, copyStatic, generateNodeModulePathMappings, buildBlogRedirects } from './gulp/index.mjs'
+import { buildHtml, buildSass, buildTypeScriptProject, cleanBuildOutput, copyStatic, generateNodeModulePathMappings, buildBlogRedirects } from './gulp/index.mts'
 
 gulp.task("clean", cleanBuildOutput);
 gulp.task(buildTypeScriptProject);

@@ -7,9 +7,8 @@ const tsProject = ts.createProject("tsconfig.json");
 
 /**
  * Compiles and minimizes TypeScript, then copies to output folder.
- * @returns {NodeJS.ReadWriteStream}
  */
-export function buildTypeScriptProject() {
+export function buildTypeScriptProject(): NodeJS.ReadWriteStream {
     return tsProject.src().
         pipe(sourcemaps.init()).
         pipe(tsProject()).js.

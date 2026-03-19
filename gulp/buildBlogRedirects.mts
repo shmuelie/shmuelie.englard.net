@@ -6,17 +6,19 @@ const OAUTH_KEY = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI5YWQxODQzOC1l
 const SITE_ORIGIN = 'https://shmuelie.englard.net';
 const DIST_DIR = 'dist';
 
-/**
- * @typedef {{ id?: number, title?: string, slug?: string, seoDescription?: string, featuredImage?: string }} PostInfo
- */
+interface PostInfo {
+    id?: number;
+    title?: string;
+    slug?: string;
+    seoDescription?: string;
+    featuredImage?: string;
+}
 
 /**
  * Fetches all published blog posts from the DropInBlog API, paginating through all pages.
- * @returns {Promise<PostInfo[]>}
  */
-async function fetchAllPosts() {
-    /** @type {PostInfo[]} */
-    const allPosts = [];
+async function fetchAllPosts(): Promise<PostInfo[]> {
+    const allPosts: PostInfo[] = [];
     let page = 0;
     let lastPage = 0;
 
@@ -30,11 +32,11 @@ async function fetchAllPosts() {
                 authorization: `Bearer ${OAUTH_KEY}`
             }
         });
-        const json = await response.json();
+        const json: any = await response.json();
         if (!json.success) {
             throw new Error(`DropInBlog API error: ${json.message}`);
         }
-        const posts = json.data?.posts ?? [];
+        const posts: PostInfo[] = json.data?.posts ?? [];
         allPosts.push(...posts);
         lastPage = json.data?.pagination?.last_page ?? 0;
         page++;
@@ -45,10 +47,8 @@ async function fetchAllPosts() {
 
 /**
  * Generates an HTML redirect page for a blog post.
- * @param {PostInfo} post
- * @returns {string}
  */
-function generateRedirectPage(post) {
+function generateRedirectPage(post: PostInfo): string {
     const title = escapeHtml(post.title ?? 'Blog Post');
     const description = escapeHtml(post.seoDescription ?? '');
     const image = post.featuredImage ?? '';
@@ -74,19 +74,14 @@ function generateRedirectPage(post) {
 </html>`;
 }
 
-/**
- * @param {string} str
- * @returns {string}
- */
-function escapeHtml(str) {
+function escapeHtml(str: string): string {
     return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 }
 
 /**
  * Fetches blog posts from the DropInBlog API and generates static redirect pages.
- * @returns {Promise<void>}
  */
-export async function buildBlogRedirects() {
+export async function buildBlogRedirects(): Promise<void> {
     const posts = await fetchAllPosts();
     console.log(`Generating redirect pages for ${posts.length} blog posts…`);
 

@@ -2,20 +2,15 @@ import fs from 'fs'
 
 /**
  * Generates TypeScript path mappings for node modules.
- * @param {() => void} cb Callback method to complete operation.
- * @returns {void}
  */
-export function generateNodeModulePathMappings(cb) {
-    const pathsConfig = {
+export function generateNodeModulePathMappings(cb: () => void): void {
+    const pathsConfig: { compilerOptions: { paths: Record<string, string[]> } } = {
         compilerOptions: {
             paths: {}
         }
     }
 
-    /**
-     * @type {{devDependencies:{[k:string]:string}}}
-     */
-    const projectMetadata = JSON.parse(fs.readFileSync("package.json"));
+    const projectMetadata: { devDependencies: Record<string, string> } = JSON.parse(fs.readFileSync("package.json", "utf-8"));
     for (const devDependencyName of Object.keys(projectMetadata.devDependencies)) {
         const devDependencyVersion = projectMetadata.devDependencies[devDependencyName];
         const unpkgPath = "https://unpkg.com/" + devDependencyName + "@" + devDependencyVersion;

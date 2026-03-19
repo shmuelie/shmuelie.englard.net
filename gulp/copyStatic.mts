@@ -2,8 +2,7 @@ import gulp from 'gulp'
 
 /**
  * Copies static items to build output.
- * @returns {NodeJS.ReadWriteStream}
  */
-export function copyStatic() {
+export function copyStatic(): NodeJS.ReadWriteStream {
     return gulp.src("www/*.*").pipe(gulp.dest("dist"));
 }

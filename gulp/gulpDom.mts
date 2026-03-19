@@ -1,20 +1,19 @@
 import through from 'through2'
 import PluginError from 'plugin-error'
-import { JSDOM } from 'jsdom'
+import { JSDOM, type DOMWindow, type ConstructorOptions } from 'jsdom'
 
 const PLUGIN_NAME = "gulp-jsdom";
 
+type Mutator = (document: Document, window: DOMWindow) => Promise<string | null | undefined>;
+
 /**
  * Allows for manipulation of HTML DOM in a gulp pipeline.
- * @param {(document:Document,window:import('jsdom').DOMWindow) => Promise<string?>} mutator The function to manipulate the DOM.
- * @param {import('jsdom').ConstructorOptions?} options Options for creating the JSDOM DOM.
- * @param {boolean?} serialize If document should be converted to a string using JSDOM's serialize method. If not set, defaults to true.
  */
-export function gulpDom(mutator, options, serialize) {
+export function gulpDom(mutator: Mutator, options?: ConstructorOptions | null, serialize?: boolean | null) {
     options = options || {};
 	serialize = serialize || true;
 
-    async function transform(file, encoding, callback) {
+    async function transform(this: any, file: any, encoding: string, callback: Function) {
 		if (file.isNull()) {
 			return callback(null, file);
 		}
@@ -25,7 +24,7 @@ export function gulpDom(mutator, options, serialize) {
 
 		try {
 			if (file.isBuffer()) {
-				const dom = new JSDOM(file.contents.toString("utf8"), options);
+				const dom = new JSDOM(file.contents.toString("utf8"), options!);
 
 				const context = {
 					file: file,
@@ -45,7 +44,7 @@ export function gulpDom(mutator, options, serialize) {
 			}
 
 		} catch (err) {
-			this.emit("error", new PluginError(PLUGIN_NAME, err));
+			this.emit("error", new PluginError(PLUGIN_NAME, err as any));
 		}
 
 		callback();

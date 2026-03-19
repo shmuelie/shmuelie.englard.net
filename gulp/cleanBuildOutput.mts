@@ -2,8 +2,7 @@ import { deleteAsync } from 'del'
 
 /**
  * Cleans the build output.
- * @returns {Promise<string[]>}
  */
-export function cleanBuildOutput() {
+export function cleanBuildOutput(): Promise<string[]> {
     return deleteAsync("dist/*.*");
 }

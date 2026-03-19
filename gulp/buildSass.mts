@@ -7,8 +7,8 @@ import { pathToFileURL } from 'url'
 
 const sass = gulpSass(dartSass);
 
-const tildeImporter = {
-    findFileUrl(url) {
+const tildeImporter: dartSass.FileImporter = {
+    findFileUrl(url: string): URL | null {
         if (!url.startsWith('~')) {
             return null;
         }
@@ -18,9 +18,8 @@ const tildeImporter = {
 
 /**
  * Compiles SASS, minifies it, and the copies it to the output folder.
- * @returns {NodeJS.ReadWriteStream}
  */
-export function buildSass() {
+export function buildSass(): NodeJS.ReadWriteStream {
     return gulp.src("src/*.scss").
         pipe(sourcemaps.init()).
         pipe(sass({

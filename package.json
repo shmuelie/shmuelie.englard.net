@@ -40,9 +40,9 @@
         "url": "https://github.com/shmuelie/shmuelie.englard.net"
     },
     "scripts": {
-        "build": "gulp build",
-        "clean": "gulp clean",
-        "postinstall": "gulp generateNodeModulePathMappings",
+        "build": "gulp --gulpfile gulpfile.mts build",
+        "clean": "gulp --gulpfile gulpfile.mts clean",
+        "postinstall": "gulp --gulpfile gulpfile.mts generateNodeModulePathMappings",
         "preinstall": "npx -y only-allow pnpm",
         "test-server": "http-server ./dist/ -p 8000 -e htm"
     },
