@@ -1,8 +1,9 @@
 header {
     padding: 12pt;
     display: flex;
+    flex-wrap: wrap;
     margin: 10px;
-    gap: 0px 12pt;
+    gap: 8px 12pt;
 }
 
 header > img {
@@ -19,4 +20,19 @@ header h1, header h2 {
 header a,
 header span {
     display: table;
+}
+
+@media (max-width: 480px) {
+    header {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 8pt;
+        margin: 5px;
+    }
+
+    header a,
+    header span {
+        display: block;
+    }
 }

@@ -23,12 +23,13 @@ section.blog-posts fluent-card {
     color: var(--neutral-foreground-rest);
     margin: 10px;
     width: 40vw;
+    min-width: 250px;
     cursor: pointer;
 }
 
 section.blog-posts fluent-card img {
     max-width: 300px;
-    width: 40vw;
+    width: 100%;
 }
 
 section.blog-posts fluent-card div {
@@ -41,7 +42,7 @@ section.blog-posts fluent-card time {
 
 section.blog-posts fluent-card p {
     overflow-y: auto;
-    height: 100px;
+    max-height: 100px;
 }
 
 section.blog-posts fluent-card h2 {
@@ -66,6 +67,7 @@ section.blog-post fluent-flipper:hover {
 
 section.blog-post h1 {
     display: flex;
+    flex-wrap: wrap;
 }
 
 section.blog-post h1 span {
@@ -132,5 +134,29 @@ section.blog-post time {
 
 .blog-pagination span {
     user-select: none;
+}
+
+@media (max-width: 480px) {
+    section.blog-posts fluent-card {
+        width: calc(100% - 20px);
+        max-width: none;
+        min-width: 0;
+    }
+
+    section.blog-posts fluent-card img {
+        max-width: none;
+    }
+
+    section.blog-posts > div {
+        padding-left: 0;
+    }
+
+    section.blog-post {
+        margin: 10px;
+    }
+
+    section.blog-post h1 {
+        font-size: 1.3em;
+    }
 }
 `;

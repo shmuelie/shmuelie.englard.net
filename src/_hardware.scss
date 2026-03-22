@@ -41,3 +41,26 @@ fluent-tab-panel.hardware td:first-child {
     font-weight: 500;
     width: 1%;
 }
+
+@media (max-width: 480px) {
+    fluent-tab-panel.hardware fluent-card {
+        flex-basis: 100%;
+        max-width: none;
+        padding: 10px;
+    }
+
+    fluent-tab-panel.hardware > section > div {
+        padding: 5px;
+        gap: 10px;
+    }
+
+    fluent-tab-panel.hardware td:first-child {
+        white-space: normal;
+    }
+
+    fluent-tab-panel.hardware th,
+    fluent-tab-panel.hardware td {
+        padding: 4px 4px;
+        font-size: 0.9em;
+    }
+}

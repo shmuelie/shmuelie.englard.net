@@ -52,3 +52,14 @@ fluent-tabs::part(tablist) {
 fluent-tabs::part(tabpanel) {
     overflow-y: auto;
 }
+
+@media (max-width: 480px) {
+    body {
+        margin: 4px;
+        height: calc(100vh - 8px);
+    }
+
+    main {
+        margin: 5px;
+    }
+}
