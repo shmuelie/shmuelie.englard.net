@@ -25,7 +25,6 @@
     <main class="card">
         <fluent-tabs id="rootTabs">
             <fluent-tab id="tab-general">General</fluent-tab>
-            <fluent-tab id="tab-interests">Interests</fluent-tab>
             <fluent-tab id="tab-blog">Blog</fluent-tab>
             <fluent-tab id="tab-hardware">Hardware</fluent-tab>
             <fluent-tab-panel>
@@ -47,24 +46,6 @@
                             <meta itemprop="identifier" />
                         </div>
                     </template>
-                </section>
-            </fluent-tab-panel>
-            <fluent-tab-panel class="interests">
-                <section class="podcasts">
-                    <h1>Podcasts</h1>
-                    <p>Podcasts I listen to:</p>
-                    <div>
-                        <template data-type="PodcastSeries">
-                            <fluent-card itemscope itemtype="https://schema.org/PodcastSeries">
-                                <img itemprop="thumbnailUrl" alt="Podcast Thumbnail" />
-                                <div>
-                                    <h2 itemprop="name"></h2>
-                                    <p itemprop="description"></p>
-                                    <a itemprop="url" target="_blank">Web Page</a>
-                                </div>
-                            </fluent-card>
-                        </template>
-                    </div>
                 </section>
             </fluent-tab-panel>
             <fluent-tab-panel class="blog">

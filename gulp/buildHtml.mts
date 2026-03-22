@@ -3,8 +3,6 @@ import sourcemaps from 'gulp-sourcemaps'
 import KEYS from 'jsdom-global/keys.js'
 import { gulpDom } from './gulpDom.mts'
 import { contactPoints } from '../data/contactPoints.mjs'
-import { podcasts } from '../data/podcasts.mjs'
-import { youtubeChannels } from '../data/youtubeChannels.mjs'
 import { desktops, servers } from '../data/hardware.mjs'
 import type { DOMWindow } from 'jsdom'
 import type { apply as ApplyFunction, ApplyOptions } from 'microdata-tooling'
@@ -31,29 +29,10 @@ async function renderHtml(document: Document, window: DOMWindow): Promise<string
 
     const apply = (await import('microdata-tooling')).apply;
     await renderContactPoints(document, apply)
-    renderPodcasts(document, apply);
-    renderYouTubeChannels(document, apply);
     renderHardware(document);
 
     document.querySelector("meta[name=datetime]")!.setAttribute("content", new Date().toISOString());
     return undefined;
-}
-
-function renderYouTubeChannels(document: Document, apply: typeof ApplyFunction): void {
-    const youtubeChannelOptions: ApplyOptions = {
-    };
-
-    //apply(youtubeChannels, document.querySelector('section.youtubeChannels > div'), youtubeChannelOptions);
-}
-
-function renderPodcasts(document: Document, apply: typeof ApplyFunction): void {
-    const podcastOptions: ApplyOptions = {
-    };
-
-    const podcastsElement = document.querySelector('fluent-tab-panel.interests > section.podcasts > div')!;
-    // Use data binding to create podcasts.
-    apply(podcasts, podcastsElement, podcastOptions);
-    podcastsElement.removeChild(podcastsElement.querySelector("template")!);
 }
 
 async function renderContactPoints(document: Document, apply: typeof ApplyFunction): Promise<void> {
