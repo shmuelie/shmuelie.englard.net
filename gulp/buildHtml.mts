@@ -5,6 +5,7 @@ import { gulpDom } from './gulpDom.mts'
 import { contactPoints } from '../data/contactPoints.mjs'
 import { podcasts } from '../data/podcasts.mjs'
 import { youtubeChannels } from '../data/youtubeChannels.mjs'
+import { desktops, servers } from '../data/hardware.mjs'
 import type { DOMWindow } from 'jsdom'
 import type { apply as ApplyFunction, ApplyOptions } from 'microdata-tooling'
 import type { ContactPoint } from '../data/schema'
@@ -32,6 +33,7 @@ async function renderHtml(document: Document, window: DOMWindow): Promise<string
     await renderContactPoints(document, apply)
     renderPodcasts(document, apply);
     renderYouTubeChannels(document, apply);
+    renderHardware(document);
 
     document.querySelector("meta[name=datetime]")!.setAttribute("content", new Date().toISOString());
     return undefined;
@@ -89,6 +91,56 @@ async function renderContactPoints(document: Document, apply: typeof ApplyFuncti
     const contactsElement = document.querySelector("section[itemprop=contactPoint]")!;
     apply(contactPoints, contactsElement, contactOptions);
     contactsElement.removeChild(contactsElement.querySelector("template")!);
+}
+
+function renderHardwareSection(document: Document, sectionSelector: string, data: any[]): void {
+    const section = document.querySelector(sectionSelector)!;
+    const container = section.querySelector('div')!;
+    const template = container.querySelector('template')!;
+
+    for (const system of data) {
+        const card = document.createElement('fluent-card');
+        const heading = document.createElement('h2');
+        heading.textContent = system.name;
+        card.appendChild(heading);
+
+        const table = document.createElement('table');
+        const thead = document.createElement('thead');
+        thead.innerHTML = '<tr><th>Type</th><th>Item</th></tr>';
+        table.appendChild(thead);
+
+        const tbody = document.createElement('tbody');
+        for (const item of system.items) {
+            const row = document.createElement('tr');
+            const typeCell = document.createElement('td');
+            typeCell.textContent = item.type;
+            row.appendChild(typeCell);
+
+            const nameCell = document.createElement('td');
+            if (item.url) {
+                const link = document.createElement('a');
+                link.href = item.url;
+                link.target = '_blank';
+                link.rel = 'noopener';
+                link.textContent = item.name;
+                nameCell.appendChild(link);
+            } else {
+                nameCell.textContent = item.name;
+            }
+            row.appendChild(nameCell);
+            tbody.appendChild(row);
+        }
+        table.appendChild(tbody);
+        card.appendChild(table);
+        container.appendChild(card);
+    }
+
+    container.removeChild(template);
+}
+
+function renderHardware(document: Document): void {
+    renderHardwareSection(document, 'fluent-tab-panel.hardware > section.desktops', desktops);
+    renderHardwareSection(document, 'fluent-tab-panel.hardware > section.servers', servers);
 }
 
 /**
