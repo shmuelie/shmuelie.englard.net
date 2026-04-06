@@ -30,6 +30,12 @@ pnpm run test-server # Serve dist/ on localhost:8000
 
 ## Deployment
 
-The site is deployed to [GitHub Pages](https://pages.github.com/) automatically on push to `main` via a GitHub Actions workflow. The workflow builds the site and deploys the `dist/` directory using the `actions/deploy-pages` action.
+The site is being migrated from GitHub Pages to [Azure Static Web Apps](https://learn.microsoft.com/azure/static-web-apps/).
 
-> **Note:** The repository's GitHub Pages source must be set to **GitHub Actions** in Settings → Pages.
+### Azure Static Web Apps (new)
+
+An [Azure DevOps Pipeline](azure-pipelines.yml) builds the site and deploys the `dist/` directory to Azure Static Web Apps on push to `main`. The pipeline requires an `AZURE_STATIC_WEB_APPS_API_TOKEN` secret variable configured in Azure DevOps.
+
+### GitHub Pages (legacy)
+
+The site is currently still deployed to [GitHub Pages](https://pages.github.com/) via a [GitHub Actions workflow](.github/workflows/node.js.yml). This will be removed once the Azure migration is verified.

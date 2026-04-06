@@ -8,6 +8,7 @@
 - **Build:** `pnpm build` (runs gulp: clean → TypeScript → Sass → HTML → copy static)
 - **Preview:** `pnpm run test-server` (serves `dist/` on localhost:8000)
 - **Clean:** `pnpm run clean`
+- **Deploy (Azure):** Handled by `azure-pipelines.yml` — builds and deploys `dist/` to Azure Static Web Apps
 - There are no automated tests or linters.
 
 ### Individual Gulp Tasks

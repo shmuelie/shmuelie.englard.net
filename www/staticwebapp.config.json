@@ -1,0 +1,8 @@
+{
+  "navigationFallback": {
+    "rewrite": "/index.htm"
+  },
+  "mimeTypes": {
+    ".htm": "text/html"
+  }
+}
