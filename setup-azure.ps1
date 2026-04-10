@@ -1,16 +1,56 @@
-#!/usr/bin/env pwsh
-# Azure Static Web Apps Migration Script
-# Fill in the variables below, then run this script.
-# Prerequisite: az login, az extension add --name azure-devops
+<#
+.SYNOPSIS
+    Sets up Azure Static Web Apps hosting and Azure DevOps CI/CD pipeline.
 
-# ── Configuration ──────────────────────────────────────────────
-$ResourceGroup   = "<your-resource-group>"       # e.g. "shmuelie-rg"
-$Location        = "eastus"                       # Azure region
-$SwaName         = "shmuelie-englard-net"         # Static Web App resource name
-$DevOpsOrg       = "<your-devops-org-url>"        # e.g. "https://dev.azure.com/myorg"
-$DevOpsProject   = "<your-devops-project>"        # e.g. "shmuelie-site"
-$GitHubRepoUrl   = "https://github.com/shmuelie/shmuelie.englard.net"
-$CustomDomain    = "shmuelie.englard.net"
+.DESCRIPTION
+    Creates an Azure Static Web App, configures a custom domain, sets up an
+    Azure DevOps project with a pipeline, and stores the deployment token as
+    a secret pipeline variable.
+
+    Prerequisites: az login, az extension add --name azure-devops
+
+.PARAMETER ResourceGroup
+    Name of the Azure resource group to create or use.
+
+.PARAMETER Location
+    Azure region for the Static Web App. Defaults to 'eastus'.
+
+.PARAMETER SwaName
+    Name for the Static Web App resource. Defaults to 'shmuelie-englard-net'.
+
+.PARAMETER DevOpsOrg
+    Azure DevOps organization URL (e.g., 'https://dev.azure.com/myorg').
+
+.PARAMETER DevOpsProject
+    Name of the Azure DevOps project to create or use.
+
+.PARAMETER GitHubRepoUrl
+    GitHub repository URL. Defaults to 'https://github.com/shmuelie/shmuelie.englard.net'.
+
+.PARAMETER CustomDomain
+    Custom domain to configure. Defaults to 'shmuelie.englard.net'.
+
+.EXAMPLE
+    ./setup-azure.ps1 -ResourceGroup "shmuelie-rg" -DevOpsOrg "https://dev.azure.com/myorg" -DevOpsProject "shmuelie-site"
+#>
+
+param(
+    [Parameter(Mandatory)]
+    [string]$ResourceGroup,
+
+    [Parameter(Mandatory)]
+    [string]$DevOpsOrg,
+
+    [Parameter(Mandatory)]
+    [string]$DevOpsProject,
+
+    [string]$Location = "eastus",
+    [string]$SwaName = "shmuelie-englard-net",
+    [string]$GitHubRepoUrl = "https://github.com/shmuelie/shmuelie.englard.net",
+    [string]$CustomDomain = "shmuelie.englard.net"
+)
+
+$ErrorActionPreference = "Stop"
 
 # ── 1. Create Resource Group (if needed) ───────────────────────
 Write-Host "Creating resource group..." -ForegroundColor Cyan
