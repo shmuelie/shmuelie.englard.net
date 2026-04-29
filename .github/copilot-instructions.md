@@ -41,22 +41,24 @@ When adding a new dependency: add it to `devDependencies` (even if it's a runtim
 - Contact points use custom `shieldsio-elements` badge web components
 - The result is fully static HTML — no server-side rendering at runtime
 
-### Web Components (FAST Element)
+### Web Components (Lit + Web Awesome)
 
-The `fluent-blog` custom element in `src/blog/` is built on `@microsoft/fast-element`:
+The UI uses [Web Awesome](https://webawesome.com/) (`wa-*` custom elements) for tabs, cards, spinners, and other standard components.
 
-- **Registration:** `@customElement({ name, template, styles })` decorator
-- **Reactive state:** `@observable` for internal state, `@attr` for HTML attributes
-- **Change handlers:** Named `<propertyName>Changed()` methods auto-called by FAST
-- **Templates:** `html` tagged template literals with `when()` for conditional rendering
-- **Styles:** `css` tagged template literals (CSS-in-JS)
+The `blog-element` custom element in `src/blog/` is built on [Lit](https://lit.dev/):
+
+- **Registration:** `@customElement('blog-element')` decorator
+- **Reactive state:** `@state()` for internal state, `@property()` for HTML attributes
+- **Change handlers:** `updated(changedProperties)` lifecycle method
+- **Templates:** `render()` method returning `html` tagged template literals
+- **Styles:** Static `styles` property with `css` tagged template literal
 
 The blog component fetches content from the Drop-in Blog API (`src/drop-in-blog/Blog.ts`) and persists navigation state in the URL hash via `hashed-es6`.
 
 ## Conventions
 
 - **All runtime libraries are listed as `devDependencies`** because they load from CDN in production. There are no `dependencies`.
-- **Import paths in TypeScript** must use full unpkg.com URLs for external packages (e.g., `import { FASTElement } from 'https://unpkg.com/@microsoft/fast-element@1.14.0'`). Use relative paths with `.js` extensions for internal modules.
+- **Import paths in TypeScript** must use full unpkg.com URLs for external packages (e.g., `import { LitElement } from 'https://unpkg.com/lit@3.3.2/index.js'`). Use relative paths with `.js` extensions for internal modules.
 - **SCSS partials** use `_` prefix and `~` resolves to `node_modules/` via a custom `findFileUrl` importer.
 - **Schema.org microdata** is used for structured data throughout — data files, HTML templates, and TypeScript interfaces all align with Schema.org types defined in `data/schema.d.ts`.
 - **TypeScript** is configured with full strict mode and `experimentalDecorators`.

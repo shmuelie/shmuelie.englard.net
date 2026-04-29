@@ -18,6 +18,10 @@ export function generateNodeModulePathMappings(cb: () => void): void {
         pathsConfig.compilerOptions.paths[unpkgPath] = [
             localPath
         ];
+        // Also map subpath imports (e.g., lit/decorators.js → ./node_modules/lit/decorators.js)
+        pathsConfig.compilerOptions.paths[unpkgPath + "/*"] = [
+            localPath + "/*"
+        ];
     }
     fs.writeFileSync("tsconfig.paths.json", JSON.stringify(pathsConfig));
     cb();

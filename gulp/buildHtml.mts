@@ -78,7 +78,7 @@ function renderHardwareSection(document: Document, sectionSelector: string, data
     const template = container.querySelector('template')!;
 
     for (const system of data) {
-        const card = document.createElement('fluent-card');
+        const card = document.createElement('wa-card');
         const heading = document.createElement('h2');
         heading.textContent = system.name;
         card.appendChild(heading);
@@ -118,8 +118,8 @@ function renderHardwareSection(document: Document, sectionSelector: string, data
 }
 
 function renderHardware(document: Document): void {
-    renderHardwareSection(document, 'fluent-tab-panel.hardware > section.desktops', desktops);
-    renderHardwareSection(document, 'fluent-tab-panel.hardware > section.servers', servers);
+    renderHardwareSection(document, 'wa-tab-panel[name="hardware"] > section.desktops', desktops);
+    renderHardwareSection(document, 'wa-tab-panel[name="hardware"] > section.servers', servers);
 }
 
 /**

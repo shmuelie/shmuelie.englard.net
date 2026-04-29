@@ -1,65 +1,65 @@
-fluent-tab-panel.hardware > section {
+wa-tab-panel[name="hardware"] > section {
     margin-bottom: 20px;
 }
 
-fluent-tab-panel.hardware > section > div {
+wa-tab-panel[name="hardware"] > section > div {
     display: flex;
     flex-wrap: wrap;
     gap: 16px;
     padding: 10px;
 }
 
-fluent-tab-panel.hardware fluent-card {
-    color: var(--neutral-foreground-rest);
+wa-tab-panel[name="hardware"] wa-card {
+    color: var(--wa-color-neutral-700);
     padding: 16px;
     flex: 1 1 400px;
     max-width: 600px;
 }
 
-fluent-tab-panel.hardware fluent-card h2 {
+wa-tab-panel[name="hardware"] wa-card h2 {
     margin-top: 0;
 }
 
-fluent-tab-panel.hardware table {
+wa-tab-panel[name="hardware"] table {
     width: 100%;
     border-collapse: collapse;
 }
 
-fluent-tab-panel.hardware th,
-fluent-tab-panel.hardware td {
+wa-tab-panel[name="hardware"] th,
+wa-tab-panel[name="hardware"] td {
     text-align: left;
     padding: 4px 8px;
-    border-bottom: 1px solid var(--neutral-stroke-divider-rest);
+    border-bottom: 1px solid var(--wa-color-neutral-200);
 }
 
-fluent-tab-panel.hardware th {
+wa-tab-panel[name="hardware"] th {
     font-weight: 600;
 }
 
-fluent-tab-panel.hardware td:first-child {
+wa-tab-panel[name="hardware"] td:first-child {
     white-space: nowrap;
     font-weight: 500;
     width: 1%;
 }
 
 @media (max-width: 480px) {
-    fluent-tab-panel.hardware fluent-card {
+    wa-tab-panel[name="hardware"] wa-card {
         flex-basis: 100%;
         max-width: none;
         padding: 10px;
     }
 
-    fluent-tab-panel.hardware > section > div {
+    wa-tab-panel[name="hardware"] > section > div {
         padding: 5px;
         gap: 10px;
     }
 
-    fluent-tab-panel.hardware td:first-child {
+    wa-tab-panel[name="hardware"] td:first-child {
         white-space: normal;
     }
 
-    fluent-tab-panel.hardware th,
-    fluent-tab-panel.hardware td {
+    wa-tab-panel[name="hardware"] th,
+    wa-tab-panel[name="hardware"] td {
         padding: 4px 4px;
         font-size: 0.9em;
     }

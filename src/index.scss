@@ -4,9 +4,9 @@
 @use 'hardware';
 
 .card {
-    border: calc(var(--stroke-width) * 1px) solid var(--neutral-stroke-layer-rest);
-    border-radius: calc(var(--layer-corner-radius) * 1px);
-    box-shadow: var(--elevation-shadow-card-rest);
+    border: 1px solid var(--wa-color-neutral-300);
+    border-radius: var(--wa-border-radius-medium);
+    box-shadow: var(--wa-shadow-small);
 }
 
 body {
@@ -17,13 +17,11 @@ body {
     max-width: 115em;
     margin-left: auto;
     margin-right: auto;
-    background-color: var(--neutral-layer-1);
-    font-family: var(--body-font);
-    font-size: var(--type-ramp-base-font-size);
-    font-weight: var(--font-weight);
-    font-variation-settings: var(--type-ramp-base-font-variations);
-    line-height: var(--type-ramp-base-line-height);
-    color: var(--neutral-foreground-rest);
+    background-color: var(--wa-color-neutral-0);
+    font-family: var(--wa-font-sans);
+    font-size: var(--wa-font-size-medium);
+    line-height: var(--wa-line-height-normal);
+    color: var(--wa-color-neutral-700);
 }
 
 div[itemtype="https://schema.org/ContactPoint"] {
@@ -37,19 +35,11 @@ main {
     height: 0%;
 }
 
-fluent-tabs {
+wa-tab-group {
     height: 100%;
 }
 
-fluent-tabs::part(tablist) {
-    border-top-right-radius: calc(var(--layer-corner-radius) * 1px);
-    border-top-left-radius: calc(var(--layer-corner-radius) * 1px);
-    background-color: var(--neutral-layer-2);
-    width: 100%;
-    margin-bottom: calc(var(--layer-corner-radius) * 1px);
-}
-
-fluent-tabs::part(tabpanel) {
+wa-tab-group::part(body) {
     overflow-y: auto;
 }
 
