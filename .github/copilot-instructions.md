@@ -27,7 +27,7 @@ Run with `gulp <taskName>`:
 Source code uses **full unpkg.com URLs** as ES module import specifiers. In production (browser), these resolve directly to the CDN. During development and build, two mechanisms redirect them to local `node_modules`:
 
 1. **TypeScript compilation:** `tsconfig.paths.json` (auto-generated at `postinstall`, gitignored) maps each unpkg URL to the local package path. Do not hand-edit.
-2. **Node.js runtime:** `unpkg.mjs` exports a `resolve` hook registered via `registerHooks()` in `gulp/index.mjs`, intercepting unpkg URLs and resolving them to `file://` paths.
+2. **Node.js runtime:** `unpkg.mts` exports a `resolve` hook registered via `registerHooks()` in `gulp/index.mts`, intercepting unpkg URLs and resolving them to `file://` paths.
 
 When adding a new dependency: add it to `devDependencies` (even if it's a runtime dep), then `pnpm install` will regenerate the path mappings automatically.
 
