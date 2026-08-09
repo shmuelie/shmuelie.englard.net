@@ -30,6 +30,16 @@
     "homepage": "shmuelie.englard.net",
     "license": "./LICENSE",
     "name": "static.shmuelie.englard.net",
+    "packageManager": "pnpm@10.34.5",
+    "pnpm": {
+        "ignoredBuiltDependencies": [
+            "@parcel/watcher",
+            "es5-ext",
+            "hashed-es6",
+            "microdata-tooling",
+            "shieldsio-elements"
+        ]
+    },
     "private": true,
     "readme": "./README.md",
     "repository": {
