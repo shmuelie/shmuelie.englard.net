@@ -21,7 +21,7 @@ type NextResolver = (specifier: string, context: object) => ResolveResult;
  * Map unpkg.com imports to local paths.
  */
 export function resolve(specifier: string, context: ResolveContext, nextResolve: NextResolver): ResolveResult {
-    const regex = /^https?:\/\/unpkg\.com\/([A-Za-z0-9-.]+)@\d+\.\d+\.\d+\/(.+)$/;
+    const regex = /^https?:\/\/unpkg\.com\/((?:@[A-Za-z0-9._-]+\/)?[A-Za-z0-9._-]+)@\d+\.\d+\.\d+(?:[A-Za-z0-9._-]*)(?:\/(.+))?$/;
     const match = regex.exec(specifier);
 
     // If specifier isn't to unpkg.com, just forward to next resolver.
@@ -29,14 +29,13 @@ export function resolve(specifier: string, context: ResolveContext, nextResolve:
         return nextResolve(specifier, context);
     }
 
+    const parts = [path.resolve('.'), 'node_modules', match[1]];
+    if (match[2]) {
+        parts.push(match[2]);
+    }
+
     return {
-        url: 'file://' +
-            path.join(
-                path.resolve('.'),
-                'node_modules',
-                match[1],
-                match[2]
-            ),
+        url: 'file://' + path.join(...parts),
         shortCircuit: true
     };
 }
