@@ -1,17 +1,17 @@
 a {
-    color: var(--wa-color-primary-600);
+    color: var(--wa-color-text-link);
 }
 
 a:hover {
-    color: var(--wa-color-primary-700);
+    color: var(--wa-color-brand-fill-loud);
 }
 
 a:active {
-    color: var(--wa-color-primary-800);
+    color: var(--wa-color-brand-fill-loud);
 }
 
 a:focus {
-    color: var(--wa-color-primary-700);
+    color: var(--wa-color-brand-fill-loud);
 }
 
 a.badge {

@@ -10,7 +10,7 @@ wa-tab-panel[name="hardware"] > section > div {
 }
 
 wa-tab-panel[name="hardware"] wa-card {
-    color: var(--wa-color-neutral-700);
+    color: var(--wa-color-text-normal);
     padding: 16px;
     flex: 1 1 400px;
     max-width: 600px;
@@ -29,7 +29,7 @@ wa-tab-panel[name="hardware"] th,
 wa-tab-panel[name="hardware"] td {
     text-align: left;
     padding: 4px 8px;
-    border-bottom: 1px solid var(--wa-color-neutral-200);
+    border-bottom: 1px solid var(--wa-color-surface-border);
 }
 
 wa-tab-panel[name="hardware"] th {
