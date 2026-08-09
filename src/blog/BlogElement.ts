@@ -322,7 +322,7 @@ export class BlogElement extends LitElement {
                     itemscope
                     itemtype="https://schema.org/BlogPosting"
                     @click=${() => this.currentPost = Number(post.id?.toString() ?? '0')}>
-                    <img slot="image" itemprop="image" src="${post.featuredImage ?? ''}" alt="${post.title ?? ''}" />
+                    <img slot="media" itemprop="image" src="${post.featuredImage ?? ''}" alt="${post.title ?? ''}" />
                     <div>
                         <h2 itemprop="headline">${post.title}</h2>
                         <time datetime="${post.publishedAt ?? ''}">${post.publishedAt ? new Date(post.publishedAt).toLocaleString() : ''}</time>
