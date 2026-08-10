@@ -1,4 +1,4 @@
-import { mkdir, writeFile } from 'fs/promises';
+import { mkdir, readFile, writeFile } from 'fs/promises';
 import path from 'path';
 
 const BLOG_ID = 'f56590c5-56ae-4aab-8d55-df9c76db569c';
@@ -80,7 +80,8 @@ function generateArticlePage(post: PostInfo): string {
     const description = escapeHtml(post.seoDescription ?? '');
     const image = post.featuredImage ?? '';
     const canonical = `${SITE_ORIGIN}/blog/${post.slug}/`;
-    const appUrl = `${SITE_ORIGIN}/?p=${encodeURIComponent(post.slug ?? '')}`;
+    const appPath = `/?p=${encodeURIComponent(post.slug ?? '')}`;
+    const appUrl = `${SITE_ORIGIN}${appPath}`;
     const iso = post.publishedAtIso8601 ?? '';
     const dateHuman = post.publishedAt ?? (iso ? new Date(iso).toLocaleDateString() : '');
     const body = post.content ? unlazyImages(post.content) : `<p>${description}</p>`;
@@ -91,7 +92,7 @@ function generateArticlePage(post: PostInfo): string {
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <script>window.location.replace(${JSON.stringify(appUrl)});</script>
+    <script>window.location.replace(${JSON.stringify(appPath)});</script>
     <link rel="canonical" href="${canonical}" />
     <title>${title} - Shmueli Yosef Englard</title>
     <meta name="description" content="${description}" />
@@ -203,11 +204,26 @@ function generateBlogIndexPage(): string {
 }
 
 /**
+ * Loads posts from a local fixture file instead of the live DropInBlog API. Used
+ * by the end-to-end tests (via the `BLOG_FIXTURE` env var) to build a
+ * deterministic, network-independent `dist/` with static blog pages. The fixture
+ * is an array of full post objects (content included), so no per-post content
+ * fetch is needed.
+ */
+async function loadFixturePosts(fixturePath: string): Promise<PostInfo[]> {
+    const raw = await readFile(fixturePath, 'utf-8');
+    const posts = JSON.parse(raw) as PostInfo[];
+    console.log(`Using blog fixture ${fixturePath} (${posts.length} posts)`);
+    return posts;
+}
+
+/**
  * Fetches blog posts from the DropInBlog API and generates static article pages under
  * dist/blog/<slug>/ for use as shareable, RSS-friendly URLs.
  */
 export async function buildBlogRedirects(): Promise<void> {
-    const posts = await fetchAllPosts();
+    const fixturePath = process.env['BLOG_FIXTURE'];
+    const posts = fixturePath ? await loadFixturePosts(fixturePath) : await fetchAllPosts();
     console.log(`Generating static blog pages for ${posts.length} posts…`);
 
     const blogDir = path.join(DIST_DIR, 'blog');
@@ -218,7 +234,9 @@ export async function buildBlogRedirects(): Promise<void> {
         if (!post.slug || !post.id) {
             return;
         }
-        const full = await fetchPostContent(post.id);
+        // Fixture posts already carry their full content; only the live API path
+        // needs a second request to fetch the rendered article body.
+        const full = fixturePath ? post : await fetchPostContent(post.id);
         const dir = path.join(blogDir, post.slug);
         await mkdir(dir, { recursive: true });
         const html = generateArticlePage({ ...post, ...full });

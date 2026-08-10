@@ -27,7 +27,33 @@ pnpm install   # Install dependencies (also generates tsconfig.paths.json)
 pnpm build     # Build the site to dist/
 pnpm run clean # Clean build output
 pnpm run test-server # Serve dist/ on localhost:8000
+pnpm test      # Run the unit / component tests (jsdom)
 ```
+
+### Testing
+
+Unit and component tests run under Node's test runner against jsdom:
+
+```sh
+pnpm test
+```
+
+End-to-end tests use [Playwright](https://playwright.dev/) to drive a real
+browser against a locally-served `dist/` build (real Web Awesome + Lit assets,
+unlike the jsdom component tests). They build a deterministic `dist/` from a blog
+fixture (`e2e/fixtures/posts.json` via the `BLOG_FIXTURE` env var) and mock the
+DropInBlog API and unpkg CDN, so they need no network access. They cover the
+behaviors most prone to regress: clean console load, dark-mode token flipping,
+blog deep-linking, the static share / RSS redirects, the no-JS static article
+pages, and tab + hash navigation.
+
+```sh
+pnpm exec playwright install chromium # One-time browser download
+pnpm run test:e2e
+```
+
+E2E tests run as a standalone GitHub Actions workflow (on demand and on pull
+requests) rather than in the deploy pipeline, keeping deploys fast.
 
 ## Deployment
 

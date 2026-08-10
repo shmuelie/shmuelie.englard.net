@@ -6,7 +6,7 @@
     "description": "Personal Website",
     "devDependencies": {
         "@awesome.me/webawesome": "3.5.0",
-        "@playwright/test": "^1.62.1",
+        "@playwright/test": "1.62.1",
         "@types/node": "^22.10.0",
         "del": "8.0.1",
         "gulp": "5.0.1",
@@ -54,6 +54,7 @@
         "postinstall": "gulp --gulpfile gulpfile.mts generateNodeModulePathMappings",
         "preinstall": "npx -y only-allow pnpm",
         "test": "tsc -p tsconfig.test.json && node test/prepare.mjs && node test/run.mjs",
+        "test:e2e": "playwright test",
         "test-server": "http-server ./dist/ -p 8000 -e htm"
     },
     "version": "1.0.0"

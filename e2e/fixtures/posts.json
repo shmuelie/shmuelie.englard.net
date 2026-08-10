@@ -1,0 +1,26 @@
+[
+    {
+        "id": 101,
+        "slug": "hello-world",
+        "title": "Hello World",
+        "summary": "The very first post on the blog.",
+        "seoDescription": "An introductory post about starting this blog.",
+        "featuredImage": "https://dropinblog.net/featured/hello-world.png",
+        "publishedAt": "01/15/2024",
+        "publishedAtIso8601": "2024-01-15T10:00:00-05:00",
+        "content": "<h2>Hello World</h2><p>Welcome to the blog. This is the very first post and it explains why the site exists.</p><p><img class=\"dib-img-loading\" loading=\"dib-lazy\" data-lazy-load=\"https://dropinblog.net/inline/hello-inline.png\" src=\"data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%3E%3C/svg%3E\" alt=\"Inline illustration\" /></p>",
+        "schema_article": "<script type=\"application/ld+json\">{\"@context\":\"https://schema.org\",\"@type\":\"BlogPosting\",\"headline\":\"Hello World\"}</script>"
+    },
+    {
+        "id": 102,
+        "slug": "second-post",
+        "title": "Second Post",
+        "summary": "A follow-up post with more thoughts.",
+        "seoDescription": "The second post covering more ground.",
+        "featuredImage": "https://dropinblog.net/featured/second-post.png",
+        "publishedAt": "02/20/2024",
+        "publishedAtIso8601": "2024-02-20T12:30:00-05:00",
+        "content": "<h2>Second Post</h2><p>More content here for the second post, following on from the first.</p>",
+        "schema_article": "<script type=\"application/ld+json\">{\"@context\":\"https://schema.org\",\"@type\":\"BlogPosting\",\"headline\":\"Second Post\"}</script>"
+    }
+]
