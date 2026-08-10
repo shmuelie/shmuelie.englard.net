@@ -170,7 +170,7 @@ export class BlogElement extends LitElement {
     private updateHash: ProviderCallback | null = null;
     private readonly boundHashUpdated = this.hashUpdated.bind(this);
     private blogApi: Blog | null = null;
-    private reloadQueued: boolean = false;
+    private loadGeneration: number = 0;
 
     @state()
     private loading: boolean = false;
@@ -225,7 +225,9 @@ export class BlogElement extends LitElement {
         }
         if (changedProperties.has('currentPost') && this.updateHash) {
             this.updateHash({ [this.currentPostId]: this.currentPost?.toString() ?? "" });
-            this._load();
+            if (this.post?.id !== this.currentPost) {
+                this._load();
+            }
         }
         if (changedProperties.has('currentSlug') && this.currentSlug) {
             const slug = this.currentSlug;
@@ -235,12 +237,25 @@ export class BlogElement extends LitElement {
     }
 
     private async _resolveSlug(slug: string): Promise<void> {
+        if (!this.blogApi) {
+            return;
+        }
+        const generation = ++this.loadGeneration;
+        this.loading = true;
         try {
-            const post = await this.blogApi?.getPostBySlug(slug);
-            if (post?.id != null) {
-                this.currentPost = post.id;
+            const post = await this.blogApi.getPostBySlug(slug);
+            if (generation !== this.loadGeneration) {
+                return;
             }
+            this.post = post ?? null;
+            this.currentPost = post?.id ?? null;
         } catch { /* ignore */ }
+        finally {
+            if (generation === this.loadGeneration) {
+                this.loading = false;
+                this.dispatchEvent(new Event('change'));
+            }
+        }
     }
 
     private configureBlogApi(): void {
@@ -263,51 +278,43 @@ export class BlogElement extends LitElement {
     }
 
     private async _load(): Promise<void> {
-        if (this.loading) {
-            this.reloadQueued = true;
+        if (!this.blogApi) {
             return;
         }
+        const generation = ++this.loadGeneration;
         this.loading = true;
-
-        do {
-            this.reloadQueued = false;
-            this.posts = [];
-            try {
-                if (!await this._loadPost()) {
-                    await this._loadPosts();
-                }
-            } catch { /* ignore */ }
-        } while (this.reloadQueued);
-
-        this.dispatchEvent(new Event('change'));
-        this.loading = false;
-    }
-
-    private async _loadPost(): Promise<boolean> {
-        if (this.currentPost) {
-            try {
-                const response = await this.blogApi?.getPost(this.currentPost);
-                if (response) {
-                    this.post = response;
-                    return true;
-                }
-            } catch { /* ignore */ }
-        }
-        return false;
-    }
-
-    private async _loadPosts(): Promise<void> {
-        this.currentPost = null;
-        this.post = null;
-        const currentPage = this.currentPage ?? 0;
+        this.posts = [];
 
         try {
-            const response = await this.blogApi?.getPosts({ page: currentPage });
+            if (this.currentPost) {
+                const post = await this.blogApi.getPost(this.currentPost);
+                if (generation !== this.loadGeneration) {
+                    return;
+                }
+                if (post) {
+                    this.post = post;
+                    return;
+                }
+            }
+
+            const currentPage = this.currentPage ?? 0;
+            const response = await this.blogApi.getPosts({ page: currentPage });
+            if (generation !== this.loadGeneration) {
+                return;
+            }
+            this.currentPost = null;
+            this.post = null;
             if (response) {
                 this.totalPages = response.pagination?.last_page ?? 0;
                 this.posts = (response.posts ?? []).filter((p): p is PostSummary => p != null);
             }
         } catch { /* ignore */ }
+        finally {
+            if (generation === this.loadGeneration) {
+                this.loading = false;
+                this.dispatchEvent(new Event('change'));
+            }
+        }
     }
 
     override render() {
