@@ -78,7 +78,13 @@ export function resolveUnpkgToFile(urlString: string): string | null {
         return packageEntry(dir);
     }
 
-    let filePath = path.join(dir, subpath);
+    // Guard against path traversal: the resolved file must stay inside the
+    // package directory even though `subpath` comes from a request URL.
+    const resolvedDir = path.resolve(dir);
+    let filePath = path.resolve(resolvedDir, subpath);
+    if (filePath !== resolvedDir && !filePath.startsWith(resolvedDir + path.sep)) {
+        return null;
+    }
     if (existsSync(filePath) && statSync(filePath).isFile()) {
         return filePath;
     }
