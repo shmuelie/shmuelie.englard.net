@@ -176,6 +176,32 @@ async function fetchPostContent(id: number): Promise<Partial<PostInfo>> {
 }
 
 /**
+ * Generates the /blog/ index page. DropInBlog's RSS feed links to /blog/?p=<slug>; this
+ * page reads that slug and forwards to the matching static article at /blog/<slug>/.
+ * With no slug it falls back to the blog tab of the single-page app.
+ */
+function generateBlogIndexPage(): string {
+    return `<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Blog - Shmueli Yosef Englard</title>
+    <script>
+        (function () {
+            var slug = new URLSearchParams(window.location.search).get('p');
+            window.location.replace(slug ? '/blog/' + encodeURIComponent(slug) + '/' : '/#/rootTabs/blog');
+        })();
+    </script>
+    <meta http-equiv="refresh" content="0; url=/#/rootTabs/blog" />
+</head>
+<body>
+    <p><a href="/#/rootTabs/blog">Go to the blog</a></p>
+</body>
+</html>`;
+}
+
+/**
  * Fetches blog posts from the DropInBlog API and generates static article pages under
  * dist/blog/<slug>/ for use as shareable, RSS-friendly URLs.
  */
@@ -183,12 +209,16 @@ export async function buildBlogRedirects(): Promise<void> {
     const posts = await fetchAllPosts();
     console.log(`Generating static blog pages for ${posts.length} posts…`);
 
+    const blogDir = path.join(DIST_DIR, 'blog');
+    await mkdir(blogDir, { recursive: true });
+    await writeFile(path.join(blogDir, 'index.htm'), generateBlogIndexPage(), 'utf-8');
+
     await Promise.all(posts.map(async (post) => {
         if (!post.slug || !post.id) {
             return;
         }
         const full = await fetchPostContent(post.id);
-        const dir = path.join(DIST_DIR, 'blog', post.slug);
+        const dir = path.join(blogDir, post.slug);
         await mkdir(dir, { recursive: true });
         const html = generateArticlePage({ ...post, ...full });
         await writeFile(path.join(dir, 'index.htm'), html, 'utf-8');
