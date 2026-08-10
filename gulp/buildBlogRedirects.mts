@@ -91,6 +91,7 @@ function generateArticlePage(post: PostInfo): string {
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script>window.location.replace(${JSON.stringify(appUrl)});</script>
     <link rel="canonical" href="${canonical}" />
     <title>${title} - Shmueli Yosef Englard</title>
     <meta name="description" content="${description}" />
@@ -190,7 +191,7 @@ function generateBlogIndexPage(): string {
     <script>
         (function () {
             var slug = new URLSearchParams(window.location.search).get('p');
-            window.location.replace(slug ? '/blog/' + encodeURIComponent(slug) + '/' : '/#/rootTabs/blog');
+            window.location.replace(slug ? '/?p=' + encodeURIComponent(slug) : '/#/rootTabs/blog');
         })();
     </script>
     <meta http-equiv="refresh" content="0; url=/#/rootTabs/blog" />
