@@ -25,3 +25,13 @@ rootTabs.addEventListener("wa-tab-show", function (e: Event) {
         });
     }
 });
+
+const postSlug = new URLSearchParams(window.location.search).get("p");
+if (postSlug) {
+    const blogElement = document.querySelector("blog-element");
+    if (blogElement) {
+        (rootTabs as any).active = "blog";
+        updateRootTabsState({ ["rootTabs"]: "blog" });
+        blogElement.setAttribute("current-slug", postSlug);
+    }
+}

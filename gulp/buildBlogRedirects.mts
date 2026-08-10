@@ -12,7 +12,13 @@ interface PostInfo {
     slug?: string;
     seoDescription?: string;
     featuredImage?: string;
+    publishedAt?: string;
+    publishedAtIso8601?: string;
+    content?: string;
+    schema_article?: string;
 }
+
+const WA_STYLES = 'https://unpkg.com/@awesome.me/webawesome@3.5.0/dist/styles';
 
 /**
  * Fetches all published blog posts from the DropInBlog API, paginating through all pages.
@@ -46,30 +52,90 @@ async function fetchAllPosts(): Promise<PostInfo[]> {
 }
 
 /**
- * Generates an HTML redirect page for a blog post.
+ * Rewrites DropInBlog lazy-loaded images so they render without DropInBlog's runtime
+ * JavaScript: moves the real URL from `data-lazy-load` into `src`.
  */
-function generateRedirectPage(post: PostInfo): string {
+function unlazyImages(html: string): string {
+    return html.replace(/<img\b[^>]*>/gi, (tag) => {
+        const lazy = tag.match(/data-lazy-load="([^"]+)"/i);
+        if (!lazy) {
+            return tag;
+        }
+        const url = lazy[1];
+        if (/\ssrc="/i.test(tag)) {
+            return tag.replace(/\ssrc="[^"]*"/i, ` src="${url}"`);
+        }
+        return tag.replace(/<img\b/i, `<img src="${url}"`);
+    });
+}
+
+/**
+ * Generates a self-contained static article page for a blog post. The page renders the
+ * full post content (for crawlers, social unfurlers, and no-JS visitors), carries Open
+ * Graph metadata for sharing, self-canonicalizes to /blog/<slug>/, and links to the
+ * interactive single-page view via /?p=<slug>.
+ */
+function generateArticlePage(post: PostInfo): string {
     const title = escapeHtml(post.title ?? 'Blog Post');
     const description = escapeHtml(post.seoDescription ?? '');
     const image = post.featuredImage ?? '';
-    const spaUrl = `${SITE_ORIGIN}/#rootTabs=tab-blog&theblogPost=${post.id}`;
+    const canonical = `${SITE_ORIGIN}/blog/${post.slug}/`;
+    const appUrl = `${SITE_ORIGIN}/?p=${encodeURIComponent(post.slug ?? '')}`;
+    const iso = post.publishedAtIso8601 ?? '';
+    const dateHuman = post.publishedAt ?? (iso ? new Date(iso).toLocaleDateString() : '');
+    const body = post.content ? unlazyImages(post.content) : `<p>${description}</p>`;
+    const schema = post.schema_article ?? '';
 
     return `<!DOCTYPE html>
-<html lang="en-US">
+<html lang="en-US" dir="ltr">
 <head>
     <meta charset="utf-8" />
-    <meta http-equiv="refresh" content="0; url=${spaUrl}" />
-    <link rel="canonical" href="${spaUrl}" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="canonical" href="${canonical}" />
     <title>${title} - Shmueli Yosef Englard</title>
     <meta name="description" content="${description}" />
     <meta property="og:title" content="${title}" />
     <meta property="og:description" content="${description}" />
-    <meta property="og:url" content="${SITE_ORIGIN}/blog/${post.slug}/" />
+    <meta property="og:url" content="${canonical}" />
     <meta property="og:type" content="article" />
     ${image ? `<meta property="og:image" content="${escapeHtml(image)}" />` : ''}
+    <meta name="twitter:card" content="summary_large_image" />
+    <script>
+        (function () {
+            var query = window.matchMedia("(prefers-color-scheme: dark)");
+            function applyTheme(isDark) {
+                var root = document.documentElement;
+                root.classList.toggle("wa-dark", isDark);
+                root.classList.toggle("wa-light", !isDark);
+                root.style.colorScheme = isDark ? "dark" : "light";
+            }
+            applyTheme(query.matches);
+            query.addEventListener("change", function (event) { applyTheme(event.matches); });
+        })();
+    </script>
+    <link rel="stylesheet" href="/index.css" />
+    <link rel="stylesheet" href="${WA_STYLES}/webawesome.css" />
+    <link rel="stylesheet" href="${WA_STYLES}/themes/default.css" />
+    <style>
+        main.blog-static { margin: 10px auto; padding: 20px; max-width: 60em; }
+        main.blog-static > nav { margin-bottom: 16px; }
+        main.blog-static img { max-width: 100%; height: auto; border-radius: var(--wa-border-radius-medium); }
+        main.blog-static time { font-style: italic; display: block; margin-bottom: 16px; }
+        main.blog-static .app-link { display: inline-block; margin-top: 24px; }
+    </style>
+    ${schema}
 </head>
-<body>
-    <p>Redirecting to <a href="${spaUrl}">${title}</a>…</p>
+<body dir="ltr">
+    <main class="blog-static card">
+        <nav><a href="/">← Shmueli Yosef Englard</a></nav>
+        <article itemscope itemtype="https://schema.org/BlogPosting">
+            <h1 itemprop="headline">${title}</h1>
+            ${iso ? `<time itemprop="datePublished" datetime="${escapeHtml(iso)}">${escapeHtml(dateHuman)}</time>` : ''}
+            ${image ? `<img itemprop="image" src="${escapeHtml(image)}" alt="${title}" />` : ''}
+            <div itemprop="articleBody">${body}</div>
+        </article>
+        <a class="app-link" href="${escapeHtml(appUrl)}">Open the interactive version →</a>
+    </main>
 </body>
 </html>`;
 }
@@ -79,21 +145,54 @@ function escapeHtml(str: string): string {
 }
 
 /**
- * Fetches blog posts from the DropInBlog API and generates static redirect pages.
+ * Fetches a single post's full data (including rendered content) from the DropInBlog API.
+ * Returns an empty object on any failure so page generation can degrade gracefully to the
+ * post summary rather than failing the whole build.
+ */
+async function fetchPostContent(id: number): Promise<Partial<PostInfo>> {
+    try {
+        const url = new URL(`https://api.dropinblog.com/v2/blog/${BLOG_ID}/posts/${id}`);
+        const response = await fetch(url, {
+            method: 'GET',
+            headers: {
+                accept: 'application/json',
+                authorization: `Bearer ${OAUTH_KEY}`
+            }
+        });
+        const json: any = await response.json();
+        if (!json?.success) {
+            return {};
+        }
+        const post: any = json.data?.post ?? {};
+        return {
+            content: post.content,
+            schema_article: post.schema_article,
+            publishedAt: post.publishedAt,
+            publishedAtIso8601: post.publishedAtIso8601
+        };
+    } catch {
+        return {};
+    }
+}
+
+/**
+ * Fetches blog posts from the DropInBlog API and generates static article pages under
+ * dist/blog/<slug>/ for use as shareable, RSS-friendly URLs.
  */
 export async function buildBlogRedirects(): Promise<void> {
     const posts = await fetchAllPosts();
-    console.log(`Generating redirect pages for ${posts.length} blog posts…`);
+    console.log(`Generating static blog pages for ${posts.length} posts…`);
 
     await Promise.all(posts.map(async (post) => {
         if (!post.slug || !post.id) {
             return;
         }
+        const full = await fetchPostContent(post.id);
         const dir = path.join(DIST_DIR, 'blog', post.slug);
         await mkdir(dir, { recursive: true });
-        const html = generateRedirectPage(post);
+        const html = generateArticlePage({ ...post, ...full });
         await writeFile(path.join(dir, 'index.htm'), html, 'utf-8');
     }));
 
-    console.log(`Generated ${posts.length} blog redirect pages in ${DIST_DIR}/blog/`);
+    console.log(`Generated ${posts.length} static blog pages in ${DIST_DIR}/blog/`);
 }

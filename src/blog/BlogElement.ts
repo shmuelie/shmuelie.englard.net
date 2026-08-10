@@ -189,6 +189,9 @@ export class BlogElement extends LitElement {
     @property({ attribute: 'current-post', type: Number, reflect: true })
     currentPost: number | null = null;
 
+    @property({ attribute: 'current-slug' })
+    currentSlug: string | null = null;
+
     @property({ attribute: 'blog-id' })
     blogId: string | null = null;
 
@@ -223,6 +226,20 @@ export class BlogElement extends LitElement {
             this.updateHash({ [this.currentPostId]: this.currentPost?.toString() ?? "" });
             this._load();
         }
+        if (changedProperties.has('currentSlug') && this.currentSlug) {
+            const slug = this.currentSlug;
+            this.currentSlug = null;
+            this._resolveSlug(slug);
+        }
+    }
+
+    private async _resolveSlug(slug: string): Promise<void> {
+        try {
+            const post = await this.blogApi?.getPostBySlug(slug);
+            if (post?.id != null) {
+                this.currentPost = post.id;
+            }
+        } catch { /* ignore */ }
     }
 
     private configureBlogApi(): void {
