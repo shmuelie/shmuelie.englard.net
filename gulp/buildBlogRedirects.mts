@@ -175,7 +175,7 @@ function generateArticlePage(post: PostInfo): string {
     const appUrl = `${SITE_ORIGIN}${appPath}`;
     const iso = post.publishedAtIso8601 ?? '';
     const dateHuman = post.publishedAt ?? (iso ? new Date(iso).toLocaleDateString() : '');
-    const body = post.content ? unlazyImages(sanitizeCmsHtml(post.content)) : `<p>${description}</p>`;
+    const body = post.content ? sanitizeCmsHtml(unlazyImages(post.content)) : `<p>${description}</p>`;
     const structuredData = renderStructuredData(post.schema_article);
 
     const redirectScript = `window.location.replace(${JSON.stringify(appPath)});`;
