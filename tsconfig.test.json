@@ -11,8 +11,11 @@
         "noUnusedParameters": false
     },
     "include": [
+        "src/blog/**/*.ts",
         "src/drop-in-blog/**/*.ts",
+        "src/index-helpers.ts",
         "unpkg.mts",
-        "test/**/*.mts"
+        "test/**/*.mts",
+        "test/**/*.d.ts"
     ]
 }
