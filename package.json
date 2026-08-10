@@ -52,7 +52,7 @@
         "clean": "gulp --gulpfile gulpfile.mts clean",
         "postinstall": "gulp --gulpfile gulpfile.mts generateNodeModulePathMappings",
         "preinstall": "npx -y only-allow pnpm",
-        "test": "tsc -p tsconfig.test.json && node test/prepare.mjs && node --import ./.test-out/test/register.mjs --test .test-out/test/",
+        "test": "tsc -p tsconfig.test.json && node test/prepare.mjs && node test/run.mjs",
         "test-server": "http-server ./dist/ -p 8000 -e htm"
     },
     "version": "1.0.0"
