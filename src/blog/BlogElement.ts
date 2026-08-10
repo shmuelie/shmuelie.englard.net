@@ -1,6 +1,7 @@
 import { LitElement, html, css, nothing } from 'https://unpkg.com/lit@3.3.2/index.js'
 import { customElement, property, state } from 'https://unpkg.com/lit@3.3.2/decorators.js'
 import { unsafeHTML } from 'https://unpkg.com/lit@3.3.2/directives/unsafe-html.js'
+import DOMPurify from 'https://unpkg.com/dompurify@3.4.13/dist/purify.es.mjs'
 import { register, unregister, ProviderCallback } from 'https://unpkg.com/hashed-es6@1.0.3'
 import { Blog } from '../drop-in-blog/Blog.js'
 import { Post } from '../drop-in-blog/Post.js'
@@ -354,7 +355,7 @@ export class BlogElement extends LitElement {
             </h1>
             <img src="${post.featuredImage ?? ''}" alt="${post.title ?? ''}" />
             <time datetime="${post.publishedAt ?? ''}">${post.publishedAt ? new Date(post.publishedAt).toLocaleString() : ''}</time>
-            <article>${unsafeHTML(post.content ?? '')}</article>
+            <article>${unsafeHTML(DOMPurify.sanitize(post.content ?? ''))}</article>
         </section>`;
     }
 

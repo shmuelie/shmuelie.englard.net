@@ -22,5 +22,17 @@
         "publishedAtIso8601": "2024-02-20T12:30:00-05:00",
         "content": "<h2>Second Post</h2><p>More content here for the second post, following on from the first.</p>",
         "schema_article": "<script type=\"application/ld+json\">{\"@context\":\"https://schema.org\",\"@type\":\"BlogPosting\",\"headline\":\"Second Post\"}</script>"
+    },
+    {
+        "id": 103,
+        "slug": "hostile-post",
+        "title": "Hostile Post",
+        "summary": "A post whose CMS HTML tries to inject scripts.",
+        "seoDescription": "Used to verify the site sanitizes untrusted CMS HTML.",
+        "featuredImage": "https://dropinblog.net/featured/hostile-post.png",
+        "publishedAt": "03/25/2024",
+        "publishedAtIso8601": "2024-03-25T09:00:00-05:00",
+        "content": "<p>trusted copy</p><script>window.__xss=1</script><img src=\"x\" onerror=\"window.__xss=1\" /><a href=\"javascript:window.__xss=1\">click</a>",
+        "schema_article": "<script type=\"application/ld+json\">{\"@type\":\"BlogPosting\",\"headline\":\"</script><script>window.__xss=1</script>\"}</script>"
     }
 ]

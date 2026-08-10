@@ -245,6 +245,45 @@ describe('BlogElement (component)', { skip: !componentTestsSupported }, () => {
         assert.equal(element.shadowRoot.querySelector('h1 span:last-child')?.textContent, 'Post 2');
     });
 
+    it('sanitizes hostile CMS HTML before rendering a post body', async () => {
+        routes.posts = () => ({
+            success: true,
+            code: 200,
+            data: { posts: [{ id: 3, title: 'Third' }], pagination: { last_page: 1 } }
+        });
+        routes.post = () => ({
+            success: true,
+            code: 200,
+            data: {
+                post: {
+                    id: 3,
+                    title: 'Third',
+                    content: '<p>safe</p><script>window.__xss=1</script>' +
+                        '<img src="x" onerror="window.__xss=1" /><a href="javascript:window.__xss=1">l</a>'
+                }
+            }
+        });
+
+        const element = await createConfiguredElement();
+
+        const shown = nextChange(element);
+        element.setAttribute('current-post', '3');
+        await shown;
+        await element.updateComplete;
+
+        const article = element.shadowRoot.querySelector('.blog-post article');
+        assert.ok(article, 'expected the post body to render');
+        // Legitimate markup survives, dangerous constructs are stripped.
+        assert.equal(article!.querySelector('p')?.textContent, 'safe');
+        assert.equal(article!.querySelector('script'), null, 'script elements must be removed');
+        assert.equal(article!.querySelector('img')?.getAttribute('onerror'), null, 'event handlers must be removed');
+        const link = article!.querySelector('a');
+        assert.ok(
+            !link || !/^javascript:/i.test(link.getAttribute('href') ?? ''),
+            'javascript: URLs must be removed'
+        );
+    });
+
     it('returns to the list when the back button clears current-post', async () => {
         routes.posts = () => ({
             success: true,

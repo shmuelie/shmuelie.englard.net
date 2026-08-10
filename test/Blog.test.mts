@@ -49,6 +49,21 @@ test('getPostBySlug requests posts/slug/{slug}', async () => {
     }
 });
 
+test('getPostBySlug URL-encodes the slug in the request path', async () => {
+    const mock = mockFetch({ success: true, data: { post: null } });
+    try {
+        await new Blog(BLOG_ID, OAUTH_KEY).getPostBySlug('a b/c?d#e');
+        // The slug must be encoded so it stays a single path segment and cannot
+        // manipulate the request path (defense in depth).
+        assert.equal(
+            mock.recorded[0].url,
+            `https://api.dropinblog.com/v2/blog/${BLOG_ID}/posts/slug/a%20b%2Fc%3Fd%23e`
+        );
+    } finally {
+        mock.restore();
+    }
+});
+
 test('getPosts serializes pagination parameters into the query string', async () => {
     const mock = mockFetch({ success: true, data: { pagination: { last_page: 3 }, posts: [] } });
     try {
