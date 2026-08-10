@@ -28,7 +28,10 @@ export default defineConfig({
     webServer: {
         command: `pnpm run build && pnpm exec http-server ./dist/ -p ${PORT} -e htm -c-1`,
         url: BASE_URL,
-        reuseExistingServer: !process.env.CI,
+        // Always rebuild dist/ from the deterministic BLOG_FIXTURE rather than
+        // reusing whatever might already be listening on the port, so runs never
+        // depend on an unrelated server serving stale bytes.
+        reuseExistingServer: false,
         timeout: 120_000,
         env: { BLOG_FIXTURE: FIXTURE_PATH }
     }

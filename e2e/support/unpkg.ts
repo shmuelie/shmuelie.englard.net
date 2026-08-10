@@ -14,14 +14,27 @@ const ROOT = process.cwd();
 // `https://unpkg.com/<pkg>@<version>[/<subpath>]` -> package, version, subpath.
 const UNPKG_RE = /^((?:@[^/]+\/)?[^/@]+)@([^/]+)(?:\/(.*))?$/;
 
+/** Read the `version` field of a package.json, or `null` when unavailable. */
+function packageVersion(dir: string): string | null {
+    try {
+        const pkgJson = JSON.parse(readFileSync(path.join(dir, 'package.json'), 'utf-8'));
+        return typeof pkgJson.version === 'string' ? pkgJson.version : null;
+    } catch {
+        return null;
+    }
+}
+
 /**
  * Locate the local directory for a package at a given version, preferring a
  * hoisted top-level install and falling back to the flat pnpm store (whose
  * directory names encode the exact version, e.g. `@lit+reactive-element@2.1.2`).
+ * The top-level install is only used when its package.json version matches the
+ * version requested in the unpkg URL, so a differently hoisted version can never
+ * silently serve the wrong bytes.
  */
 function packageDir(pkg: string, version: string): string | null {
     const topLevel = path.join(ROOT, 'node_modules', pkg);
-    if (existsSync(topLevel)) {
+    if (existsSync(topLevel) && packageVersion(topLevel) === version) {
         return topLevel;
     }
     const pnpm = path.join(
@@ -124,7 +137,11 @@ export async function routeUnpkg(target: Page | BrowserContext): Promise<void> {
     await target.route('https://unpkg.com/**', async (route) => {
         const filePath = resolveUnpkgToFile(route.request().url());
         if (!filePath || !existsSync(filePath)) {
-            await route.fulfill({ status: 404, body: `Not found in node_modules: ${route.request().url()}` });
+            await route.fulfill({
+                status: 404,
+                headers: { 'access-control-allow-origin': '*' },
+                body: `Not found in node_modules: ${route.request().url()}`
+            });
             return;
         }
         await route.fulfill({

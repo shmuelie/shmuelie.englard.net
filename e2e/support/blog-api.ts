@@ -29,6 +29,14 @@ function apiEnvelope<T>(data: T) {
 }
 
 /**
+ * The app fetches the DropInBlog API cross-origin, so the mocked responses need
+ * `access-control-allow-origin` to pass the browser's CORS checks.
+ */
+function jsonResponse<T>(data: T) {
+    return { headers: { 'access-control-allow-origin': '*' }, json: apiEnvelope(data) };
+}
+
+/**
  * Stand in for the DropInBlog v2 API so the single-page blog element resolves
  * deterministically without touching the network. Handles the three endpoints
  * the site calls: post list, post-by-id, and post-by-slug.
@@ -42,27 +50,25 @@ export async function mockBlogApi(target: Page | BrowserContext): Promise<void> 
         const slugMatch = pathname.match(/\/posts\/slug\/([^/]+)$/);
         if (slugMatch) {
             const post = posts.find((p) => p.slug === decodeURIComponent(slugMatch[1])) ?? null;
-            await route.fulfill({ json: apiEnvelope({ post }) });
+            await route.fulfill(jsonResponse({ post }));
             return;
         }
 
         const idMatch = pathname.match(/\/posts\/(\d+)$/);
         if (idMatch) {
             const post = posts.find((p) => p.id === Number(idMatch[1])) ?? null;
-            await route.fulfill({ json: apiEnvelope({ post }) });
+            await route.fulfill(jsonResponse({ post }));
             return;
         }
 
         if (/\/posts$/.test(pathname)) {
-            await route.fulfill({
-                json: apiEnvelope({
-                    posts,
-                    pagination: { total: posts.length, per_page: 10, current_page: 0, last_page: 0 }
-                })
-            });
+            await route.fulfill(jsonResponse({
+                posts,
+                pagination: { total: posts.length, per_page: 10, current_page: 0, last_page: 0 }
+            }));
             return;
         }
 
-        await route.fulfill({ json: apiEnvelope({}) });
+        await route.fulfill(jsonResponse({}));
     });
 }
