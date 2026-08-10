@@ -30,6 +30,15 @@ function delay(ms: number): Promise<void> {
     return new Promise((res) => setTimeout(res, ms));
 }
 
+// Poll (yielding to hashed-es6's 0ms debounce timer via `delay(0)`) until the
+// location hash matches `expected`, up to a bounded number of retries. This is
+// deterministic under load/CI, unlike waiting a fixed, guessed duration.
+async function waitForHash(expected: string, retries = 50): Promise<void> {
+    for (let i = 0; i < retries && window.location.hash !== expected; i++) {
+        await delay(0);
+    }
+}
+
 // Resolves the next time the element dispatches its `change` event, which the
 // element fires whenever a load (list, single post, or slug resolution) settles.
 function nextChange(element: EventTarget): Promise<void> {
@@ -281,8 +290,9 @@ describe('BlogElement (component)', { skip: !componentTestsSupported }, () => {
         assert.equal(section(element), 'blog-post');
         assert.equal(element.currentPost, 77);
 
-        // hashed-es6 writes the hash on a debounced timer.
-        await delay(5);
+        // hashed-es6 writes the hash on a debounced 0ms timer; poll until it
+        // lands rather than guessing a fixed delay.
+        await waitForHash('#/theblogPost/77');
         assert.equal(window.location.hash, '#/theblogPost/77');
     });
 
@@ -346,14 +356,23 @@ describe('BlogElement (component)', { skip: !componentTestsSupported }, () => {
         assert.equal(element.currentPost, 5);
 
         // Now let the stale list load resolve; it must not overwrite the post.
+        // A load that actually settles dispatches `change`; the generation guard
+        // should drop this stale one, so poll (yielding to drain the queued
+        // continuation) and assert no such event ever arrives, rather than
+        // waiting a fixed, guessed duration.
+        let staleSettled = false;
+        element.addEventListener('change', () => { staleSettled = true; }, { once: true });
         listGate.resolve({
             success: true,
             code: 200,
             data: { posts: [{ id: 1, title: 'Stale' }], pagination: { last_page: 1 } }
         });
-        await delay(10);
+        for (let i = 0; i < 50 && !staleSettled; i++) {
+            await delay(0);
+        }
         await element.updateComplete;
 
+        assert.equal(staleSettled, false, 'the stale list load must not settle and dispatch change');
         assert.equal(section(element), 'blog-post', 'the stale list load must not replace the open post');
         assert.equal(element.currentPost, 5);
     });

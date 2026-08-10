@@ -1,6 +1,7 @@
 import * as nodeModule from 'node:module';
 import { createRequire } from 'node:module';
 import { realpathSync, statSync } from 'node:fs';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 import path from 'node:path';
 import * as unpkg from './../unpkg.mjs';
 
@@ -28,7 +29,7 @@ function toLoadableUrl(filePath: string): string {
         const require = createRequire(path.join(resolved, 'package.json'));
         resolved = realpathSync(require.resolve('.'));
     }
-    return 'file://' + resolved;
+    return pathToFileURL(resolved).href;
 }
 
 if (typeof registerHooks === 'function') {
@@ -37,7 +38,7 @@ if (typeof registerHooks === 'function') {
             const result = unpkg.resolve(specifier, context as never, nextResolve as never);
             if (result?.shortCircuit && typeof result.url === 'string' && result.url.startsWith('file://')) {
                 try {
-                    return { ...result, url: toLoadableUrl(result.url.slice('file://'.length)) };
+                    return { ...result, url: toLoadableUrl(fileURLToPath(result.url)) };
                 } catch { /* fall back to the original url */ }
             }
             return result;
