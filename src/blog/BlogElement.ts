@@ -1,7 +1,7 @@
 import { LitElement, html, css, nothing } from 'https://unpkg.com/lit@3.3.2/index.js'
 import { customElement, property, state } from 'https://unpkg.com/lit@3.3.2/decorators.js'
 import { unsafeHTML } from 'https://unpkg.com/lit@3.3.2/directives/unsafe-html.js'
-import { register, ProviderCallback } from 'https://unpkg.com/hashed-es6@1.0.3'
+import { register, unregister, ProviderCallback } from 'https://unpkg.com/hashed-es6@1.0.3'
 import { Blog } from '../drop-in-blog/Blog.js'
 import { Post } from '../drop-in-blog/Post.js'
 import { PostSummary } from '../drop-in-blog/PostSummary.js'
@@ -213,6 +213,20 @@ export class BlogElement extends LitElement {
             [this.currentPageId]: this.currentPage?.toString() ?? "",
             [this.currentPostId]: this.currentPost?.toString() ?? ""
         }, this.boundHashUpdated);
+    }
+
+    override disconnectedCallback(): void {
+        super.disconnectedCallback();
+        // Detach the hashed-es6 provider so a removed element no longer reacts to
+        // hash changes (which would otherwise call _load() and dispatch events
+        // after the element left the DOM). This also lets connectedCallback
+        // re-register cleanly if the element is reconnected.
+        if (this.updateHash) {
+            this.updateHash = null;
+            try {
+                unregister(this.boundHashUpdated);
+            } catch { /* already detached (e.g. store reset) */ }
+        }
     }
 
     override updated(changedProperties: Map<string, unknown>): void {
