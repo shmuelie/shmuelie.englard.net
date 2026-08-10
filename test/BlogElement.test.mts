@@ -39,12 +39,22 @@ function nextChange(element: EventTarget): Promise<void> {
 type JsonResponse = { json: () => Promise<unknown> };
 type Route = (url: URL) => unknown | Promise<unknown>;
 
+// Minimal structural view of the `blog-element` (a LitElement) used by the
+// tests. Narrowing to this instead of `any` catches assertion mismatches at
+// compile time. `shadowRoot` is always present because Lit renders into one.
+interface BlogElementLike extends HTMLElement {
+    shadowRoot: ShadowRoot;
+    updateComplete: Promise<boolean>;
+    currentPost: number | null;
+    currentPage: number | null;
+}
+
 describe('BlogElement (component)', { skip: !componentTestsSupported }, () => {
     let hashed: { reset: () => void };
     let originalFetch: typeof globalThis.fetch;
     let cleanupDom: (() => void) | undefined;
     let elementIdCounter = 0;
-    let connected: any[] = [];
+    let connected: BlogElementLike[] = [];
 
     // Per-test routing table for the mocked DropInBlog API.
     let routes: {
@@ -121,8 +131,8 @@ describe('BlogElement (component)', { skip: !componentTestsSupported }, () => {
 
     // Creates and connects a fresh element. A unique id keeps hashed-es6 provider
     // keys from colliding across tests.
-    async function createElement(id = `blog-${++elementIdCounter}`): Promise<any> {
-        const element = document.createElement('blog-element') as any;
+    async function createElement(id = `blog-${++elementIdCounter}`): Promise<BlogElementLike> {
+        const element = document.createElement('blog-element') as BlogElementLike;
         element.id = id;
         document.body.appendChild(element);
         connected.push(element);
@@ -133,14 +143,14 @@ describe('BlogElement (component)', { skip: !componentTestsSupported }, () => {
     // Lit runs render() before updated(), and the element only flips `loading`
     // to true from within updated() -> _load(). Pump a few update cycles until
     // the loading state has rendered.
-    async function waitForLoading(element: any): Promise<void> {
+    async function waitForLoading(element: BlogElementLike): Promise<void> {
         for (let i = 0; i < 5 && section(element) !== 'blog-loading'; i++) {
             await element.updateComplete;
         }
     }
 
     // Connects the element and configures the API, waiting for the initial load.
-    async function createConfiguredElement(id?: string): Promise<any> {
+    async function createConfiguredElement(id?: string): Promise<BlogElementLike> {
         const element = await createElement(id);
         const loaded = nextChange(element);
         element.setAttribute('blog-id', 'test-blog');
@@ -150,7 +160,7 @@ describe('BlogElement (component)', { skip: !componentTestsSupported }, () => {
         return element;
     }
 
-    function section(element: any): string | undefined {
+    function section(element: BlogElementLike): string | undefined {
         return element.shadowRoot?.querySelector('section')?.className;
     }
 
@@ -243,7 +253,9 @@ describe('BlogElement (component)', { skip: !componentTestsSupported }, () => {
         assert.equal(section(element), 'blog-post');
 
         shown = nextChange(element);
-        element.shadowRoot.querySelector('.back-button').click();
+        const backButton = element.shadowRoot.querySelector<HTMLElement>('.back-button');
+        assert.ok(backButton, 'expected a back button on the open post');
+        backButton.click();
         await shown;
         await element.updateComplete;
 
@@ -286,7 +298,7 @@ describe('BlogElement (component)', { skip: !componentTestsSupported }, () => {
 
         const element = await createConfiguredElement();
 
-        const buttons = () => element.shadowRoot.querySelectorAll('.blog-pagination button');
+        const buttons = () => element.shadowRoot.querySelectorAll<HTMLButtonElement>('.blog-pagination button');
         assert.equal(element.shadowRoot.querySelector('.blog-pagination span')?.textContent?.trim(), 'Page 1 of 3');
         assert.equal(buttons()[0].disabled, true, 'previous should be disabled on the first page');
 
