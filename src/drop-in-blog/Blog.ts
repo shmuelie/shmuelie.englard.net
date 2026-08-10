@@ -68,7 +68,7 @@ export class Blog {
     }
 
     async getPostBySlug(slug: string): Promise<Post | null> {
-        const response = await this.get<PostResponse>(`posts/slug/${slug}`);
+        const response = await this.get<PostResponse>(`posts/slug/${encodeURIComponent(slug)}`);
         if (!response.success) {
             throw new ApiError(response.message, response.code);
         }

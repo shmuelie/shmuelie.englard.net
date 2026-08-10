@@ -10,6 +10,7 @@ All runtime libraries load from [unpkg CDN](https://unpkg.com/) in production an
 - [hashed-es6](https://shmuelie.github.io/hashed-es6/)
 - [Web Awesome](https://webawesome.com/) — UI components
 - [Lit](https://lit.dev/) — base library for the custom blog component
+- [DOMPurify](https://github.com/cure53/DOMPurify) — sanitizes CMS HTML before it is injected into the page
 
 ## Development
 
