@@ -6,6 +6,7 @@
     "description": "Personal Website",
     "devDependencies": {
         "@awesome.me/webawesome": "3.5.0",
+        "@playwright/test": "^1.62.1",
         "@types/node": "^22.10.0",
         "del": "8.0.1",
         "gulp": "5.0.1",
