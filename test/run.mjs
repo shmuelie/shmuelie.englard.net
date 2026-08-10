@@ -18,10 +18,12 @@ const files = readdirSync(testDir)
 // an in-file `import './register.mjs'` runs too late for statically-imported
 // unpkg URLs). Passing the hook via `--import` in `execArgv` registers it in
 // every child ahead of linking. A file:// URL keeps this correct on Windows,
-// where a bare absolute path would be misread by `--import`.
+// where a bare absolute path would be misread by `--import`. Append to (rather
+// than replace) `process.execArgv` so flags used to start this process (e.g.
+// `--enable-source-maps`, `--conditions`) still propagate to the children.
 const register = pathToFileURL(path.join(testDir, 'register.mjs')).href;
 
-const stream = run({ files, execArgv: ['--import', register] });
+const stream = run({ files, execArgv: [...process.execArgv, '--import', register] });
 stream.on('test:fail', () => {
     process.exitCode = 1;
 });
