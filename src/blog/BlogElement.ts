@@ -170,6 +170,7 @@ export class BlogElement extends LitElement {
     private updateHash: ProviderCallback | null = null;
     private readonly boundHashUpdated = this.hashUpdated.bind(this);
     private blogApi: Blog | null = null;
+    private reloadQueued: boolean = false;
 
     @state()
     private loading: boolean = false;
@@ -262,15 +263,21 @@ export class BlogElement extends LitElement {
     }
 
     private async _load(): Promise<void> {
-        if (this.loading) return;
+        if (this.loading) {
+            this.reloadQueued = true;
+            return;
+        }
         this.loading = true;
-        this.posts = [];
 
-        try {
-            if (!await this._loadPost()) {
-                await this._loadPosts();
-            }
-        } catch { /* ignore */ }
+        do {
+            this.reloadQueued = false;
+            this.posts = [];
+            try {
+                if (!await this._loadPost()) {
+                    await this._loadPosts();
+                }
+            } catch { /* ignore */ }
+        } while (this.reloadQueued);
 
         this.dispatchEvent(new Event('change'));
         this.loading = false;
