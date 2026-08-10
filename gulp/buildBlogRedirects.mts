@@ -93,7 +93,7 @@ function renderStructuredData(raw: string | undefined): { tag: string; script: s
     if (!raw) {
         return { tag: '', script: '' };
     }
-    const match = raw.match(/<script[^>]*>([\s\S]*?)<\/script>/i);
+    const match = raw.match(/<script\b[^>]*>([\s\S]*?)<\/script\s*>/i);
     const jsonText = (match ? match[1] : raw).trim();
     if (!jsonText) {
         return { tag: '', script: '' };
