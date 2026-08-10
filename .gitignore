@@ -386,6 +386,7 @@ MigrationBackup/
 # End of https://www.toptal.com/developers/gitignore/api/windows,web,visualstudio
 
 dist/
+.test-out/
 .vs/
 .vscode/
 tsconfig.paths.json

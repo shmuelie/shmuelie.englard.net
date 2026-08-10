@@ -6,6 +6,7 @@
     "description": "Personal Website",
     "devDependencies": {
         "@awesome.me/webawesome": "3.5.0",
+        "@types/node": "^22.10.0",
         "del": "8.0.1",
         "gulp": "5.0.1",
         "gulp-clean-css": "4.3.0",
@@ -51,6 +52,7 @@
         "clean": "gulp --gulpfile gulpfile.mts clean",
         "postinstall": "gulp --gulpfile gulpfile.mts generateNodeModulePathMappings",
         "preinstall": "npx -y only-allow pnpm",
+        "test": "tsc -p tsconfig.test.json && node test/prepare.mjs && node --import ./.test-out/test/register.mjs --test .test-out/test/",
         "test-server": "http-server ./dist/ -p 8000 -e htm"
     },
     "version": "1.0.0"

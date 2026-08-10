@@ -1,0 +1,18 @@
+{
+    "extends": "./tsconfig.json",
+    "compilerOptions": {
+        "outDir": ".test-out",
+        "rootDir": ".",
+        "sourceMap": false,
+        "removeComments": false,
+        "types": ["node"],
+        "esModuleInterop": true,
+        "noUnusedLocals": false,
+        "noUnusedParameters": false
+    },
+    "include": [
+        "src/drop-in-blog/**/*.ts",
+        "unpkg.mts",
+        "test/**/*.mts"
+    ]
+}
