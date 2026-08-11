@@ -1,0 +1,45 @@
+wa-tab-panel[name="projects"] > section {
+    margin-bottom: 20px;
+}
+
+wa-tab-panel[name="projects"] > section > div {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    padding: 10px;
+}
+
+wa-tab-panel[name="projects"] wa-card {
+    color: var(--wa-color-text-normal);
+    padding: 16px;
+    flex: 1 1 400px;
+    max-width: 600px;
+    display: flex;
+    flex-flow: column;
+}
+
+wa-tab-panel[name="projects"] wa-card h2 {
+    margin-top: 0;
+}
+
+wa-tab-panel[name="projects"] wa-card p {
+    flex: 1;
+}
+
+wa-tab-panel[name="projects"] wa-card a {
+    margin-top: 8px;
+    align-self: flex-start;
+}
+
+@media (max-width: 480px) {
+    wa-tab-panel[name="projects"] wa-card {
+        flex-basis: 100%;
+        max-width: none;
+        padding: 10px;
+    }
+
+    wa-tab-panel[name="projects"] > section > div {
+        padding: 5px;
+        gap: 10px;
+    }
+}
