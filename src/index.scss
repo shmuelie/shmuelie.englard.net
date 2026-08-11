@@ -20,6 +20,10 @@ body {
     overflow: hidden;
     margin: 8px;
     height: calc(100vh - 16px);
+    // Web Awesome's native.css sets `body { min-height: 100vh }`; without this
+    // override the body stays a full 100vh tall and the vertical margins push the
+    // document past the viewport, so the window (not just the tab body) scrolls.
+    min-height: 0;
     max-width: 115em;
     margin-left: auto;
     margin-right: auto;

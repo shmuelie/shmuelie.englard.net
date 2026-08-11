@@ -80,3 +80,30 @@ test('the Projects tab scrolls internally instead of overflowing the page', asyn
     // The page itself never scrolls: the root is overflow:hidden.
     expect(metrics.pageScrollH).toBeLessThanOrEqual(metrics.pageClientH);
 });
+
+// Regression guard for #29: the window/document must never scroll on any tab at
+// any viewport — only wa-tab-group::part(body) scrolls. Web Awesome's native.css
+// applies `body { min-height: 100vh }`, which (combined with the body margins)
+// used to push the document ~16px past the viewport; index.scss overrides it.
+for (const viewport of [
+    { name: 'desktop', width: 1249, height: 1277 },
+    { name: 'mobile', width: 400, height: 700 },
+]) {
+    for (const tab of ['general', 'projects', 'blog', 'hardware']) {
+        test(`the ${tab} tab never scrolls the window (${viewport.name})`, async ({ page }) => {
+            await installMocks(page);
+            await page.setViewportSize({ width: viewport.width, height: viewport.height });
+
+            await page.goto(`/#/rootTabs/${tab}`);
+            await page.waitForFunction(() => !!customElements.get('wa-tab-group'));
+            await expect(page.locator(`wa-tab-panel[name="${tab}"]`)).toBeVisible();
+
+            const metrics = await page.evaluate(() => {
+                const doc = document.documentElement;
+                return { pageScrollH: doc.scrollHeight, pageClientH: doc.clientHeight };
+            });
+
+            expect(metrics.pageScrollH).toBeLessThanOrEqual(metrics.pageClientH);
+        });
+    }
+}
