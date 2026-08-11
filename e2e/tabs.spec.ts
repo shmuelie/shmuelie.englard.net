@@ -77,6 +77,6 @@ test('the Projects tab scrolls internally instead of overflowing the page', asyn
 
     // The panel body is the scroll container: its content is taller than its box.
     expect(metrics.bodyScrollH).toBeGreaterThan(metrics.bodyClientH);
-    // The page itself does not scroll (allow a few px for the body margin).
-    expect(metrics.pageScrollH).toBeLessThanOrEqual(metrics.pageClientH + 20);
+    // The page itself never scrolls: the root is overflow:hidden.
+    expect(metrics.pageScrollH).toBeLessThanOrEqual(metrics.pageClientH);
 });

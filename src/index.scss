@@ -10,9 +10,14 @@
     box-shadow: var(--wa-shadow-small);
 }
 
+html {
+    overflow: hidden;
+}
+
 body {
     display: flex;
     flex-flow: column;
+    overflow: hidden;
     margin: 8px;
     height: calc(100vh - 16px);
     max-width: 115em;
