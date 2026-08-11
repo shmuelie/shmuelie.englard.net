@@ -51,3 +51,32 @@ test('a #/rootTabs/projects hash restores the Projects tab on load', async ({ pa
     await expect(page.locator('wa-tab-panel[name="projects"]')).toBeVisible();
     await expect(page.locator('wa-tab-panel[name="general"]')).toBeHidden();
 });
+
+// Regression guard: the tab body must scroll internally within the card, so a
+// tall panel (like Projects) never spills past the card and forces the whole
+// page to scroll. Uses a short viewport to guarantee the content overflows.
+test('the Projects tab scrolls internally instead of overflowing the page', async ({ page }) => {
+    await installMocks(page);
+    await page.setViewportSize({ width: 800, height: 600 });
+
+    await page.goto('/#/rootTabs/projects');
+    await page.waitForFunction(() => !!customElements.get('wa-tab-group'));
+    await expect(page.locator('wa-tab-panel[name="projects"]')).toBeVisible();
+
+    const metrics = await page.evaluate(() => {
+        const doc = document.documentElement;
+        const tg = document.querySelector('wa-tab-group')!;
+        const body = tg.shadowRoot!.querySelector('[part~="body"]')!;
+        return {
+            pageScrollH: doc.scrollHeight,
+            pageClientH: doc.clientHeight,
+            bodyScrollH: body.scrollHeight,
+            bodyClientH: body.clientHeight,
+        };
+    });
+
+    // The panel body is the scroll container: its content is taller than its box.
+    expect(metrics.bodyScrollH).toBeGreaterThan(metrics.bodyClientH);
+    // The page itself does not scroll (allow a few px for the body margin).
+    expect(metrics.pageScrollH).toBeLessThanOrEqual(metrics.pageClientH + 20);
+});

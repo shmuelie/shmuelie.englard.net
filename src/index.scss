@@ -40,7 +40,13 @@ wa-tab-group {
     height: 100%;
 }
 
+wa-tab-group::part(base) {
+    height: 100%;
+    min-height: 0;
+}
+
 wa-tab-group::part(body) {
+    min-height: 0;
     overflow-y: auto;
 }
 
