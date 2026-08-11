@@ -148,6 +148,7 @@ function renderProjects(document: Document): void {
             link.target = '_blank';
             link.rel = 'noopener';
             link.textContent = 'View project';
+            link.setAttribute('aria-label', `View project: ${project.name}`);
             card.appendChild(link);
         }
 
