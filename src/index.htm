@@ -55,6 +55,7 @@
     <main class="card">
         <wa-tab-group>
             <wa-tab slot="nav" panel="general">General</wa-tab>
+            <wa-tab slot="nav" panel="projects">Projects</wa-tab>
             <wa-tab slot="nav" panel="blog">Blog</wa-tab>
             <wa-tab slot="nav" panel="hardware">Hardware</wa-tab>
             <wa-tab-panel name="general">
@@ -76,6 +77,19 @@
                             <meta itemprop="identifier" />
                         </div>
                     </template>
+                </section>
+            </wa-tab-panel>
+            <wa-tab-panel name="projects">
+                <section class="projects">
+                    <div>
+                        <template data-type="SoftwareSourceCode">
+                            <wa-card>
+                                <h2 data-field="name"></h2>
+                                <p data-field="description"></p>
+                                <a data-field="url" target="_blank" rel="noopener">View project</a>
+                            </wa-card>
+                        </template>
+                    </div>
                 </section>
             </wa-tab-panel>
             <wa-tab-panel name="blog">

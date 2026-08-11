@@ -4,6 +4,7 @@ import KEYS from 'jsdom-global/keys.js'
 import { gulpDom } from './gulpDom.mts'
 import { contactPoints } from '../data/contactPoints.mjs'
 import { desktops, servers } from '../data/hardware.mjs'
+import { projects } from '../data/projects.mjs'
 import type { DOMWindow } from 'jsdom'
 import type { apply as ApplyFunction, ApplyOptions } from 'microdata-tooling'
 import type { ContactPoint } from '../data/schema'
@@ -30,6 +31,7 @@ async function renderHtml(document: Document, window: DOMWindow): Promise<string
     const apply = (await import('microdata-tooling')).apply;
     await renderContactPoints(document, apply)
     renderHardware(document);
+    renderProjects(document);
 
     document.querySelector("meta[name=datetime]")!.setAttribute("content", new Date().toISOString());
     return undefined;
@@ -120,6 +122,39 @@ function renderHardwareSection(document: Document, sectionSelector: string, data
 function renderHardware(document: Document): void {
     renderHardwareSection(document, 'wa-tab-panel[name="hardware"] > section.desktops', desktops);
     renderHardwareSection(document, 'wa-tab-panel[name="hardware"] > section.servers', servers);
+}
+
+function renderProjects(document: Document): void {
+    const section = document.querySelector('wa-tab-panel[name="projects"] > section.projects')!;
+    const container = section.querySelector('div')!;
+    const template = container.querySelector('template')!;
+
+    for (const project of projects) {
+        const card = document.createElement('wa-card');
+
+        const heading = document.createElement('h2');
+        heading.textContent = (project.name as string) ?? '';
+        card.appendChild(heading);
+
+        if (project.description) {
+            const description = document.createElement('p');
+            description.textContent = project.description as string;
+            card.appendChild(description);
+        }
+
+        if (project.url) {
+            const link = document.createElement('a');
+            link.href = project.url as string;
+            link.target = '_blank';
+            link.rel = 'noopener';
+            link.textContent = 'View project';
+            card.appendChild(link);
+        }
+
+        container.appendChild(card);
+    }
+
+    container.removeChild(template);
 }
 
 /**
