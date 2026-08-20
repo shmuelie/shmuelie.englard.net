@@ -1,5 +1,5 @@
-import { Author } from "./Author";
-import { Category } from "./Category";
+import { Author } from "./Author.js";
+import { Category } from "./Category.js";
 
 
 export interface PostSummary {

@@ -1,5 +1,5 @@
-import { Category } from "./Category";
-import { Response } from "./Response";
+import { Category } from "./Category.js";
+import { Response } from "./Response.js";
 
 
 export type CategoriesResponse = Response<{

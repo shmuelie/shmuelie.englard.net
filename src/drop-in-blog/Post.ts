@@ -1,4 +1,4 @@
-import { PostSummary } from "./PostSummary";
+import { PostSummary } from "./PostSummary.js";
 
 
 export interface Post extends PostSummary {
