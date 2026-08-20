@@ -3,5 +3,5 @@ import { Response } from "./Response";
 
 
 export type CategoriesResponse = Response<{
-    readonly categoryies?: Category[];
+    readonly categories?: Category[];
 }>;

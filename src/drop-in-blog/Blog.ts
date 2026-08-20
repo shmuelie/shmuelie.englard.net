@@ -56,7 +56,7 @@ export class Blog {
         if (!response.success) {
             throw new ApiError(response.message, response.code);
         }
-        return response.data?.categoryies ?? [];
+        return response.data?.categories ?? [];
     }
 
     async getPost(id: number): Promise<Post | null> {
