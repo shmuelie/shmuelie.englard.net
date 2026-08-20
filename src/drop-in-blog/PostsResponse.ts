@@ -1,6 +1,6 @@
-import { Pagination } from "./Pagination";
-import { PostSummary } from "./PostSummary";
-import { Response } from "./Response";
+import { Pagination } from "./Pagination.js";
+import { PostSummary } from "./PostSummary.js";
+import { Response } from "./Response.js";
 
 
 export type PostsResponse = Response<{

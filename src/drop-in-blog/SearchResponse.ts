@@ -1,5 +1,5 @@
-import { PostSummary } from "./PostSummary";
-import { Response } from "./Response";
+import { PostSummary } from "./PostSummary.js";
+import { Response } from "./Response.js";
 
 
 export type SearchResponse = Response<{
